@@ -1,0 +1,60 @@
+{
+  "type": "SharedSlice",
+  "id": "hero_banner",
+  "name": "Hero Banner",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Standard hero section with text and button.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "background_color": {
+          "type": "Text",
+          "config": {
+            "label": "Background Color (hex or CSS variable)"
+          }
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1,strong,em",
+            "label": "Headline"
+          }
+        },
+        "subheadline": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em",
+            "label": "Subheadline"
+          }
+        },
+        "cta": {
+          "type": "Group",
+          "config": {
+            "label": "Call To Action",
+            "fields": {
+              "cta_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Button Label"
+                }
+              },
+              "cta_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Button Link",
+                  "allowText": false,
+                  "repeat": false,
+                  "select": null
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

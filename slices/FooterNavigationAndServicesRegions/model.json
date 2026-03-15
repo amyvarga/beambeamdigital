@@ -1,0 +1,77 @@
+{
+  "type": "SharedSlice",
+  "id": "footer_navigation_and_services_regions",
+  "name": "FooterNavigationAndServicesRegions",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default Footer",
+      "description": "Footer with navigation links, service-region groupings, and copyright notice.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "brand_title": {
+          "type": "Text",
+          "config": {
+            "label": "Brand Title"
+          }
+        },
+        "brand_subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Brand Subtitle"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "single": "paragraph,strong,em",
+            "label": "Description"
+          }
+        },
+        "navigation_links": {
+          "type": "Link",
+          "config": {
+            "label": "Navigation Links",
+            "allowText": true,
+            "repeat": true,
+            "select": null
+          }
+        },
+        "services_regions": {
+          "type": "Group",
+          "config": {
+            "label": "Services by Region",
+            "fields": {
+              "service_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Service Title"
+                }
+              },
+              "service_region": {
+                "type": "Link",
+                "config": {
+                  "label": "Service region",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": true
+                }
+              }
+            }
+          }
+        },
+        "copyright_notice": {
+          "type": "Text",
+          "config": {
+            "label": "Copyright Notice"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

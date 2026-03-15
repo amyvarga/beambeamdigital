@@ -1,0 +1,95 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"contacts": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"contact_type",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "location",
+									"type": "Select"
+								}
+							],
+							[
+								"contact_label",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "wagon",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Safety"
+						}
+					}
+				]
+			},
+			"form_title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Giving"
+						}
+					}
+				]
+			},
+			"form_fields": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"field_label",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "discovery",
+									"type": "Text"
+								}
+							],
+							[
+								"field_type",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "textarea",
+									"type": "Select"
+								}
+							],
+							[
+								"is_required",
+								{
+									"__TYPE__": "BooleanContent",
+									"value": false
+								}
+							]
+						]
+					}
+				]
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"value": "hand",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

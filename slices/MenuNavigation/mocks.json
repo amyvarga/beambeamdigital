@@ -1,0 +1,72 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "simple_with_logo",
+		"primary": {
+			"logo_area": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"main_text",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "material",
+									"type": "Text"
+								}
+							],
+							[
+								"secondary_text",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "furniture",
+									"type": "Text"
+								}
+							],
+							[
+								"highlighted_text",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "yes",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"menu_links": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"label",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "wealth",
+									"type": "Text"
+								}
+							],
+							[
+								"link",
+								{
+									"key": "b46d5840-fb79-4b4e-9c71-0f891c084a83",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://google.com"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

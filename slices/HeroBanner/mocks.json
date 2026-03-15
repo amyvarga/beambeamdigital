@@ -1,0 +1,65 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"background_color": {
+				"__TYPE__": "FieldContent",
+				"value": "driven",
+				"type": "Text"
+			},
+			"headline": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Aside"
+						}
+					}
+				]
+			},
+			"subheadline": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ex velit ut veniam do id culpa mollit mollit eiusmod excepteur tempor amet."
+						}
+					}
+				]
+			},
+			"cta": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"cta_label",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "chain",
+									"type": "Text"
+								}
+							],
+							[
+								"cta_link",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "83d50311-58de-4576-8fba-26474234540f",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://google.com"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

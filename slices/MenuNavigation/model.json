@@ -1,0 +1,67 @@
+{
+  "type": "SharedSlice",
+  "id": "menu_navigation",
+  "name": "Menu Navigation",
+  "variations": [
+    {
+      "id": "simple_with_logo",
+      "name": "Simple with Logo",
+      "description": "A simple vertical navigation layout that includes a logo area (with styled text) and a list of navigation links.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "logo_area": {
+          "type": "Group",
+          "config": {
+            "label": "Logo Area",
+            "fields": {
+              "main_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Main Logo Text"
+                }
+              },
+              "secondary_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Secondary Logo Text"
+                }
+              },
+              "highlighted_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Highlighted/Italic Text"
+                }
+              }
+            }
+          }
+        },
+        "menu_links": {
+          "type": "Group",
+          "config": {
+            "label": "Menu Links",
+            "fields": {
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Link Label"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link URL",
+                  "allowText": false,
+                  "repeat": false,
+                  "select": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

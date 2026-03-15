@@ -1,0 +1,85 @@
+{
+  "type": "SharedSlice",
+  "id": "contact_panel",
+  "name": "ContactPanel",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Basic layout with contact details on one side and a contact form on the other.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "contacts": {
+          "type": "Group",
+          "config": {
+            "label": "Contact Items",
+            "fields": {
+              "contact_type": {
+                "type": "Select",
+                "config": {
+                  "label": "Contact Type",
+                  "options": ["phone", "email", "location"]
+                }
+              },
+              "contact_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Contact Text"
+                }
+              }
+            }
+          }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1",
+            "label": "Title"
+          }
+        },
+        "form_title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading2",
+            "label": "Form Title"
+          }
+        },
+        "form_fields": {
+          "type": "Group",
+          "config": {
+            "label": "Form Fields",
+            "fields": {
+              "field_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Field Label"
+                }
+              },
+              "field_type": {
+                "type": "Select",
+                "config": {
+                  "label": "Field Type",
+                  "options": ["text", "email", "phone", "textarea"]
+                }
+              },
+              "is_required": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Is Required"
+                }
+              }
+            }
+          }
+        },
+        "button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Button Text"
+          }
+        }
+      }
+    }
+  ]
+}

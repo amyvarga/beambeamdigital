@@ -1,0 +1,47 @@
+{
+  "type": "SharedSlice",
+  "id": "what_we_do_slice",
+  "name": "What We Do Cards",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Standard layout with section title and repeatable feature cards.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "section_title": {
+          "type": "Text",
+          "config": {
+            "label": "Section Title",
+            "placeholder": "What We Do"
+          }
+        },
+        "features": {
+          "type": "Group",
+          "config": {
+            "label": "Feature Cards",
+            "fields": {
+              "feature_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading3,strong,em",
+                  "label": "Feature Title"
+                }
+              },
+              "feature_description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em,list-item",
+                  "label": "Feature Description"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

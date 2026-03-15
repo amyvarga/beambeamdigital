@@ -1,0 +1,38 @@
+{
+  "type": "SharedSlice",
+  "id": "content_header",
+  "name": "Pricing",
+  "variations": [
+    {
+      "id": "centered_title_and_subtext",
+      "name": "Centered Title and Subtext",
+      "description": "Displays a center-aligned title with a center-aligned supporting description beneath it.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading2",
+            "label": "Title"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em,hyperlink",
+            "label": "Description"
+          }
+        },
+        "background_color": {
+          "type": "Color",
+          "config": {
+            "label": "Background Color"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

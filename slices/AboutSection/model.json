@@ -1,0 +1,57 @@
+{
+  "type": "SharedSlice",
+  "id": "aboutSection",
+  "name": "About Section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Standard about section with image, heading, and body text.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "profile_image": {
+          "type": "Image",
+          "config": {
+            "label": "Profile Image"
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em,hyperlink,list-item",
+            "label": "Body"
+          }
+        },
+        "cta_text": {
+          "type": "Text",
+          "config": {
+            "label": "CTA Text",
+            "placeholder": "Ready to work together?"
+          }
+        },
+        "cta_button_label": {
+          "type": "Text",
+          "config": {
+            "label": "CTA Button Label",
+            "placeholder": "Get in touch"
+          }
+        },
+        "cta_button_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Button Link",
+            "placeholder": "#contact"
+          }
+        }
+      }
+    }
+  ]
+}

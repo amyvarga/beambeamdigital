@@ -1,0 +1,61 @@
+{
+  "type": "SharedSlice",
+  "id": "featured_card_grid",
+  "name": "FeaturedCardCarousel",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Grid of featured cards with image, title, bullet list, and link.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "section_heading": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading2",
+            "label": "Section Heading"
+          }
+        },
+        "cards": {
+          "type": "Group",
+          "config": {
+            "label": "Cards",
+            "fields": {
+              "logo": {
+                "type": "Image",
+                "config": {
+                  "label": "Logo"
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title"
+                }
+              },
+              "description_list": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,list-item",
+                  "label": "Description List"
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "allowText": true,
+                  "repeat": false,
+                  "select": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
