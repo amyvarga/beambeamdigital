@@ -38,6 +38,8 @@ export default function RootLayout({
       <body>
         <FadeInObserver />
         {children}
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
