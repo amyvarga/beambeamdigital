@@ -4,6 +4,7 @@ import "./globals.css";
 import FadeInObserver from "@/components/FadeInObserver";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
+import HashAnalytics from "@/components/HashAnalytics"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body>
         <FadeInObserver />
         {children}
+        <HashAnalytics />
         <SpeedInsights />
         <Analytics />
       </body>
