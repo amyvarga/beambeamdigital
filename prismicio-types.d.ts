@@ -918,12 +918,12 @@ export interface WhatWeDoSliceSliceDefaultPrimaryFeaturesItem {
   /**
    * Feature Title field in *What We Do Cards → Default → Primary → Feature Cards*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: what_we_do_slice.default.primary.features[].feature_title
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  feature_title: prismic.RichTextField;
+  feature_title: prismic.KeyTextField;
 
   /**
    * Feature Description field in *What We Do Cards → Default → Primary → Feature Cards*

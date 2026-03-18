@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Montserrat, Raleway, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import FadeInObserver from "@/components/FadeInObserver";
+import MobileNavObserver from "@/components/MobileNavObserver";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
-import HashAnalytics from "@/components/HashAnalytics"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -38,8 +39,9 @@ export default function RootLayout({
     <html lang="en" className={`${montserrat.variable} ${raleway.variable} ${bodoniModa.variable}`}>
       <body>
         <FadeInObserver />
+        <MobileNavObserver />
         {children}
-        <HashAnalytics />
+        <GoogleAnalytics />
         <SpeedInsights />
         <Analytics />
       </body>

@@ -23,15 +23,9 @@
 							[
 								"feature_title",
 								{
-									"__TYPE__": "StructuredTextContent",
-									"value": [
-										{
-											"type": "heading3",
-											"content": {
-												"text": "Nails"
-											}
-										}
-									]
+									"__TYPE__": "FieldContent",
+									"value": "closer",
+									"type": "Text"
 								}
 							],
 							[
@@ -42,7 +36,7 @@
 										{
 											"type": "paragraph",
 											"content": {
-												"text": "Sunt mollit tempor sit voluptate cupidatat sunt ex sit adipisicing aute cupidatat adipisicing qui officia minim."
+												"text": "Ullamco ullamco cillum cillum nisi duis. Qui nulla nulla officia ad ex deserunt. Do proident enim sit cupidatat cillum aliqua excepteur veniam."
 											}
 										}
 									]
