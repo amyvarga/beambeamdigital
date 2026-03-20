@@ -3,6 +3,7 @@ import { Montserrat, Raleway, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import FadeInObserver from "@/components/FadeInObserver";
 import MobileNavObserver from "@/components/MobileNavObserver";
+import ActiveNavObserver from "@/components/ActiveNavObserver";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
@@ -38,9 +39,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${raleway.variable} ${bodoniModa.variable}`}>
       <body>
+        <a href="#main-content" className="skip-link">Skip to main content</a>
         <FadeInObserver />
         <MobileNavObserver />
+        <ActiveNavObserver />
+        <main id="main-content">
         {children}
+        </main>
         <GoogleAnalytics />
         <SpeedInsights />
         <Analytics />

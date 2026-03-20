@@ -27,7 +27,7 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
             <button className="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span className="hamburger"></span>
             </button>
-            <ul className="nav-menu">
+            <ul className="nav-menu" aria-hidden="true">
                {menuItems.length > 0 ? (
                   menuItems.map((item, index) => (
                      <li key={index}>

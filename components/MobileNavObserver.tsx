@@ -5,23 +5,31 @@ import { useEffect } from 'react';
 export default function MobileNavObserver() {
   useEffect(() => {
     const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    const navMenu = document.querySelector<HTMLElement>('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
     if (!navToggle || !navMenu) return;
 
-    function toggleMobileNav() {
-      const isOpen = navMenu!.classList.toggle('active');
-      navToggle!.classList.toggle('active');
-      navToggle!.setAttribute('aria-expanded', String(isOpen));
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+    function openMobileNav() {
+      navMenu!.classList.add('active');
+      navMenu!.removeAttribute('aria-hidden');
+      navToggle!.classList.add('active');
+      navToggle!.setAttribute('aria-expanded', 'true');
     }
 
     function closeMobileNav() {
       navMenu!.classList.remove('active');
+      navMenu!.setAttribute('aria-hidden', 'true');
       navToggle!.classList.remove('active');
       navToggle!.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+    }
+
+    function toggleMobileNav() {
+      if (navMenu!.classList.contains('active')) {
+        closeMobileNav();
+      } else {
+        openMobileNav();
+      }
     }
 
     function handleOutsideClick(e: MouseEvent) {
