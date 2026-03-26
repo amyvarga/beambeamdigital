@@ -7,14 +7,15 @@
     --color-1: #336633;
     --color-2: #44270D;
     --color-3: #9a5357;
-    --color-4: #666699;
+    --color-4: #7cb518;
     --color-5: #FEFAE0;
+    --color-6: #bc3908;
 
     --font-family: var(--font-montserrat), sans-serif;
     --font-logo: var(--font-raleway), sans-serif;
     --font-cursive: var(--font-bodoni-moda), serif;
 
-    --mobile-icon-size: 25px;
+    --mobile-icon-size: 30px;
 
     --container-padding: 3rem;
     --tablet-container-padding: 1.5rem;
@@ -59,7 +60,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-logo);
     font-weight: 400;
     line-height: 1.2em;
-    color: var(--color-2);
+    color: var(--color-5);
 }
 
 h1 {
@@ -91,11 +92,13 @@ a {
     text-decoration: none;
     opacity: 0.8;
     transition: opacity var(--transition);
+    outline: 0;
 }
 
 a:hover {
     opacity: 1;
     color: var(--color-5);
+    outline: 0;
 }
 
 a.active {
@@ -103,6 +106,7 @@ a.active {
     outline: none;
     border: none;
     color: inherit;
+    outline: 0;
 }
 
 a:focus-visible {
@@ -116,33 +120,28 @@ a:focus-visible {
 .btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 2vw 2.5vw;
+    justify-content: center;    
     font-family: var(--font-cursive);
-    text-transform: lowercase;
+    text-transform: capitalize;
     font-size: 16px;
     font-style: italic;
     font-weight: 400;
     line-height: 1.5em;
     text-decoration: none;
-    border-radius: var(--btn-radius);
-    border: 0.5px solid var(--color-5);
     letter-spacing: 0.1vw;
     cursor: pointer;
     transition: all var(--transition);
     min-height: var(--mobile-icon-size);
     min-width: var(--mobile-icon-size);
     color: var(--color-5);
-}
-
-.btn-primary {
-    color: var(--color-5);
-    border: 0.5px solid var(--color-5);
+    border: 0.5px solid;
+    padding: calc(var(--gap) / 5);
+    border-radius: var(--btn-radius);
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-    opacity: 0.6;
+    background-color: rgba(148, 149, 152, 0.18);
 }
 
 .btn-primary:focus {
@@ -151,6 +150,13 @@ a:focus-visible {
 
 .btn-secondary {
     background-color: transparent;
+}
+
+/* ============================================
+   BASE — ELEMENTS
+   ============================================ */
+li {
+    margin: var(--mobile-container-padding) var(--mobile-container-padding) 0 0;
 }
 
 /* ============================================
@@ -262,7 +268,6 @@ a:focus-visible {
     display: flex;
     flex-direction: column;
     padding: 0;
-    margin: var(--mobile-container-padding) var(--mobile-container-padding) 0 0;
 }
 
 .nav-menu li:first-child {
@@ -755,6 +760,7 @@ h1.hero-title {
     display: grid;
     grid-template-columns: 1fr;
     align-items: start;
+    margin-bottom: var(--gap);
 }
 
 .contact-info,
@@ -800,7 +806,7 @@ form {
    FORM
    ============================================ */
 .contact-form {
-    padding: calc(var(--gap) / 2);
+    padding: calc(var(--gap) / 3);
     margin-top: var(--gap);
     border-radius: var(--btn-radius);
     border: 1px solid var(--color-5);
@@ -825,11 +831,16 @@ form {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 1rem;
+    padding: calc(var(--gap) / 5);
     border: 0.5px solid var(--color-5);
     border-radius: var(--btn-radius);
     color: var(--color-5);
-    transition: border-color var(--transition);
+    background-color: var(--color-2);
+    background-image: linear-gradient(var(--color-4), var(--color-4));
+    background-size: 0% 1px;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    transition: border-color var(--transition), background-size 0.5s ease;
 }
 
 .form-group input:focus,
@@ -837,11 +848,125 @@ form {
     outline: none;
     border-color: var(--color-5);
     color: var(--color-5);
+    background-size: 100% 1px;
+    background-color: var(--color-2);
 }
 
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+}
+
+.form-group input.field-invalid,
+.form-group textarea.field-invalid,
+.form-group input.field-valid,
+.form-group textarea.field-valid {
+    padding-right: 2.5rem;
+    background-size: 100% 1px;
+}
+
+.form-group input.field-invalid,
+.form-group textarea.field-invalid {
+    background-image: linear-gradient(var(--color-6), var(--color-6));
+    
+}
+
+.form-group input.field-valid,
+.form-group textarea.field-valid {
+    background-image: linear-gradient(var(--color-4), var(--color-4));
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.form-group .field-error {
+    color: var(--color-5);
+    font-style: italic;
+    opacity: 0.5;
+}
+
+.form-group .field-error {
+    display: block;
+    margin: 0.25rem 0 0 0.25rem;
+}
+
+.form-group .field-error::first-letter {
+    text-transform: uppercase;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper::after {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--mobile-icon-size);
+    height: var(--mobile-icon-size);
+    border-radius: 50%;
+    font-size: 0.65rem;
+    font-weight: 700;
+    pointer-events: none;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-wrapper.is-textarea::after {
+    top: 1rem;
+    transform: none;
+}
+
+.input-wrapper:has(.field-invalid)::after {
+    content: '✕';
+    background-color: var(--color-6);
+    color: var(--color-5);
+    display: flex;
+}
+
+.input-wrapper:has(.field-valid)::after {
+    content: '✓';
+    background-color: var(--color-4);
+    color: var(--color-5);
+    display: flex;
+}
+
+.contact-form .btn {                             
+    display: block;                              
+    margin: 0 auto; 
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #44270D inset !important;
+    box-shadow: 0 0 0 1000px #44270D inset !important;
+    -webkit-text-fill-color: #FEFAE0 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.contact-form form {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.contact-form form.form-exit {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+@keyframes formSuccessIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-success {
+    animation: formSuccessIn 0.5s ease forwards;
+}
+
+.form-success p {
+    text-align: center;
 }
 
 /* ============================================
@@ -852,6 +977,7 @@ form {
     color: var(--color-5);
     display: flex;
     flex-direction: column;
+    border-top: 0.5px solid var(--color-4);
 }
 
 .footer-main {
@@ -892,23 +1018,20 @@ ul.seo-links li:last-child a {
     border-right: none;
 }
 
-.seo-section h4,
-.seo-section ul li {
-    color: var(--color-5);
-    font-size: 0.6rem;
-    opacity: 0.35;
+.seo-section {
+    margin-top: var(--gap);
 }
 
 .footer-bottom {
     color: var(--color-5);
     padding-top: var(--gap);
-    text-align: center;
 }
 
 .footer-bottom p {
     color: var(--color-5);
     font-size: 0.75rem;
-    margin-bottom: var(--gap);
+    color: var(--color-4);
+    text-align: right;
 }
 
 /* ============================================
@@ -968,6 +1091,10 @@ select:focus {
     outline: none;
 }
 
+:target {
+    outline: none;
+}
+
 .skip-link {
     position: absolute;
     top: -40px;
@@ -987,24 +1114,6 @@ select:focus {
    RESPONSIVE — min-width: 460px (tablet)
    ============================================ */
 @media (min-width: 460px) {
-    body {
-        font-size: 20px;
-    }
-
-    p {
-        margin-bottom: 1.5rem;
-    }
-
-    .btn {
-        padding: 1vw 1.5vw;
-        font-size: 1.5rem;
-    }
-
-    /* Nav */
-    .nav-toggle {
-        display: none;
-    }
-
     .nav-container {
         display: flex;
         flex-direction: column;
@@ -1034,12 +1143,7 @@ select:focus {
         width: auto;
     }
 
-    /* Layout */
-    .section {
-        padding: var(--tablet-container-padding);
-        border-top: 0;
-    }
-
+   
     /* Cards */
     .service-card,
     .work-card,
@@ -1057,9 +1161,17 @@ select:focus {
    RESPONSIVE — min-width: 900px (desktop)
    ============================================ */
 @media (min-width: 900px) {
+     /* Nav */
+    .nav-toggle {
+        display: none;
+    }
+
+    body {
+        font-size: 24px;
+    }
+
     h1, h2, h3, h4, h5, h6 {
         line-height: 1.2em;
-        color: var(--color-2);
     }
 
     h1 {
@@ -1076,11 +1188,30 @@ select:focus {
         font-size: clamp(28px, 1.6vw, 32px);
     }
 
+    h4 {
+        font-size: clamp(24px, 1.4vw, 28px);
+    }
+
+    li {
+        margin: calc(var(--gap) / 2) calc(var(--gap) / 2) 0 0;
+        
+    }
+    
+    li.col:first-child {
+        margin-top: 0!important;
+    }
+
+    .btn {
+        font-size: 20px;
+        padding: calc(var(--gap) / 2);
+    }
+
     /* Nav — fixed sidebar */
     .nav {
         position: fixed;
         width: 20%;
         height: 100%;
+        
     }
 
     .nav-container {
@@ -1109,17 +1240,15 @@ select:focus {
     .nav-menu {
         padding: 0;
     }
+
     .nav-menu,
     .nav-menu li {
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--gap);
         width: 100%;
     }
 
-    .nav-menu li, 
-    .nav-menu li:first-child, 
-    .nav-menu li:last-child {
+    .nav-menu li:first-child {
         margin: 0;
     }
 
@@ -1128,7 +1257,7 @@ select:focus {
         padding: var(--container-padding);
         width: 80%;
         margin-left: 20%;
-        border-top: 0.1vw solid var(--color-2);
+        
         border-left: none;
     }
 
@@ -1160,10 +1289,31 @@ select:focus {
         grid-template-columns: 1fr 1.5fr;
     }
 
+    li.contact-item:first-child {
+        margin-top: 0;
+    }
+
+    .contact-form {
+        padding: calc(var(--gap) / 2);
+    }
+
     .contact-info,
     form {
         grid-column: auto;
-        margin: 0;
+    }
+
+    .form-success p {
+        margin-bottom: 0
+    }
+
+    /* Footer */
+    .footer-bottom p {
+        font-size: 1.2rem;
+        padding-top: var(--gap);
+    }
+
+    ul.seo-links {
+       margin-top: calc(var(--gap) / 2);
     }
 
 }

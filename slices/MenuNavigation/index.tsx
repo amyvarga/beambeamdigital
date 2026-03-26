@@ -33,7 +33,7 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
                      <li key={index}>
                       <PrismicLink
                         field={item.link}
-                      className="nav-link"
+                      className="nav-link col"
                   >
                   {item.label || "Link"}
               </PrismicLink></li>

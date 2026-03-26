@@ -24,7 +24,7 @@ export default function ContactInfo({ contacts, className }: { contacts: Contact
   return (
     <div className={className}>
       {contacts.map((contact, index) => (
-        <div key={index} className="contact-item">
+        <li key={index} className="contact-item">
           {contact.contact_type === "phone" && (
             <>
               <PhoneIcon />
@@ -43,7 +43,7 @@ export default function ContactInfo({ contacts, className }: { contacts: Contact
               <span>{contact.contact_label}</span>
             </>
           )}
-        </div>
+        </li>
       ))}
     </div>
   );
