@@ -25,7 +25,7 @@ const FooterNavigationAndServicesRegions: FC<
             <h4>{slice.primary.services_regions.map((item) => item.service_title).join(", ")}</h4>
             <ul className="seo-links">
               {slice.primary.services_regions.flatMap((item) => item.service_region ?? []).map((link, index) => (
-                <li key={index}>
+                <li className="row" key={index}>
                   <PrismicLink field={link}>
                     {(link as { text?: string }).text ?? "Link"}
                   </PrismicLink>
