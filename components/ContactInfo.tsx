@@ -22,7 +22,7 @@ const LocationIcon = () => (
 
 export default function ContactInfo({ contacts, className }: { contacts: ContactItem[]; className?: string }) {
   return (
-    <div className={className}>
+    <ul className={className}>
       {contacts.map((contact, index) => (
         <li key={index} className="contact-item">
           {contact.contact_type === "phone" && (
@@ -45,6 +45,6 @@ export default function ContactInfo({ contacts, className }: { contacts: Contact
           )}
         </li>
       ))}
-    </div>
+    </ul>
   );
 }

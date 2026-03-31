@@ -1,26 +1,10 @@
 "use client";
 
 import { FC } from "react";
-import { Content } from "@prismicio/client";
+import { Content, asLink } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import MasonryGallery from "@/components/MasonryGallery";
-
-const masonryImages = [
-    { src: "/images/corporate-logos/DULUX_RGB_imp_05.png", alt: "Dulux logo" },
-  { src: "/images/corporate-logos/bl-logo.jpg", alt: "British Library logo" },
-  { src: "/images/corporate-logos/clipper_teas_logo.jpg", alt: "Clipper Teas logo" },
-  { src: "/images/corporate-logos/tkmaxx_logo.jpg", alt: "TK Maxx logo" },
-  { src: "/images/corporate-logos/dorset-cereals.jpg", alt: "Dorset Cereals logo" },
-  { src: "/images/corporate-logos/rocklands_boulders.gif", alt: "" },
-  { src: "/images/corporate-logos/virgin-media-logo.jpg", alt: "Virgin Media logo" },
-    { src: "/images/corporate-logos/tangozebra.png", alt: "Tangozebra logo" },
-  { src: "/images/corporate-logos/channel 4.jpg", alt: "Channel 4" },
-  { src: "/images/corporate-logos/odg-logo.gif", alt: "" },
-  { src: "/images/corporate-logos/Three_UK-Logo.png", alt: "Three UK logo" },
-  { src: "/images/corporate-logos/The-Sun-Logo.jpg", alt: "The Sun logo" }
-
-];
 
 /**
  * Props for `AboutSection`.
@@ -33,6 +17,20 @@ export type AboutSectionProps = SliceComponentProps<Content.AboutSectionSlice>;
 const AboutSection: FC<AboutSectionProps> = ({ slice }) => {
   const profileHeading = slice.primary.heading || "About me";
   const hasImage = slice.primary.profile_image?.url;
+
+  const masonryImages = Array.from({ length: 12 }, (_, i) => {
+    const n = i + 1;
+    const p = slice.primary as Record<string, unknown>;
+    const image = p[`masonry_gallery_${n}`] as { url?: string; alt?: string } | undefined;
+    const link = p[`masonry_gallery_${n}_link`] as Parameters<typeof asLink>[0] | undefined;
+    if (!image?.url) return null;
+    return {
+      src: image.url,
+      alt: image.alt ?? "",
+      href: asLink(link) ?? undefined,
+      title: image.alt ?? "",
+    };
+  }).filter(Boolean) as { src: string; alt: string; href?: string; title?: string }[];
 
   return (
     <section id="about" className="about section">
@@ -55,7 +53,12 @@ const AboutSection: FC<AboutSectionProps> = ({ slice }) => {
             )}
           </div>
           <div className="about-text fade-in">
-            <PrismicRichText field={slice.primary.body} />
+            <PrismicRichText field={slice.primary.body_paragraph_one} />
+          </div>
+          <MasonryGallery images={masonryImages} title={slice.primary.masonry_title ?? undefined} />
+          <div className="about-text fade-in">
+            <PrismicRichText field={slice.primary.body_paragraph_two} />
+            <PrismicRichText field={slice.primary.body_paragraph_three} />
             {(slice.primary.cta_text?.trim() || slice.primary.cta_button_label) && (
               <p className="about-cta">
                 {slice.primary.cta_text?.trim() && slice.primary.cta_text}
@@ -71,7 +74,6 @@ const AboutSection: FC<AboutSectionProps> = ({ slice }) => {
             )}
           </div>
         </div>
-        <MasonryGallery images={masonryImages} />
       </div>
     </section>
   );

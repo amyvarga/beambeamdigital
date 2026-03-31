@@ -23,11 +23,37 @@
             "label": "Heading"
           }
         },
-        "body": {
+        "body_paragraph_one": {
           "type": "StructuredText",
           "config": {
-            "multi": "paragraph,strong,em,hyperlink,list-item",
-            "label": "Body"
+            "label": "Body Paragraph One",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl,paragraph"
+          }
+        },
+        "body_paragraph_two": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body Paragraph Two",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "body_paragraph_three": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body Paragraph Three",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "masonry_title": {
+          "type": "Text",
+          "config": {
+            "label": "Masonry Title"
           }
         },
         "cta_text": {
@@ -48,10 +74,240 @@
           "type": "Link",
           "config": {
             "label": "CTA Button Link",
-            "placeholder": "#contact"
+            "placeholder": "#contact",
+            "select": null
+          }
+        },
+        "masonry_gallery_1": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 1",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_1_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 1 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "masonry_gallery_2": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 2",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_2_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 2 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "masonry_gallery_3": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 3",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_3_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 3 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "masonry_gallery_4": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 4",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_4_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 4 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "masonry_gallery_5": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 5",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_5_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 5 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "masonry_gallery_6": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 6",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_6_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 6 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "masonry_gallery_7": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 7",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_7_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 7 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "masonry_gallery_8": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 8",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_8_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 8 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "masonry_gallery_9": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 9",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_9_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 9 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "masonry_gallery_10": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 10",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_10_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 10 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "masonry_gallery_11": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 11",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_11_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 11 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "masonry_gallery_12": {
+          "type": "Image",
+          "config": {
+            "label": "Masonry Gallery 12",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery_12_link": {
+          "type": "Link",
+          "config": {
+            "label": "Masonry Gallery 12 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         }
-      }
+      },
+      "items": {}
     }
   ]
 }
