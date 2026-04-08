@@ -4,7 +4,7 @@
    CUSTOM PROPERTIES
    ============================================ */
 :root {
-    --color-1: #336633;
+    --color-1: #284339;
     --color-2: #44270D;
     --color-3: #bf0603;
     --color-4: #7cb518;
@@ -17,8 +17,6 @@
 
     --mobile-icon-size: 30px;
 
-    --container-padding: 3rem;
-    --card-padding: 2.5rem;
     --btn-radius: 0.25rem;
     --transition: 0.5s ease;
     --gap: 3rem;
@@ -69,6 +67,7 @@ h1 {
 h2 {
     font-size: clamp(22px, 5vw, 30px);
     text-transform: uppercase;
+    font-weight: 500;
 }
 
 h3 {
@@ -81,9 +80,6 @@ p {
     margin-bottom: 0.5rem;
 }
 
-p:last-of-type {
-    margin-bottom: 0;
-}
 /* ============================================
    BASE — LINKS
    ============================================ */
@@ -99,6 +95,10 @@ a {
 a:hover {
     color: var(--color-5);
     outline: 0;
+}
+
+a:visited {
+    font-weight: inherit;
 }
 
 a.active {
@@ -148,9 +148,6 @@ a:focus-visible {
     outline: none;
 }
 
-.btn-secondary {
-    background-color: transparent;
-}
 
 /* ============================================
    BASE — ELEMENTS
@@ -165,7 +162,6 @@ li {
 .section {
     position: relative;
     padding: calc(var(--gap) / 2);
-    padding-bottom: 0;
     width: 100%;
     margin-left: 0;
     display: flex;
@@ -175,13 +171,12 @@ li {
 
 .content {
     width: 100%;
-    margin-bottom: calc(var(--gap) / 2);
 }
 
 .title,
 .title span.logo-beam {
     font-size: clamp(2rem, 2.5vw, 3rem);
-    color: var(--color-2);
+    color: var(--color-5);
     text-align: left;
 }
 
@@ -203,10 +198,6 @@ li {
     padding: calc(var(--gap) / 2);
 }
 
-.nav.scrolled {
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-}
-
 .nav-container {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -215,8 +206,7 @@ li {
     width: 100%;
 }
 
-.nav-logo,
-.footer-logo {
+.nav-logo {
     width: 100%;
     align-items: baseline;
     display: inline;
@@ -277,7 +267,6 @@ li {
 }
 
 a.nav-link,
-.footer-links li a,
 .seo-links li a {
     font-weight: 300;
     transition: all var(--transition);
@@ -383,8 +372,9 @@ a.nav-link:hover::after {
     left: 0;
     right: 0;
     bottom: 0;
-    color: var(--color-3);
+    background-color: var(--color-2);
     z-index: -2;
+    border-top: 0.5px solid var(--color-5);
 }
 
 .hero-overlay {
@@ -403,8 +393,8 @@ h1.hero-title {
 
 .hero-strapline {
     font-family: var(--font-family);
-    font-size: clamp(1rem, 1vw, 1.25rem);
-    margin-bottom: 2vw;
+    margin-bottom: calc(var(--gap) / 2);
+    color: var(--color-5);
 }
 
 .hero-cta {
@@ -412,6 +402,7 @@ h1.hero-title {
     gap: var(--gap);
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: calc(var(--gap) / 2);
 }
 
 /* ============================================
@@ -420,6 +411,7 @@ h1.hero-title {
 .services {
     border-top: none;
     color: var(--color-2);
+    background-color: var(--color-5);
 }
 
 /* ============================================
@@ -429,22 +421,27 @@ h1.hero-title {
     display: grid;
     flex-direction: column;
     width: 100%;
-    color: var(--color-4);
+    color: var(--color-2);
+    margin-top: calc(var(--gap) / 2);
 }
 
 .accordion-item {
     display: grid;
     grid-template-rows: min-content 0fr;
-    transition: all 0.4s ease;
-    border-bottom: 0.1vw solid var(--color-4);
+    transition: all 1s ease;
 }
 
 .accordion-item:first-child {
-    border-top: 0.1vw solid var(--color-4);
+    padding: 0;
 }
 
 .accordion-item.accordion--visible {
     grid-template-rows: min-content 1fr;
+    .accordion-heading {
+        border-bottom-color: transparent;
+        padding-bottom: 0;
+        font-weight: 600;
+    }
 }
 
 .accordion-heading {
@@ -452,12 +449,13 @@ h1.hero-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 0;
     cursor: pointer;
     font-family: var(--font-logo);
-    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
-    color: var(--color-5);
+    color: var(--color-2);
     user-select: none;
+    padding-bottom: calc(var(--gap) / 2);
+    border-bottom: 0.5px solid var(--color-2);
+    transition: border-bottom-color var(--transition), padding-bottom var(--transition), font-weight var(--transition);
 }
 
 .accordion-heading::-webkit-details-marker {
@@ -466,7 +464,7 @@ h1.hero-title {
 
 .accordion-heading::after {
     content: '+';
-    font-size: var(--mobile-icon-size);
+    font-size: 50px;
     font-weight: 300;
     transition: transform var(--transition);
     flex-shrink: 0;
@@ -477,17 +475,29 @@ h1.hero-title {
 }
 
 .accordion-body {
+    margin-top: calc(var(--gap) / 2);
     overflow: hidden;
     min-height: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
-    color: var(--color-5);
+    opacity: 0;
+    transition: opacity 0.3s ease 0s;
+    color: var(--color-2);
+    text-align: left;
+    > p:first-of-type {
+        font-weight: bolder;
+        margin-bottom: 1em;
+    }
+    > ul li, 
+    > ol li {
+        list-style-type: disc;
+        list-style-position: inside;
+        margin-bottom: 0.5em;
+    }
 }
 
 .accordion-item.accordion--visible .accordion-body {
-    visibility: visible;
-    overflow: visible;
-    padding: 0 0 1.25rem 0;
+    opacity: 1;
+    transition: opacity 0.1s ease 0.6s;
+    margin-bottom: calc(var(--gap) / 2);
 }
 
 /* ============================================
@@ -498,9 +508,10 @@ h1.hero-title {
     border-top: 0.5px solid var(--color-4   );
 }
 
-.about-title > h2 {
+.services-title > h2, 
+.about-title > h2,
+.work-title > h2  {
     color: var(--color-2);
-    font-weight: 500;
 }
 
 .about-grid {
@@ -571,9 +582,6 @@ h1.hero-title {
     display: none;
 }
 
-.placeholder-visible .placeholder-text {
-    display: block;
-}
 
 p:has(+ .about-cta) {
     margin-bottom: 0;
@@ -592,43 +600,30 @@ p.about-cta {
    PRICING
    ============================================ */
 .pricing {
-    color: var(--color-1);
+    color: var(--color-5);
+    background-color: #44270D;
     border-top: none;
+    .pricing-title > h2 {
+        color: var(--color-5);
+        margin-bottom: calc(var(--gap) / 2);
+    }
 }
 
 .pricing-title > h2 {
     color: var(--color-2);
+
 }
 
 /* ============================================
    CARDS
    ============================================ */
-.service-card,
+
 .work-card {
-    padding: var(--mobile-container-padding);
-    transition: all var(--transition);
-    text-align: left;
-    border-radius: 0.5rem;
+    border: 0.5px solid var(--color-2);
 }
 
-.service-card {
-    color: var(--color-4);
-}
-
-.service-card-border,
-.work-card {
-    padding: var(--mobile-container-padding);
-    border: 0.1vw solid var(--color-2);
-    border-radius: var(--btn-radius);
-}
-
-.service-card-border ul,
 .work-card ul {
     list-style-position: inside;
-}
-
-.service-card h3 {
-    margin-bottom: 1vw;
 }
 
 /* ============================================
@@ -647,12 +642,13 @@ p.about-cta {
    CAROUSEL
    ============================================ */
 .work {
-    border-top: none;
-    color: var(--color-2);
+    border-top: 0.5px solid var(--color-2);
+    background-color: var(--color-5);
 }
 
 .carousel-wrapper {
     position: relative;
+    margin-top: calc(var(--gap) / 2)
 }
 
 .carousel {
@@ -674,6 +670,8 @@ p.about-cta {
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
+    padding: calc(var(--gap) / 2);
+    height: 100%;
 }
 
 .carousel-btn {
@@ -704,14 +702,14 @@ p.about-cta {
     display: flex;
     justify-content: center;
     gap: var(--gap);
-    margin-top: 1.5rem;
+    margin-top: calc(var(--gap) / 2)
 }
 
 .carousel-dot {
-    width: 0.5rem;
-    height: 0.5rem;
+    width: 0.75rem;
+    height: 0.75rem;
     border-radius: 50%;
-    background: var(--color-3);
+    background: var(--color-2);
     border: none;
     cursor: pointer;
     padding: 0;
@@ -725,12 +723,12 @@ p.about-cta {
 /* Work card */
 .work-card {
     text-align: center;
-    border-radius: var(--btn-radius);
+    background-color: var(--card-bg) !important;
+    color: var(--card-color) !important;
 }
 
 .work-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .work-card img {
@@ -739,6 +737,7 @@ p.about-cta {
     max-width: 100%;
     display: block;
     margin: 0 auto;
+    max-height: 150px;
 }
 
 .work-card h3 {
@@ -746,35 +745,17 @@ p.about-cta {
 }
 
 .work-description {
-    margin-bottom: 20px;
-    opacity: 0.9;
-    text-align: left;
+    margin-top: calc(var(--gap) / 2);
+    text-align: center;
+    > p,
+    > ul {
+        margin-bottom: 0.5em;
+        li {
+            list-style-type: disc;
+        }
+    }
 }
 
-.work-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--gap);
-    font-weight: 400;
-    margin-top: auto;
-}
-
-.heal-wellbeing {
-    color: #284339;
-}
-
-.heal-wellbeing > .serv ul {
-    color: var(--color-4);
-}
-
-.breathe-360 {
-    color: #fff;
-}
-
-.breathe-360 > ul,
-.breathe-360 > a {
-    color: var(--color-4);
-}
 
 /* ============================================
    CONTACT
@@ -824,11 +805,6 @@ ul.contact-info {
 
 }
 
-.contact-label {
-    display: block;
-    text-transform: uppercase;
-    color: var(--color-5);
-}
 
 .contact-item a,
 .contact-item span {
@@ -1006,75 +982,47 @@ input:-webkit-autofill:active {
    FOOTER
    ============================================ */
 .footer {
-    background-color: var(--color-2);
-    color: var(--color-5);
+    background-color: var(--color-5);
     display: flex;
     flex-direction: column;
-    border-top: 0.5px solid var(--color-4);
+    .seo-section > h4 {
+        color: var(--color-2);
+    }
 }
 
-.footer-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: var(--gap);
-    margin-bottom: 2rem;
-}
-
-.footer-main p {
-    text-align: right;
-    margin-bottom: 0;
-    width: 100%;
-}
-
-ul.footer-links,
 ul.seo-links {
     margin-top: calc(var(--gap)/ 2);
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap) var(--gap);
     list-style: none;
-}
-ul.seo-links {
     display: block;
-}
-
-ul.seo-links li {
+    li {
     display: inline;
+    font-size: 0.85em;
+        > a {
+            color: var(--color-2);
+            padding: 0;
+        }
+    }
 }
 
 ul.seo-links li::after {
     content: " | ";
-    color: var(--color-5);
+    color: var(--color-2);
 }
 
 ul.seo-links li:last-child::after {
     content: "";
 }
 
-ul.seo-links a {
-    padding: 0;
-}
-
-ul.footer-links a {
-    padding: 0 1rem;
-    border-right: 1px solid var(--color-5);
-}
-
-ul.footer-links li:last-child a {
-    border-right: none;
-}
-
-.footer-bottom {
-    color: var(--color-5);
-    padding-top: calc(var(--gap) / 2);
-}
 
 .footer-bottom p {
-    color: var(--color-5);
-    font-size: 0.75rem;
-    text-align: right;
+        color: var(--color-2);
+        font-size: 0.75rem;
+        text-align: right;
+        margin-top: calc(var(--gap) / 2);
+        font-weight: 500;
 }
 
 /* ============================================
@@ -1092,16 +1040,6 @@ ul.footer-links li:last-child a {
     transform: translateY(0);
 }
 
-.skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: skeleton-loading 1.5s infinite;
-}
-
-@keyframes skeleton-loading {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-}
 
 /* ============================================
    ACCESSIBILITY
@@ -1115,15 +1053,6 @@ ul.footer-links li:last-child a {
     }
 }
 
-.sr-only:not(:focus):not(:active) {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-}
 
 a:focus,
 button:focus,
@@ -1177,13 +1106,6 @@ select:focus {
 
     .nav-menu li {
         width: auto;
-    }
-   
-    /* Cards */
-    .service-card,
-    .work-card,
-    .service-card-border {
-        padding: var(--card-padding);
     }
 
     /* About */
@@ -1287,7 +1209,7 @@ select:focus {
         }
 
     .section {
-        padding: var(--container-padding);
+        padding: var(--gap);
         width: 80%;
         margin-left: 20%;
         border-left: none;
@@ -1300,8 +1222,17 @@ select:focus {
     /* Hero */
     h1.hero-title {
         display: block;
+        margin-bottom: var(--gap);
     }
 
+
+    .hero-strapline {
+        margin-bottom: var(--gap);
+    }
+
+    .hero-background, .hero-overlay {
+        border: none;
+    }
     .hero-content,
     .services-content,
     .pricing-content {
@@ -1311,6 +1242,35 @@ select:focus {
     .title,
     .title span.logo-beam {
         text-align: right;
+    }
+
+    .accordion {
+        margin-top: var(--gap);
+    }
+
+    .accordion-heading {
+        padding-bottom: var(--gap);
+    }
+
+    .accordion-item.accordion--visible .accordion-body {
+        margin: var(--gap) 0;
+    }
+
+    .accordion-body {
+        margin-top: var(--gap);
+    }
+
+    .accordion-body:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .accordion-heading:after {
+        font-size: 70px;
+    }
+
+    /* Pricing */
+    .pricing .pricing-title > h2 {
+        margin-bottom: var(--gap);
     }
 
     /* About */
@@ -1348,6 +1308,38 @@ select:focus {
     .masonry-item {
         padding-bottom: calc(var(--gap) / 3);
     }
+
+    /* Carousel */
+    .carousel {
+        grid-auto-columns: 50%;
+    }
+
+    .carousel .carousel-item {
+        padding: var(--gap);
+        > img {
+            max-width: 50%;
+            margin-bottom: var(--gap);
+        }
+        .work-description > p {
+            margin-bottom: var(--gap);
+        }
+    }
+    .carousel-item:hover {
+        .work-description > p {
+            font-weight: 300;
+        }
+
+    }
+
+    .breathe-360 > img {
+        height: 30%;
+    }
+
+    .nav-toggle svg, .carousel-btn svg, .contact-item svg, .work-link svg {
+        width: 50px;
+        height: 50px;
+    }
+
     /* Contact */
     .contact-content {
         grid-template-columns: 1fr 1.5fr;
@@ -1376,10 +1368,11 @@ select:focus {
     /* Footer */
     .footer-bottom p {
         font-size: 1.2rem;
+        padding-top: var(--gap);
     }
 
     ul.seo-links {
-       margin-top: calc(var(--gap) / 2);
+       margin-top: var(--gap);
     }
 
 }

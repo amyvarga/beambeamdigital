@@ -63,12 +63,9 @@ const AboutSection: FC<AboutSectionProps> = ({ slice }) => {
               <p className="about-cta">
                 {slice.primary.cta_text?.trim() && slice.primary.cta_text}
                 {slice.primary.cta_button_label && (
-                  <PrismicLink
-                    field={slice.primary.cta_button_link}
-                    className="btn btn-primary"
-                  >
+                  <a href="#contact" className="btn btn-primary">
                     {slice.primary.cta_button_label}
-                  </PrismicLink>
+                  </a>
                 )}
               </p>
             )}

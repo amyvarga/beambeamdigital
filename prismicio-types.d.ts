@@ -841,6 +841,26 @@ export interface FeaturedCardGridSliceDefaultPrimaryCardsItem {
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Background color field in *FeaturedCardCarousel → Default → Primary → Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_card_grid.default.primary.cards[].background_color
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  background_color: prismic.KeyTextField;
+
+  /**
+   * Colour field in *FeaturedCardCarousel → Default → Primary → Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_card_grid.default.primary.cards[].colour
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  colour: prismic.KeyTextField;
 }
 
 /**
