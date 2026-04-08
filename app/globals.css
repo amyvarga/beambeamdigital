@@ -162,6 +162,7 @@ li {
 .section {
     position: relative;
     padding: calc(var(--gap) / 2);
+    scroll-margin-top: calc(var(--gap) * 2);
     width: 100%;
     margin-left: 0;
     display: flex;
@@ -1210,6 +1211,7 @@ select:focus {
 
     .section {
         padding: var(--gap);
+        scroll-margin-top: 0;
         width: 80%;
         margin-left: 20%;
         border-left: none;

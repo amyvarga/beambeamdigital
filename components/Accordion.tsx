@@ -18,6 +18,11 @@ export default function Accordion({ items }: AccordionProps) {
   const toggle = (index: number) => {
     const isOpening = openIndex !== index;
     setOpenIndex(prev => (prev === index ? null : index));
+    if (typeof window !== "undefined" && "gtag" in window) {
+      (window as Window & { gtag: (...args: unknown[]) => void }).gtag("event", isOpening ? "accordion_open" : "accordion_close", {
+        accordion_heading: items[index].heading,
+      });
+    }
     if (isOpening) {
       setTimeout(() => {
         itemRefs.current[index]?.scrollIntoView({ behavior: "smooth", block: "start" });

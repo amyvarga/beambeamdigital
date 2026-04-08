@@ -15,13 +15,20 @@ export default function Carousel({ children, interval = 4000 }: CarouselProps) {
   const [atEnd, setAtEnd] = useState(false);
   const count = children.length;
 
-  function goTo(index: number) {
+  function track(event: string, params: Record<string, unknown>) {
+    if (typeof window !== "undefined" && "gtag" in window) {
+      (window as Window & { gtag: (...args: unknown[]) => void }).gtag("event", event, params);
+    }
+  }
+
+  function goTo(index: number, source: "prev" | "next" | "dot" | "auto" = "auto") {
     const next = (index + count) % count;
     const carousel = carouselRef.current;
     if (!carousel) return;
     const card = carousel.children[next] as HTMLElement;
     carousel.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
     setCurrent(next);
+    track("carousel_navigate", { source, slide_index: next });
   }
 
   function handleScroll() {
@@ -50,6 +57,7 @@ export default function Carousel({ children, interval = 4000 }: CarouselProps) {
           const card = carousel.children[next] as HTMLElement;
           carousel.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
         }
+        track("carousel_navigate", { source: "auto", slide_index: next });
         return next;
       });
     }, interval);
@@ -65,7 +73,7 @@ export default function Carousel({ children, interval = 4000 }: CarouselProps) {
       <button
         className="carousel-btn carousel-btn--prev"
         aria-label="Previous"
-        onClick={() => goTo(current - 1)}
+        onClick={() => goTo(current - 1, "prev")}
         style={{ visibility: atStart ? 'hidden' : 'visible' }}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -89,7 +97,7 @@ export default function Carousel({ children, interval = 4000 }: CarouselProps) {
       <button
         className="carousel-btn carousel-btn--next"
         aria-label="Next"
-        onClick={() => goTo(current + 1)}
+        onClick={() => goTo(current + 1, "next")}
         style={{ visibility: atEnd ? 'hidden' : 'visible' }}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -103,7 +111,7 @@ export default function Carousel({ children, interval = 4000 }: CarouselProps) {
             key={i}
             className={`carousel-dot${i === current ? " active" : ""}`}
             aria-label={`Go to slide ${i + 1}`}
-            onClick={() => goTo(i)}
+            onClick={() => goTo(i, "dot")}
           />
         ))}
       </div>
