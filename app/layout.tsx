@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat, Raleway, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import FadeInObserver from "@/components/FadeInObserver";
@@ -25,6 +25,11 @@ const bodoniModa = Bodoni_Moda({
   variable: "--font-bodoni-moda",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Beam Beam Digital App",
