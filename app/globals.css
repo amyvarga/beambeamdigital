@@ -1088,6 +1088,10 @@ select:focus {
    RESPONSIVE — min-width: 900px (desktop)
    ============================================ */
 @media (min-width: 900px) {
+    :root {
+        --gap: 2.25rem;
+    }
+
      .nav-logo {
         align-self: flex-end;
     }
@@ -1119,7 +1123,7 @@ select:focus {
     }
 
     body {
-        font-size: 24px;
+        font-size: 18px;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -1128,21 +1132,21 @@ select:focus {
 
     h1 {
         font-weight: 100;
-        font-size: clamp(36px, 2vw, 40px);
+        font-size: clamp(27px, 1.5vw, 30px);
     }
 
     h2 {
-        font-size: clamp(32px, 1.8vw, 36px);
+        font-size: clamp(24px, 1.35vw, 27px);
         text-transform: uppercase;
     }
 
     h3 {
-        font-size: clamp(28px, 1.6vw, 32px);
+        font-size: clamp(21px, 1.2vw, 24px);
         font-weight: 700;
     }
 
     h4 {
-        font-size: clamp(24px, 1.4vw, 24px);
+        font-size: clamp(18px, 1.05vw, 18px);
         line-height: 1.4em;
     }
 
