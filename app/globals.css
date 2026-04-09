@@ -1271,6 +1271,10 @@ select:focus {
         margin-top: var(--gap);
     }
 
+    .accordion-item {
+        scroll-margin-top: 0;
+    }
+
     .accordion-heading {
         padding-bottom: var(--gap);
     }
