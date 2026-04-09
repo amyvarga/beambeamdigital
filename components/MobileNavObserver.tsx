@@ -48,29 +48,29 @@ export default function MobileNavObserver() {
       }
     }
 
-    function updateScrollPadding() {
-      const nav = document.querySelector('.nav');
-      if (!nav) return;
-      if (window.innerWidth >= 900) {
-        document.documentElement.style.scrollPaddingTop = '0px';
-      } else {
-        const navHeight = nav.getBoundingClientRect().height;
-        document.documentElement.style.scrollPaddingTop = `${navHeight}px`;
-      }
+    function handleNavLinkClick(e: Event) {
+      if (window.innerWidth >= 900) return;
+      const link = e.currentTarget as HTMLAnchorElement;
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const hash = href.includes('#') ? '#' + href.split('#')[1] : null;
+      if (!hash) return;
+      e.preventDefault();
+      closeMobileNav();
+      setTimeout(() => {
+        const target = document.querySelector(hash);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 500);
     }
 
-    updateScrollPadding();
-    window.addEventListener('resize', updateScrollPadding);
-
     navToggle.addEventListener('click', toggleMobileNav);
-    navLinks.forEach(link => link.addEventListener('click', closeMobileNav));
+    navLinks.forEach(link => link.addEventListener('click', handleNavLinkClick));
     document.addEventListener('click', handleOutsideClick);
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener('resize', updateScrollPadding);
       navToggle.removeEventListener('click', toggleMobileNav);
-      navLinks.forEach(link => link.removeEventListener('click', closeMobileNav));
+      navLinks.forEach(link => link.removeEventListener('click', handleNavLinkClick));
       document.removeEventListener('click', handleOutsideClick);
       document.removeEventListener('keydown', handleKeyDown);
     };

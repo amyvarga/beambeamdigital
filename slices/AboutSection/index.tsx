@@ -23,14 +23,16 @@ const AboutSection: FC<AboutSectionProps> = ({ slice }) => {
     const p = slice.primary as Record<string, unknown>;
     const image = p[`masonry_gallery_${n}`] as { url?: string; alt?: string } | undefined;
     const link = p[`masonry_gallery_${n}_link`] as Parameters<typeof asLink>[0] | undefined;
+    const columns = p[`masonry_gallery_${n}_width`] as number | undefined;
     if (!image?.url) return null;
     return {
       src: image.url,
       alt: image.alt ?? "",
       href: asLink(link) ?? undefined,
       title: image.alt ?? "",
+      columns: columns ?? 1,
     };
-  }).filter(Boolean) as { src: string; alt: string; href?: string; title?: string }[];
+  }).filter(Boolean) as { src: string; alt: string; href?: string; title?: string; columns?: number }[];
 
   return (
     <section id="about" className="about section">

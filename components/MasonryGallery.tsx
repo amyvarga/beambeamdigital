@@ -3,6 +3,7 @@ type MasonryImage = {
   alt: string;
   href?: string;
   title?: string;
+  columns?: number;
 };
 
 type MasonryGalleryProps ={
@@ -15,7 +16,7 @@ const MasonryGallery = ({ images, title }: MasonryGalleryProps) => (
     {title && <h3 className="masonry-title">{title}</h3>}
     <div className="masonry-gallery">
     {images.map((img) => (
-      <div key={img.src} className="masonry-item">
+      <div key={img.src} className="masonry-item" style={img.columns && img.columns > 1 ? { gridColumn: `span ${img.columns}` } : undefined}>
         {img.href ? (
           <a href={img.href} title={img.title ?? img.alt} target="_blank" rel="noopener noreferrer">
             {/* eslint-disable-next-line @next/next/no-img-element */}

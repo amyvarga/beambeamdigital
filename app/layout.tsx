@@ -33,7 +33,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Beam Beam Digital App",
-  description: "Beam Beam Digital is located in South Devon. They deliver digital solutions that include website design and development, AI process intergration and task automation services.",
+  description: "Beam Beam Digital is located in South Devon. I deliver digital solutions that include website design, build and development, AI integration and task automation services. I specialise in e-commerce and search engine optimisation.",
 };
 
 export default function RootLayout({

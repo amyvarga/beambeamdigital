@@ -97,6 +97,12 @@
             "repeat": false
           }
         },
+        "masonry_gallery_1_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 1 Width"
+          }
+        },
         "masonry_gallery_2": {
           "type": "Image",
           "config": {
@@ -114,6 +120,12 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false
+          }
+        },
+        "masonry_gallery_2_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 2 Width"
           }
         },
         "masonry_gallery_3": {
@@ -135,6 +147,12 @@
             "repeat": false
           }
         },
+        "masonry_gallery_3_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 3 Width"
+          }
+        },
         "masonry_gallery_4": {
           "type": "Image",
           "config": {
@@ -152,6 +170,12 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false
+          }
+        },
+        "masonry_gallery_4_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 4 Width"
           }
         },
         "masonry_gallery_5": {
@@ -173,6 +197,12 @@
             "repeat": false
           }
         },
+        "masonry_gallery_5_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 5 Width"
+          }
+        },
         "masonry_gallery_6": {
           "type": "Image",
           "config": {
@@ -190,6 +220,12 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false
+          }
+        },
+        "masonry_gallery_6_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 6 Width"
           }
         },
         "masonry_gallery_7": {
@@ -211,6 +247,12 @@
             "repeat": false
           }
         },
+        "masonry_gallery_7_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 7 Width"
+          }
+        },
         "masonry_gallery_8": {
           "type": "Image",
           "config": {
@@ -228,6 +270,12 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false
+          }
+        },
+        "masonry_gallery_8_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 8 Width"
           }
         },
         "masonry_gallery_9": {
@@ -249,6 +297,12 @@
             "repeat": false
           }
         },
+        "masonry_gallery_9_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 9 Width"
+          }
+        },
         "masonry_gallery_10": {
           "type": "Image",
           "config": {
@@ -266,6 +320,12 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false
+          }
+        },
+        "masonry_gallery_10_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 10 Width"
           }
         },
         "masonry_gallery_11": {
@@ -287,6 +347,12 @@
             "repeat": false
           }
         },
+        "masonry_gallery_11_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 11 Width"
+          }
+        },
         "masonry_gallery_12": {
           "type": "Image",
           "config": {
@@ -304,6 +370,12 @@
             "allowTargetBlank": true,
             "allowText": true,
             "repeat": false
+          }
+        },
+        "masonry_gallery_12_width": {
+          "type": "Number",
+          "config": {
+            "label": "Masonry Gallery 12 Width"
           }
         }
       },
