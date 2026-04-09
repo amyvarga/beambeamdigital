@@ -444,6 +444,7 @@ h1.hero-title {
     display: grid;
     grid-template-rows: min-content 0fr;
     transition: all 1s ease;
+    scroll-margin-top: 120px;
 }
 
 .accordion-item:first-child {
