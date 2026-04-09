@@ -683,6 +683,10 @@ p.about-cta {
     display: none;
 }
 
+.carousel .carousel-item:last-child {
+    scroll-snap-align: end;
+}
+
 .carousel .carousel-item {
     scroll-snap-align: start;
     display: flex;
@@ -1325,7 +1329,7 @@ select:focus {
 
     /* Carousel */
     .carousel {
-        grid-auto-columns: 50%;
+        grid-auto-columns: calc(50% - var(--gap) / 2);
     }
 
     .carousel .carousel-item {

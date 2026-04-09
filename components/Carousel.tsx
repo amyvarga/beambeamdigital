@@ -26,7 +26,9 @@ export default function Carousel({ children, interval = 4000 }: CarouselProps) {
     const carousel = carouselRef.current;
     if (!carousel) return;
     const card = carousel.children[next] as HTMLElement;
-    carousel.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+    const maxScroll = carousel.scrollWidth - carousel.offsetWidth;
+    const targetScroll = Math.min(card.offsetLeft, maxScroll);
+    carousel.scrollTo({ left: targetScroll, behavior: "smooth" });
     setCurrent(next);
     track("carousel_navigate", { source, slide_index: next });
   }
