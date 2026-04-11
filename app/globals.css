@@ -625,6 +625,14 @@ p.about-cta {
         color: var(--color-5);
         margin-bottom: calc(var(--gap) / 2);
     }
+    .pricing-text > p {
+        text-align: left;
+    }
+    .pricing-packages {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: calc(var(--gap) / 2) 0;
+    }
 }
 
 .pricing-title > h2 {
@@ -1298,6 +1306,12 @@ select:focus {
     /* Pricing */
     .pricing .pricing-title > h2 {
         margin-bottom: var(--gap);
+    }   
+    .pricing {
+        .pricing-packages {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0 var(--gap);
+        }
     }
 
     /* About */

@@ -18,17 +18,68 @@
             "label": "Title"
           }
         },
-        "description": {
-          "type": "StructuredText",
+        "pricing_package_1_title": {
+          "type": "Text",
           "config": {
-            "multi": "paragraph,strong,em,hyperlink",
-            "label": "Description"
+            "label": "Pricing Package 1 Title",
+            "placeholder": ""
           }
         },
-        "background_color": {
-          "type": "Color",
+        "pricing_package_1_description": {
+          "type": "StructuredText",
           "config": {
-            "label": "Background Color"
+            "label": "Pricing Package 1 Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "pricing_package_2_title": {
+          "type": "Text",
+          "config": {
+            "label": "Pricing Package 2 Title",
+            "placeholder": ""
+          }
+        },
+        "pricing_package_2_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Pricing Package 2 Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "pricing_package_3_title": {
+          "type": "Text",
+          "config": {
+            "label": "Pricing Package 3 Title",
+            "placeholder": ""
+          }
+        },
+        "pricing_package_3_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Pricing Package 3 Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "pricing_package_4_title": {
+          "type": "Text",
+          "config": {
+            "label": "Pricing Package 4 Title",
+            "placeholder": ""
+          }
+        },
+        "pricing_package_4_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Pricing Package 4 Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         }
       },

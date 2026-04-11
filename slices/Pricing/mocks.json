@@ -14,21 +14,69 @@
 					}
 				]
 			},
-			"description": {
+			"pricing_package_2_description": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Qui quis est nostrud velit enim do mollit."
+							"text": "Aliqua fugiat enim ut laborum amet ipsum. Ea mollit labore occaecat reprehenderit ex. Non aliquip commodo mollit in sunt id proident."
 						}
 					}
 				]
 			},
-			"background_color": {
+			"pricing_package_1_description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ex do voluptate laboris ipsum nulla. Ullamco amet culpa dolore do deserunt dolore mollit amet nisi commodo deserunt quis cillum minim."
+						}
+					}
+				]
+			},
+			"pricing_package_3_description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Laboris id aute enim excepteur dolor sunt Lorem non cillum non adipisicing commodo do qui dolor. Adipisicing Lorem eu mollit non officia elit minim deserunt ea aute irure. Eu ullamco excepteur anim aliqua est elit eiusmod Lorem non in eiusmod nostrud commodo consectetur adipisicing."
+						}
+					}
+				]
+			},
+			"pricing_package_4_description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Velit voluptate aliqua veniam esse nisi nulla irure enim pariatur consequat in fugiat cillum ad. Do esse voluptate aliquip aliqua sit nisi pariatur laborum laboris sunt excepteur laboris labore anim. Officia nostrud ipsum nostrud irure culpa cupidatat culpa enim esse nostrud deserunt eu officia irure sit."
+						}
+					}
+				]
+			},
+			"pricing_package_1_title": {
 				"__TYPE__": "FieldContent",
-				"value": "#abec29",
-				"type": "Color"
+				"value": "promised",
+				"type": "Text"
+			},
+			"pricing_package_2_title": {
+				"__TYPE__": "FieldContent",
+				"value": "excellent",
+				"type": "Text"
+			},
+			"pricing_package_3_title": {
+				"__TYPE__": "FieldContent",
+				"value": "laid",
+				"type": "Text"
+			},
+			"pricing_package_4_title": {
+				"__TYPE__": "FieldContent",
+				"value": "eager",
+				"type": "Text"
 			}
 		},
 		"items": []

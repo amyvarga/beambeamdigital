@@ -267,6 +267,16 @@ export interface AboutSectionSliceDefaultPrimary {
   >;
 
   /**
+   * Masonry Gallery 1 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_1_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_1_width: prismic.NumberField;
+
+  /**
    * Masonry Gallery 2 field in *About Section → Default → Primary*
    *
    * - **Field Type**: Image
@@ -291,6 +301,16 @@ export interface AboutSectionSliceDefaultPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Masonry Gallery 2 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_2_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_2_width: prismic.NumberField;
 
   /**
    * Masonry Gallery 3 field in *About Section → Default → Primary*
@@ -319,6 +339,16 @@ export interface AboutSectionSliceDefaultPrimary {
   >;
 
   /**
+   * Masonry Gallery 3 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_3_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_3_width: prismic.NumberField;
+
+  /**
    * Masonry Gallery 4 field in *About Section → Default → Primary*
    *
    * - **Field Type**: Image
@@ -343,6 +373,16 @@ export interface AboutSectionSliceDefaultPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Masonry Gallery 4 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_4_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_4_width: prismic.NumberField;
 
   /**
    * Masonry Gallery 5 field in *About Section → Default → Primary*
@@ -371,6 +411,16 @@ export interface AboutSectionSliceDefaultPrimary {
   >;
 
   /**
+   * Masonry Gallery 5 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_5_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_5_width: prismic.NumberField;
+
+  /**
    * Masonry Gallery 6 field in *About Section → Default → Primary*
    *
    * - **Field Type**: Image
@@ -395,6 +445,16 @@ export interface AboutSectionSliceDefaultPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Masonry Gallery 6 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_6_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_6_width: prismic.NumberField;
 
   /**
    * Masonry Gallery 7 field in *About Section → Default → Primary*
@@ -423,6 +483,16 @@ export interface AboutSectionSliceDefaultPrimary {
   >;
 
   /**
+   * Masonry Gallery 7 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_7_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_7_width: prismic.NumberField;
+
+  /**
    * Masonry Gallery 8 field in *About Section → Default → Primary*
    *
    * - **Field Type**: Image
@@ -447,6 +517,16 @@ export interface AboutSectionSliceDefaultPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Masonry Gallery 8 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_8_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_8_width: prismic.NumberField;
 
   /**
    * Masonry Gallery 9 field in *About Section → Default → Primary*
@@ -475,6 +555,16 @@ export interface AboutSectionSliceDefaultPrimary {
   >;
 
   /**
+   * Masonry Gallery 9 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_9_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_9_width: prismic.NumberField;
+
+  /**
    * Masonry Gallery 10 field in *About Section → Default → Primary*
    *
    * - **Field Type**: Image
@@ -499,6 +589,16 @@ export interface AboutSectionSliceDefaultPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Masonry Gallery 10 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_10_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_10_width: prismic.NumberField;
 
   /**
    * Masonry Gallery 11 field in *About Section → Default → Primary*
@@ -527,6 +627,16 @@ export interface AboutSectionSliceDefaultPrimary {
   >;
 
   /**
+   * Masonry Gallery 11 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_11_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_11_width: prismic.NumberField;
+
+  /**
    * Masonry Gallery 12 field in *About Section → Default → Primary*
    *
    * - **Field Type**: Image
@@ -551,6 +661,16 @@ export interface AboutSectionSliceDefaultPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Masonry Gallery 12 Width field in *About Section → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_12_width
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  masonry_gallery_12_width: prismic.NumberField;
 }
 
 /**
@@ -747,24 +867,84 @@ export interface ContentHeaderSliceCenteredTitleAndSubtextPrimary {
   title: prismic.RichTextField;
 
   /**
-   * Description field in *Pricing → Centered Title and Subtext → Primary*
+   * Pricing Package 1 Title field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_1_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  pricing_package_1_title: prismic.KeyTextField;
+
+  /**
+   * Pricing Package 1 Description field in *Pricing → Centered Title and Subtext → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.description
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_1_description
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  description: prismic.RichTextField;
+  pricing_package_1_description: prismic.RichTextField;
 
   /**
-   * Background Color field in *Pricing → Centered Title and Subtext → Primary*
+   * Pricing Package 2 Title field in *Pricing → Centered Title and Subtext → Primary*
    *
-   * - **Field Type**: Color
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.background_color
-   * - **Documentation**: https://prismic.io/docs/fields/color
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_2_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  background_color: prismic.ColorField;
+  pricing_package_2_title: prismic.KeyTextField;
+
+  /**
+   * Pricing Package 2 Description field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_2_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  pricing_package_2_description: prismic.RichTextField;
+
+  /**
+   * Pricing Package 3 Title field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_3_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  pricing_package_3_title: prismic.KeyTextField;
+
+  /**
+   * Pricing Package 3 Description field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_3_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  pricing_package_3_description: prismic.RichTextField;
+
+  /**
+   * Pricing Package 4 Title field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_4_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  pricing_package_4_title: prismic.KeyTextField;
+
+  /**
+   * Pricing Package 4 Description field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_4_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  pricing_package_4_description: prismic.RichTextField;
 }
 
 /**
