@@ -12,15 +12,12 @@ export type ContentHeaderProps =
  * Component for "ContentHeader" Slices.
  */
 const ContentHeader: FC<ContentHeaderProps> = ({ slice }) => {
-  const bgColor = slice.primary.background_color ?? undefined;
-
   return (
     <section
       id="pricing"
       className="pricing section"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      style={bgColor ? { backgroundColor: bgColor } : undefined}
     >
       <div className="pricing-content content fade-in">
         <div className="pricing-title title">
@@ -45,7 +42,7 @@ const ContentHeader: FC<ContentHeaderProps> = ({ slice }) => {
           </div>
         </div>
 
-        
+
       </div>
     </section>
   );
