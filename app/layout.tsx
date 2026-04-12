@@ -32,8 +32,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Beam Beam Digital, Devon | Website design, and digital solutions",
-  description: "Beam Beam Digital is located in South Devon. Its services include website design and build, search engine optimisation, automation and artificial intelligence integration, e-commerce.",
+  title: "Beam Beam Digital, Devon | Website design, and information technology",
+  description: "Beam Beam Digital is located in South Devon. Its services include website design and build, e-commerce, search engine optimisation, automation, artificial intelligence integration and information technology.",
 };
 
 export default function RootLayout({

@@ -178,7 +178,7 @@ li {
 .title span.logo-beam {
     font-size: clamp(2rem, 2.5vw, 3rem);
     color: var(--color-5);
-    text-align: left;
+    text-align: right;
 }
 
 /* ============================================
@@ -257,11 +257,7 @@ li {
 }
 
 .nav-menu li:first-child {
-    margin-top: calc(var(--gap) / 2);
-}
-
-.nav-menu li:last-child {
-    margin-bottom: calc(var(--gap)*2);
+    margin-top: var(--gap);
 }
 
 .nav-menu.active {
@@ -632,6 +628,10 @@ p.about-cta {
         display: grid;
         grid-template-columns: 1fr;
         gap: calc(var(--gap) / 2) 0;
+        text-align: left;
+        h3 {
+            margin-bottom: calc(var(--gap) / 4);
+        }
     }
 }
 
@@ -1267,11 +1267,6 @@ select:focus {
     .hero-content,
     .services-content,
     .pricing-content {
-        text-align: right;
-    }
-
-    .title,
-    .title span.logo-beam {
         text-align: right;
     }
 
