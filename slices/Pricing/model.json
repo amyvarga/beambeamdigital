@@ -81,6 +81,22 @@
             "allowTargetBlank": true,
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
+        },
+        "pricing_package_5_title": {
+          "type": "Text",
+          "config": {
+            "label": "Pricing Package 5 Title",
+            "placeholder": ""
+          }
+        },
+        "pricing_package_5_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Pricing Package 5 Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
         }
       },
       "items": {}

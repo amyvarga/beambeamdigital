@@ -20,7 +20,7 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
   return (
     <nav className="nav" id="nav">
       <div className="nav-container">
-            <a href="#home" className="nav-logo">
+            <a href="#" className="nav-logo">
                 <span className="logo-beam">{mainLogoText}</span> 
                 <span className="logo-digital">{highlightedLogoText}</span>
             </a>

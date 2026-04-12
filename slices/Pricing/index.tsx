@@ -40,6 +40,10 @@ const ContentHeader: FC<ContentHeaderProps> = ({ slice }) => {
             <h3>{slice.primary.pricing_package_4_title}</h3>
             <PrismicRichText field={slice.primary.pricing_package_4_description} />
           </div>
+          <div className="pricing-package fade-in">
+            <h3>{slice.primary.pricing_package_5_title}</h3>
+            <PrismicRichText field={slice.primary.pricing_package_5_description} />
+          </div>
         </div>
 
 

@@ -945,6 +945,26 @@ export interface ContentHeaderSliceCenteredTitleAndSubtextPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   pricing_package_4_description: prismic.RichTextField;
+
+  /**
+   * Pricing Package 5 Title field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_5_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  pricing_package_5_title: prismic.KeyTextField;
+
+  /**
+   * Pricing Package 5 Description field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_5_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  pricing_package_5_description: prismic.RichTextField;
 }
 
 /**

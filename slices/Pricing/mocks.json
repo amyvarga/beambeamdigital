@@ -77,6 +77,22 @@
 				"__TYPE__": "FieldContent",
 				"value": "eager",
 				"type": "Text"
+			},
+			"pricing_package_5_title": {
+				"__TYPE__": "FieldContent",
+				"value": "include",
+				"type": "Text"
+			},
+			"pricing_package_5_description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Id adipisicing laborum enim magna et eiusmod elit ipsum reprehenderit est occaecat ullamco et. Tempor cupidatat quis ut qui ex laboris anim aliquip ut."
+						}
+					}
+				]
 			}
 		},
 		"items": []

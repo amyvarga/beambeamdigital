@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Content } from "@prismicio/client";
+import { Content, isFilled } from "@prismicio/client";
 import { SliceComponentProps, PrismicLink } from "@prismicio/react";
 
 /**
@@ -24,7 +24,7 @@ const FooterNavigationAndServicesRegions: FC<
           <div className="seo-section">
             <h4>{slice.primary.services_regions.map((item) => item.service_title).join(", ")}</h4>
             <ul className="seo-links">
-              {slice.primary.services_regions.flatMap((item) => item.service_region ?? []).map((link, index) => (
+              {slice.primary.services_regions.flatMap((item) => item.service_region ?? []).filter((link) => isFilled.link(link)).map((link, index) => (
                 <li className="row" key={index}>
                   <PrismicLink field={link}>
                     {(link as { text?: string }).text ?? "Link"}

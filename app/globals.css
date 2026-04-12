@@ -34,6 +34,14 @@
 /* ============================================
    BASE — HTML & BODY
    ============================================ */
+strong, b {
+    font-weight: 700;
+}
+
+b, strong  {
+    font-weight: 700!important;
+}
+
 html {
     scroll-behavior: smooth;
     overscroll-behavior: none;
@@ -551,11 +559,12 @@ h1.hero-title {
 
 
 .masonry-item img {
-    width: 100%;
+    width: 85%;
     height: 100%;
     object-fit: contain;
     border-radius: var(--btn-radius);
     display: block;
+    margin: 0 auto;
 }
 
 .about-image {
@@ -631,6 +640,10 @@ p.about-cta {
         text-align: left;
         h3 {
             margin-bottom: calc(var(--gap) / 4);
+        }
+        .pricing-package {
+            border: 0.5px solid var(--color-5);
+            border-radius: var(--btn-radius);
         }
     }
 }
@@ -1051,7 +1064,6 @@ ul.seo-links li:last-child::after {
 .footer-bottom p {
         color: var(--color-2);
         font-size: 0.75rem;
-        text-align: right;
         margin-top: calc(var(--gap) / 2);
         font-weight: 500;
 }
@@ -1305,8 +1317,12 @@ select:focus {
     .pricing {
         .pricing-packages {
             grid-template-columns: repeat(3, 1fr);
-            gap: 0 var(--gap);
+            gap: var(--gap);
         }
+        .pricing-package {
+            padding: var(--gap);
+        }
+
     }
 
     /* About */
@@ -1339,6 +1355,10 @@ select:focus {
 
     .masonry-gallery {
         grid-template-columns: repeat(8, 1fr);
+    }
+    .masonry-item img {
+        width: 100%;
+        margin: 0;
     }
 
     /* Carousel */
