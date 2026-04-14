@@ -11,8 +11,11 @@ type RegionLink = {
 };
 
 const AreasCoveredLinks: FC<AreasCoveredLinksProps> = ({ slice }) => {
-  const primary = slice.primary as Record<string, unknown>;
-  const servicesRegions = (primary.services_regions as { service_title?: string; service_region?: unknown }[]) ?? [];
+  const primary = slice.primary as {
+    heading?: string;
+    services_regions?: { service_title?: string; service_region?: unknown }[];
+  };
+  const servicesRegions = primary.services_regions ?? [];
   const fallbackRegions = (servicesRegions[0]?.service_region as unknown as RegionLink[]) ?? [];
 
   return (
@@ -20,7 +23,7 @@ const AreasCoveredLinks: FC<AreasCoveredLinksProps> = ({ slice }) => {
       <div className="areas-covered-content content">
         {primary.heading && (
           <div className="areas-covered-title title">
-            <h1 className="fade-in">{primary.heading as string}</h1>
+            <h1 className="fade-in">{primary.heading}</h1>
           </div>
         )}
         <div className="areas-covered-grid fade-in">
