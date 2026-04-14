@@ -1,0 +1,62 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "brain",
+				"type": "Text"
+			},
+			"intro": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ad do et magna duis ipsum nisi sint pariatur id exercitation aliqua magna irure voluptate voluptate. Dolor duis elit velit qui esse est minim est nisi nostrud velit do."
+						}
+					}
+				]
+			},
+			"regions": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"region_title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "load",
+									"type": "Text"
+								}
+							],
+							[
+								"links",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Pariatur tempor ea aute consectetur excepteur incididunt magna sint fugiat est adipisicing. Magna qui dolor non veniam commodo voluptate proident ad deserunt sint consectetur labore ex nisi aliqua."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]

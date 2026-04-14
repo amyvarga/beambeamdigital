@@ -44,6 +44,7 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
              <li><a href="/about" className="nav-link">About</a></li>
              <li><a href="/pricing" className="nav-link">Pricing</a></li>
              <li><a href="/work" className="nav-link">Work</a></li>
+             <li><a href="/areas-covered" className="nav-link">Areas Covered</a></li>
              <li><a href="/contact" className="nav-link">Contact</a></li>
             </>
           )}

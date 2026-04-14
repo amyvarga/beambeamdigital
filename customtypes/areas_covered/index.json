@@ -13,6 +13,7 @@
           "choices": {
             "menu_navigation": { "type": "SharedSlice" },
             "hero_banner": { "type": "SharedSlice" },
+            "areas_covered_links": { "type": "SharedSlice" },
             "footer_navigation_and_services_regions": { "type": "SharedSlice" }
           }
         }

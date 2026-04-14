@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 export const components = {
   aboutSection: dynamic(() => import("./AboutSection")),
+  areas_covered_links: dynamic(() => import("./AreasCoveredLinks")),
   contact_panel: dynamic(() => import("./ContactPanel")),
   content_header: dynamic(() => import("./Pricing")),
   featured_card_grid: dynamic(() => import("./FeaturedCardCarousel")),

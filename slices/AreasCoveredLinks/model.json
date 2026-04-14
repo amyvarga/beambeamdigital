@@ -1,0 +1,50 @@
+{
+  "type": "SharedSlice",
+  "id": "areas_covered_links",
+  "name": "AreasCoveredLinks",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "SEO links grouped by service category.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Page Heading",
+            "placeholder": ""
+          }
+        },
+        "services_regions": {
+          "type": "Group",
+          "config": {
+            "label": "Services by Region",
+            "fields": {
+              "service_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Service Title"
+                }
+              },
+              "service_region": {
+                "type": "Link",
+                "config": {
+                  "label": "Service Region",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": false,
+                  "allowText": true,
+                  "repeat": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

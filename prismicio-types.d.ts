@@ -137,6 +137,7 @@ export type AboutDocument<Lang extends string = string> =
 type AreasCoveredDocumentDataSlicesSlice =
   | MenuNavigationSlice
   | HeroBannerSlice
+  | AreasCoveredLinksSlice
   | FooterNavigationAndServicesRegionsSlice;
 
 /**
@@ -1116,6 +1117,51 @@ export type AboutSectionSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *AreasCoveredLinks → Default → Primary*
+ */
+export interface AreasCoveredLinksSliceDefaultPrimary {
+  /**
+   * Page Heading field in *AreasCoveredLinks → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: areas_covered_links.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for AreasCoveredLinks Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: SEO links grouped by service category.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AreasCoveredLinksSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AreasCoveredLinksSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *AreasCoveredLinks*
+ */
+type AreasCoveredLinksSliceVariation = AreasCoveredLinksSliceDefault;
+
+/**
+ * AreasCoveredLinks Shared Slice
+ *
+ * - **API ID**: `areas_covered_links`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AreasCoveredLinksSlice = prismic.SharedSlice<
+  "areas_covered_links",
+  AreasCoveredLinksSliceVariation
+>;
+
+/**
  * Item in *ContactPanel → Default → Primary → Contact Items*
  */
 export interface ContactPanelSliceDefaultPrimaryContactsItem {
@@ -2076,6 +2122,10 @@ declare module "@prismicio/client" {
       AboutSectionSliceDefaultPrimary,
       AboutSectionSliceVariation,
       AboutSectionSliceDefault,
+      AreasCoveredLinksSlice,
+      AreasCoveredLinksSliceDefaultPrimary,
+      AreasCoveredLinksSliceVariation,
+      AreasCoveredLinksSliceDefault,
       ContactPanelSlice,
       ContactPanelSliceDefaultPrimaryContactsItem,
       ContactPanelSliceDefaultPrimaryFormFieldsItem,
