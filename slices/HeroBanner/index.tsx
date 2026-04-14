@@ -23,11 +23,6 @@ const HeroBanner: FC<HeroBannerProps> = ({ slice }) => {
   const ctaButtons = slice.primary.cta || [];
   const bgColor = slice.primary.background_color || undefined;
 
-  // Split headline for logo spans (handles any number of words)
-  const headlineWords = headlineText.split(" ");
-  const firstPart = headlineWords.slice(0, -1).join(" ");
-  const lastPart = headlineWords[headlineWords.length - 1];
-
   return (
     <section
       className="section hero-section"
@@ -39,14 +34,11 @@ const HeroBanner: FC<HeroBannerProps> = ({ slice }) => {
       <div className="hero-background"></div>
       <div className="hero-overlay"></div>
       <div className="hero-content content">
-        <h1 className="hero-title title">
-          <span className="logo-beam">{firstPart}</span>{" "}
-          <span className="logo-digital">{lastPart}</span>
-        </h1>
+        <h1 className="hero-title title">{headlineText}</h1>
         <p className="hero-strapline">{subheadlineText}</p>
-        <div className="hero-cta">
-          {ctaButtons.length > 0 ? (
-            ctaButtons.map((button, index) => (
+        {ctaButtons.length > 0 && (
+          <div className="hero-cta">
+            {ctaButtons.map((button, index) => (
               <PrismicLink
                 key={index}
                 field={button.cta_link}
@@ -54,11 +46,9 @@ const HeroBanner: FC<HeroBannerProps> = ({ slice }) => {
               >
                 {button.cta_label || "Get in touch"}
               </PrismicLink>
-            ))
-          ) : (
-            <a href="#contact" className="btn btn-primary">Get in touch</a>
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

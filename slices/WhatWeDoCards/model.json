@@ -15,7 +15,7 @@
           "type": "Text",
           "config": {
             "label": "Section Title",
-            "placeholder": "What We Do"
+            "placeholder": ""
           }
         },
         "features": {
@@ -40,6 +40,24 @@
                 }
               }
             }
+          }
+        },
+        "cta_button_label": {
+          "type": "Text",
+          "config": {
+            "label": "CTA Button Label",
+            "placeholder": ""
+          }
+        },
+        "cta_button_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Button Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         }
       },

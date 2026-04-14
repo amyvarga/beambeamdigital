@@ -38,9 +38,9 @@ export default function Accordion({ items }: AccordionProps) {
           ref={el => { itemRefs.current[index] = el; }}
           className={`accordion-item${openIndex === index ? ' accordion--visible' : ''}`}
         >
-          <div className="accordion-heading" onClick={() => toggle(index)}>
+          <h2 className="accordion-heading" onClick={() => toggle(index)}>
             {item.heading}
-          </div>
+          </h2>
           <div className="accordion-body">{item.body}</div>
         </div>
       ))}

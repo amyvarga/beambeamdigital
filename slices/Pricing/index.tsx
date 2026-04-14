@@ -11,7 +11,9 @@ export type ContentHeaderProps =
 /**
  * Component for "ContentHeader" Slices.
  */
-const ContentHeader: FC<ContentHeaderProps> = ({ slice }) => {
+const ContentHeader: FC<ContentHeaderProps> = ({ slice, context }) => {
+  const ctx = context as { isPage?: boolean } | undefined;
+  const Title = ctx?.isPage ? "h1" : "h2";
   return (
     <section
       id="pricing"
@@ -21,7 +23,7 @@ const ContentHeader: FC<ContentHeaderProps> = ({ slice }) => {
     >
       <div className="pricing-content content fade-in">
         <div className="pricing-title title">
-          <h2 className="fade-in">{asText(slice.primary.title)}</h2>
+          <Title className="fade-in">{asText(slice.primary.title)}</Title>
         </div>
         <div className="pricing-packages">
           <div className="pricing-package fade-in">

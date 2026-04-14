@@ -98,6 +98,20 @@
 						]
 					}
 				]
+			},
+			"cta_button_label": {
+				"__TYPE__": "FieldContent",
+				"value": "cloud",
+				"type": "Text"
+			},
+			"cta_button_link": {
+				"__TYPE__": "LinkContent",
+				"key": "12c25aed-4542-4a11-a582-6c0f68eabdcb",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "book"
+				}
 			}
 		},
 		"items": []

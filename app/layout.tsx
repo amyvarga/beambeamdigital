@@ -7,6 +7,9 @@ import ActiveNavObserver from "@/components/ActiveNavObserver";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
+import { createClient } from "@/prismicio";
+import { SliceZone } from "@prismicio/react";
+import { components } from "@/slices";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -36,11 +39,16 @@ export const metadata: Metadata = {
   description: "Beam Beam Digital is located in South Devon. Its services include website design and build, e-commerce, search engine optimisation, automation, artificial intelligence integration and information technology.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const client = createClient();
+  const page = await client.getSingle("page");
+  const navSlices = page.data.slices.filter((s) => s.slice_type === "menu_navigation");
+  const footerSlices = page.data.slices.filter((s) => s.slice_type === "footer_navigation_and_services_regions");
+
   return (
     <html lang="en" className={`${montserrat.variable} ${raleway.variable} ${bodoniModa.variable} `}>
       <body>
@@ -48,9 +56,11 @@ export default function RootLayout({
         <FadeInObserver />
         <MobileNavObserver />
         <ActiveNavObserver />
+        <SliceZone slices={navSlices} components={components} />
         <main id="main-content">
-        {children}
+          {children}
         </main>
+        <SliceZone slices={footerSlices} components={components} />
         <GoogleAnalytics />
         <SpeedInsights />
         <Analytics />

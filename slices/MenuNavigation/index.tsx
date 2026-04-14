@@ -20,7 +20,7 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
   return (
     <nav className="nav" id="nav">
       <div className="nav-container">
-            <a href="#" className="nav-logo">
+            <a href="/" className="nav-logo">
                 <span className="logo-beam">{mainLogoText}</span> 
                 <span className="logo-digital">{highlightedLogoText}</span>
             </a>
@@ -40,11 +40,11 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
             ))
           ) : (
             <>
-             <li><a href="#services" className="nav-link">Services</a></li>
-             <li><a href="#about" className="nav-link">About</a></li>
-                <li><a href="#pricing" className="nav-link">Pricing</a></li>
-                <li><a href="#work" className="nav-link">Work</a></li>
-                <li><a href="#contact" className="nav-link">Contact</a></li>
+             <li><a href="/services" className="nav-link">Services</a></li>
+             <li><a href="/about" className="nav-link">About</a></li>
+             <li><a href="/pricing" className="nav-link">Pricing</a></li>
+             <li><a href="/work" className="nav-link">Work</a></li>
+             <li><a href="/contact" className="nav-link">Contact</a></li>
             </>
           )}
           </ul>

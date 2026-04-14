@@ -14,8 +14,10 @@ export type AboutSectionProps = SliceComponentProps<Content.AboutSectionSlice>;
 /**
  * Component for "About Section" Slices.
  */
-const AboutSection: FC<AboutSectionProps> = ({ slice }) => {
-  const profileHeading = slice.primary.heading || "About me";
+const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
+  const ctx = context as { isPage?: boolean } | undefined;
+  const Title = ctx?.isPage ? "h1" : "h2";
+  const profileHeading = slice.primary.heading || null;
   const hasImage = slice.primary.profile_image?.url;
 
   const masonryImages = Array.from({ length: 12 }, (_, i) => {
@@ -37,9 +39,11 @@ const AboutSection: FC<AboutSectionProps> = ({ slice }) => {
   return (
     <section id="about" className="about section">
       <div className="about-content content">
-        <div className="about-title title">
-          <h2 className="fade-in">{profileHeading}</h2>
-        </div>
+        {profileHeading && (
+          <div className="about-title title">
+            <Title className="fade-in">{profileHeading}</Title>
+          </div>
+        )}
         <div className="about-grid">
           <div className="about-image">
             {hasImage ? (
@@ -65,9 +69,9 @@ const AboutSection: FC<AboutSectionProps> = ({ slice }) => {
               <p className="about-cta">
                 {slice.primary.cta_text?.trim() && slice.primary.cta_text}
                 {slice.primary.cta_button_label && (
-                  <a href="#contact" className="btn btn-primary">
+                  <PrismicLink field={slice.primary.cta_button_link} className="btn btn-primary">
                     {slice.primary.cta_button_label}
-                  </a>
+                  </PrismicLink>
                 )}
               </p>
             )}

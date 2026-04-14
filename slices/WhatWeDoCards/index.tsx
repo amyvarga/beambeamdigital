@@ -2,13 +2,15 @@
 
 import { FC } from "react";
 import { Content } from "@prismicio/client";
-import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
+import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 import Accordion from "@/components/Accordion";
 
 export type WhatWeDoCardsProps =
   SliceComponentProps<Content.WhatWeDoSliceSlice>;
 
-const WhatWeDoCards: FC<WhatWeDoCardsProps> = ({ slice }) => {
+const WhatWeDoCards: FC<WhatWeDoCardsProps> = ({ slice, context }) => {
+  const ctx = context as { isPage?: boolean } | undefined;
+  const Title = ctx?.isPage ? "h1" : "h2";
   const sectionTitle = slice.primary.section_title || "What We Do";
   const featureItems = slice.primary.features || [];
 
@@ -21,9 +23,16 @@ const WhatWeDoCards: FC<WhatWeDoCardsProps> = ({ slice }) => {
     <section id="services" className="services section">
       <div className="services-content content">
         <div className="services-title title">
-          <h2 className="fade-in">{sectionTitle}</h2>
+          <Title className="fade-in">{sectionTitle}</Title>
         </div>
         <Accordion items={items} />
+        {slice.primary.cta_button_label && (
+          <p className="about-cta">
+            <PrismicLink field={slice.primary.cta_button_link} className="btn btn-primary">
+              {slice.primary.cta_button_label}
+            </PrismicLink>
+          </p>
+        )}
       </div>
     </section>
   );

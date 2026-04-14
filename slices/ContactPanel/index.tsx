@@ -13,7 +13,9 @@ export type ContactPanelProps = SliceComponentProps<Content.ContactPanelSlice>;
 /**
  * Component for "ContactPanel" Slices.
  */
-const ContactPanel: FC<ContactPanelProps> = ({ slice }) => {
+const ContactPanel: FC<ContactPanelProps> = ({ slice, context }) => {
+  const ctx = context as { isPage?: boolean } | undefined;
+  const Title = ctx?.isPage ? "h1" : "h2";
   const [formValues, setFormValues] = useState<Record<number, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [fading, setFading] = useState(false);
@@ -96,20 +98,17 @@ const ContactPanel: FC<ContactPanelProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
     >
       <div className="contact-content content fade-in">
-        <div className="contact-title title">
-          <h2 className="fade-in">{asText(slice.primary.title)}</h2>
-        </div>
-        <ContactInfo contacts={slice.primary.contacts} className="contact-info" />
+        <ContactInfo title={asText(slice.primary.title)} contacts={slice.primary.contacts} className="contact-info" />
           <div className="contact-form">
             {submitted ? (
               <div className="form-success" ref={successRef}>
                 <p>Thank you! Your message has been sent and I will be in touch soon.</p>
               </div>
             ) : (
-              <form ref={formRef} onSubmit={handleSubmit} noValidate className={fading ? "form-exit" : ""}>
-                <div className="form-title">
+              <div className="form-title">
                   <PrismicRichText field={slice.primary.form_title} />
-                </div>
+  
+              <form ref={formRef} onSubmit={handleSubmit} noValidate className={fading ? "form-exit" : ""}>
                 {slice.primary.form_fields.map((field, index) => {
                   const required = field.is_required ?? false;
                   const type = field.field_type ?? null;
@@ -146,6 +145,7 @@ const ContactPanel: FC<ContactPanelProps> = ({ slice }) => {
                   {slice.primary.button_text ?? "Send Message"}
                 </button>
               </form>
+              </div>
             )}
           </div>
         </div>

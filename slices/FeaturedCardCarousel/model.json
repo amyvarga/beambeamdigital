@@ -38,7 +38,7 @@
               "description_list": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph,list-item",
+                  "multi": "paragraph,list-item,strong,em,hyperlink",
                   "label": "Description List"
                 }
               },
@@ -66,6 +66,24 @@
                 }
               }
             }
+          }
+        },
+        "cta_button_label": {
+          "type": "Text",
+          "config": {
+            "label": "CTA Button Label",
+            "placeholder": ""
+          }
+        },
+        "cta_button_link": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Button Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         }
       },

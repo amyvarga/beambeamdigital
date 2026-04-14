@@ -1,4 +1,4 @@
-type ContactItem = { contact_type: string | null; contact_label: string | null };
+type ContactItem = {contact_type: string | null; contact_label: string | null };
 
 const PhoneIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -20,31 +20,34 @@ const LocationIcon = () => (
   </svg>
 );
 
-export default function ContactInfo({ contacts, className }: { contacts: ContactItem[]; className?: string }) {
+export default function ContactInfo({ contacts, className, title }: { contacts: ContactItem[]; className?: string; title?: string }) {
   return (
-    <ul className={className}>
-      {contacts.map((contact, index) => (
-        <li key={index} className="contact-item">
-          {contact.contact_type === "phone" && (
-            <>
-              <PhoneIcon />
-              <a href={`tel:${contact.contact_label}`}>{contact.contact_label}</a>
-            </>
-          )}
-          {contact.contact_type === "email" && (
-            <>
-              <EmailIcon />
-              <a href={`mailto:${contact.contact_label}`}>{contact.contact_label}</a>
-            </>
-          )}
-          {contact.contact_type === "location" && (
-            <>
-              <LocationIcon />
-              <span>{contact.contact_label}</span>
-            </>
-          )}
-        </li>
-      ))}
-    </ul>
+    <div className={className}>
+      {title && <h2>{title}</h2>}
+      <ul>
+        {contacts.map((contact, index) => (
+          <li key={index} className="contact-item">
+            {contact.contact_type === "phone" && (
+              <>
+                <PhoneIcon />
+                <a href={`tel:${contact.contact_label}`}>{contact.contact_label}</a>
+              </>
+            )}
+            {contact.contact_type === "email" && (
+              <>
+                <EmailIcon />
+                <a href={`mailto:${contact.contact_label}`}>{contact.contact_label}</a>
+              </>
+            )}
+            {contact.contact_type === "location" && (
+              <>
+                <LocationIcon />
+                <span>{contact.contact_label}</span>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

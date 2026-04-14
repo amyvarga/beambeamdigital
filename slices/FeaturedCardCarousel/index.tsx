@@ -1,14 +1,16 @@
 'use client';
 
 import { FC } from "react";
-import { Content, isFilled } from "@prismicio/client";
+import { Content, isFilled, asText } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 import Carousel from "@/components/Carousel";
 
 export type FeaturedCardGridProps =
   SliceComponentProps<Content.FeaturedCardGridSlice>;
 
-const FeaturedCardGrid: FC<FeaturedCardGridProps> = ({ slice }) => {
+const FeaturedCardGrid: FC<FeaturedCardGridProps> = ({ slice, context }) => {
+  const ctx = context as { isPage?: boolean } | undefined;
+  const Title = ctx?.isPage ? "h1" : "h2";
   const cards = slice.primary.cards;
 
   return (
@@ -19,9 +21,14 @@ const FeaturedCardGrid: FC<FeaturedCardGridProps> = ({ slice }) => {
       id="work"
     >
       <div className="work-content content">
-        <div className="work-title title">
-          <PrismicRichText field={slice.primary.section_heading} />
-        </div>
+        {asText(slice.primary.section_heading).trim() && (
+          <div className="work-title title">
+            <PrismicRichText
+              field={slice.primary.section_heading}
+              components={{ heading2: ({ children }) => <Title className="fade-in">{children}</Title> }}
+            />
+          </div>
+        )}
         <Carousel>
           {cards.map((card, index) => {
             const cardContent = (
@@ -52,6 +59,13 @@ const FeaturedCardGrid: FC<FeaturedCardGridProps> = ({ slice }) => {
               : <div key={index} {...sharedProps}>{cardContent}</div>;
           })}
         </Carousel>
+        {slice.primary.cta_button_label && (
+          <p className="about-cta">
+            <PrismicLink field={slice.primary.cta_button_link} className="btn btn-primary">
+              {slice.primary.cta_button_label}
+            </PrismicLink>
+          </p>
+        )}
       </div>
     </section>
   );

@@ -11,6 +11,20 @@
       "imageUrl": "",
       "docURL": "...",
       "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1",
+            "label": "Title"
+          }
+        },
+        "contact_item_title": {
+          "type": "Text",
+          "config": {
+            "label": "Contact item title",
+            "placeholder": ""
+          }
+        },
         "contacts": {
           "type": "Group",
           "config": {
@@ -20,7 +34,11 @@
                 "type": "Select",
                 "config": {
                   "label": "Contact Type",
-                  "options": ["phone", "email", "location"]
+                  "options": [
+                    "phone",
+                    "email",
+                    "location"
+                  ]
                 }
               },
               "contact_label": {
@@ -30,13 +48,6 @@
                 }
               }
             }
-          }
-        },
-        "title": {
-          "type": "StructuredText",
-          "config": {
-            "single": "heading1",
-            "label": "Title"
           }
         },
         "form_title": {
@@ -61,7 +72,12 @@
                 "type": "Select",
                 "config": {
                   "label": "Field Type",
-                  "options": ["text", "email", "phone", "textarea"]
+                  "options": [
+                    "text",
+                    "email",
+                    "phone",
+                    "textarea"
+                  ]
                 }
               },
               "is_required": {
@@ -79,7 +95,8 @@
             "label": "Button Text"
           }
         }
-      }
+      },
+      "items": {}
     }
   ]
 }

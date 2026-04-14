@@ -88,6 +88,11 @@
 				"__TYPE__": "FieldContent",
 				"value": "hand",
 				"type": "Text"
+			},
+			"contact_item_title": {
+				"__TYPE__": "FieldContent",
+				"value": "exchange",
+				"type": "Text"
 			}
 		},
 		"items": []

@@ -4,15 +4,9 @@
 		"variation": "default",
 		"primary": {
 			"section_title": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "heading2",
-						"content": {
-							"text": "Movement"
-						}
-					}
-				]
+				"__TYPE__": "FieldContent",
+				"value": "else",
+				"type": "Text"
 			},
 			"features": {
 				"__TYPE__": "GroupContentType",
@@ -45,6 +39,20 @@
 						]
 					}
 				]
+			},
+			"cta_button_label": {
+				"__TYPE__": "FieldContent",
+				"value": "prevent",
+				"type": "Text"
+			},
+			"cta_button_link": {
+				"key": "b2e7f124-b8a2-47c7-b90d-c6eb8af2217f",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "history"
+				}
 			}
 		},
 		"items": []
