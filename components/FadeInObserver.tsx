@@ -1,9 +1,10 @@
 'use client';
 
 import { useEffect } from 'react';
+const bottomMargin = typeof window !== 'undefined' && window.innerHeight < 700 ? '0px' : '-50px';
 const observerOptions = {
         root: null,
-        rootMargin: '0px 0px -50px 0px',
+        rootMargin: `0px 0px ${bottomMargin} 0px`,
         threshold: 0.1
     };
 
