@@ -5,6 +5,8 @@ import { ReactNode, useState, useRef } from "react";
 interface AccordionItem {
   heading: string;
   body: ReactNode;
+  ctaLabel?: string;
+  ctaLink?: string;
 }
 
 interface AccordionProps {
@@ -41,7 +43,14 @@ export default function Accordion({ items }: AccordionProps) {
           <h2 className="accordion-heading" onClick={() => toggle(index)}>
             {item.heading}
           </h2>
-          <div className="accordion-body">{item.body}</div>
+          <div className="accordion-body">
+            {item.body}
+            {item.ctaLabel && item.ctaLink && (
+              <p className="about-cta">
+                <a href={item.ctaLink} className="btn btn-primary">{item.ctaLabel}</a>
+              </p>
+            )}
+          </div>
         </div>
       ))}
     </div>

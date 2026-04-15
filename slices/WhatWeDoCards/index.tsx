@@ -1,7 +1,7 @@
 'use client';
 
 import { FC } from "react";
-import { Content } from "@prismicio/client";
+import { Content, asLink } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 import Accordion from "@/components/Accordion";
 
@@ -17,6 +17,8 @@ const WhatWeDoCards: FC<WhatWeDoCardsProps> = ({ slice, context }) => {
   const items = featureItems.map((item: Content.WhatWeDoSliceSliceDefaultPrimaryFeaturesItem) => ({
     heading: item.feature_title ?? "",
     body: <PrismicRichText field={item.feature_description} />,
+    ctaLabel: item.service_cta_button_label ?? undefined,
+    ctaLink: asLink(item.service_cta_button_link) ?? undefined,
   }));
 
   return (

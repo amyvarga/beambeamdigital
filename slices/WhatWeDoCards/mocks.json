@@ -35,6 +35,26 @@
 										}
 									]
 								}
+							],
+							[
+								"service_cta_button_label",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "day",
+									"type": "Text"
+								}
+							],
+							[
+								"service_cta_button_link",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "34d3818c-d17f-4880-8653-e57320f2b48b",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://slicemachine.dev",
+										"text": "orbit"
+									}
+								}
 							]
 						]
 					}

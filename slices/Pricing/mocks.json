@@ -93,6 +93,31 @@
 						}
 					}
 				]
+			},
+			"pricing_package_1_inline_link": {
+				"__TYPE__": "FieldContent",
+				"value": "bright",
+				"type": "Text"
+			},
+			"pricing_package_2_inline_link": {
+				"__TYPE__": "FieldContent",
+				"value": "hungry",
+				"type": "Text"
+			},
+			"pricing_package_3_inline_link": {
+				"__TYPE__": "FieldContent",
+				"value": "am",
+				"type": "Text"
+			},
+			"pricing_package_4_inline_link": {
+				"__TYPE__": "FieldContent",
+				"value": "remove",
+				"type": "Text"
+			},
+			"pricing_package_5_inline_link": {
+				"__TYPE__": "FieldContent",
+				"value": "wing",
+				"type": "Text"
 			}
 		},
 		"items": []

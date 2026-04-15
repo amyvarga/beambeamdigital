@@ -20,6 +20,8 @@
     --btn-radius: 0.25rem;
     --transition: 0.5s ease;
     --gap: 3rem;
+
+    --scroll-margin-top: 130px;
 }
 
 /* ============================================
@@ -441,7 +443,7 @@ a.nav-link:hover {
     display: grid;
     grid-template-rows: min-content 0fr;
     transition: grid-template-rows 1s ease;
-    scroll-margin-top: 130px;
+    scroll-margin-top: var(--scroll-margin-top);
 }
 
 .accordion-item:first-child {
@@ -638,7 +640,8 @@ p.about-cta {
         .pricing-package {
             border: 0.5px solid var(--color-2);
             border-radius: var(--btn-radius);
-             padding: calc(var(--gap) / 2); 
+            padding: calc(var(--gap) / 2);
+            scroll-margin-top: var(--scroll-margin-top);
         }
     }
 }
@@ -1155,6 +1158,7 @@ select:focus {
 @media (min-width: 900px) {
     :root {
         --gap: 1.25rem;
+        --scroll-margin-top: 120px;
     }
     
     body {
@@ -1283,7 +1287,7 @@ select:focus {
     }
 
     .accordion-item {
-        scroll-margin-top: 120px;
+        scroll-margin-top: var(--scroll-margin-top);
     }
 
     .accordion-heading {

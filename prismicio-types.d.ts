@@ -1117,6 +1117,33 @@ export type AboutSectionSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *AreasCoveredLinks → Default → Primary → Services by Region*
+ */
+export interface AreasCoveredLinksSliceDefaultPrimaryServicesRegionsItem {
+  /**
+   * Service Title field in *AreasCoveredLinks → Default → Primary → Services by Region*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: areas_covered_links.default.primary.services_regions[].service_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  service_title: prismic.KeyTextField;
+
+  /**
+   * Service Region field in *AreasCoveredLinks → Default → Primary → Services by Region*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: areas_covered_links.default.primary.services_regions[].service_region
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  service_region: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+}
+
+/**
  * Primary content in *AreasCoveredLinks → Default → Primary*
  */
 export interface AreasCoveredLinksSliceDefaultPrimary {
@@ -1129,6 +1156,18 @@ export interface AreasCoveredLinksSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
+
+  /**
+   * Services by Region field in *AreasCoveredLinks → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: areas_covered_links.default.primary.services_regions[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  services_regions: prismic.GroupField<
+    Simplify<AreasCoveredLinksSliceDefaultPrimaryServicesRegionsItem>
+  >;
 }
 
 /**
@@ -1355,6 +1394,16 @@ export interface ContentHeaderSliceCenteredTitleAndSubtextPrimary {
   pricing_package_1_description: prismic.RichTextField;
 
   /**
+   * Pricing Package 1 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_1_inline_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  pricing_package_1_inline_link: prismic.KeyTextField;
+
+  /**
    * Pricing Package 2 Title field in *Pricing → Centered Title and Subtext → Primary*
    *
    * - **Field Type**: Text
@@ -1373,6 +1422,16 @@ export interface ContentHeaderSliceCenteredTitleAndSubtextPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   pricing_package_2_description: prismic.RichTextField;
+
+  /**
+   * Pricing Package 2 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_2_inline_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  pricing_package_2_inline_link: prismic.KeyTextField;
 
   /**
    * Pricing Package 3 Title field in *Pricing → Centered Title and Subtext → Primary*
@@ -1395,6 +1454,16 @@ export interface ContentHeaderSliceCenteredTitleAndSubtextPrimary {
   pricing_package_3_description: prismic.RichTextField;
 
   /**
+   * Pricing Package 3 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_3_inline_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  pricing_package_3_inline_link: prismic.KeyTextField;
+
+  /**
    * Pricing Package 4 Title field in *Pricing → Centered Title and Subtext → Primary*
    *
    * - **Field Type**: Text
@@ -1415,6 +1484,16 @@ export interface ContentHeaderSliceCenteredTitleAndSubtextPrimary {
   pricing_package_4_description: prismic.RichTextField;
 
   /**
+   * Pricing Package 4 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_4_inline_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  pricing_package_4_inline_link: prismic.KeyTextField;
+
+  /**
    * Pricing Package 5 Title field in *Pricing → Centered Title and Subtext → Primary*
    *
    * - **Field Type**: Text
@@ -1433,6 +1512,16 @@ export interface ContentHeaderSliceCenteredTitleAndSubtextPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   pricing_package_5_description: prismic.RichTextField;
+
+  /**
+   * Pricing Package 5 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_5_inline_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  pricing_package_5_inline_link: prismic.KeyTextField;
 }
 
 /**
@@ -1990,6 +2079,32 @@ export interface WhatWeDoSliceSliceDefaultPrimaryFeaturesItem {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   feature_description: prismic.RichTextField;
+
+  /**
+   * Service CTA Button Label field in *What We Do Cards → Default → Primary → Feature Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: what_we_do_slice.default.primary.features[].service_cta_button_label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  service_cta_button_label: prismic.KeyTextField;
+
+  /**
+   * Service CTA Button Link field in *What We Do Cards → Default → Primary → Feature Cards*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: what_we_do_slice.default.primary.features[].service_cta_button_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  service_cta_button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
@@ -2123,6 +2238,7 @@ declare module "@prismicio/client" {
       AboutSectionSliceVariation,
       AboutSectionSliceDefault,
       AreasCoveredLinksSlice,
+      AreasCoveredLinksSliceDefaultPrimaryServicesRegionsItem,
       AreasCoveredLinksSliceDefaultPrimary,
       AreasCoveredLinksSliceVariation,
       AreasCoveredLinksSliceDefault,

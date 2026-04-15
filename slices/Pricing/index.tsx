@@ -26,26 +26,18 @@ const ContentHeader: FC<ContentHeaderProps> = ({ slice, context }) => {
           <Title className="fade-in">{asText(slice.primary.title)}</Title>
         </div>
         <div className="pricing-packages">
-          <div className="pricing-package fade-in">
-            <h3>{slice.primary.pricing_package_1_title}</h3>
-            <PrismicRichText field={slice.primary.pricing_package_1_description} />
-          </div>
-          <div className="pricing-package fade-in">
-            <h3>{slice.primary.pricing_package_2_title}</h3>
-            <PrismicRichText field={slice.primary.pricing_package_2_description} />
-          </div>
-          <div className="pricing-package fade-in">
-            <h3>{slice.primary.pricing_package_3_title}</h3>
-            <PrismicRichText field={slice.primary.pricing_package_3_description} />
-          </div>
-          <div className="pricing-package fade-in">
-            <h3>{slice.primary.pricing_package_4_title}</h3>
-            <PrismicRichText field={slice.primary.pricing_package_4_description} />
-          </div>
-          <div className="pricing-package fade-in">
-            <h3>{slice.primary.pricing_package_5_title}</h3>
-            <PrismicRichText field={slice.primary.pricing_package_5_description} />
-          </div>
+          {[1, 2, 3, 4, 5].map((n) => {
+            const p = slice.primary as Record<string, unknown>;
+            const title = p[`pricing_package_${n}_title`] as string | undefined;
+            const description = p[`pricing_package_${n}_description`] as Parameters<typeof PrismicRichText>[0]["field"];
+            const inlineLink = p[`pricing_package_${n}_inline_link`] as string | undefined;
+            return (
+              <div key={n} className="pricing-package fade-in" id={inlineLink ? inlineLink.replace("#", "") : undefined}>
+                <h3>{title}</h3>
+                <PrismicRichText field={description} />
+              </div>
+            );
+          })}
         </div>
 
 

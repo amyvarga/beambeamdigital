@@ -34,6 +34,13 @@
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         },
+        "pricing_package_1_inline_link": {
+          "type": "Text",
+          "config": {
+            "label": "Pricing Package 1 Inline Link",
+            "placeholder": ""
+          }
+        },
         "pricing_package_2_title": {
           "type": "Text",
           "config": {
@@ -48,6 +55,13 @@
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "pricing_package_2_inline_link": {
+          "type": "Text",
+          "config": {
+            "label": "Pricing Package 2 Inline Link",
+            "placeholder": ""
           }
         },
         "pricing_package_3_title": {
@@ -66,6 +80,13 @@
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         },
+        "pricing_package_3_inline_link": {
+          "type": "Text",
+          "config": {
+            "label": "Pricing Package 3 Inline Link",
+            "placeholder": ""
+          }
+        },
         "pricing_package_4_title": {
           "type": "Text",
           "config": {
@@ -82,6 +103,13 @@
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         },
+        "pricing_package_4_inline_link": {
+          "type": "Text",
+          "config": {
+            "label": "Pricing Package 4 Inline Link",
+            "placeholder": ""
+          }
+        },
         "pricing_package_5_title": {
           "type": "Text",
           "config": {
@@ -96,6 +124,13 @@
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "pricing_package_5_inline_link": {
+          "type": "Text",
+          "config": {
+            "label": "Pricing Package 5 Inline Link",
+            "placeholder": ""
           }
         }
       },
