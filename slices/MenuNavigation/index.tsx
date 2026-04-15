@@ -1,5 +1,6 @@
-import { FC } from "react";
-import { Content} from "@prismicio/client";
+"use client";
+import { FC, useEffect } from "react";
+import { Content } from "@prismicio/client";
 import { SliceComponentProps, PrismicLink} from "@prismicio/react";
 
 /**
@@ -12,9 +13,18 @@ export type MenuNavigationProps =
  * Component for "Menu Navigation" Slices.
  */
 const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
-  const logoItem = slice.primary.logo_area?.[0];  
-  const mainLogoText = logoItem?.main_text || "BEAM BEAM"; 
-  const highlightedLogoText = logoItem?.highlighted_text || "Digital"; 
+  useEffect(() => {
+    const path = window.location.pathname;
+    document.querySelectorAll("a.nav-link").forEach((link) => {
+      const href = link.getAttribute("href") ?? "";
+      const linkPath = href.startsWith("http") ? new URL(href).pathname : href;
+      link.classList.toggle("active", !!linkPath && path === linkPath);
+    });
+  }, []);
+
+  const logoItem = slice.primary.logo_area?.[0];
+  const mainLogoText = logoItem?.main_text || "BEAM BEAM";
+  const highlightedLogoText = logoItem?.highlighted_text || "Digital";
   const menuItems = slice.primary.menu_links || [];
    
   return (
@@ -28,26 +38,13 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
                 <span className="hamburger"></span>
             </button>
             <ul className="nav-menu" aria-hidden="true">
-               {menuItems.length > 0 ? (
-                  menuItems.map((item, index) => (
-                     <li key={index}>
-                      <PrismicLink
-                        field={item.link}
-                      className="nav-link col"
-                  >
-                  {item.label || "Link"}
-              </PrismicLink></li>
-            ))
-          ) : (
-            <>
-             <li><a href="/services" className="nav-link">Services</a></li>
-             <li><a href="/about" className="nav-link">About</a></li>
-             <li><a href="/pricing" className="nav-link">Pricing</a></li>
-             <li><a href="/work" className="nav-link">Work</a></li>
-             <li><a href="/areas-covered" className="nav-link">Areas Covered</a></li>
-             <li><a href="/contact" className="nav-link">Contact</a></li>
-            </>
-          )}
+               {menuItems.map((item, index) => (
+                  <li key={index}>
+                    <PrismicLink field={item.link} className="nav-link col">
+                      {item.label || "Link"}
+                    </PrismicLink>
+                  </li>
+                ))}
           </ul>
       </div>
        </nav>

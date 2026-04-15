@@ -289,7 +289,7 @@ a.nav-link {
 
 a.nav-link.active,
 a.nav-link:focus {
-    font-weight: 500;
+    font-weight: 700;
 }
 
 a.nav-link:hover {
@@ -440,8 +440,8 @@ a.nav-link:hover {
 .accordion-item {
     display: grid;
     grid-template-rows: min-content 0fr;
-    transition: all 1s ease;
-    scroll-margin-top: 120px;
+    transition: grid-template-rows 1s ease;
+    scroll-margin-top: 130px;
 }
 
 .accordion-item:first-child {
@@ -1283,7 +1283,7 @@ select:focus {
     }
 
     .accordion-item {
-        scroll-margin-top: 0;
+        scroll-margin-top: 120px;
     }
 
     .accordion-heading {
