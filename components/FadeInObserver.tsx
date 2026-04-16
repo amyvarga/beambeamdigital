@@ -1,16 +1,24 @@
 'use client';
 
 import { useEffect } from 'react';
-const bottomMargin = typeof window !== 'undefined' && window.innerHeight < 700 ? '0px' : '-50px';
-const observerOptions = {
-        root: null,
-        rootMargin: `0px 0px ${bottomMargin} 0px`,
-        threshold: 0.1
-    };
 
 export default function FadeInObserver() {
-  
+
   useEffect(() => {
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    // On small screens, skip the fade-in and make everything visible immediately
+    if (window.innerWidth <= 768) {
+      fadeElements.forEach((el) => el.classList.add('visible'));
+      return;
+    }
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.1
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -20,15 +28,12 @@ export default function FadeInObserver() {
           }
         });
       }, observerOptions
-    )
+    );
 
-    // Observe all elements with fade-in class
-    const fadeElements = document.querySelectorAll('.fade-in');
     fadeElements.forEach((el) => observer.observe(el));
 
-    // Cleanup
     return () => observer.disconnect();
   }, []);
 
-  return null; // This component doesn't render anything
+  return null;
 }
