@@ -5,10 +5,10 @@ import { Content, isFilled, asText } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 import Carousel from "@/components/Carousel";
 
-export type FeaturedCardGridProps =
+export type RecentWorkProps =
   SliceComponentProps<Content.FeaturedCardGridSlice>;
 
-const FeaturedCardGrid: FC<FeaturedCardGridProps> = ({ slice, context }) => {
+const RecentWork: FC<RecentWorkProps> = ({ slice, context }) => {
   const ctx = context as { isPage?: boolean } | undefined;
   const Title = ctx?.isPage ? "h1" : "h2";
   const cards = slice.primary.cards;
@@ -60,7 +60,7 @@ const FeaturedCardGrid: FC<FeaturedCardGridProps> = ({ slice, context }) => {
           })}
         </Carousel>
         {slice.primary.cta_button_label && (
-          <p className="about-cta">
+          <p className="callToAction">
             <PrismicLink field={slice.primary.cta_button_link} className="btn btn-primary">
               {slice.primary.cta_button_label}
             </PrismicLink>
@@ -71,4 +71,4 @@ const FeaturedCardGrid: FC<FeaturedCardGridProps> = ({ slice, context }) => {
   );
 };
 
-export default FeaturedCardGrid;
+export default RecentWork;

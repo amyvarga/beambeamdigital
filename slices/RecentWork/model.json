@@ -1,60 +1,68 @@
 {
   "type": "SharedSlice",
-  "id": "what_we_do_slice",
-  "name": "What We Do Cards",
+  "id": "featured_card_grid",
+  "name": "RecentWork",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "description": "Standard layout with section title and repeatable feature cards.",
+      "description": "Grid of featured cards with image, title, bullet list, and link.",
       "version": "initial",
       "imageUrl": "",
       "docURL": "...",
       "primary": {
-        "section_title": {
-          "type": "Text",
+        "section_heading": {
+          "type": "StructuredText",
           "config": {
-            "label": "Section Title",
-            "placeholder": ""
+            "single": "heading2",
+            "label": "Section Heading"
           }
         },
-        "features": {
+        "cards": {
           "type": "Group",
           "config": {
-            "label": "Feature Cards",
+            "label": "Cards",
             "fields": {
-              "feature_title": {
-                "type": "Text",
+              "logo": {
+                "type": "Image",
                 "config": {
-                  "label": "Feature Title",
-                  "placeholder": ""
+                  "label": "Logo"
                 }
               },
-              "feature_description": {
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title"
+                }
+              },
+              "description_list": {
                 "type": "StructuredText",
                 "config": {
-                  "label": "Feature Description",
-                  "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                  "multi": "paragraph,list-item,strong,em,hyperlink",
+                  "label": "Description List"
                 }
               },
-              "service_cta_button_label": {
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "allowText": true,
+                  "repeat": false,
+                  "select": null
+                }
+              },
+              "background_color": {
                 "type": "Text",
                 "config": {
-                  "label": "Service CTA Button Label",
+                  "label": "Background color",
                   "placeholder": ""
                 }
               },
-              "service_cta_button_link": {
-                "type": "Link",
+              "colour": {
+                "type": "Text",
                 "config": {
-                  "label": "Service CTA Button Link",
-                  "placeholder": "",
-                  "select": null,
-                  "allowTargetBlank": true,
-                  "allowText": true,
-                  "repeat": false
+                  "label": "Colour",
+                  "placeholder": ""
                 }
               }
             }

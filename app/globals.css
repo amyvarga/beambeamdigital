@@ -600,11 +600,11 @@ a.nav-link:hover {
 }
 
 
-p:has(+ .about-cta) {
+p:has(+ .callToAction) {
     margin-bottom: 0;
 }
 
-p.about-cta {
+p.callToAction {
     margin: calc(var(--gap) / 2) auto 0 auto; 
     text-align: center;
     > a.btn {
@@ -612,6 +612,59 @@ p.about-cta {
         color: var(--color-2);
     }
 }
+ p.callToActionLink {
+    margin: var(--gap) auto 0 auto; 
+    text-align: left;
+    > a {
+        color: var(--color-2);
+        overflow: hidden;
+        position: relative;
+        display: inline-block;
+        font-weight: 400;
+            &a::before,
+            &a::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                left: 0;
+            }
+            &a::before {
+            background-color: var(--color-2);
+                height: 1px;
+                bottom: 0;
+                transform-origin: 100% 50%;
+                transform: scaleX(0);
+                transition: transform .5s cubic-bezier(0.76, 0, 0.24, 1);
+            }
+            &a::after {
+            content: attr(data-replace);
+            height: 100%;
+            top: 0;
+            transform-origin: 100% 50%;
+            transform: translate3d(200%, 0, 0);
+            transition: transform .5s cubic-bezier(0.76, 0, 0.24, 1);
+            color: var(--color-2);
+            }
+
+            &a:hover::before {
+            transform-origin: 0% 50%;
+            transform: scaleX(1);
+            }
+            &a:hover::after {
+            transform: translate3d(0, 0, 0);
+            }
+
+            &a span {
+            display: inline-block;
+            transition: transform .5s cubic-bezier(0.76, 0, 0.24, 1);
+            }
+
+            &a:hover span {
+            transform: translate3d(-200%, 0, 0);
+            }
+    }
+
+ }
 
 /* ============================================
    PRICING
@@ -1278,9 +1331,15 @@ select:focus {
     }
 
      /* About */
-    .about-cta > a {
+
+    p.callToAction > a {
         margin-left: 2rem;
     }
+
+    p.callToActionLink {
+        margin-left: 0;
+    }
+
 
     .accordion {
         margin-top: var(--gap);
@@ -1345,9 +1404,15 @@ select:focus {
         margin-top: 0;
     }
 
-    p.about-cta {
+    p.callToAction {
         margin: calc(var(--gap) * 2) auto 0 auto;
     }
+
+    p.callToActionLink {
+        margin-left: 0;
+        margin-bottom: calc(var(--gap) * 2);
+    }
+
 
     .masonry {
         margin: 0;
@@ -1376,12 +1441,6 @@ select:focus {
         .work-description > p {
             margin-bottom: var(--gap);
         }
-    }
-    .carousel-item:hover {
-        .work-description > p {
-            
-        }
-
     }
 
     .carousel-dots {

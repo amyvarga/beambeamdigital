@@ -2,18 +2,10 @@ import { FC } from "react";
 import { Content, isFilled } from "@prismicio/client";
 import { SliceComponentProps, PrismicLink } from "@prismicio/react";
 
-/**
- * Props for `FooterNavigationAndServicesRegions`.
- */
-export type FooterNavigationAndServicesRegionsProps =
+export type FooterProps =
   SliceComponentProps<Content.FooterNavigationAndServicesRegionsSlice>;
 
-/**
- * Component for "FooterNavigationAndServicesRegions" Slices.
- */
-const FooterNavigationAndServicesRegions: FC<
-  FooterNavigationAndServicesRegionsProps
-> = ({ slice }) => {
+const Footer: FC<FooterProps> = ({ slice }) => {
   return (
     <footer
       className="footer section"
@@ -27,4 +19,4 @@ const FooterNavigationAndServicesRegions: FC<
   );
 };
 
-export default FooterNavigationAndServicesRegions;
+export default Footer;

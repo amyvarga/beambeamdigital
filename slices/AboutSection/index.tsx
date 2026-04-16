@@ -66,7 +66,7 @@ const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
             <PrismicRichText field={slice.primary.body_paragraph_two} />
             <PrismicRichText field={slice.primary.body_paragraph_three} />
             {(slice.primary.cta_text?.trim() || slice.primary.cta_button_label) && (
-              <p className="about-cta">
+              <p className="callToAction">
                 {slice.primary.cta_text?.trim() && slice.primary.cta_text}
                 {slice.primary.cta_button_label && (
                   <PrismicLink field={slice.primary.cta_button_link} className="btn btn-primary">

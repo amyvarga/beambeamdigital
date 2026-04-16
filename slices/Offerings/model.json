@@ -1,68 +1,60 @@
 {
   "type": "SharedSlice",
-  "id": "featured_card_grid",
-  "name": "FeaturedCardCarousel",
+  "id": "what_we_do_slice",
+  "name": "Offerings",
   "variations": [
     {
       "id": "default",
       "name": "Default",
-      "description": "Grid of featured cards with image, title, bullet list, and link.",
+      "description": "Standard layout with section title and repeatable feature cards.",
       "version": "initial",
       "imageUrl": "",
       "docURL": "...",
       "primary": {
-        "section_heading": {
-          "type": "StructuredText",
+        "section_title": {
+          "type": "Text",
           "config": {
-            "single": "heading2",
-            "label": "Section Heading"
+            "label": "Section Title",
+            "placeholder": ""
           }
         },
-        "cards": {
+        "features": {
           "type": "Group",
           "config": {
-            "label": "Cards",
+            "label": "Feature Cards",
             "fields": {
-              "logo": {
-                "type": "Image",
-                "config": {
-                  "label": "Logo"
-                }
-              },
-              "title": {
+              "feature_title": {
                 "type": "Text",
                 "config": {
-                  "label": "Title"
+                  "label": "Feature Title",
+                  "placeholder": ""
                 }
               },
-              "description_list": {
+              "feature_description": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph,list-item,strong,em,hyperlink",
-                  "label": "Description List"
+                  "label": "Feature Description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
                 }
               },
-              "link": {
+              "service_cta_button_label": {
+                "type": "Text",
+                "config": {
+                  "label": "Service CTA Button Label",
+                  "placeholder": ""
+                }
+              },
+              "service_cta_button_link": {
                 "type": "Link",
                 "config": {
-                  "label": "Link",
+                  "label": "Service CTA Button Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
                   "allowText": true,
-                  "repeat": false,
-                  "select": null
-                }
-              },
-              "background_color": {
-                "type": "Text",
-                "config": {
-                  "label": "Background color",
-                  "placeholder": ""
-                }
-              },
-              "colour": {
-                "type": "Text",
-                "config": {
-                  "label": "Colour",
-                  "placeholder": ""
+                  "repeat": false
                 }
               }
             }
