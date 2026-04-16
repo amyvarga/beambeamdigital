@@ -613,14 +613,14 @@ p.callToAction {
     }
 }
  p.callToActionLink {
-    margin: var(--gap) auto 0 auto; 
+    margin: calc(var(--gap) /2) 0; 
     text-align: left;
     > a {
         color: var(--color-2);
         overflow: hidden;
         position: relative;
         display: inline-block;
-        font-weight: 400;
+        font-weight: 500;
             &a::before,
             &a::after {
                 content: '';
@@ -1206,9 +1206,9 @@ select:focus {
 
 
 /* ============================================
-   RESPONSIVE — min-width: 900px (desktop)
+   RESPONSIVE — min-width: 1135px (desktop)
    ============================================ */
-@media (min-width: 900px) {
+@media (min-width: 1135px) {
     :root {
         --gap: 1.25rem;
         --scroll-margin-top: 120px;
@@ -1340,7 +1340,6 @@ select:focus {
         margin-left: 0;
     }
 
-
     .accordion {
         margin-top: var(--gap);
     }
@@ -1409,8 +1408,7 @@ select:focus {
     }
 
     p.callToActionLink {
-        margin-left: 0;
-        margin-bottom: calc(var(--gap) * 2);
+        margin: var(--gap) 0;
     }
 
 

@@ -4,13 +4,11 @@ import { useRef, useState, useEffect, ReactNode } from "react";
 
 interface CarouselProps {
   children: ReactNode[];
-  interval?: number;
 }
 
-export default function Carousel({ children, interval = 4000 }: CarouselProps) {
+export default function Carousel({ children }: CarouselProps) {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
   const count = children.length;
@@ -49,28 +47,9 @@ export default function Carousel({ children, interval = 4000 }: CarouselProps) {
     }
   }, []);
 
-  useEffect(() => {
-    if (paused || interval === 0) return;
-    const timer = setInterval(() => {
-      setCurrent(prev => {
-        const next = (prev + 1) % count;
-        const carousel = carouselRef.current;
-        if (carousel) {
-          const card = carousel.children[next] as HTMLElement;
-          carousel.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
-        }
-        track("carousel_navigate", { source: "auto", slide_index: next });
-        return next;
-      });
-    }, interval);
-    return () => clearInterval(timer);
-  }, [paused, count, interval]);
-
   return (
     <div
       className="carousel-wrapper"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
       <button
         className="carousel-btn carousel-btn--prev"
