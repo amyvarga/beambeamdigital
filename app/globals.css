@@ -294,8 +294,8 @@ a.nav-link:focus {
     font-weight: 700;
 }
 
-a.nav-link:hover {
-    border-bottom: 1px solid currentColor;
+a.nav-link:hover:not(.active) {
+    border-bottom: 0.5px solid currentColor;
 }
 
 /* Hamburger toggle */
