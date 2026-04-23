@@ -14,6 +14,7 @@
     --font-family: var(--font-montserrat), sans-serif;
     --font-logo: var(--font-raleway), sans-serif;
     --font-cursive: var(--font-bodoni-moda), serif;
+    --font-heading: var(--font-cormorant-garamond), serif;
 
     --mobile-icon-size: 30px;
 
@@ -70,14 +71,12 @@ body {
    BASE — TYPOGRAPHY
    ============================================ */
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-logo);
-    font-weight: 400;
+    font-family: var(--font-cormorant-garamond);
     line-height: 1.2em;
 }
 
 h1 {
-    font-size: clamp(24px, 6vw, 32px);
-    text-transform: uppercase;
+    font-size: clamp(34px, 6vw, 32px);
     font-weight: 500;
 }
 
@@ -277,7 +276,7 @@ li {
 
 a.nav-link,
 .seo-links li a {
-    font-weight: 300;
+    font-weight: 400;
     transition: all var(--transition);
 }
 
@@ -292,7 +291,7 @@ a.nav-link {
 
 a.nav-link.active,
 a.nav-link:focus {
-    font-weight: 700;
+    border-bottom: 0.5px solid currentColor;
 }
 
 a.nav-link:hover:not(.active) {
@@ -404,6 +403,7 @@ a.nav-link:hover:not(.active) {
 .hero-title,
 .hero-strapline {
     text-align: center;
+    margin-bottom: calc(var(--gap) / 2);
 }
 
 .hero-strapline {
@@ -1182,7 +1182,6 @@ button:focus,
 input:focus,
 textarea:focus,
 select:focus {
-    font-weight: 500;
     outline: none;
 }
 
@@ -1224,7 +1223,7 @@ select:focus {
     }
 
     h1 {
-        font-size: clamp(27px, 1.5vw, 30px);
+        font-size: clamp(34px, 1.5vw, 32px);
     }
 
     h2 {
@@ -1317,7 +1316,7 @@ select:focus {
     }
 
     .hero-strapline {
-        margin-bottom: var(--gap);
+        margin: var(--gap) 0;
         text-align: center;
     }
 

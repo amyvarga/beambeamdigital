@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Raleway, Bodoni_Moda } from "next/font/google";
+import { Montserrat, Raleway, Bodoni_Moda, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import FadeInObserver from "@/components/FadeInObserver";
 import MobileNavObserver from "@/components/MobileNavObserver";
@@ -29,6 +29,12 @@ const bodoniModa = Bodoni_Moda({
   display: "swap",
 });
 
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant-garamond",
+  display: "swap",
+});
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -50,7 +56,7 @@ export default async function RootLayout({
   const footerSlices = page.data.slices.filter((s) => s.slice_type === "footer_navigation_and_services_regions");
 
   return (
-    <html lang="en" className={`${montserrat.variable} ${raleway.variable} ${bodoniModa.variable} `}>
+    <html lang="en" className={`${montserrat.variable} ${raleway.variable} ${bodoniModa.variable} ${cormorantGaramond.variable} `}>
       <body>
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <FadeInObserver />
