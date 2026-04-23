@@ -44,6 +44,9 @@ export default function Accordion({ items }: AccordionProps) {
             {item.heading}
           </h2>
           <div className="accordion-body">
+            <p className="callToActionLink">
+              <a href={item.ctaLink} data-replace={item.ctaLabel}><span>{item.ctaLabel}</span></a>
+            </p>
             {item.body}
             {item.ctaLabel && item.ctaLink && (
               <p className="callToActionLink">
