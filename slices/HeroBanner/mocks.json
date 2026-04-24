@@ -25,7 +25,7 @@
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Ex velit ut veniam do id culpa mollit mollit eiusmod excepteur tempor amet."
+							"text": "Consequat excepteur non ipsum qui velit occaecat qui ad consectetur. Labore adipisicing cupidatat cillum irure enim ex cupidatat nulla do ullamco ut mollit."
 						}
 					}
 				]
@@ -47,8 +47,8 @@
 							[
 								"cta_link",
 								{
-									"__TYPE__": "LinkContent",
 									"key": "83d50311-58de-4576-8fba-26474234540f",
+									"__TYPE__": "LinkContent",
 									"value": {
 										"__TYPE__": "ExternalLink",
 										"url": "http://google.com"

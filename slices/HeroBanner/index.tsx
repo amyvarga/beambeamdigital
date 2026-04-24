@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Content, asText } from "@prismicio/client";
-import { SliceComponentProps, PrismicLink } from "@prismicio/react";
+import { SliceComponentProps, PrismicLink, PrismicRichText } from "@prismicio/react";
 
 /**
  * Props for `HeroBanner`.
@@ -16,9 +16,6 @@ const HeroBanner: FC<HeroBannerProps> = ({ slice }) => {
     ? asText(slice.primary.headline)
     : "BEAM BEAM Digital";
 
-  const subheadlineText = slice.primary.subheadline
-    ? asText(slice.primary.subheadline)
-    : "Supporting small businesses to harness the benefits of online and digital technologies";
 
   const ctaButtons = slice.primary.cta || [];
   const bgColor = slice.primary.background_color || undefined;
@@ -35,7 +32,9 @@ const HeroBanner: FC<HeroBannerProps> = ({ slice }) => {
       <div className="hero-overlay"></div>
       <div className="hero-content content">
         <h1 className="hero-title title">{headlineText}</h1>
-        <p className="hero-strapline">{subheadlineText}</p>
+        <div className="hero-strapline">
+          <PrismicRichText field={slice.primary.subheadline} />
+        </div>
         {ctaButtons.length > 0 && (
           <div className="hero-cta">
             {ctaButtons.map((button, index) => (

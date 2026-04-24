@@ -83,6 +83,7 @@ h1 {
 h2 {
     font-size: clamp(25px, 5vw, 25px);
     font-weight: 500;
+    margin-bottom: 1rem;
 }
 
 h3 {
@@ -643,7 +644,7 @@ p.callToAction {
                 height: 0.5px;
                 bottom: 0;
                 transform-origin: 0% 50%;
-                transform: scaleX(1);
+                transform: scaleX(0);
                 transition: transform .5s cubic-bezier(0.76, 0, 0.24, 1);
             }
             &a::after {
@@ -1237,6 +1238,7 @@ select:focus {
 
     h2 {
         font-size: clamp(28px, 1.35vw, 26px);
+        margin-bottom: 1em;
     }
 
     h3 {

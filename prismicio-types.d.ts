@@ -1556,11 +1556,11 @@ export type ContentHeaderSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *FeaturedCardCarousel → Default → Primary → Cards*
+ * Item in *RecentWork → Default → Primary → Cards*
  */
 export interface FeaturedCardGridSliceDefaultPrimaryCardsItem {
   /**
-   * Logo field in *FeaturedCardCarousel → Default → Primary → Cards*
+   * Logo field in *RecentWork → Default → Primary → Cards*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -1570,7 +1570,7 @@ export interface FeaturedCardGridSliceDefaultPrimaryCardsItem {
   logo: prismic.ImageField<never>;
 
   /**
-   * Title field in *FeaturedCardCarousel → Default → Primary → Cards*
+   * Title field in *RecentWork → Default → Primary → Cards*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1580,7 +1580,7 @@ export interface FeaturedCardGridSliceDefaultPrimaryCardsItem {
   title: prismic.KeyTextField;
 
   /**
-   * Description List field in *FeaturedCardCarousel → Default → Primary → Cards*
+   * Description List field in *RecentWork → Default → Primary → Cards*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -1590,7 +1590,7 @@ export interface FeaturedCardGridSliceDefaultPrimaryCardsItem {
   description_list: prismic.RichTextField;
 
   /**
-   * Link field in *FeaturedCardCarousel → Default → Primary → Cards*
+   * Link field in *RecentWork → Default → Primary → Cards*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -1600,7 +1600,7 @@ export interface FeaturedCardGridSliceDefaultPrimaryCardsItem {
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 
   /**
-   * Background color field in *FeaturedCardCarousel → Default → Primary → Cards*
+   * Background color field in *RecentWork → Default → Primary → Cards*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1610,7 +1610,7 @@ export interface FeaturedCardGridSliceDefaultPrimaryCardsItem {
   background_color: prismic.KeyTextField;
 
   /**
-   * Colour field in *FeaturedCardCarousel → Default → Primary → Cards*
+   * Colour field in *RecentWork → Default → Primary → Cards*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1621,11 +1621,11 @@ export interface FeaturedCardGridSliceDefaultPrimaryCardsItem {
 }
 
 /**
- * Primary content in *FeaturedCardCarousel → Default → Primary*
+ * Primary content in *RecentWork → Default → Primary*
  */
 export interface FeaturedCardGridSliceDefaultPrimary {
   /**
-   * Section Heading field in *FeaturedCardCarousel → Default → Primary*
+   * Section Heading field in *RecentWork → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -1635,7 +1635,7 @@ export interface FeaturedCardGridSliceDefaultPrimary {
   section_heading: prismic.RichTextField;
 
   /**
-   * Cards field in *FeaturedCardCarousel → Default → Primary*
+   * Cards field in *RecentWork → Default → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
@@ -1647,7 +1647,7 @@ export interface FeaturedCardGridSliceDefaultPrimary {
   >;
 
   /**
-   * CTA Button Label field in *FeaturedCardCarousel → Default → Primary*
+   * CTA Button Label field in *RecentWork → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1657,7 +1657,7 @@ export interface FeaturedCardGridSliceDefaultPrimary {
   cta_button_label: prismic.KeyTextField;
 
   /**
-   * CTA Button Link field in *FeaturedCardCarousel → Default → Primary*
+   * CTA Button Link field in *RecentWork → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -1674,7 +1674,7 @@ export interface FeaturedCardGridSliceDefaultPrimary {
 }
 
 /**
- * Default variation for FeaturedCardCarousel Slice
+ * Default variation for RecentWork Slice
  *
  * - **API ID**: `default`
  * - **Description**: Grid of featured cards with image, title, bullet list, and link.
@@ -1687,12 +1687,12 @@ export type FeaturedCardGridSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Slice variation for *FeaturedCardCarousel*
+ * Slice variation for *RecentWork*
  */
 type FeaturedCardGridSliceVariation = FeaturedCardGridSliceDefault;
 
 /**
- * FeaturedCardCarousel Shared Slice
+ * RecentWork Shared Slice
  *
  * - **API ID**: `featured_card_grid`
  * - **Description**: *None*
@@ -1704,11 +1704,11 @@ export type FeaturedCardGridSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *FooterNavigationAndServicesRegions → Default Footer → Primary → Services by Region*
+ * Item in *Footer → Default Footer → Primary → Services by Region*
  */
 export interface FooterNavigationAndServicesRegionsSliceDefaultPrimaryServicesRegionsItem {
   /**
-   * Service Title field in *FooterNavigationAndServicesRegions → Default Footer → Primary → Services by Region*
+   * Service Title field in *Footer → Default Footer → Primary → Services by Region*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1718,7 +1718,7 @@ export interface FooterNavigationAndServicesRegionsSliceDefaultPrimaryServicesRe
   service_title: prismic.KeyTextField;
 
   /**
-   * Service region field in *FooterNavigationAndServicesRegions → Default Footer → Primary → Services by Region*
+   * Service region field in *Footer → Default Footer → Primary → Services by Region*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -1731,11 +1731,11 @@ export interface FooterNavigationAndServicesRegionsSliceDefaultPrimaryServicesRe
 }
 
 /**
- * Primary content in *FooterNavigationAndServicesRegions → Default Footer → Primary*
+ * Primary content in *Footer → Default Footer → Primary*
  */
 export interface FooterNavigationAndServicesRegionsSliceDefaultPrimary {
   /**
-   * Brand Title field in *FooterNavigationAndServicesRegions → Default Footer → Primary*
+   * Brand Title field in *Footer → Default Footer → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1745,7 +1745,7 @@ export interface FooterNavigationAndServicesRegionsSliceDefaultPrimary {
   brand_title: prismic.KeyTextField;
 
   /**
-   * Brand Subtitle field in *FooterNavigationAndServicesRegions → Default Footer → Primary*
+   * Brand Subtitle field in *Footer → Default Footer → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1755,7 +1755,7 @@ export interface FooterNavigationAndServicesRegionsSliceDefaultPrimary {
   brand_subtitle: prismic.KeyTextField;
 
   /**
-   * Description field in *FooterNavigationAndServicesRegions → Default Footer → Primary*
+   * Description field in *Footer → Default Footer → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -1765,7 +1765,7 @@ export interface FooterNavigationAndServicesRegionsSliceDefaultPrimary {
   description: prismic.RichTextField;
 
   /**
-   * Navigation Links field in *FooterNavigationAndServicesRegions → Default Footer → Primary*
+   * Navigation Links field in *Footer → Default Footer → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -1777,7 +1777,7 @@ export interface FooterNavigationAndServicesRegionsSliceDefaultPrimary {
   >;
 
   /**
-   * Services by Region field in *FooterNavigationAndServicesRegions → Default Footer → Primary*
+   * Services by Region field in *Footer → Default Footer → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
@@ -1789,7 +1789,7 @@ export interface FooterNavigationAndServicesRegionsSliceDefaultPrimary {
   >;
 
   /**
-   * Copyright Notice field in *FooterNavigationAndServicesRegions → Default Footer → Primary*
+   * Copyright Notice field in *Footer → Default Footer → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1800,7 +1800,7 @@ export interface FooterNavigationAndServicesRegionsSliceDefaultPrimary {
 }
 
 /**
- * Default Footer variation for FooterNavigationAndServicesRegions Slice
+ * Default Footer variation for Footer Slice
  *
  * - **API ID**: `default`
  * - **Description**: Footer with navigation links, service-region groupings, and copyright notice.
@@ -1814,13 +1814,13 @@ export type FooterNavigationAndServicesRegionsSliceDefault =
   >;
 
 /**
- * Slice variation for *FooterNavigationAndServicesRegions*
+ * Slice variation for *Footer*
  */
 type FooterNavigationAndServicesRegionsSliceVariation =
   FooterNavigationAndServicesRegionsSliceDefault;
 
 /**
- * FooterNavigationAndServicesRegions Shared Slice
+ * Footer Shared Slice
  *
  * - **API ID**: `footer_navigation_and_services_regions`
  * - **Description**: *None*
@@ -2057,11 +2057,11 @@ export type MenuNavigationSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *What We Do Cards → Default → Primary → Feature Cards*
+ * Item in *Offerings → Default → Primary → Feature Cards*
  */
 export interface WhatWeDoSliceSliceDefaultPrimaryFeaturesItem {
   /**
-   * Feature Title field in *What We Do Cards → Default → Primary → Feature Cards*
+   * Feature Title field in *Offerings → Default → Primary → Feature Cards*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -2071,7 +2071,7 @@ export interface WhatWeDoSliceSliceDefaultPrimaryFeaturesItem {
   feature_title: prismic.KeyTextField;
 
   /**
-   * Feature Description field in *What We Do Cards → Default → Primary → Feature Cards*
+   * Feature Description field in *Offerings → Default → Primary → Feature Cards*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -2081,7 +2081,7 @@ export interface WhatWeDoSliceSliceDefaultPrimaryFeaturesItem {
   feature_description: prismic.RichTextField;
 
   /**
-   * Service CTA Button Label field in *What We Do Cards → Default → Primary → Feature Cards*
+   * Service CTA Button Label field in *Offerings → Default → Primary → Feature Cards*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -2091,7 +2091,7 @@ export interface WhatWeDoSliceSliceDefaultPrimaryFeaturesItem {
   service_cta_button_label: prismic.KeyTextField;
 
   /**
-   * Service CTA Button Link field in *What We Do Cards → Default → Primary → Feature Cards*
+   * Service CTA Button Link field in *Offerings → Default → Primary → Feature Cards*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -2108,11 +2108,11 @@ export interface WhatWeDoSliceSliceDefaultPrimaryFeaturesItem {
 }
 
 /**
- * Primary content in *What We Do Cards → Default → Primary*
+ * Primary content in *Offerings → Default → Primary*
  */
 export interface WhatWeDoSliceSliceDefaultPrimary {
   /**
-   * Section Title field in *What We Do Cards → Default → Primary*
+   * Section Title field in *Offerings → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -2122,7 +2122,7 @@ export interface WhatWeDoSliceSliceDefaultPrimary {
   section_title: prismic.KeyTextField;
 
   /**
-   * Feature Cards field in *What We Do Cards → Default → Primary*
+   * Feature Cards field in *Offerings → Default → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
@@ -2134,7 +2134,7 @@ export interface WhatWeDoSliceSliceDefaultPrimary {
   >;
 
   /**
-   * CTA Button Label field in *What We Do Cards → Default → Primary*
+   * CTA Button Label field in *Offerings → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -2144,7 +2144,7 @@ export interface WhatWeDoSliceSliceDefaultPrimary {
   cta_button_label: prismic.KeyTextField;
 
   /**
-   * CTA Button Link field in *What We Do Cards → Default → Primary*
+   * CTA Button Link field in *Offerings → Default → Primary*
    *
    * - **Field Type**: Link
    * - **Placeholder**: *None*
@@ -2161,7 +2161,7 @@ export interface WhatWeDoSliceSliceDefaultPrimary {
 }
 
 /**
- * Default variation for What We Do Cards Slice
+ * Default variation for Offerings Slice
  *
  * - **API ID**: `default`
  * - **Description**: Standard layout with section title and repeatable feature cards.
@@ -2174,12 +2174,12 @@ export type WhatWeDoSliceSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Slice variation for *What We Do Cards*
+ * Slice variation for *Offerings*
  */
 type WhatWeDoSliceSliceVariation = WhatWeDoSliceSliceDefault;
 
 /**
- * What We Do Cards Shared Slice
+ * Offerings Shared Slice
  *
  * - **API ID**: `what_we_do_slice`
  * - **Description**: *None*
