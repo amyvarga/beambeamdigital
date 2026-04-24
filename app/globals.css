@@ -512,11 +512,13 @@ a.nav-link:hover:not(.active) {
         margin-left: 0;
         margin-top: 0;
     }
-    > ul li, 
-    > ol li {
-        list-style-type: disc;
-        list-style-position: inside;
-        margin-bottom: 0.5em;
+    & h4:not(:first-of-type) {
+        margin-left: 1.5em;
+        &:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+        }
     }
 }
 
@@ -1244,7 +1246,7 @@ select:focus {
     h3 {
         font-size: clamp(21px, 1.2vw, 24px);
         font-weight: 500;
-        margin-bottom: 1em;
+        margin: 1.5em 0;
     }
 
     h4 {
