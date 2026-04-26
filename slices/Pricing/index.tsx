@@ -33,7 +33,7 @@ const ContentHeader: FC<ContentHeaderProps> = ({ slice, context }) => {
             const inlineLink = p[`pricing_package_${n}_inline_link`] as string | undefined;
             return (
               <div key={n} className="pricing-package fade-in" id={inlineLink ? inlineLink.replace("#", "") : undefined}>
-                <h3>{title}</h3>
+                <h2>{title}</h2>
                 <PrismicRichText field={description} />
               </div>
             );
