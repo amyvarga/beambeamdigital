@@ -132,6 +132,60 @@
             "label": "Pricing Package 5 Inline Link",
             "placeholder": ""
           }
+        },
+        "pricing_package_6_title": {
+          "type": "Text",
+          "config": {
+            "label": "Pricing Package 6 Title",
+            "placeholder": ""
+          }
+        },
+        "pricing_package_6_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Pricing Package 6 Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "pricing_package_6_inline_link": {
+          "type": "Link",
+          "config": {
+            "label": "Pricing Package 6 Inline Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "pricing_package_7_title": {
+          "type": "Text",
+          "config": {
+            "label": "Pricing Package 7 Title",
+            "placeholder": ""
+          }
+        },
+        "pricing_package_7_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Pricing Package 7 Description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "pricing_package_7_inline_link": {
+          "type": "Link",
+          "config": {
+            "label": "Pricing Package 7 Inline Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
         }
       },
       "items": {}

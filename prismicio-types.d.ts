@@ -1522,6 +1522,78 @@ export interface ContentHeaderSliceCenteredTitleAndSubtextPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   pricing_package_5_inline_link: prismic.KeyTextField;
+
+  /**
+   * Pricing Package 6 Title field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_6_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  pricing_package_6_title: prismic.KeyTextField;
+
+  /**
+   * Pricing Package 6 Description field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_6_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  pricing_package_6_description: prismic.RichTextField;
+
+  /**
+   * Pricing Package 6 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_6_inline_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  pricing_package_6_inline_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Pricing Package 7 Title field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_7_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  pricing_package_7_title: prismic.KeyTextField;
+
+  /**
+   * Pricing Package 7 Description field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_7_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  pricing_package_7_description: prismic.RichTextField;
+
+  /**
+   * Pricing Package 7 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_7_inline_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  pricing_package_7_inline_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
