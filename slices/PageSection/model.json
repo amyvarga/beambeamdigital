@@ -1,7 +1,7 @@
 {
   "type": "SharedSlice",
   "id": "aboutSection",
-  "name": "About Section",
+  "name": "Page Section",
   "variations": [
     {
       "id": "default",

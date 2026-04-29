@@ -6,23 +6,18 @@ import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/re
 import { PrismicNextImage } from "@prismicio/next";
 import MasonryGallery from "@/components/MasonryGallery";
 
-/**
- * Props for `AboutSection`.
- */
-export type AboutSectionProps = SliceComponentProps<Content.AboutSectionSlice>;
+export type PageSectionProps = SliceComponentProps<Content.PageSectionSlice>;
 
-/**
- * Component for "About Section" Slices.
- */
-const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
+const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
   const ctx = context as { isPage?: boolean } | undefined;
   const Title = ctx?.isPage ? "h1" : "h2";
   const profileHeading = slice.primary.heading || null;
-  const hasImage = slice.primary.profile_image?.url;
+  const p = slice.primary as Record<string, unknown>;
+  const profileImage = p.profile_image as Parameters<typeof PrismicNextImage>[0]["field"] | undefined;
+  const hasImage = profileImage?.url;
 
   const masonryImages = Array.from({ length: 12 }, (_, i) => {
     const n = i + 1;
-    const p = slice.primary as Record<string, unknown>;
     const image = p[`masonry_gallery_${n}`] as { url?: string; alt?: string } | undefined;
     const link = p[`masonry_gallery_${n}_link`] as Parameters<typeof asLink>[0] | undefined;
     const columns = p[`masonry_gallery_${n}_width`] as number | undefined;
@@ -48,7 +43,7 @@ const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
           <div className="about-image">
             {hasImage ? (
               <PrismicNextImage
-                field={slice.primary.profile_image}
+                field={profileImage}
                 className="fade-in"
                 alt=""
               />
@@ -82,4 +77,4 @@ const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
   );
 };
 
-export default AboutSection;
+export default PageSection;

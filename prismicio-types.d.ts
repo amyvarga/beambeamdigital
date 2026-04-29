@@ -72,7 +72,7 @@ type ContentRelationshipFieldWithData<
 type AboutDocumentDataSlicesSlice =
   | MenuNavigationSlice
   | HeroBannerSlice
-  | AboutSectionSlice
+  | PageSectionSlice
   | FooterNavigationAndServicesRegionsSlice;
 
 /**
@@ -279,7 +279,7 @@ type PageDocumentDataSlicesSlice =
   | ContactPanelSlice
   | HeroBannerSlice
   | MenuNavigationSlice
-  | AboutSectionSlice
+  | PageSectionSlice
   | WhatWeDoSliceSlice;
 
 /**
@@ -479,7 +479,7 @@ export type ServicesDocument<Lang extends string = string> =
     Lang
   >;
 
-type WebsitesDocumentDataSlicesSlice = AboutSectionSlice;
+type WebsitesDocumentDataSlicesSlice = PageSectionSlice;
 
 /**
  * Content for Product Page documents
@@ -620,9 +620,9 @@ export type AllDocumentTypes =
   | WorkDocument;
 
 /**
- * Primary content in *About Section → Default → Primary*
+ * Primary content in *Page Section → Default → Primary*
  */
-export interface AboutSectionSliceDefaultPrimary {
+export interface PageSectionSliceDefaultPrimary {
   /**
    * Heading field in *About Section → Default → Primary*
    *
@@ -675,33 +675,33 @@ export interface AboutSectionSliceDefaultPrimary {
 }
 
 /**
- * Default variation for About Section Slice
+ * Default variation for Page Section Slice
  *
  * - **API ID**: `default`
  * - **Description**: Standard about section with image, heading, and body text.
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type AboutSectionSliceDefault = prismic.SharedSliceVariation<
+export type PageSectionSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<AboutSectionSliceDefaultPrimary>,
+  Simplify<PageSectionSliceDefaultPrimary>,
   never
 >;
 
 /**
- * Slice variation for *About Section*
+ * Slice variation for *Page Section*
  */
-type AboutSectionSliceVariation = AboutSectionSliceDefault;
+type PageSectionSliceVariation = PageSectionSliceDefault;
 
 /**
- * About Section Shared Slice
+ * Page Section Shared Slice
  *
  * - **API ID**: `aboutSection`
  * - **Description**: *None*
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type AboutSectionSlice = prismic.SharedSlice<
+export type PageSectionSlice = prismic.SharedSlice<
   "aboutSection",
-  AboutSectionSliceVariation
+  PageSectionSliceVariation
 >;
 
 /**
@@ -1896,10 +1896,10 @@ declare module "@prismicio/client" {
       WorkDocumentData,
       WorkDocumentDataSlicesSlice,
       AllDocumentTypes,
-      AboutSectionSlice,
-      AboutSectionSliceDefaultPrimary,
-      AboutSectionSliceVariation,
-      AboutSectionSliceDefault,
+      PageSectionSlice,
+      PageSectionSliceDefaultPrimary,
+      PageSectionSliceVariation,
+      PageSectionSliceDefault,
       AreasCoveredLinksSlice,
       AreasCoveredLinksSliceDefaultPrimaryServicesRegionsItem,
       AreasCoveredLinksSliceDefaultPrimary,
