@@ -479,6 +479,71 @@ export type ServicesDocument<Lang extends string = string> =
     Lang
   >;
 
+type WebsitesDocumentDataSlicesSlice = AboutSectionSlice;
+
+/**
+ * Content for Product Page documents
+ */
+interface WebsitesDocumentData {
+  /**
+   * Slice Zone field in *Product Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: websites.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<WebsitesDocumentDataSlicesSlice>; /**
+   * Meta Title field in *Product Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: websites.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Product Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: websites.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Product Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: websites.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Product Page document from Prismic
+ *
+ * - **API ID**: `websites`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type WebsitesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<WebsitesDocumentData>,
+    "websites",
+    Lang
+  >;
+
 type WorkDocumentDataSlicesSlice =
   | MenuNavigationSlice
   | HeroBannerSlice
@@ -551,22 +616,13 @@ export type AllDocumentTypes =
   | PageDocument
   | PricingPageDocument
   | ServicesDocument
+  | WebsitesDocument
   | WorkDocument;
 
 /**
  * Primary content in *About Section → Default → Primary*
  */
 export interface AboutSectionSliceDefaultPrimary {
-  /**
-   * Profile Image field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.profile_image
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  profile_image: prismic.ImageField<never>;
-
   /**
    * Heading field in *About Section → Default → Primary*
    *
@@ -578,34 +634,14 @@ export interface AboutSectionSliceDefaultPrimary {
   heading: prismic.KeyTextField;
 
   /**
-   * Body Paragraph One field in *About Section → Default → Primary*
+   * Body Paragraph field in *About Section → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.body_paragraph_one
+   * - **API ID Path**: aboutSection.default.primary.body_paragraph
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  body_paragraph_one: prismic.RichTextField;
-
-  /**
-   * Body Paragraph Two field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.body_paragraph_two
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  body_paragraph_two: prismic.RichTextField;
-
-  /**
-   * Body Paragraph Three field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.body_paragraph_three
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  body_paragraph_three: prismic.RichTextField;
+  body_paragraph: prismic.RichTextField;
 
   /**
    * Masonry Title field in *About Section → Default → Primary*
@@ -636,454 +672,6 @@ export interface AboutSectionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   cta_button_label: prismic.KeyTextField;
-
-  /**
-   * CTA Button Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: #contact
-   * - **API ID Path**: aboutSection.default.primary.cta_button_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  cta_button_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 1 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_1
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_1: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 1 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_1_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_1_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 1 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_1_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_1_width: prismic.NumberField;
-
-  /**
-   * Masonry Gallery 2 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_2
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_2: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 2 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_2_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_2_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 2 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_2_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_2_width: prismic.NumberField;
-
-  /**
-   * Masonry Gallery 3 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_3
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_3: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 3 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_3_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_3_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 3 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_3_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_3_width: prismic.NumberField;
-
-  /**
-   * Masonry Gallery 4 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_4
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_4: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 4 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_4_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_4_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 4 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_4_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_4_width: prismic.NumberField;
-
-  /**
-   * Masonry Gallery 5 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_5
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_5: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 5 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_5_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_5_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 5 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_5_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_5_width: prismic.NumberField;
-
-  /**
-   * Masonry Gallery 6 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_6
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_6: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 6 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_6_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_6_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 6 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_6_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_6_width: prismic.NumberField;
-
-  /**
-   * Masonry Gallery 7 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_7
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_7: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 7 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_7_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_7_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 7 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_7_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_7_width: prismic.NumberField;
-
-  /**
-   * Masonry Gallery 8 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_8
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_8: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 8 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_8_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_8_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 8 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_8_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_8_width: prismic.NumberField;
-
-  /**
-   * Masonry Gallery 9 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_9
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_9: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 9 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_9_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_9_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 9 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_9_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_9_width: prismic.NumberField;
-
-  /**
-   * Masonry Gallery 10 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_10
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_10: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 10 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_10_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_10_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 10 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_10_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_10_width: prismic.NumberField;
-
-  /**
-   * Masonry Gallery 11 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_11
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_11: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 11 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_11_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_11_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 11 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_11_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_11_width: prismic.NumberField;
-
-  /**
-   * Masonry Gallery 12 field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_12
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  masonry_gallery_12: prismic.ImageField<never>;
-
-  /**
-   * Masonry Gallery 12 Link field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_12_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  masonry_gallery_12_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Masonry Gallery 12 Width field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_gallery_12_width
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  masonry_gallery_12_width: prismic.NumberField;
 }
 
 /**
@@ -2301,6 +1889,9 @@ declare module "@prismicio/client" {
       ServicesDocument,
       ServicesDocumentData,
       ServicesDocumentDataSlicesSlice,
+      WebsitesDocument,
+      WebsitesDocumentData,
+      WebsitesDocumentDataSlicesSlice,
       WorkDocument,
       WorkDocumentData,
       WorkDocumentDataSlicesSlice,

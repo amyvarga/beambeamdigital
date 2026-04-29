@@ -119,11 +119,12 @@ a:hover {
 }
 
 #main-content {
-    a {
+    a,
+    a.btn {
         color: var(--color-2);
         border-bottom: .5px solid;
     }
-        a.btn {
+        a.btn.primary {
         color: var(--color-5);
     }
     &.hover {
@@ -930,8 +931,8 @@ form {
 .contact-item a,
 .contact-item span {
     color: var(--color-2);
-    text-decoration: none;
     font-weight: 350;
+    border: none!important;
 }
 
 .contact-item a:hover {
