@@ -161,12 +161,75 @@
 				]
 			},
 			"pricing_package_7_inline_link": {
-				"__TYPE__": "LinkContent",
 				"key": "f7cb2dff-a5dd-46d1-a725-a38722eb43a9",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "ExternalLink",
 					"url": "http://google.com",
 					"text": "knew"
+				}
+			},
+			"pricing_package_1_link": {
+				"key": "3d4ee72c-db0d-4d56-8450-dfe4281faab3",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "build"
+				}
+			},
+			"pricing_package_2_link": {
+				"key": "576cf37f-5b14-4fa3-a8f3-5ffdb1d0a1da",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "roll"
+				}
+			},
+			"pricing_package_3_link": {
+				"key": "537bdcbd-ce0d-405a-8f2e-53beb831b201",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "speak"
+				}
+			},
+			"pricing_package_4_link": {
+				"key": "b3765a49-847c-43b2-b8ea-b3329ac19c90",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "year"
+				}
+			},
+			"pricing_package_5_link": {
+				"key": "482feb76-adc2-49a7-a5f0-a86d30238612",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "determine"
+				}
+			},
+			"pricing_package_6_link": {
+				"key": "cc524582-dcb4-4d8e-beb3-62b27c230d1b",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "out"
+				}
+			},
+			"pricing_package_7_link": {
+				"__TYPE__": "LinkContent",
+				"key": "78056bb0-2edb-46e2-9c1d-48e39e636daa",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "thick"
 				}
 			}
 		},

@@ -186,6 +186,83 @@
             "allowText": true,
             "repeat": false
           }
+        },
+        "pricing_package_1_link": {
+          "type": "Link",
+          "config": {
+            "label": "Pricing Package 1 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "pricing_package_2_link": {
+          "type": "Link",
+          "config": {
+            "label": "Pricing Package 2 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "pricing_package_3_link": {
+          "type": "Link",
+          "config": {
+            "label": "Pricing Package 3 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "pricing_package_4_link": {
+          "type": "Link",
+          "config": {
+            "label": "Pricing Package 4 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "pricing_package_5_link": {
+          "type": "Link",
+          "config": {
+            "label": "Pricing Package 5 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "pricing_package_6_link": {
+          "type": "Link",
+          "config": {
+            "label": "Pricing Package 6 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "pricing_package_7_link": {
+          "type": "Link",
+          "config": {
+            "label": "Pricing Package 7 Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
         }
       },
       "items": {}

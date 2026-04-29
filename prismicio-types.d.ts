@@ -70,9 +70,10 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type AboutDocumentDataSlicesSlice =
+  | AboutSectionSlice
   | MenuNavigationSlice
   | HeroBannerSlice
-  | PageSectionSlice
+  | AboutSectionSlice
   | FooterNavigationAndServicesRegionsSlice;
 
 /**
@@ -279,7 +280,7 @@ type PageDocumentDataSlicesSlice =
   | ContactPanelSlice
   | HeroBannerSlice
   | MenuNavigationSlice
-  | PageSectionSlice
+  | AboutSectionSlice
   | WhatWeDoSliceSlice;
 
 /**
@@ -479,7 +480,7 @@ export type ServicesDocument<Lang extends string = string> =
     Lang
   >;
 
-type WebsitesDocumentDataSlicesSlice = PageSectionSlice;
+type WebsitesDocumentDataSlicesSlice = HeroBannerSlice | AboutSectionSlice;
 
 /**
  * Content for Product Page documents
@@ -622,9 +623,9 @@ export type AllDocumentTypes =
 /**
  * Primary content in *Page Section → Default → Primary*
  */
-export interface PageSectionSliceDefaultPrimary {
+export interface AboutSectionSliceDefaultPrimary {
   /**
-   * Heading field in *About Section → Default → Primary*
+   * Heading field in *Page Section → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -634,27 +635,17 @@ export interface PageSectionSliceDefaultPrimary {
   heading: prismic.KeyTextField;
 
   /**
-   * Body Paragraph field in *About Section → Default → Primary*
+   * Body Paragraph One field in *Page Section → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.body_paragraph
+   * - **API ID Path**: aboutSection.default.primary.body_paragraph_one
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  body_paragraph: prismic.RichTextField;
+  body_paragraph_one: prismic.RichTextField;
 
   /**
-   * Masonry Title field in *About Section → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.masonry_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  masonry_title: prismic.KeyTextField;
-
-  /**
-   * CTA Text field in *About Section → Default → Primary*
+   * CTA Text field in *Page Section → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Ready to work together?
@@ -664,7 +655,7 @@ export interface PageSectionSliceDefaultPrimary {
   cta_text: prismic.KeyTextField;
 
   /**
-   * CTA Button Label field in *About Section → Default → Primary*
+   * CTA Button Label field in *Page Section → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Get in touch
@@ -681,16 +672,16 @@ export interface PageSectionSliceDefaultPrimary {
  * - **Description**: Standard about section with image, heading, and body text.
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type PageSectionSliceDefault = prismic.SharedSliceVariation<
+export type AboutSectionSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<PageSectionSliceDefaultPrimary>,
+  Simplify<AboutSectionSliceDefaultPrimary>,
   never
 >;
 
 /**
  * Slice variation for *Page Section*
  */
-type PageSectionSliceVariation = PageSectionSliceDefault;
+type AboutSectionSliceVariation = AboutSectionSliceDefault;
 
 /**
  * Page Section Shared Slice
@@ -699,9 +690,125 @@ type PageSectionSliceVariation = PageSectionSliceDefault;
  * - **Description**: *None*
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type PageSectionSlice = prismic.SharedSlice<
+export type AboutSectionSlice = prismic.SharedSlice<
   "aboutSection",
-  PageSectionSliceVariation
+  AboutSectionSliceVariation
+>;
+
+/**
+ * Item in *AboutSection → Default → Primary → Masonry Gallery*
+ */
+export interface AboutSectionSliceDefaultPrimaryMasonryGalleryItem {
+  image: prismic.ImageField<never>;
+  link: prismic.LinkField;
+  columns: prismic.NumberField;
+}
+
+/**
+ * Primary content in *AboutSection → Default → Primary*
+ */
+export interface AboutSectionSliceDefaultPrimary {
+  /**
+   * Heading field in *AboutSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Body Paragraph One field in *AboutSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.body_paragraph_one
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body_paragraph_one: prismic.RichTextField;
+
+  /**
+   * Body Paragraph Two field in *AboutSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.body_paragraph_two
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body_paragraph_two: prismic.RichTextField;
+
+  /**
+   * Body Paragraph Three field in *AboutSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.body_paragraph_three
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body_paragraph_three: prismic.RichTextField;
+
+  /**
+   * Masonry Title field in *AboutSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.masonry_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  masonry_title: prismic.KeyTextField;
+
+  /**
+   * About Image field in *AboutSection → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.about_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  about_image: prismic.ImageField<never>;
+
+  /**
+   * Masonry Gallery field in *AboutSection → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.masonry_gallery[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  masonry_gallery: prismic.GroupField<
+    Simplify<AboutSectionSliceDefaultPrimaryMasonryGalleryItem>
+  >;
+}
+
+/**
+ * Default variation for AboutSection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AboutSectionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AboutSectionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *AboutSection*
+ */
+type AboutSectionSliceVariation = AboutSectionSliceDefault;
+
+/**
+ * AboutSection Shared Slice
+ *
+ * - **API ID**: `about_section`
+ * - **Description**: AboutSection
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AboutSectionSlice = prismic.SharedSlice<
+  "about_section",
+  AboutSectionSliceVariation
 >;
 
 /**
@@ -1176,6 +1283,118 @@ export interface ContentHeaderSliceCenteredTitleAndSubtextPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
   pricing_package_7_inline_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Pricing Package 1 Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_1_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  pricing_package_1_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Pricing Package 2 Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_2_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  pricing_package_2_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Pricing Package 3 Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_3_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  pricing_package_3_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Pricing Package 4 Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_4_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  pricing_package_4_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Pricing Package 5 Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_5_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  pricing_package_5_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Pricing Package 6 Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_6_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  pricing_package_6_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Pricing Package 7 Link field in *Pricing → Centered Title and Subtext → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_7_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  pricing_package_7_link: prismic.LinkField<
     string,
     string,
     unknown,
@@ -1896,10 +2115,15 @@ declare module "@prismicio/client" {
       WorkDocumentData,
       WorkDocumentDataSlicesSlice,
       AllDocumentTypes,
-      PageSectionSlice,
-      PageSectionSliceDefaultPrimary,
-      PageSectionSliceVariation,
-      PageSectionSliceDefault,
+      AboutSectionSlice,
+      AboutSectionSliceDefaultPrimary,
+      AboutSectionSliceVariation,
+      AboutSectionSliceDefault,
+      AboutSectionSlice,
+      AboutSectionSliceDefaultPrimaryMasonryGalleryItem,
+      AboutSectionSliceDefaultPrimary,
+      AboutSectionSliceVariation,
+      AboutSectionSliceDefault,
       AreasCoveredLinksSlice,
       AreasCoveredLinksSliceDefaultPrimaryServicesRegionsItem,
       AreasCoveredLinksSliceDefaultPrimary,

@@ -1,0 +1,102 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "impossible",
+				"type": "Text"
+			},
+			"body_paragraph_one": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ea cillum magna officia amet exercitation qui incididunt tempor officia magna minim est. Ipsum veniam sit elit esse. Nostrud id ullamco ex qui incididunt esse cillum est ullamco reprehenderit sint."
+						}
+					}
+				]
+			},
+			"body_paragraph_two": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Est elit consectetur amet."
+						}
+					}
+				]
+			},
+			"body_paragraph_three": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Exercitation sint ut incididunt eiusmod voluptate aliquip commodo officia cupidatat culpa officia elit veniam ipsum. Mollit aliquip laboris sit. Laborum laboris consequat nisi dolor nostrud nisi."
+						}
+					}
+				]
+			},
+			"masonry_title": {
+				"__TYPE__": "FieldContent",
+				"value": "drive",
+				"type": "Text"
+			},
+			"masonry_gallery": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": []
+					}
+				]
+			},
+			"masonry_gallery_link": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": []
+					}
+				]
+			},
+			"about_image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1571126770897-2d612d1f7b89",
+					"width": 3456,
+					"height": 3456
+				},
+				"url": "https://images.unsplash.com/photo-1571126770897-2d612d1f7b89",
+				"width": 3456,
+				"height": 3456,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"alt": "parent",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"masonry_gallery_columns": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": []
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

@@ -4,13 +4,12 @@ import dynamic from "next/dynamic";
 
 export const components = {
   aboutSection: dynamic(() => import("./PageSection")),
+  about_section: dynamic(() => import("./AboutSection")),
   areas_covered_links: dynamic(() => import("./AreasCoveredLinks")),
   contact_panel: dynamic(() => import("./ContactPanel")),
   content_header: dynamic(() => import("./Pricing")),
   featured_card_grid: dynamic(() => import("./RecentWork")),
-  footer_navigation_and_services_regions: dynamic(
-    () => import("./Footer"),
-  ),
+  footer_navigation_and_services_regions: dynamic(() => import("./Footer")),
   hero_banner: dynamic(() => import("./HeroBanner")),
   menu_navigation: dynamic(() => import("./MenuNavigation")),
   what_we_do_slice: dynamic(() => import("./Offerings")),

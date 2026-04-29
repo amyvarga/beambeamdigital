@@ -17,19 +17,13 @@
             "label": "Heading"
           }
         },
-        "body_paragraph": {
+        "body_paragraph_one": {
           "type": "StructuredText",
           "config": {
-            "label": "Body Paragraph",
+            "label": "Body Paragraph One",
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-          }
-        },
-        "masonry_title": {
-          "type": "Text",
-          "config": {
-            "label": "Masonry Title"
           }
         },
         "cta_text": {

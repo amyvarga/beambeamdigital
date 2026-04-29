@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Content, asText } from "@prismicio/client";
-import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
+import { Content, asText, isFilled } from "@prismicio/client";
+import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 
 /**
  * Props for `ContentHeader`.
@@ -32,10 +32,15 @@ const ContentHeader: FC<ContentHeaderProps> = ({ slice, context }) => {
             const description = p[`pricing_package_${n}_description`] as Parameters<typeof PrismicRichText>[0]["field"];
             const inlineLinkRaw = p[`pricing_package_${n}_inline_link`];
             const inlineLink = typeof inlineLinkRaw === "string" ? inlineLinkRaw : undefined;
+            const link = p[`pricing_package_${n}_link`] as (Parameters<typeof PrismicLink>[0]["field"] & { text?: string }) | undefined;
             return (
               <div key={n} className="pricing-package fade-in" id={inlineLink ? inlineLink.replace("#", "") : undefined}>
                 <h2>{title}</h2>
                 <PrismicRichText field={description} />
+                <p className="callToActionLink">
+                  {isFilled.link(link) && <PrismicLink field={link} data-replace={link.text} className=""><span>{link.text}</span></PrismicLink>}
+            
+                </p>
               </div>
             );
           })}

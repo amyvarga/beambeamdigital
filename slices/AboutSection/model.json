@@ -1,0 +1,100 @@
+{
+  "id": "about_section",
+  "type": "SharedSlice",
+  "name": "AboutSection",
+  "description": "AboutSection",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "body_paragraph_one": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body Paragraph One",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "body_paragraph_two": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body Paragraph Two",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "body_paragraph_three": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body Paragraph Three",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "masonry_title": {
+          "type": "Text",
+          "config": {
+            "label": "Masonry Title",
+            "placeholder": ""
+          }
+        },
+        "about_image": {
+          "type": "Image",
+          "config": {
+            "label": "About Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "masonry_gallery": {
+          "type": "Group",
+          "config": {
+            "label": "Masonry Gallery",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "select": null,
+                  "allowTargetBlank": true
+                }
+              },
+              "columns": {
+                "type": "Number",
+                "config": {
+                  "label": "Columns",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
