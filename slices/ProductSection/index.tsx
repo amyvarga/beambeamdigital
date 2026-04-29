@@ -4,7 +4,7 @@ import { FC } from "react";
 import type * as prismic from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 
-type PageSectionSlice = prismic.SharedSlice<
+type ProductSectionSlice = prismic.SharedSlice<
   "aboutSection",
   prismic.SharedSliceVariation<"default", {
     heading: prismic.KeyTextField;
@@ -15,9 +15,9 @@ type PageSectionSlice = prismic.SharedSlice<
   }>
 >;
 
-export type PageSectionProps = SliceComponentProps<PageSectionSlice>;
+export type ProductSectionProps = SliceComponentProps<ProductSectionSlice>;
 
-const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
+const ProductSection: FC<ProductSectionProps> = ({ slice, context }) => {
   const ctx = context as { isPage?: boolean } | undefined;
   const Title = ctx?.isPage ? "h1" : "h2";
   const p = slice.primary as Record<string, unknown>;
@@ -49,4 +49,4 @@ const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
   );
 };
 
-export default PageSection;
+export default ProductSection;
