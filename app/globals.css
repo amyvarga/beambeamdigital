@@ -118,9 +118,14 @@ a:hover {
     outline: 0;
 }
 
-#main-content a {
-    color: var(--color-2);
-    border-bottom: .5px solid;
+#main-content {
+    a {
+        color: var(--color-2);
+        border-bottom: .5px solid;
+    }
+        a.btn {
+        color: var(--color-5);
+    }
     &.hover {
         border-bottom: 0;
     }
