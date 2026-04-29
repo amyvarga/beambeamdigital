@@ -26,11 +26,12 @@ const ContentHeader: FC<ContentHeaderProps> = ({ slice, context }) => {
           <Title className="fade-in">{asText(slice.primary.title)}</Title>
         </div>
         <div className="pricing-packages">
-          {[1, 2, 3, 4, 5].map((n) => {
+          {[1, 2, 3, 4, 5, 6, 7].map((n) => {
             const p = slice.primary as Record<string, unknown>;
             const title = p[`pricing_package_${n}_title`] as string | undefined;
             const description = p[`pricing_package_${n}_description`] as Parameters<typeof PrismicRichText>[0]["field"];
-            const inlineLink = p[`pricing_package_${n}_inline_link`] as string | undefined;
+            const inlineLinkRaw = p[`pricing_package_${n}_inline_link`];
+            const inlineLink = typeof inlineLinkRaw === "string" ? inlineLinkRaw : undefined;
             return (
               <div key={n} className="pricing-package fade-in" id={inlineLink ? inlineLink.replace("#", "") : undefined}>
                 <h2>{title}</h2>
