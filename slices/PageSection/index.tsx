@@ -1,10 +1,21 @@
 "use client";
 
 import { FC } from "react";
-import { Content } from "@prismicio/client";
+import type * as prismic from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 
-export type PageSectionProps = SliceComponentProps<Content.PageSectionSlice>;
+type PageSectionSlice = prismic.SharedSlice<
+  "aboutSection",
+  prismic.SharedSliceVariation<"default", {
+    heading: prismic.KeyTextField;
+    body_paragraph_one: prismic.RichTextField;
+    cta_text: prismic.KeyTextField;
+    cta_button_label: prismic.KeyTextField;
+    cta_button_link: prismic.LinkField;
+  }>
+>;
+
+export type PageSectionProps = SliceComponentProps<PageSectionSlice>;
 
 const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
   const ctx = context as { isPage?: boolean } | undefined;
