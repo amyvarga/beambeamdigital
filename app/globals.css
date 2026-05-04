@@ -204,7 +204,7 @@ li {
     margin-left: 0;
     display: flex;
     justify-content: right;
-    overflow: hidden;
+    overflow: clip;
 }
 
 .content {
@@ -284,7 +284,7 @@ li {
     }
 }
 
-.nav-menu li:first-child {
+.nav-menu > li:first-child {
     margin-top: var(--gap);
 }
 
@@ -383,6 +383,41 @@ a.nav-link:hover:not(.active) {
 }
 
 /* ============================================
+   NAV DROPDOWN
+   ============================================ */
+.nav-dropdown-toggle {
+    background: none;
+    border: none;
+    border-bottom: 0.5px solid transparent;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    display: block;
+    line-height: 1.2;
+}
+
+.nav-dropdown-toggle:hover,
+.nav-dropdown-toggle[aria-expanded="true"] {
+    border-bottom: none;
+}
+
+/* Mobile: always visible inline */
+.nav-dropdown-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--gap) / 5);
+    padding-left: calc(var(--gap) / 2);
+    padding-top: calc(var(--gap) / 4);
+}
+
+/* ============================================
    HERO
    ============================================ */
 .hero-section {
@@ -392,10 +427,9 @@ a.nav-link:hover:not(.active) {
     padding-top: var(--gap);
 }
 
-.section:not(.hero-section):not(.footer) {
+.section:not(.hero-section):not(.footer):not(.page-section) {
     position: relative;
     z-index: 1;
-    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.18);
     clip-path: inset(-40px 0 0 0);
 }
 
@@ -1111,19 +1145,28 @@ input:-webkit-autofill:active {
     }
 }
 /* ============================================
-   PAGE CONTENT
+   PRODUCT PAGE
    ============================================ */
-
- .page-text h3 {
-        margin-left: 1.5em;
-        &:before {
-            content: "✓";
-            position: absolute;
-            left: calc(var(--gap) / 2);
-        }   
+  .page-section {
+        position: relative;
+        z-index: 1;
+        background-color: var(--color-5);
     }
 
+   .page-text h4 {
+        &:before {
+            content: "✓";
+            position: relative;
+            left: 0;
+            margin-right: calc(var(--gap) / 2);
+        }   
+    }   
 
+    .page-section-item {
+        scroll-margin-top: var(--scroll-margin-top);
+    }
+    
+   
 /* ============================================
    FOOTER
    ============================================ */
@@ -1327,6 +1370,7 @@ select:focus {
         align-items: center;
         justify-content: right;
         max-height: none;
+        overflow: visible;
         margin-bottom: var(--gap) 0;
         gap: var(--gap);
         width: 50%;
@@ -1340,6 +1384,41 @@ select:focus {
 
     .nav-toggle {
         display: none;
+    }
+
+    /* Dropdown — desktop */
+    .nav-dropdown {
+        position: relative;
+    }
+
+    .nav-dropdown-menu {
+        display: none; /* override the mobile always-visible default */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--color-2);
+        padding: calc(var(--gap) / 2);
+        min-width: 160px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        gap: calc(var(--gap) / 3);
+        z-index: 10;
+        li {
+            margin-bottom: var(--gap);
+        }
+        > li:first-child {
+             margin-top: var(--gap);
+        }
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu,
+    .nav-dropdown-menu.open {
+        display: flex;
+    }
+
+    .nav-dropdown-toggle:hover,
+    .nav-dropdown-toggle.active {
+        border-bottom: 0.5px solid currentColor;
     }
 
     /* Hero */

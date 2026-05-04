@@ -5,9 +5,9 @@ import { components } from "@/slices";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getByUID("websites", "professional-simple-website");
+  const page = await client.getByUID("websites", "socialmedia");
   return {
-    title: page.data.meta_title ?? "Simple Website | Beam Beam Digital",
+    title: page.data.meta_title ?? "Social Media | Beam Beam Digital",
     description: page.data.meta_description ?? undefined,
     openGraph: {
       images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
@@ -15,8 +15,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function SimpleWebsitePage() {
+export default async function SocialMediaPage() {
   const client = createClient();
-  const page = await client.getByUID("websites", "professional-simple-website");
+  const page = await client.getByUID("websites", "socialmedia");
   return <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />;
 }

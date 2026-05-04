@@ -1,0 +1,74 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"product": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"heading",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "breathing",
+									"type": "Text"
+								}
+							],
+							[
+								"description",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Velit laboris officia aute duis esse laboris id ullamco sunt laboris ad tempor."
+											}
+										}
+									]
+								}
+							],
+							[
+								"cta_text",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "taken",
+									"type": "Text"
+								}
+							],
+							[
+								"cta_link",
+								{
+									"key": "5be53e39-82a1-4679-b919-16e4740ef180",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://twitter.com",
+										"text": "have"
+									}
+								}
+							],
+							[
+								"inline_link",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "widely",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]

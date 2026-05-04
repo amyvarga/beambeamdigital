@@ -56,6 +56,69 @@
                   "repeat": false,
                   "select": null
                 }
+              },
+              "dropdown": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Dropdown",
+                  "placeholder_false": "false",
+                  "placeholder_true": "true",
+                  "default_value": false
+                }
+              },
+              "dropdown_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Dropdown title",
+                  "placeholder": ""
+                }
+              },
+              "dropdown_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Dropdown Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              },
+              "dropdown_title_2": {
+                "type": "Text",
+                "config": {
+                  "label": "Dropdown title 2",
+                  "placeholder": ""
+                }
+              },
+              "dopdown_link_2": {
+                "type": "Link",
+                "config": {
+                  "label": "Dopdown link 2",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              },
+              "dropdown_title_3": {
+                "type": "Text",
+                "config": {
+                  "label": "Dropdown title 3",
+                  "placeholder": ""
+                }
+              },
+              "dropdown_link_3": {
+                "type": "Link",
+                "config": {
+                  "label": "Dropdown Link 3",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
               }
             }
           }

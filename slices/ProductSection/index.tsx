@@ -19,7 +19,7 @@ export type ProductSectionProps = SliceComponentProps<ProductSectionSlice>;
 
 const ProductSection: FC<ProductSectionProps> = ({ slice, context }) => {
   const ctx = context as { isPage?: boolean } | undefined;
-  const Title = ctx?.isPage ? "h1" : "h2";
+  const Title = ctx?.isPage ? "h2" : "h3";
   const p = slice.primary as Record<string, unknown>;
   const bodyParagraph = p.body_paragraph_one as Parameters<typeof PrismicRichText>[0]["field"];
 

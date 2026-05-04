@@ -61,6 +61,73 @@
 										"url": "http://google.com"
 									}
 								}
+							],
+							[
+								"dropdown",
+								{
+									"__TYPE__": "BooleanContent",
+									"value": true
+								}
+							],
+							[
+								"dropdown_title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "none",
+									"type": "Text"
+								}
+							],
+							[
+								"dropdown_link",
+								{
+									"key": "8e6ca273-ffaf-437f-9220-018296775562",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://prismic.io",
+										"text": "valuable"
+									}
+								}
+							],
+							[
+								"dropdown_title_2",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "dug",
+									"type": "Text"
+								}
+							],
+							[
+								"dopdown_link_2",
+								{
+									"key": "2e42fc9b-78e6-4b28-af4b-0b73ad67a3b7",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://google.com",
+										"text": "log"
+									}
+								}
+							],
+							[
+								"dropdown_title_3",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "coming",
+									"type": "Text"
+								}
+							],
+							[
+								"dropdown_link_3",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "6095fb60-749d-444c-8d0f-fd3597fb642c",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://prismic.io",
+										"text": "ice"
+									}
+								}
 							]
 						]
 					}

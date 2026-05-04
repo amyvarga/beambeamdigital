@@ -29,9 +29,6 @@
             "menu_navigation": {
               "type": "SharedSlice"
             },
-            "aboutSection": {
-              "type": "SharedSlice"
-            },
             "what_we_do_slice": {
               "type": "SharedSlice"
             }

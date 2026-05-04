@@ -73,7 +73,6 @@ type AboutDocumentDataSlicesSlice =
   | AboutSectionSlice
   | MenuNavigationSlice
   | HeroBannerSlice
-  | AboutSectionSlice
   | FooterNavigationAndServicesRegionsSlice;
 
 /**
@@ -280,7 +279,6 @@ type PageDocumentDataSlicesSlice =
   | ContactPanelSlice
   | HeroBannerSlice
   | MenuNavigationSlice
-  | AboutSectionSlice
   | WhatWeDoSliceSlice;
 
 /**
@@ -480,7 +478,10 @@ export type ServicesDocument<Lang extends string = string> =
     Lang
   >;
 
-type WebsitesDocumentDataSlicesSlice = HeroBannerSlice | AboutSectionSlice;
+type WebsitesDocumentDataSlicesSlice =
+  | AboutSectionSlice
+  | ProductComparisonSlice
+  | HeroBannerSlice;
 
 /**
  * Content for Product Page documents
@@ -621,48 +622,189 @@ export type AllDocumentTypes =
   | WorkDocument;
 
 /**
- * Primary content in *Page Section → Default → Primary*
+ * Item in *Page Section → Default → Primary → Product*
  */
-export interface AboutSectionSliceDefaultPrimary {
+export interface AboutSectionSliceDefaultPrimaryProductItem {
   /**
-   * Heading field in *Page Section → Default → Primary*
+   * Inline link field in *Page Section → Default → Primary → Product*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.heading
+   * - **API ID Path**: aboutSection.default.primary.product[].inline_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  inline_link: prismic.KeyTextField;
+
+  /**
+   * Heading field in *Page Section → Default → Primary → Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.product[].heading
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
   /**
-   * Body Paragraph One field in *Page Section → Default → Primary*
+   * Description field in *Page Section → Default → Primary → Product*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.body_paragraph_one
+   * - **API ID Path**: aboutSection.default.primary.product[].description
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  body_paragraph_one: prismic.RichTextField;
+  description: prismic.RichTextField;
 
   /**
-   * CTA Text field in *Page Section → Default → Primary*
+   * CTA Text field in *Page Section → Default → Primary → Product*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: Ready to work together?
-   * - **API ID Path**: aboutSection.default.primary.cta_text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.product[].cta_text
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   cta_text: prismic.KeyTextField;
 
   /**
-   * CTA Button Label field in *Page Section → Default → Primary*
+   * CTA Link field in *Page Section → Default → Primary → Product*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.product[].cta_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Primary content in *Page Section → Default → Primary*
+ */
+export interface AboutSectionSliceDefaultPrimary {
+  /**
+   * Product field in *Page Section → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.product[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  product: prismic.GroupField<
+    Simplify<AboutSectionSliceDefaultPrimaryProductItem>
+  >;
+}
+
+/**
+ * Default variation for Page Section Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Standard about section with image, heading, and body text.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AboutSectionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AboutSectionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Page Section*
+ */
+type AboutSectionSliceVariation = AboutSectionSliceDefault;
+
+/**
+ * Page Section Shared Slice
+ *
+ * - **API ID**: `aboutSection`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AboutSectionSlice = prismic.SharedSlice<
+  "aboutSection",
+  AboutSectionSliceVariation
+>;
+
+/**
+ * Item in *Page Section → Default → Primary → Product*
+ */
+export interface AboutSectionSliceDefaultPrimaryProductItem {
+  /**
+   * Inline link field in *Page Section → Default → Primary → Product*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: Get in touch
-   * - **API ID Path**: aboutSection.default.primary.cta_button_label
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.product[].inline_link
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  cta_button_label: prismic.KeyTextField;
+  inline_link: prismic.KeyTextField;
+
+  /**
+   * Heading field in *Page Section → Default → Primary → Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.product[].heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Description field in *Page Section → Default → Primary → Product*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.product[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * CTA Text field in *Page Section → Default → Primary → Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.product[].cta_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *Page Section → Default → Primary → Product*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.product[].cta_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Primary content in *Page Section → Default → Primary*
+ */
+export interface AboutSectionSliceDefaultPrimary {
+  /**
+   * Product field in *Page Section → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.product[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  product: prismic.GroupField<
+    Simplify<AboutSectionSliceDefaultPrimaryProductItem>
+  >;
 }
 
 /**
@@ -699,8 +841,34 @@ export type AboutSectionSlice = prismic.SharedSlice<
  * Item in *AboutSection → Default → Primary → Masonry Gallery*
  */
 export interface AboutSectionSliceDefaultPrimaryMasonryGalleryItem {
+  /**
+   * Image field in *AboutSection → Default → Primary → Masonry Gallery*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.masonry_gallery[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
   image: prismic.ImageField<never>;
-  link: prismic.LinkField;
+
+  /**
+   * Link field in *AboutSection → Default → Primary → Masonry Gallery*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.masonry_gallery[].link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Columns field in *AboutSection → Default → Primary → Masonry Gallery*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.default.primary.masonry_gallery[].columns
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
   columns: prismic.NumberField;
 }
 
@@ -1874,6 +2042,95 @@ export interface MenuNavigationSliceSimpleWithLogoPrimaryMenuLinksItem {
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Dropdown field in *Menu Navigation → Simple with Logo → Primary → Menu Links*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: menu_navigation.simple_with_logo.primary.menu_links[].dropdown
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  dropdown: prismic.BooleanField;
+
+  /**
+   * Dropdown title field in *Menu Navigation → Simple with Logo → Primary → Menu Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_navigation.simple_with_logo.primary.menu_links[].dropdown_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  dropdown_title: prismic.KeyTextField;
+
+  /**
+   * Dropdown Link field in *Menu Navigation → Simple with Logo → Primary → Menu Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_navigation.simple_with_logo.primary.menu_links[].dropdown_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  dropdown_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Dropdown title 2 field in *Menu Navigation → Simple with Logo → Primary → Menu Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_navigation.simple_with_logo.primary.menu_links[].dropdown_title_2
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  dropdown_title_2: prismic.KeyTextField;
+
+  /**
+   * Dopdown link 2 field in *Menu Navigation → Simple with Logo → Primary → Menu Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_navigation.simple_with_logo.primary.menu_links[].dopdown_link_2
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  dopdown_link_2: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Dropdown title 3 field in *Menu Navigation → Simple with Logo → Primary → Menu Links*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_navigation.simple_with_logo.primary.menu_links[].dropdown_title_3
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  dropdown_title_3: prismic.KeyTextField;
+
+  /**
+   * Dropdown Link 3 field in *Menu Navigation → Simple with Logo → Primary → Menu Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_navigation.simple_with_logo.primary.menu_links[].dropdown_link_3
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  dropdown_link_3: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
@@ -1933,6 +2190,98 @@ type MenuNavigationSliceVariation = MenuNavigationSliceSimpleWithLogo;
 export type MenuNavigationSlice = prismic.SharedSlice<
   "menu_navigation",
   MenuNavigationSliceVariation
+>;
+
+/**
+ * Item in *ProductComparison → Default → Primary → Product*
+ */
+export interface ProductComparisonSliceDefaultPrimaryProductItem {
+  /**
+   * Product Title field in *ProductComparison → Default → Primary → Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_comparison.default.primary.product[].product_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  product_title: prismic.KeyTextField;
+
+  /**
+   * Product Brief Description field in *ProductComparison → Default → Primary → Product*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_comparison.default.primary.product[].product_brief_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  product_brief_description: prismic.RichTextField;
+
+  /**
+   * Product Inline Link Text field in *ProductComparison → Default → Primary → Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_comparison.default.primary.product[].product_inline_link_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  product_inline_link_text: prismic.KeyTextField;
+
+  /**
+   * Product Inline Link field in *ProductComparison → Default → Primary → Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_comparison.default.primary.product[].product_inline_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  product_inline_link: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *ProductComparison → Default → Primary*
+ */
+export interface ProductComparisonSliceDefaultPrimary {
+  /**
+   * Product field in *ProductComparison → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_comparison.default.primary.product[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  product: prismic.GroupField<
+    Simplify<ProductComparisonSliceDefaultPrimaryProductItem>
+  >;
+}
+
+/**
+ * Default variation for ProductComparison Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProductComparisonSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProductComparisonSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProductComparison*
+ */
+type ProductComparisonSliceVariation = ProductComparisonSliceDefault;
+
+/**
+ * ProductComparison Shared Slice
+ *
+ * - **API ID**: `product_comparison`
+ * - **Description**: ProductComparison
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProductComparisonSlice = prismic.SharedSlice<
+  "product_comparison",
+  ProductComparisonSliceVariation
 >;
 
 /**
@@ -2116,6 +2465,12 @@ declare module "@prismicio/client" {
       WorkDocumentDataSlicesSlice,
       AllDocumentTypes,
       AboutSectionSlice,
+      AboutSectionSliceDefaultPrimaryProductItem,
+      AboutSectionSliceDefaultPrimary,
+      AboutSectionSliceVariation,
+      AboutSectionSliceDefault,
+      AboutSectionSlice,
+      AboutSectionSliceDefaultPrimaryProductItem,
       AboutSectionSliceDefaultPrimary,
       AboutSectionSliceVariation,
       AboutSectionSliceDefault,
@@ -2160,6 +2515,11 @@ declare module "@prismicio/client" {
       MenuNavigationSliceSimpleWithLogoPrimary,
       MenuNavigationSliceVariation,
       MenuNavigationSliceSimpleWithLogo,
+      ProductComparisonSlice,
+      ProductComparisonSliceDefaultPrimaryProductItem,
+      ProductComparisonSliceDefaultPrimary,
+      ProductComparisonSliceVariation,
+      ProductComparisonSliceDefault,
       WhatWeDoSliceSlice,
       WhatWeDoSliceSliceDefaultPrimaryFeaturesItem,
       WhatWeDoSliceSliceDefaultPrimary,

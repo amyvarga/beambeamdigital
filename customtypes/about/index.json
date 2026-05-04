@@ -20,9 +20,6 @@
             "hero_banner": {
               "type": "SharedSlice"
             },
-            "aboutSection": {
-              "type": "SharedSlice"
-            },
             "footer_navigation_and_services_regions": {
               "type": "SharedSlice"
             }

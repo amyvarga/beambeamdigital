@@ -17,10 +17,13 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "hero_banner": {
+            "aboutSection": {
               "type": "SharedSlice"
             },
-            "aboutSection": {
+            "product_comparison": {
+              "type": "SharedSlice"
+            },
+            "hero_banner": {
               "type": "SharedSlice"
             }
           }

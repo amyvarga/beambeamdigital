@@ -1,0 +1,57 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"product": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"product_title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "deeply",
+									"type": "Text"
+								}
+							],
+							[
+								"product_brief_description",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Non enim ex fugiat occaecat voluptate non velit cillum Lorem nisi enim qui. Nulla fugiat aliquip sunt ad reprehenderit ullamco nisi sit do."
+											}
+										}
+									]
+								}
+							],
+							[
+								"product_inline_link",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "community",
+									"type": "Text"
+								}
+							],
+							[
+								"product_inline_link_text",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "stuck",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

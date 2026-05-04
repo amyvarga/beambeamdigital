@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 export const components = {
-  aboutSection: dynamic(() => import("./ProductSection")),
+  aboutSection: dynamic(() => import("./PageSection")),
   about_section: dynamic(() => import("./AboutSection")),
   areas_covered_links: dynamic(() => import("./AreasCoveredLinks")),
   contact_panel: dynamic(() => import("./ContactPanel")),
@@ -12,5 +12,6 @@ export const components = {
   footer_navigation_and_services_regions: dynamic(() => import("./Footer")),
   hero_banner: dynamic(() => import("./HeroBanner")),
   menu_navigation: dynamic(() => import("./MenuNavigation")),
+  product_comparison: dynamic(() => import("./ProductComparison")),
   what_we_do_slice: dynamic(() => import("./Offerings")),
 };

@@ -1,0 +1,58 @@
+{
+  "id": "product_comparison",
+  "type": "SharedSlice",
+  "name": "ProductComparison",
+  "description": "ProductComparison",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "product": {
+          "type": "Group",
+          "config": {
+            "label": "Product",
+            "repeat": true,
+            "fields": {
+              "product_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Product Title",
+                  "placeholder": ""
+                }
+              },
+              "product_brief_description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Product Brief Description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              },
+              "product_inline_link_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Product Inline Link Text",
+                  "placeholder": ""
+                }
+              },
+              "product_inline_link": {
+                "type": "Text",
+                "config": {
+                  "label": "Product Inline Link",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
