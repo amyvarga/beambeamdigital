@@ -7,8 +7,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle("about");
   return {
-    title: page.data.meta_title ?? "About | Beam Beam Digital",
-    description: page.data.meta_description ?? undefined,
+    title: page.data.meta_title,
+    description: page.data.meta_description,
     openGraph: {
       images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
     },

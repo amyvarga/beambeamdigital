@@ -1,7 +1,7 @@
 {
   "format": "page",
-  "id": "areas_covered",
-  "label": "Areas Covered",
+  "id": "ecommerce",
+  "label": "Ecommerce Page",
   "repeatable": false,
   "status": true,
   "json": {
@@ -11,16 +11,13 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "menu_navigation": {
+            "aboutSection": {
+              "type": "SharedSlice"
+            },
+            "product_comparison": {
               "type": "SharedSlice"
             },
             "hero_banner": {
-              "type": "SharedSlice"
-            },
-            "areas_covered_links": {
-              "type": "SharedSlice"
-            },
-            "footer_navigation_and_services_regions": {
               "type": "SharedSlice"
             }
           }
@@ -29,29 +26,29 @@
     },
     "SEO & Metadata": {
       "meta_title": {
-        "type": "Text",
         "config": {
           "label": "Meta Title",
           "placeholder": "A title of the page used for social media and search engines"
-        }
+        },
+        "type": "Text"
       },
       "meta_description": {
-        "type": "Text",
         "config": {
           "label": "Meta Description",
           "placeholder": "A brief summary of the page"
-        }
+        },
+        "type": "Text"
       },
       "meta_image": {
-        "type": "Image",
         "config": {
-          "label": "Meta Image",
           "constraint": {
-            "width": 2400,
-            "height": 1260
+            "height": 1260,
+            "width": 2400
           },
+          "label": "Meta Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       }
     }
   }

@@ -41,8 +41,33 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Beam Beam Digital, Devon | Website design, and information technology",
-  description: "Beam Beam Digital is located in South Devon. Its services include website design and build, e-commerce, search engine optimisation, automation, artificial intelligence integration and information technology.",
+  metadataBase: new URL("https://www.beambeam.co.uk"),
+  title: "Beam Beam Digital, Devon | Websites, e-commerce, SEO, AI optimisation",
+  description: "Beam Beam Digital is located in South Devon. Its services include website design and build, e-commerce, search engine and AI optimisation, and information technology.",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Beam Beam Digital",
+  url: "https://www.beambeam.co.uk",
+  description: "Web design, e-commerce, SEO, AI optimisation and IT services based in South Devon.",
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "Devon",
+    addressCountry: "GB",
+  },
+  areaServed: [
+    { "@type": "Place", name: "South Devon" },
+    { "@type": "Place", name: "South West England" },
+  ],
+  knowsAbout: [
+    "Website Design",
+    "E-commerce",
+    "Search Engine Optimisation",
+    "AI Optimisation",
+    "Digital Marketing",
+  ],
 };
 
 export default async function RootLayout({
@@ -57,6 +82,12 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${montserrat.variable} ${raleway.variable} ${bodoniModa.variable} ${cormorantGaramond.variable} `}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <FadeInObserver />
