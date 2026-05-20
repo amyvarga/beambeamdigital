@@ -134,75 +134,6 @@ interface AboutDocumentData {
 export type AboutDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
 
-type AreasCoveredDocumentDataSlicesSlice =
-  | MenuNavigationSlice
-  | HeroBannerSlice
-  | AreasCoveredLinksSlice
-  | FooterNavigationAndServicesRegionsSlice;
-
-/**
- * Content for Areas Covered documents
- */
-interface AreasCoveredDocumentData {
-  /**
-   * Slice Zone field in *Areas Covered*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: areas_covered.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/slices
-   */
-  slices: prismic.SliceZone<AreasCoveredDocumentDataSlicesSlice>; /**
-   * Meta Title field in *Areas Covered*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: areas_covered.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  meta_title: prismic.KeyTextField;
-
-  /**
-   * Meta Description field in *Areas Covered*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: areas_covered.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Areas Covered*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: areas_covered.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  meta_image: prismic.ImageField<never>;
-}
-
-/**
- * Areas Covered document from Prismic
- *
- * - **API ID**: `areas_covered`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/content-modeling
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type AreasCoveredDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<AreasCoveredDocumentData>,
-    "areas_covered",
-    Lang
-  >;
-
 type ContactDocumentDataSlicesSlice =
   | MenuNavigationSlice
   | HeroBannerSlice
@@ -272,14 +203,80 @@ export type ContactDocument<Lang extends string = string> =
     Lang
   >;
 
+type EcommerceDocumentDataSlicesSlice =
+  | AboutSectionSlice
+  | ProductComparisonSlice
+  | HeroBannerSlice;
+
+/**
+ * Content for Ecommerce Page documents
+ */
+interface EcommerceDocumentData {
+  /**
+   * Slice Zone field in *Ecommerce Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ecommerce.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<EcommerceDocumentDataSlicesSlice>; /**
+   * Meta Title field in *Ecommerce Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: ecommerce.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Ecommerce Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: ecommerce.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Ecommerce Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ecommerce.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Ecommerce Page document from Prismic
+ *
+ * - **API ID**: `ecommerce`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EcommerceDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<EcommerceDocumentData>,
+    "ecommerce",
+    Lang
+  >;
+
 type PageDocumentDataSlicesSlice =
   | FooterNavigationAndServicesRegionsSlice
   | FeaturedCardGridSlice
-  | ContentHeaderSlice
   | ContactPanelSlice
   | HeroBannerSlice
-  | MenuNavigationSlice
-  | WhatWeDoSliceSlice;
+  | MenuNavigationSlice;
 
 /**
  * Content for Page documents
@@ -340,53 +337,52 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type PricingPageDocumentDataSlicesSlice =
-  | MenuNavigationSlice
-  | HeroBannerSlice
-  | ContentHeaderSlice
-  | FooterNavigationAndServicesRegionsSlice;
+type SeoDocumentDataSlicesSlice =
+  | AboutSectionSlice
+  | ProductComparisonSlice
+  | HeroBannerSlice;
 
 /**
- * Content for Pricing documents
+ * Content for SEO Page documents
  */
-interface PricingPageDocumentData {
+interface SeoDocumentData {
   /**
-   * Slice Zone field in *Pricing*
+   * Slice Zone field in *SEO Page*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: pricing_page.slices[]
+   * - **API ID Path**: seo.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/slices
    */
-  slices: prismic.SliceZone<PricingPageDocumentDataSlicesSlice>; /**
-   * Meta Title field in *Pricing*
+  slices: prismic.SliceZone<SeoDocumentDataSlicesSlice>; /**
+   * Meta Title field in *SEO Page*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: pricing_page.meta_title
+   * - **API ID Path**: seo.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Pricing*
+   * Meta Description field in *SEO Page*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: pricing_page.meta_description
+   * - **API ID Path**: seo.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Pricing*
+   * Meta Image field in *SEO Page*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: pricing_page.meta_image
+   * - **API ID Path**: seo.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
@@ -394,89 +390,16 @@ interface PricingPageDocumentData {
 }
 
 /**
- * Pricing document from Prismic
+ * SEO Page document from Prismic
  *
- * - **API ID**: `pricing_page`
+ * - **API ID**: `seo`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type PricingPageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<PricingPageDocumentData>,
-    "pricing_page",
-    Lang
-  >;
-
-type ServicesDocumentDataSlicesSlice =
-  | MenuNavigationSlice
-  | HeroBannerSlice
-  | WhatWeDoSliceSlice
-  | FooterNavigationAndServicesRegionsSlice;
-
-/**
- * Content for Services documents
- */
-interface ServicesDocumentData {
-  /**
-   * Slice Zone field in *Services*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: services.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/slices
-   */
-  slices: prismic.SliceZone<ServicesDocumentDataSlicesSlice>; /**
-   * Meta Title field in *Services*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: services.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  meta_title: prismic.KeyTextField;
-
-  /**
-   * Meta Description field in *Services*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: services.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Services*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: services.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  meta_image: prismic.ImageField<never>;
-}
-
-/**
- * Services document from Prismic
- *
- * - **API ID**: `services`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/content-modeling
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type ServicesDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<ServicesDocumentData>,
-    "services",
-    Lang
-  >;
+export type SeoDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<SeoDocumentData>, "seo", Lang>;
 
 type WebsitesDocumentDataSlicesSlice =
   | AboutSectionSlice
@@ -613,11 +536,10 @@ export type WorkDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | AboutDocument
-  | AreasCoveredDocument
   | ContactDocument
+  | EcommerceDocument
   | PageDocument
-  | PricingPageDocument
-  | ServicesDocument
+  | SeoDocument
   | WebsitesDocument
   | WorkDocument;
 
@@ -980,90 +902,6 @@ export type AboutSectionSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *AreasCoveredLinks → Default → Primary → Services by Region*
- */
-export interface AreasCoveredLinksSliceDefaultPrimaryServicesRegionsItem {
-  /**
-   * Service Title field in *AreasCoveredLinks → Default → Primary → Services by Region*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: areas_covered_links.default.primary.services_regions[].service_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  service_title: prismic.KeyTextField;
-
-  /**
-   * Service Region field in *AreasCoveredLinks → Default → Primary → Services by Region*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: areas_covered_links.default.primary.services_regions[].service_region
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  service_region: prismic.Repeatable<
-    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
-  >;
-}
-
-/**
- * Primary content in *AreasCoveredLinks → Default → Primary*
- */
-export interface AreasCoveredLinksSliceDefaultPrimary {
-  /**
-   * Page Heading field in *AreasCoveredLinks → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: areas_covered_links.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  heading: prismic.KeyTextField;
-
-  /**
-   * Services by Region field in *AreasCoveredLinks → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: areas_covered_links.default.primary.services_regions[]
-   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-   */
-  services_regions: prismic.GroupField<
-    Simplify<AreasCoveredLinksSliceDefaultPrimaryServicesRegionsItem>
-  >;
-}
-
-/**
- * Default variation for AreasCoveredLinks Slice
- *
- * - **API ID**: `default`
- * - **Description**: SEO links grouped by service category.
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type AreasCoveredLinksSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<AreasCoveredLinksSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *AreasCoveredLinks*
- */
-type AreasCoveredLinksSliceVariation = AreasCoveredLinksSliceDefault;
-
-/**
- * AreasCoveredLinks Shared Slice
- *
- * - **API ID**: `areas_covered_links`
- * - **Description**: *None*
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type AreasCoveredLinksSlice = prismic.SharedSlice<
-  "areas_covered_links",
-  AreasCoveredLinksSliceVariation
->;
-
-/**
  * Item in *ContactPanel → Default → Primary → Contact Items*
  */
 export interface ContactPanelSliceDefaultPrimaryContactsItem {
@@ -1220,386 +1058,6 @@ type ContactPanelSliceVariation = ContactPanelSliceDefault;
 export type ContactPanelSlice = prismic.SharedSlice<
   "contact_panel",
   ContactPanelSliceVariation
->;
-
-/**
- * Primary content in *Pricing → Centered Title and Subtext → Primary*
- */
-export interface ContentHeaderSliceCenteredTitleAndSubtextPrimary {
-  /**
-   * Title field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.title
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  title: prismic.RichTextField;
-
-  /**
-   * Pricing Package 1 Title field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_1_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_1_title: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 1 Description field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_1_description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  pricing_package_1_description: prismic.RichTextField;
-
-  /**
-   * Pricing Package 1 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_1_inline_link
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_1_inline_link: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 2 Title field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_2_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_2_title: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 2 Description field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_2_description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  pricing_package_2_description: prismic.RichTextField;
-
-  /**
-   * Pricing Package 2 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_2_inline_link
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_2_inline_link: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 3 Title field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_3_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_3_title: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 3 Description field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_3_description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  pricing_package_3_description: prismic.RichTextField;
-
-  /**
-   * Pricing Package 3 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_3_inline_link
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_3_inline_link: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 4 Title field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_4_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_4_title: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 4 Description field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_4_description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  pricing_package_4_description: prismic.RichTextField;
-
-  /**
-   * Pricing Package 4 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_4_inline_link
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_4_inline_link: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 5 Title field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_5_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_5_title: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 5 Description field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_5_description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  pricing_package_5_description: prismic.RichTextField;
-
-  /**
-   * Pricing Package 5 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_5_inline_link
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_5_inline_link: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 6 Title field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_6_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_6_title: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 6 Description field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_6_description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  pricing_package_6_description: prismic.RichTextField;
-
-  /**
-   * Pricing Package 6 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_6_inline_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  pricing_package_6_inline_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Pricing Package 7 Title field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_7_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  pricing_package_7_title: prismic.KeyTextField;
-
-  /**
-   * Pricing Package 7 Description field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_7_description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  pricing_package_7_description: prismic.RichTextField;
-
-  /**
-   * Pricing Package 7 Inline Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_7_inline_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  pricing_package_7_inline_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Pricing Package 1 Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_1_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  pricing_package_1_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Pricing Package 2 Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_2_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  pricing_package_2_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Pricing Package 3 Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_3_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  pricing_package_3_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Pricing Package 4 Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_4_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  pricing_package_4_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Pricing Package 5 Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_5_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  pricing_package_5_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Pricing Package 6 Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_6_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  pricing_package_6_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
-   * Pricing Package 7 Link field in *Pricing → Centered Title and Subtext → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: content_header.centered_title_and_subtext.primary.pricing_package_7_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  pricing_package_7_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-}
-
-/**
- * Centered Title and Subtext variation for Pricing Slice
- *
- * - **API ID**: `centered_title_and_subtext`
- * - **Description**: Displays a center-aligned title with a center-aligned supporting description beneath it.
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type ContentHeaderSliceCenteredTitleAndSubtext =
-  prismic.SharedSliceVariation<
-    "centered_title_and_subtext",
-    Simplify<ContentHeaderSliceCenteredTitleAndSubtextPrimary>,
-    never
-  >;
-
-/**
- * Slice variation for *Pricing*
- */
-type ContentHeaderSliceVariation = ContentHeaderSliceCenteredTitleAndSubtext;
-
-/**
- * Pricing Shared Slice
- *
- * - **API ID**: `content_header`
- * - **Description**: *None*
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type ContentHeaderSlice = prismic.SharedSlice<
-  "content_header",
-  ContentHeaderSliceVariation
 >;
 
 /**
@@ -2284,140 +1742,6 @@ export type ProductComparisonSlice = prismic.SharedSlice<
   ProductComparisonSliceVariation
 >;
 
-/**
- * Item in *Offerings → Default → Primary → Feature Cards*
- */
-export interface WhatWeDoSliceSliceDefaultPrimaryFeaturesItem {
-  /**
-   * Feature Title field in *Offerings → Default → Primary → Feature Cards*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: what_we_do_slice.default.primary.features[].feature_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  feature_title: prismic.KeyTextField;
-
-  /**
-   * Feature Description field in *Offerings → Default → Primary → Feature Cards*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: what_we_do_slice.default.primary.features[].feature_description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  feature_description: prismic.RichTextField;
-
-  /**
-   * Service CTA Button Label field in *Offerings → Default → Primary → Feature Cards*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: what_we_do_slice.default.primary.features[].service_cta_button_label
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  service_cta_button_label: prismic.KeyTextField;
-
-  /**
-   * Service CTA Button Link field in *Offerings → Default → Primary → Feature Cards*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: what_we_do_slice.default.primary.features[].service_cta_button_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  service_cta_button_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-}
-
-/**
- * Primary content in *Offerings → Default → Primary*
- */
-export interface WhatWeDoSliceSliceDefaultPrimary {
-  /**
-   * Section Title field in *Offerings → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: what_we_do_slice.default.primary.section_title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  section_title: prismic.KeyTextField;
-
-  /**
-   * Feature Cards field in *Offerings → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: what_we_do_slice.default.primary.features[]
-   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-   */
-  features: prismic.GroupField<
-    Simplify<WhatWeDoSliceSliceDefaultPrimaryFeaturesItem>
-  >;
-
-  /**
-   * CTA Button Label field in *Offerings → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: what_we_do_slice.default.primary.cta_button_label
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  cta_button_label: prismic.KeyTextField;
-
-  /**
-   * CTA Button Link field in *Offerings → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: what_we_do_slice.default.primary.cta_button_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  cta_button_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-}
-
-/**
- * Default variation for Offerings Slice
- *
- * - **API ID**: `default`
- * - **Description**: Standard layout with section title and repeatable feature cards.
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type WhatWeDoSliceSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<WhatWeDoSliceSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *Offerings*
- */
-type WhatWeDoSliceSliceVariation = WhatWeDoSliceSliceDefault;
-
-/**
- * Offerings Shared Slice
- *
- * - **API ID**: `what_we_do_slice`
- * - **Description**: *None*
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type WhatWeDoSliceSlice = prismic.SharedSlice<
-  "what_we_do_slice",
-  WhatWeDoSliceSliceVariation
->;
-
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -2442,21 +1766,18 @@ declare module "@prismicio/client" {
       AboutDocument,
       AboutDocumentData,
       AboutDocumentDataSlicesSlice,
-      AreasCoveredDocument,
-      AreasCoveredDocumentData,
-      AreasCoveredDocumentDataSlicesSlice,
       ContactDocument,
       ContactDocumentData,
       ContactDocumentDataSlicesSlice,
+      EcommerceDocument,
+      EcommerceDocumentData,
+      EcommerceDocumentDataSlicesSlice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
-      PricingPageDocument,
-      PricingPageDocumentData,
-      PricingPageDocumentDataSlicesSlice,
-      ServicesDocument,
-      ServicesDocumentData,
-      ServicesDocumentDataSlicesSlice,
+      SeoDocument,
+      SeoDocumentData,
+      SeoDocumentDataSlicesSlice,
       WebsitesDocument,
       WebsitesDocumentData,
       WebsitesDocumentDataSlicesSlice,
@@ -2479,21 +1800,12 @@ declare module "@prismicio/client" {
       AboutSectionSliceDefaultPrimary,
       AboutSectionSliceVariation,
       AboutSectionSliceDefault,
-      AreasCoveredLinksSlice,
-      AreasCoveredLinksSliceDefaultPrimaryServicesRegionsItem,
-      AreasCoveredLinksSliceDefaultPrimary,
-      AreasCoveredLinksSliceVariation,
-      AreasCoveredLinksSliceDefault,
       ContactPanelSlice,
       ContactPanelSliceDefaultPrimaryContactsItem,
       ContactPanelSliceDefaultPrimaryFormFieldsItem,
       ContactPanelSliceDefaultPrimary,
       ContactPanelSliceVariation,
       ContactPanelSliceDefault,
-      ContentHeaderSlice,
-      ContentHeaderSliceCenteredTitleAndSubtextPrimary,
-      ContentHeaderSliceVariation,
-      ContentHeaderSliceCenteredTitleAndSubtext,
       FeaturedCardGridSlice,
       FeaturedCardGridSliceDefaultPrimaryCardsItem,
       FeaturedCardGridSliceDefaultPrimary,
@@ -2520,11 +1832,6 @@ declare module "@prismicio/client" {
       ProductComparisonSliceDefaultPrimary,
       ProductComparisonSliceVariation,
       ProductComparisonSliceDefault,
-      WhatWeDoSliceSlice,
-      WhatWeDoSliceSliceDefaultPrimaryFeaturesItem,
-      WhatWeDoSliceSliceDefaultPrimary,
-      WhatWeDoSliceSliceVariation,
-      WhatWeDoSliceSliceDefault,
     };
   }
 }

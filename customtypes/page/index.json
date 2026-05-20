@@ -17,9 +17,6 @@
             "featured_card_grid": {
               "type": "SharedSlice"
             },
-            "content_header": {
-              "type": "SharedSlice"
-            },
             "contact_panel": {
               "type": "SharedSlice"
             },
@@ -27,9 +24,6 @@
               "type": "SharedSlice"
             },
             "menu_navigation": {
-              "type": "SharedSlice"
-            },
-            "what_we_do_slice": {
               "type": "SharedSlice"
             }
           }
