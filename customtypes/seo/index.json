@@ -11,10 +11,16 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "product_comparison": {
+            "menu_navigation": {
               "type": "SharedSlice"
             },
             "hero_banner": {
+              "type": "SharedSlice"
+            },
+            "product_comparison": {
+              "type": "SharedSlice"
+            },
+            "footer_navigation_and_services_regions": {
               "type": "SharedSlice"
             }
           }

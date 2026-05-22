@@ -35,15 +35,15 @@ const HeroBanner: FC<HeroBannerProps> = ({ slice }) => {
         <div className="hero-strapline">
           <PrismicRichText field={slice.primary.subheadline} />
         </div>
-        {ctaButtons.length > 0 && (
+        {ctaButtons.some((b) => b.cta_label) && (
           <div className="hero-cta">
-            {ctaButtons.map((button, index) => (
+            {ctaButtons.filter((b) => b.cta_label).map((button, index) => (
               <PrismicLink
                 key={index}
                 field={button.cta_link}
                 className="btn btn-primary"
               >
-                {button.cta_label || "Get in touch"}
+                {button.cta_label}
               </PrismicLink>
             ))}
           </div>

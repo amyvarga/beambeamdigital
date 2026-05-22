@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useState, useRef } from "react";
+import { ReactNode, useState } from "react";
 
 interface AccordionItem {
   heading: string;
@@ -15,7 +15,6 @@ interface AccordionProps {
 
 export default function Accordion({ items }: AccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const toggle = (index: number) => {
     const isOpening = openIndex !== index;
@@ -25,17 +24,6 @@ export default function Accordion({ items }: AccordionProps) {
         accordion_heading: items[index].heading,
       });
     }
-    if (isOpening) {
-      setTimeout(() => {
-        const el = itemRefs.current[index];
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const scrollMargin = parseInt(getComputedStyle(el).scrollMarginTop) || 130;
-        if (rect.top < scrollMargin) {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 1000);
-    }
   };
 
   return (
@@ -43,7 +31,6 @@ export default function Accordion({ items }: AccordionProps) {
       {items.map((item, index) => (
         <div
           key={index}
-          ref={el => { itemRefs.current[index] = el; }}
           className={`accordion-item${openIndex === index ? ' accordion--visible' : ''}`}
         >
           <h3 className="accordion-heading" onClick={() => toggle(index)}>
