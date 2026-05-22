@@ -2,6 +2,7 @@
 
 import { FC } from "react";
 import type * as prismic from "@prismicio/client";
+import { asText } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
 
 type ProductItem = {
@@ -26,6 +27,26 @@ const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
   const p = slice.primary as Record<string, unknown>;
   const products = (p.product as ProductItem[]) ?? [];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: products
+      .filter((item) => item.product_title || item.product_brief_description)
+      .map((item, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: {
+          "@type": "Service",
+          name: item.product_title ?? "",
+          description: asText(item.product_brief_description),
+          provider: {
+            "@type": "LocalBusiness",
+            name: "Beam Beam Digital",
+          },
+        },
+      })),
+  };
+
   return (
     <section
       id="pricing"
@@ -33,6 +54,10 @@ const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="pricing-content content fade-in">
         <div className="pricing-packages">
           {products.filter((item) => item.product_title || item.product_brief_description).map((item, i) => (

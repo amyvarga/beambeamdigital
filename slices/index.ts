@@ -4,8 +4,10 @@ import dynamic from "next/dynamic";
 
 export const components = {
   aboutSection: dynamic(() => import("./PageSection")),
+  aboutSection: dynamic(() => import("./PageSection")),
   about_section: dynamic(() => import("./AboutSection")),
   contact_panel: dynamic(() => import("./ContactPanel")),
+  faq: dynamic(() => import("./Faq")),
   featured_card_grid: dynamic(() => import("./RecentWork")),
   footer_navigation_and_services_regions: dynamic(() => import("./Footer")),
   hero_banner: dynamic(() => import("./HeroBanner")),

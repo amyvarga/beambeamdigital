@@ -18,7 +18,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   const client = createClient();
   const page = await client.getSingle("page");
-  const heroSlices = page.data.slices.filter((s) => s.slice_type === "hero_banner");
+  const contentSlices = page.data.slices.filter(
+    (s) => s.slice_type !== "menu_navigation" && s.slice_type !== "footer_navigation_and_services_regions"
+  );
 
-  return <SliceZone slices={heroSlices} components={components} />;
+  return <SliceZone slices={contentSlices} components={components} />;
 }

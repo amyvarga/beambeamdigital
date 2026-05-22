@@ -1,0 +1,69 @@
+{
+  "id": "faq",
+  "type": "SharedSlice",
+  "name": "Faq",
+  "description": "Faq",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "faq_heading": {
+          "type": "Text",
+          "config": {
+            "label": "FAQ heading",
+            "placeholder": ""
+          }
+        },
+        "faq": {
+          "type": "Group",
+          "config": {
+            "label": "Faq",
+            "repeat": true,
+            "fields": {
+              "faq_title": {
+                "type": "Text",
+                "config": {
+                  "label": "faq title",
+                  "placeholder": ""
+                }
+              },
+              "faq_description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "faq description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              },
+              "cta_label": {
+                "type": "Text",
+                "config": {
+                  "label": "cta label",
+                  "placeholder": ""
+                }
+              },
+              "cta_link": {
+                "type": "Link",
+                "config": {
+                  "label": "cta link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

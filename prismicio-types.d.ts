@@ -272,9 +272,8 @@ export type EcommerceDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | FaqSlice
   | FooterNavigationAndServicesRegionsSlice
-  | FeaturedCardGridSlice
-  | ContactPanelSlice
   | HeroBannerSlice
   | MenuNavigationSlice;
 
@@ -1061,6 +1060,109 @@ export type ContactPanelSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *Faq → Default → Primary → Faq*
+ */
+export interface FaqSliceDefaultPrimaryFaqItem {
+  /**
+   * faq title field in *Faq → Default → Primary → Faq*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.faq[].faq_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  faq_title: prismic.KeyTextField;
+
+  /**
+   * faq description field in *Faq → Default → Primary → Faq*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.faq[].faq_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  faq_description: prismic.RichTextField;
+
+  /**
+   * cta label field in *Faq → Default → Primary → Faq*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.faq[].cta_label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_label: prismic.KeyTextField;
+
+  /**
+   * cta link field in *Faq → Default → Primary → Faq*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.faq[].cta_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Primary content in *Faq → Default → Primary*
+ */
+export interface FaqSliceDefaultPrimary {
+  /**
+   * FAQ heading field in *Faq → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.faq_heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  faq_heading: prismic.KeyTextField;
+
+  /**
+   * Faq field in *Faq → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.default.primary.faq[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  faq: prismic.GroupField<Simplify<FaqSliceDefaultPrimaryFaqItem>>;
+}
+
+/**
+ * Default variation for Faq Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FaqSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FaqSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Faq*
+ */
+type FaqSliceVariation = FaqSliceDefault;
+
+/**
+ * Faq Shared Slice
+ *
+ * - **API ID**: `faq`
+ * - **Description**: Faq
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FaqSlice = prismic.SharedSlice<"faq", FaqSliceVariation>;
+
+/**
  * Item in *RecentWork → Default → Primary → Cards*
  */
 export interface FeaturedCardGridSliceDefaultPrimaryCardsItem {
@@ -1806,6 +1908,11 @@ declare module "@prismicio/client" {
       ContactPanelSliceDefaultPrimary,
       ContactPanelSliceVariation,
       ContactPanelSliceDefault,
+      FaqSlice,
+      FaqSliceDefaultPrimaryFaqItem,
+      FaqSliceDefaultPrimary,
+      FaqSliceVariation,
+      FaqSliceDefault,
       FeaturedCardGridSlice,
       FeaturedCardGridSliceDefaultPrimaryCardsItem,
       FeaturedCardGridSliceDefaultPrimary,

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
+import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -18,5 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function AboutPage() {
   const client = createClient();
   const page = await client.getSingle("about");
-  return <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />;
+  return (
+    <>
+      <BreadcrumbJsonLd label="About" path="/about" />
+      <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
+    </>
+  );
 }

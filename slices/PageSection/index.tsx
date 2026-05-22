@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import type * as prismic from "@prismicio/client";
-import { asLink } from "@prismicio/client";
+import { asLink, asText } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 
 type ProductItem = {
@@ -26,8 +26,30 @@ const PageSection: FC<PageSectionProps> = ({ slice }) => {
   const p = slice.primary as Record<string, unknown>;
   const products = (p.product as ProductItem[]) ?? [];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: products.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Service",
+        name: item.heading ?? "",
+        description: asText(item.description),
+        provider: {
+          "@type": "LocalBusiness",
+          name: "Beam Beam Digital",
+        },
+      },
+    })),
+  };
+
   return (
     <section className="page-section section">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="page-content content">
         {products.map((item, i) => (
           <div

@@ -11,13 +11,10 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "faq": {
+              "type": "SharedSlice"
+            },
             "footer_navigation_and_services_regions": {
-              "type": "SharedSlice"
-            },
-            "featured_card_grid": {
-              "type": "SharedSlice"
-            },
-            "contact_panel": {
               "type": "SharedSlice"
             },
             "hero_banner": {

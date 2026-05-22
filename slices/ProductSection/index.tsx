@@ -2,6 +2,7 @@
 
 import { FC } from "react";
 import type * as prismic from "@prismicio/client";
+import { asText } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 
 type ProductSectionSlice = prismic.SharedSlice<
@@ -23,8 +24,23 @@ const ProductSection: FC<ProductSectionProps> = ({ slice, context }) => {
   const p = slice.primary as Record<string, unknown>;
   const bodyParagraph = p.body_paragraph_one as Parameters<typeof PrismicRichText>[0]["field"];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: slice.primary.heading ?? "",
+    description: asText(bodyParagraph),
+    provider: {
+      "@type": "LocalBusiness",
+      name: "Beam Beam Digital",
+    },
+  };
+
   return (
     <section id="about" className="about section">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="page-content content">
         {slice.primary.heading && (
           <div className="page-title title">

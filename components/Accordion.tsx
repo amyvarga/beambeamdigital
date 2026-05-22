@@ -40,9 +40,9 @@ export default function Accordion({ items }: AccordionProps) {
           ref={el => { itemRefs.current[index] = el; }}
           className={`accordion-item${openIndex === index ? ' accordion--visible' : ''}`}
         >
-          <h2 className="accordion-heading" onClick={() => toggle(index)}>
+          <h3 className="accordion-heading" onClick={() => toggle(index)}>
             {item.heading}
-          </h2>
+          </h3>
           <div className="accordion-body">
             <p className="callToActionLink">
               <a href={item.ctaLink} data-replace={item.ctaLabel}><span>{item.ctaLabel}</span></a>

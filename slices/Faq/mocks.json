@@ -1,0 +1,66 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"faq": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"faq_description",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Nulla ipsum exercitation eu occaecat fugiat duis. In mollit Lorem ut reprehenderit laborum et incididunt culpa. Duis qui quis aliquip elit consectetur id est do ut velit voluptate nulla aliquip enim officia."
+											}
+										}
+									]
+								}
+							],
+							[
+								"faq_title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "climate",
+									"type": "Text"
+								}
+							],
+							[
+								"cta_label",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "private",
+									"type": "Text"
+								}
+							],
+							[
+								"cta_link",
+								{
+									"key": "df64d6f2-c986-4ad8-bfd6-2a398a770806",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://google.com",
+										"text": "sort"
+									}
+								}
+							]
+						]
+					}
+				]
+			},
+			"faq_heading": {
+				"__TYPE__": "FieldContent",
+				"value": "dead",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

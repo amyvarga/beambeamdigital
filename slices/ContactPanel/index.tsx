@@ -90,6 +90,25 @@ const ContactPanel: FC<ContactPanelProps> = ({ slice, context }) => {
     return null;
   };
 
+  const contacts = slice.primary.contacts ?? [];
+  const phone = contacts.find((c) => c.contact_type === "phone")?.contact_label;
+  const email = contacts.find((c) => c.contact_type === "email")?.contact_label;
+  const location = contacts.find((c) => c.contact_type === "location")?.contact_label;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Beam Beam Digital",
+    url: "https://www.beambeam.co.uk/contact",
+    mainEntity: {
+      "@type": "LocalBusiness",
+      name: "Beam Beam Digital",
+      ...(phone && { telephone: phone }),
+      ...(email && { email }),
+      ...(location && { address: location }),
+    },
+  };
+
   return (
     <section
       id="contact"
@@ -97,6 +116,10 @@ const ContactPanel: FC<ContactPanelProps> = ({ slice, context }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="contact-content content fade-in">
         <ContactInfo title={asText(slice.primary.title)} contacts={slice.primary.contacts} className="contact-info" />
           <div className="contact-form">
