@@ -452,7 +452,7 @@ a.nav-link:hover:not(.active) {
 
 .hero-content,
 .services-content,
-.pricing-content {
+.product-content {
     text-align: left;
 }
 
@@ -719,42 +719,67 @@ p.callToAction {
  }
 
 /* ============================================
-   PRICING
+   PRODUCT
    ============================================ */
-.pricing {
+.product-section {
     color: var(--color-2);
     background-color: var(--color-5);
     border-top: none;
-    .pricing-title > h2 {
+    .product-title > h2 {
         color: var(--color-2);
         margin-bottom: calc(var(--gap) / 2);
     }
-    .pricing-text > p {
+    .product-text > p {
         text-align: left;
-    }
-    .pricing-packages {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: calc(var(--gap) / 2) 0;
-        text-align: left;
-
-        h3 {
-            margin-bottom: calc(var(--gap) / 4);
-            color: var(--color-2);
-        }
-        .pricing-package {
-            border: 0.5px solid var(--color-2);
-            border-radius: var(--btn-radius);
-            padding: calc(var(--gap) / 2);
-            scroll-margin-top: calc(var(--scroll-margin-top) + 20px);
-            > p.callToActionLink {
-                text-align: right;
-            }
-        }
     }
 }
 
-.pricing-title > h2 {
+.product-items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: calc(var(--gap) / 2) 0;
+    text-align: left;
+    h3 {
+        margin-bottom: calc(var(--gap) / 4);
+        color: var(--color-2);
+    }
+}
+
+.product-item {
+    border: 0.5px solid var(--color-2);
+    border-radius: var(--btn-radius);
+    scroll-margin-top: calc(var(--scroll-margin-top) + 20px);
+    overflow: hidden;
+}
+
+.product-item-pane-wrapper {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.4s ease;
+    overflow: hidden;
+}
+
+.product-item-pane-wrapper--collapsed {
+    grid-template-rows: 0fr;
+}
+
+.product-item-title {
+    padding: calc(var(--gap) / 2) calc(var(--gap) / 2) 0;
+}
+
+.product-item-pane {
+    min-height: 0;
+}
+
+.product-item-pane-inner {
+    padding: calc(var(--gap) / 2);
+    padding-top: 0;
+    > p.callToActionLink {
+        text-align: right;
+    }
+}
+
+.product-title > h2 {
     color: var(--color-2);
 }
 
@@ -1444,7 +1469,7 @@ select:focus {
 
     .hero-content,
     .services-content,
-    .pricing-content {
+    .product-content {
         text-align: right;
     }
 
@@ -1486,19 +1511,22 @@ select:focus {
         font-size: 50px;
     }
 
-    /* Pricing */
-    .pricing .pricing-title > h2 {
+    /* Product */
+    .product-section .product-title > h2 {
         margin-bottom: var(--gap);
-    }   
-    .pricing {
-        .pricing-packages {
+    }
+    .product-section {
+        .product-items {
             grid-template-columns: repeat(3, 1fr);
             gap: var(--gap);
         }
-        .pricing-package {
+        .product-item-pane-inner {
             padding: var(--gap);
+            padding-top: 0;
         }
-
+    }
+    .product-item-title {
+        padding: var(--gap) var(--gap) 0;
     }
 
     /* About */

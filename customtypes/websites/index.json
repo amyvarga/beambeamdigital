@@ -1,25 +1,16 @@
 {
   "format": "page",
   "id": "websites",
-  "label": "Product Page",
-  "repeatable": true,
+  "label": "Websites",
+  "repeatable": false,
   "status": true,
   "json": {
     "Main": {
-      "uid": {
-        "type": "UID",
-        "config": {
-          "label": "UID"
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "aboutSection": {
-              "type": "SharedSlice"
-            },
             "product_comparison": {
               "type": "SharedSlice"
             },

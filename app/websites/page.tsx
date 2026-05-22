@@ -6,7 +6,7 @@ import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getByUID("websites", "websites");
+  const page = await client.getSingle("websites");
   return {
     title: page.data.meta_title,
     description: page.data.meta_description,
@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function WebsitesPage() {
   const client = createClient();
-  const page = await client.getByUID("websites", "websites");
+  const page = await client.getSingle("websites");
   return (
     <>
       <BreadcrumbJsonLd label="Websites" path="/websites" />

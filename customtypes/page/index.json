@@ -1,7 +1,7 @@
 {
   "format": "page",
   "id": "page",
-  "label": "Page",
+  "label": "Home",
   "repeatable": false,
   "status": true,
   "json": {

@@ -204,16 +204,15 @@ export type ContactDocument<Lang extends string = string> =
   >;
 
 type EcommerceDocumentDataSlicesSlice =
-  | AboutSectionSlice
   | ProductComparisonSlice
   | HeroBannerSlice;
 
 /**
- * Content for Ecommerce Page documents
+ * Content for Ecommerce documents
  */
 interface EcommerceDocumentData {
   /**
-   * Slice Zone field in *Ecommerce Page*
+   * Slice Zone field in *Ecommerce*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -222,7 +221,7 @@ interface EcommerceDocumentData {
    * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<EcommerceDocumentDataSlicesSlice>; /**
-   * Meta Title field in *Ecommerce Page*
+   * Meta Title field in *Ecommerce*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -233,7 +232,7 @@ interface EcommerceDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Ecommerce Page*
+   * Meta Description field in *Ecommerce*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -244,7 +243,7 @@ interface EcommerceDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Ecommerce Page*
+   * Meta Image field in *Ecommerce*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -256,7 +255,7 @@ interface EcommerceDocumentData {
 }
 
 /**
- * Ecommerce Page document from Prismic
+ * Ecommerce document from Prismic
  *
  * - **API ID**: `ecommerce`
  * - **Repeatable**: `false`
@@ -278,11 +277,11 @@ type PageDocumentDataSlicesSlice =
   | MenuNavigationSlice;
 
 /**
- * Content for Page documents
+ * Content for Home documents
  */
 interface PageDocumentData {
   /**
-   * Slice Zone field in *Page*
+   * Slice Zone field in *Home*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -291,7 +290,7 @@ interface PageDocumentData {
    * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<PageDocumentDataSlicesSlice>; /**
-   * Meta Title field in *Page*
+   * Meta Title field in *Home*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -302,7 +301,7 @@ interface PageDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Page*
+   * Meta Description field in *Home*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -313,7 +312,7 @@ interface PageDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Page*
+   * Meta Image field in *Home*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -325,7 +324,7 @@ interface PageDocumentData {
 }
 
 /**
- * Page document from Prismic
+ * Home document from Prismic
  *
  * - **API ID**: `page`
  * - **Repeatable**: `false`
@@ -336,17 +335,14 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type SeoDocumentDataSlicesSlice =
-  | AboutSectionSlice
-  | ProductComparisonSlice
-  | HeroBannerSlice;
+type SeoDocumentDataSlicesSlice = ProductComparisonSlice | HeroBannerSlice;
 
 /**
- * Content for SEO Page documents
+ * Content for SEO documents
  */
 interface SeoDocumentData {
   /**
-   * Slice Zone field in *SEO Page*
+   * Slice Zone field in *SEO*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -355,7 +351,7 @@ interface SeoDocumentData {
    * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<SeoDocumentDataSlicesSlice>; /**
-   * Meta Title field in *SEO Page*
+   * Meta Title field in *SEO*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -366,7 +362,7 @@ interface SeoDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *SEO Page*
+   * Meta Description field in *SEO*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -377,7 +373,7 @@ interface SeoDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *SEO Page*
+   * Meta Image field in *SEO*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -389,7 +385,7 @@ interface SeoDocumentData {
 }
 
 /**
- * SEO Page document from Prismic
+ * SEO document from Prismic
  *
  * - **API ID**: `seo`
  * - **Repeatable**: `false`
@@ -400,17 +396,14 @@ interface SeoDocumentData {
 export type SeoDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<SeoDocumentData>, "seo", Lang>;
 
-type WebsitesDocumentDataSlicesSlice =
-  | AboutSectionSlice
-  | ProductComparisonSlice
-  | HeroBannerSlice;
+type WebsitesDocumentDataSlicesSlice = ProductComparisonSlice | HeroBannerSlice;
 
 /**
- * Content for Product Page documents
+ * Content for Websites documents
  */
 interface WebsitesDocumentData {
   /**
-   * Slice Zone field in *Product Page*
+   * Slice Zone field in *Websites*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -419,7 +412,7 @@ interface WebsitesDocumentData {
    * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<WebsitesDocumentDataSlicesSlice>; /**
-   * Meta Title field in *Product Page*
+   * Meta Title field in *Websites*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -430,7 +423,7 @@ interface WebsitesDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Product Page*
+   * Meta Description field in *Websites*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -441,7 +434,7 @@ interface WebsitesDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Product Page*
+   * Meta Image field in *Websites*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -453,16 +446,16 @@ interface WebsitesDocumentData {
 }
 
 /**
- * Product Page document from Prismic
+ * Websites document from Prismic
  *
  * - **API ID**: `websites`
- * - **Repeatable**: `true`
+ * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
 export type WebsitesDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
+  prismic.PrismicDocumentWithoutUID<
     Simplify<WebsitesDocumentData>,
     "websites",
     Lang
@@ -475,11 +468,11 @@ type WorkDocumentDataSlicesSlice =
   | FooterNavigationAndServicesRegionsSlice;
 
 /**
- * Content for Work documents
+ * Content for Portfolio documents
  */
 interface WorkDocumentData {
   /**
-   * Slice Zone field in *Work*
+   * Slice Zone field in *Portfolio*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -488,7 +481,7 @@ interface WorkDocumentData {
    * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<WorkDocumentDataSlicesSlice>; /**
-   * Meta Title field in *Work*
+   * Meta Title field in *Portfolio*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -499,7 +492,7 @@ interface WorkDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Work*
+   * Meta Description field in *Portfolio*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -510,7 +503,7 @@ interface WorkDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Work*
+   * Meta Image field in *Portfolio*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -522,7 +515,7 @@ interface WorkDocumentData {
 }
 
 /**
- * Work document from Prismic
+ * Portfolio document from Prismic
  *
  * - **API ID**: `work`
  * - **Repeatable**: `false`
@@ -543,189 +536,48 @@ export type AllDocumentTypes =
   | WorkDocument;
 
 /**
- * Item in *Page Section → Default → Primary → Product*
+ * Primary content in *Page Section → Default → Primary*
  */
-export interface AboutSectionSliceDefaultPrimaryProductItem {
+export interface AboutSectionSliceDefaultPrimary {
   /**
-   * Inline link field in *Page Section → Default → Primary → Product*
+   * Heading field in *Page Section → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[].inline_link
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  inline_link: prismic.KeyTextField;
-
-  /**
-   * Heading field in *Page Section → Default → Primary → Product*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[].heading
+   * - **API ID Path**: aboutSection.default.primary.heading
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   heading: prismic.KeyTextField;
 
   /**
-   * Description field in *Page Section → Default → Primary → Product*
+   * Body Paragraph One field in *Page Section → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[].description
+   * - **API ID Path**: aboutSection.default.primary.body_paragraph_one
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  description: prismic.RichTextField;
+  body_paragraph_one: prismic.RichTextField;
 
   /**
-   * CTA Text field in *Page Section → Default → Primary → Product*
+   * CTA Text field in *Page Section → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[].cta_text
+   * - **Placeholder**: Ready to work together?
+   * - **API ID Path**: aboutSection.default.primary.cta_text
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   cta_text: prismic.KeyTextField;
 
   /**
-   * CTA Link field in *Page Section → Default → Primary → Product*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[].cta_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  cta_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-}
-
-/**
- * Primary content in *Page Section → Default → Primary*
- */
-export interface AboutSectionSliceDefaultPrimary {
-  /**
-   * Product field in *Page Section → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[]
-   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-   */
-  product: prismic.GroupField<
-    Simplify<AboutSectionSliceDefaultPrimaryProductItem>
-  >;
-}
-
-/**
- * Default variation for Page Section Slice
- *
- * - **API ID**: `default`
- * - **Description**: Standard about section with image, heading, and body text.
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type AboutSectionSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<AboutSectionSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *Page Section*
- */
-type AboutSectionSliceVariation = AboutSectionSliceDefault;
-
-/**
- * Page Section Shared Slice
- *
- * - **API ID**: `aboutSection`
- * - **Description**: *None*
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type AboutSectionSlice = prismic.SharedSlice<
-  "aboutSection",
-  AboutSectionSliceVariation
->;
-
-/**
- * Item in *Page Section → Default → Primary → Product*
- */
-export interface AboutSectionSliceDefaultPrimaryProductItem {
-  /**
-   * Inline link field in *Page Section → Default → Primary → Product*
+   * CTA Button Label field in *Page Section → Default → Primary*
    *
    * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[].inline_link
+   * - **Placeholder**: Get in touch
+   * - **API ID Path**: aboutSection.default.primary.cta_button_label
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  inline_link: prismic.KeyTextField;
-
-  /**
-   * Heading field in *Page Section → Default → Primary → Product*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[].heading
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  heading: prismic.KeyTextField;
-
-  /**
-   * Description field in *Page Section → Default → Primary → Product*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[].description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  description: prismic.RichTextField;
-
-  /**
-   * CTA Text field in *Page Section → Default → Primary → Product*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[].cta_text
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  cta_text: prismic.KeyTextField;
-
-  /**
-   * CTA Link field in *Page Section → Default → Primary → Product*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[].cta_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  cta_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-}
-
-/**
- * Primary content in *Page Section → Default → Primary*
- */
-export interface AboutSectionSliceDefaultPrimary {
-  /**
-   * Product field in *Page Section → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: aboutSection.default.primary.product[]
-   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-   */
-  product: prismic.GroupField<
-    Simplify<AboutSectionSliceDefaultPrimaryProductItem>
-  >;
+  cta_button_label: prismic.KeyTextField;
 }
 
 /**
@@ -1795,6 +1647,16 @@ export interface ProductComparisonSliceDefaultPrimaryProductItem {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   product_inline_link: prismic.KeyTextField;
+
+  /**
+   * product details  field in *ProductComparison → Default → Primary → Product*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_comparison.default.primary.product[].product_details
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  product_details: prismic.RichTextField;
 }
 
 /**
@@ -1888,12 +1750,6 @@ declare module "@prismicio/client" {
       WorkDocumentDataSlicesSlice,
       AllDocumentTypes,
       AboutSectionSlice,
-      AboutSectionSliceDefaultPrimaryProductItem,
-      AboutSectionSliceDefaultPrimary,
-      AboutSectionSliceVariation,
-      AboutSectionSliceDefault,
-      AboutSectionSlice,
-      AboutSectionSliceDefaultPrimaryProductItem,
       AboutSectionSliceDefaultPrimary,
       AboutSectionSliceVariation,
       AboutSectionSliceDefault,

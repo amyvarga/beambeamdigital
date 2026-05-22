@@ -1,7 +1,7 @@
 {
   "format": "page",
   "id": "ecommerce",
-  "label": "Ecommerce Page",
+  "label": "Ecommerce",
   "repeatable": false,
   "status": true,
   "json": {
@@ -11,9 +11,6 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "aboutSection": {
-              "type": "SharedSlice"
-            },
             "product_comparison": {
               "type": "SharedSlice"
             },

@@ -46,6 +46,20 @@
 									"value": "stuck",
 									"type": "Text"
 								}
+							],
+							[
+								"product_details",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Dolor eu magna enim dolore ut velit eu nostrud commodo. Irure elit et deserunt labore irure ex fugiat ut esse cupidatat irure aliqua sunt. Consequat eiusmod dolore duis elit consectetur laborum ex id enim adipisicing voluptate est irure amet."
+											}
+										}
+									]
+								}
 							]
 						]
 					}
