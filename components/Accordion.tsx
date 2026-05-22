@@ -27,7 +27,13 @@ export default function Accordion({ items }: AccordionProps) {
     }
     if (isOpening) {
       setTimeout(() => {
-        itemRefs.current[index]?.scrollIntoView({ behavior: "smooth", block: "start" });
+        const el = itemRefs.current[index];
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const scrollMargin = parseInt(getComputedStyle(el).scrollMarginTop) || 130;
+        if (rect.top < scrollMargin) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       }, 1000);
     }
   };
