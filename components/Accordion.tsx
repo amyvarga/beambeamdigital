@@ -63,16 +63,16 @@ export default function Accordion({ items }: AccordionProps) {
             >
               <div
                 onClick={() => toggle(index)}
-                className="bg-[var(--color-2)] flex justify-between p-[calc(var(--gap)/2)] min-[1135px]:p-[var(--gap)] items-center transition ease duration-500 cursor-pointer pr-10 relative"
+                className="bg-[var(--color-2)] flex justify-between p-[calc(var(--gap)/2)] min-[1135px]:p-[var(--gap)] items-center [transition:var(--transition)] cursor-pointer pr-10 relative"
               >
-                <div className={`text-[var(--color-5)] transition ease duration-500 ${isOpen ? 'font-semibold' : ''}`}>
+                <div className={`text-[var(--color-5)] [transition:var(--transition)] ${isOpen ? 'font-semibold' : ''}`}>
                   <h3 className="font-[family-name:var(--font-cormorant-garamond)]!">{item.heading}</h3>
                 </div>
-                <div className={`h-8 w-8 border border-[var(--color-5)] rounded-full items-center inline-flex justify-center transform transition ease duration-500 text-[var(--color-5)] absolute top-0 right-0 mb-auto ml-auto mt-[calc(var(--gap)/2)] min-[1135px]:mt-[var(--gap)] mr-[calc(var(--gap)/2)] min-[1135px]:mr-[var(--gap)] ${isOpen ? '-rotate-180' : ''}`}>
+                <div className={`h-8 w-8 border border-[var(--color-5)] rounded-full items-center inline-flex justify-center transform [transition:var(--transition)] text-[var(--color-5)] absolute top-0 right-0 mb-auto ml-auto mt-[calc(var(--gap)/2)] min-[1135px]:mt-[var(--gap)] mr-[calc(var(--gap)/2)] min-[1135px]:mr-[var(--gap)] ${isOpen ? '-rotate-180' : ''}`}>
                   <FontAwesomeIcon icon={faChevronDown} />
                 </div>
               </div>
-              <div className={`bg-[var(--color-5)] border border-[var(--color-2)] overflow-hidden transition-[max-height] ease duration-500 ${isOpen ? 'max-h-[3000px] p-[calc(var(--gap)/2)] min-[1135px]:p-[var(--gap)]' : 'max-h-0'}`}>
+              <div className={`bg-[var(--color-5)] border border-[var(--color-2)] overflow-hidden [transition:max-height_var(--transition)] ${isOpen ? 'max-h-[3000px] p-[calc(var(--gap)/2)] min-[1135px]:p-[var(--gap)]' : 'max-h-0'}`}>
                 {item.body}
                 {item.ctaLabel && item.ctaLink && (
                   <p className="callToActionLink text-right mr-[1em]">
