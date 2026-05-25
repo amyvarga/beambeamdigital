@@ -72,13 +72,15 @@ export default function Accordion({ items }: AccordionProps) {
                   <FontAwesomeIcon icon={faChevronDown} />
                 </div>
               </div>
-              <div className={`bg-[var(--color-5)] border border-[var(--color-2)] overflow-hidden [transition:max-height_var(--transition)] ${isOpen ? 'max-h-[3000px] p-[calc(var(--gap)/2)] min-[1135px]:p-[var(--gap)]' : 'max-h-0'}`}>
-                {item.body}
-                {item.ctaLabel && item.ctaLink && (
-                  <p className="callToActionLink text-right mr-[1em]">
-                    <a href={item.ctaLink} data-replace={item.ctaLabel}><span>{item.ctaLabel}</span></a>
-                  </p>
-                )}
+              <div className={`bg-[var(--color-5)] overflow-hidden [transition:max-height_var(--transition)] ${isOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
+                <div className={`p-[calc(var(--gap)/2)] min-[1135px]:p-[var(--gap)]`}>
+                  {item.body}
+                  {item.ctaLabel && item.ctaLink && (
+                    <p className="callToActionLink text-right mr-[1em]">
+                      <a href={item.ctaLink} data-replace={item.ctaLabel}><span>{item.ctaLabel}</span></a>
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           );
