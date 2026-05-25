@@ -28,10 +28,12 @@
 /* ============================================
    RESET
    ============================================ */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+@layer base {
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 }
 
 /* ============================================
@@ -423,7 +425,7 @@ a.nav-link:hover:not(.active) {
 .hero-section {
     position: sticky;
     top: 0;
-    z-index: 0;
+    z-index: 2;
     padding-top: var(--gap);
 }
 
@@ -485,87 +487,6 @@ a.nav-link:hover:not(.active) {
     background-color: var(--color-5);
 }
 
-/* ============================================
-   ACCORDION
-   ============================================ */
-.accordion {
-    display: grid;
-    flex-direction: column;
-    width: 100%;
-    color: var(--color-2);
-    margin-top: calc(var(--gap) / 2);
-}
-
-.accordion-item {
-    display: grid;
-    grid-template-rows: min-content 0fr;
-    transition: grid-template-rows 1s ease;
-    scroll-margin-top: var(--scroll-margin-top);
-}
-
-.accordion-item:first-child {
-    padding: 0;
-}
-
-.accordion-item.accordion--visible {
-    grid-template-rows: min-content 1fr;
-    .accordion-heading {
-        font-weight: 600;
-    }
-}
-
-.accordion-heading {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    font-family: var(--font-cormorant-garamond);
-    color: var(--color-2);
-    user-select: none;
-    padding-bottom: calc(var(--gap) / 2);
-    border-bottom: 0.5px solid var(--color-2);
-    transition: border-bottom-color var(--transition), padding-bottom var(--transition), font-weight var(--transition);
-}
-
-.accordion-heading::-webkit-details-marker {
-    display: none;
-}
-
-.accordion-heading::after {
-    content: '+';
-    font-size: 50px;
-    font-weight: 300;
-    transition: transform var(--transition);
-    flex-shrink: 0;
-}
-
-.accordion-item.accordion--visible .accordion-heading::after {
-    transform: rotate(45deg);
-}
-
-.accordion-body {
-    overflow: hidden;
-    min-height: 0;
-    opacity: 0;
-    transition: opacity 0.3s ease 0s;
-    color: var(--color-2);
-    text-align: left;
-    > p.callToActionLink {
-        text-align:right;
-        margin-right: 1em;
-    }
-    & p.callToActionLink:first-of-type {
-        margin-left: 0;
-        margin-top: 0;
-    }
-}
-
-.accordion-item.accordion--visible .accordion-body {
-    opacity: 1;
-    transition: opacity 0.1s ease 0.6s;
-    margin-bottom: calc(var(--gap) / 2);
-}
 
 /* ============================================
    ABOUT
@@ -666,7 +587,7 @@ p.callToAction {
 }
  p.callToActionLink {
     margin: calc(var(--gap) /2) 0; 
-    text-align: left;
+    text-align: right;
     > a {
         color: var(--color-2);
         overflow: hidden;
@@ -1556,7 +1477,6 @@ select:focus {
     p.callToActionLink {
         margin: var(--gap) 0;
     }
-
 
     .masonry {
         margin: 0;

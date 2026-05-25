@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Content, isFilled } from "@prismicio/client";
-import { SliceComponentProps, PrismicLink } from "@prismicio/react";
+import { Content } from "@prismicio/client";
+import { SliceComponentProps} from "@prismicio/react";
 
 export type FooterProps =
   SliceComponentProps<Content.FooterNavigationAndServicesRegionsSlice>;
