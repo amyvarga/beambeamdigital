@@ -23,8 +23,8 @@ export default function ProductCard({ title, briefDescription, ctaText, details,
     const onEnd = () => {
       const el = cardRef.current;
       if (!el) return;
-      const nav = document.querySelector('.nav') as HTMLElement;
-      const offset = nav ? nav.offsetHeight + 20 : 150;
+      const hero = document.querySelector('.hero-section') as HTMLElement;
+      const offset = hero ? hero.offsetHeight + 20 : 150;
       const top = el.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
       expandingWrapper.removeEventListener('transitionend', onEnd);
