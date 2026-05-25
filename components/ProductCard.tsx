@@ -21,7 +21,12 @@ export default function ProductCard({ title, briefDescription, ctaText, details,
   const scrollToCard = (expandingWrapper: HTMLDivElement | null) => {
     if (!expandingWrapper) return;
     const onEnd = () => {
-      cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const el = cardRef.current;
+      if (!el) return;
+      const nav = document.querySelector('.nav') as HTMLElement;
+      const offset = nav ? nav.offsetHeight + 20 : 150;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
       expandingWrapper.removeEventListener('transitionend', onEnd);
     };
     expandingWrapper.addEventListener('transitionend', onEnd);
