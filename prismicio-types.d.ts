@@ -204,8 +204,10 @@ export type ContactDocument<Lang extends string = string> =
   >;
 
 type EcommerceDocumentDataSlicesSlice =
+  | MenuNavigationSlice
+  | HeroBannerSlice
   | ProductComparisonSlice
-  | HeroBannerSlice;
+  | FooterNavigationAndServicesRegionsSlice;
 
 /**
  * Content for Ecommerce documents
@@ -335,7 +337,11 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type SeoDocumentDataSlicesSlice = ProductComparisonSlice | HeroBannerSlice;
+type SeoDocumentDataSlicesSlice =
+  | MenuNavigationSlice
+  | HeroBannerSlice
+  | ProductComparisonSlice
+  | FooterNavigationAndServicesRegionsSlice;
 
 /**
  * Content for SEO documents
@@ -396,7 +402,11 @@ interface SeoDocumentData {
 export type SeoDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<SeoDocumentData>, "seo", Lang>;
 
-type WebsitesDocumentDataSlicesSlice = ProductComparisonSlice | HeroBannerSlice;
+type WebsitesDocumentDataSlicesSlice =
+  | MenuNavigationSlice
+  | HeroBannerSlice
+  | ProductComparisonSlice
+  | FooterNavigationAndServicesRegionsSlice;
 
 /**
  * Content for Websites documents
@@ -526,11 +536,76 @@ interface WorkDocumentData {
 export type WorkDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<WorkDocumentData>, "work", Lang>;
 
+/**
+ * Content for Article documents
+ */
+interface ArticleDocumentData {
+  title: prismic.TitleField;
+  date: prismic.DateField;
+  author: prismic.KeyTextField;
+  featured_image: prismic.ImageField<never>;
+  excerpt: prismic.KeyTextField;
+  body: prismic.RichTextField;
+  meta_title: prismic.KeyTextField;
+  meta_description: prismic.KeyTextField;
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Article document from Prismic
+ *
+ * - **API ID**: `article`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ArticleDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ArticleDocumentData>,
+    "article",
+    Lang
+  >;
+
+type ResourcesDocumentDataSlicesSlice =
+  | HeroBannerSlice
+  | AboutSectionSlice
+  | MenuNavigationSlice
+  | FooterNavigationAndServicesRegionsSlice;
+
+/**
+ * Content for Resources documents
+ */
+interface ResourcesDocumentData {
+  slices: prismic.SliceZone<ResourcesDocumentDataSlicesSlice>;
+  meta_title: prismic.KeyTextField;
+  meta_description: prismic.KeyTextField;
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Resources document from Prismic
+ *
+ * - **API ID**: `resources`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ResourcesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ResourcesDocumentData>,
+    "resources",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | AboutDocument
+  | ArticleDocument
   | ContactDocument
   | EcommerceDocument
   | PageDocument
+  | ResourcesDocument
   | SeoDocument
   | WebsitesDocument
   | WorkDocument;
@@ -1730,6 +1805,8 @@ declare module "@prismicio/client" {
       AboutDocument,
       AboutDocumentData,
       AboutDocumentDataSlicesSlice,
+      ArticleDocument,
+      ArticleDocumentData,
       ContactDocument,
       ContactDocumentData,
       ContactDocumentDataSlicesSlice,
@@ -1739,6 +1816,8 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      ResourcesDocument,
+      ResourcesDocumentData,
       SeoDocument,
       SeoDocumentData,
       SeoDocumentDataSlicesSlice,

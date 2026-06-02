@@ -120,22 +120,6 @@ a:hover {
     outline: 0;
 }
 
-/*#main-content {
-    a,
-    a.btn {
-        color: var(--color-2);
-        border-bottom: .5px solid;
-    }
-    a.btn-primary {
-        color: var(--color-5);
-    }
-    &.hover {
-        border-bottom: 0;
-    }
-}*/
-
-
-
 a:visited {
     font-weight: inherit;
 }
@@ -585,9 +569,11 @@ p.callToAction {
         color: var(--color-2);
     }
 }
- p.callToActionLink {
+ p.callToActionLink,
+ span.callToActionLink {
     margin: calc(var(--gap) /2) 0; 
     text-align: right;
+    float:right;
     > a {
         color: var(--color-2);
         overflow: hidden;
@@ -661,7 +647,6 @@ p.callToAction {
     gap: calc(var(--gap) / 2) 0;
     text-align: left;
     h3 {
-        margin-bottom: calc(var(--gap) / 4);
         color: var(--color-2);
     }
 }
@@ -816,6 +801,8 @@ p.callToAction {
 .carousel-dot.active {
     background: var(--color-1);
 }
+
+/* article */
 
 /* Work card */
 .work-card {
@@ -1076,20 +1063,6 @@ input:-webkit-autofill:active {
     text-align: center;
 }
 /* ============================================
-   AREAS COVERED
-   ============================================ */
-.areas-covered-group {
-    > h2 {
-        margin-bottom: calc(var(--gap) / 2);
-    }
-    & + .areas-covered-group > h2 {
-        margin-top: calc(var(--gap) / 2);
-    }
-    ul li a {
-        color: var(--color-2);
-    }
-}
-/* ============================================
    PRODUCT PAGE
    ============================================ */
   .page-section {
@@ -1098,7 +1071,8 @@ input:-webkit-autofill:active {
         background-color: var(--color-5);
     }
 
-   .page-text h4 {
+   .product-item-pane-inner.includes h4, 
+   .product-item-pane-inner.includes li {
         &:before {
             content: "✓";
             position: relative;
@@ -1110,7 +1084,6 @@ input:-webkit-autofill:active {
     .page-section-item {
         scroll-margin-top: var(--scroll-margin-top);
     }
-    
    
 /* ============================================
    FOOTER
@@ -1167,6 +1140,91 @@ ul.seo-links li::after {
 
 ul.seo-links li:last-child::after {
     content: "";
+}
+
+/* ============================================
+   RESOURCES
+   ============================================ */
+.article-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap);
+    margin-top: calc(var(--gap) * 2);
+}
+
+.article-card {
+    display: flex;
+    flex-direction: column;
+    border: 0.5px solid var(--color-2);
+    border-radius: var(--btn-radius);
+    overflow: hidden;
+    color: var(--color-2);
+    transition: transform var(--transition);
+}
+
+.article-card:hover {
+    transform: translateY(-4px);
+    color: var(--color-2);
+}
+
+.article-card-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.article-card-body {
+    padding: calc(var(--gap) / 2);
+}
+
+.article-card-body h2 {
+    margin-bottom: calc(var(--gap) / 4);
+}
+
+.article-meta {
+    font-size: 1rem;
+    color: var(--color-2);
+    font-family: var(--font-family);
+    margin-bottom: calc(var(--gap) / 4);
+}
+
+.article-excerpt {
+    font-size: 0.9rem;
+    margin-top: calc(var(--gap) / 4);
+}
+
+.article-content {
+    width: 100%;
+}
+
+.article-hero-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: var(--btn-radius);
+    margin-bottom: calc(var(--gap) * 2);
+}
+
+.article-header {
+    margin-bottom: calc(var(--gap) * 2);
+}
+
+.article-body {
+    color: var(--color-2);
+}
+
+.article-body h2,
+.article-body h3,
+.article-body h4 {
+    margin-top: calc(var(--gap) * 2);
+}
+
+.article-body a {
+    color: var(--color-2);
+    border-bottom: 0.5px solid var(--color-2);
+}
+
+.article-body a:hover {
+    opacity: 0.7;
 }
 
 /* ============================================
@@ -1255,7 +1313,7 @@ select:focus {
     h3 {
         font-size: clamp(21px, 1.2vw, 24px);
         font-weight: 500;
-        margin: 0.5em 0;
+        margin: 1em 0;
     }
 
     h4 {
@@ -1573,6 +1631,10 @@ select:focus {
 
     .areas-covered-group + .areas-covered-group > h2 {
         margin-top: var(--gap);
+    }
+
+    .article-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 
 }

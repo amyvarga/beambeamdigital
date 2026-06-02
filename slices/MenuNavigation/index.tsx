@@ -15,7 +15,7 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
     document.querySelectorAll("a.nav-link").forEach((link) => {
       const href = link.getAttribute("href") ?? "";
       const linkPath = href.startsWith("http") ? new URL(href).pathname : href;
-      link.classList.toggle("active", !!linkPath && pathname === linkPath);
+      link.classList.toggle("active", !!linkPath && (pathname === linkPath || pathname.startsWith(linkPath + "/")));
     });
 
     document.querySelectorAll(".nav-dropdown-toggle").forEach((toggle) => {

@@ -40,7 +40,7 @@ const Faq: FC<FaqProps> = ({ slice }) => {
       />
       <div className="content">
         {slice.primary.faq_heading && (
-          <h3 className="fade-in">{slice.primary.faq_heading}</h3>
+          <h2 className="fade-in">{slice.primary.faq_heading}</h2>
         )}
         <Accordion items={items} />
       </div>

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
+import LatestArticles from "@/components/LatestArticles";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -22,5 +23,10 @@ export default async function Home() {
     (s) => s.slice_type !== "menu_navigation" && s.slice_type !== "footer_navigation_and_services_regions"
   );
 
-  return <SliceZone slices={contentSlices} components={components} />;
+  return (
+    <>
+      <SliceZone slices={contentSlices} components={components} />
+      <LatestArticles />
+    </>
+  );
 }

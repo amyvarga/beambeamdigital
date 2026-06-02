@@ -3,6 +3,7 @@ import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import LatestArticles from "@/components/LatestArticles";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -23,6 +24,7 @@ export default async function SeoPage() {
     <>
       <BreadcrumbJsonLd label="SEO" path="/seo" />
       <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
+      <LatestArticles />
     </>
   );
 }

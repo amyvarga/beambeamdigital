@@ -49,7 +49,7 @@ export default function ProductCard({ title, briefDescription, ctaText, details,
       {title && <div className="product-item-title"><HeadingTag>{title}</HeadingTag></div>}
       <div ref={pane0WrapperRef} className={`product-item-pane-wrapper${pane !== 0 ? ' product-item-pane-wrapper--collapsed' : ''}`}>
         <div className="product-item-pane">
-          <div className="product-item-pane-inner">
+          <div className="product-item-pane-inner pricing">
             <PrismicRichText field={briefDescription} />
             {ctaText && (
               <p className="callToActionLink">
@@ -63,7 +63,7 @@ export default function ProductCard({ title, briefDescription, ctaText, details,
       </div>
       <div ref={pane1WrapperRef} className={`product-item-pane-wrapper${pane !== 1 ? ' product-item-pane-wrapper--collapsed' : ''}`}>
         <div className="product-item-pane">
-          <div className="product-item-pane-inner">
+          <div className="product-item-pane-inner includes">
             <PrismicRichText field={details} />
             <p className="callToActionLink">
               <a href="#" data-replace="View Pricing" onClick={goToPricing}>
