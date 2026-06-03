@@ -12,6 +12,8 @@ type ProductItem = {
   product_inline_link: prismic.KeyTextField;
   product_inline_link_text: prismic.KeyTextField;
   product_details: prismic.RichTextField;
+  cta_text: prismic.KeyTextField;
+  cta_link: prismic.LinkField;
 };
 
 type ProductComparisonSlice = prismic.SharedSlice<
@@ -70,6 +72,8 @@ const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
               ctaText={item.product_inline_link_text ?? null}
               details={item.product_details}
               HeadingTag={HeadingTag}
+              cta_text={item.cta_text ?? null}
+              cta_link={item.cta_link ?? null}
             />
           ))}
         </div>

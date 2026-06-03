@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import type * as prismic from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
+import { PrismicNextLink } from '@prismicio/next';
 
 interface ProductCardProps {
   title: string | null;
@@ -10,9 +11,11 @@ interface ProductCardProps {
   ctaText: string | null;
   details: prismic.RichTextField;
   HeadingTag: 'h2' | 'h3';
+  cta_text: string | null;
+  cta_link: prismic.LinkField | null;
 }
 
-export default function ProductCard({ title, briefDescription, ctaText, details, HeadingTag }: ProductCardProps) {
+export default function ProductCard({ title, briefDescription, ctaText, details, HeadingTag, cta_text, cta_link }: ProductCardProps) {
   const [pane, setPane] = useState<0 | 1>(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const pane0WrapperRef = useRef<HTMLDivElement>(null);
@@ -73,6 +76,13 @@ export default function ProductCard({ title, briefDescription, ctaText, details,
           </div>
         </div>
       </div>
+      {cta_text && cta_link && (
+        <div className="flex justify-center mt-[calc(var(--gap)*2)] mb-[calc(var(--gap)*2)]">
+          <PrismicNextLink field={cta_link} className="btn">
+            {cta_text}
+          </PrismicNextLink>
+        </div>
+      )}
     </div>
   );
 }

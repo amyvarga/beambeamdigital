@@ -134,6 +134,152 @@ interface AboutDocumentData {
 export type AboutDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
 
+/**
+ * Content for Article documents
+ */
+interface ArticleDocumentData {
+  /**
+   * Title field in *Article*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Published date field in *Article*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  date: prismic.DateField;
+
+  /**
+   * Author field in *Article*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Amy Varga
+   * - **API ID Path**: article.author
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author: prismic.KeyTextField;
+
+  /**
+   * Featured image field in *Article*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.featured_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  featured_image: prismic.ImageField<never>;
+
+  /**
+   * Excerpt field in *Article*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Short summary for listing card
+   * - **API ID Path**: article.excerpt
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  excerpt: prismic.KeyTextField;
+
+  /**
+   * Body field in *Article*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.body
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * CTA Text field in *Article*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.cta_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *Article*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.cta_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >; /**
+   * Meta Title field in *Article*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: article.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Article*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: article.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Article*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Article document from Prismic
+ *
+ * - **API ID**: `article`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ArticleDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ArticleDocumentData>,
+    "article",
+    Lang
+  >;
+
 type ContactDocumentDataSlicesSlice =
   | MenuNavigationSlice
   | HeroBannerSlice
@@ -337,6 +483,75 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<PageDocumentData>, "page", Lang>;
 
+type ResourcesDocumentDataSlicesSlice =
+  | HeroBannerSlice
+  | AboutSectionSlice
+  | MenuNavigationSlice
+  | FooterNavigationAndServicesRegionsSlice;
+
+/**
+ * Content for Resources documents
+ */
+interface ResourcesDocumentData {
+  /**
+   * Slice Zone field in *Resources*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: resources.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<ResourcesDocumentDataSlicesSlice>; /**
+   * Meta Title field in *Resources*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: resources.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Resources*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: resources.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Resources*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: resources.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Resources document from Prismic
+ *
+ * - **API ID**: `resources`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ResourcesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ResourcesDocumentData>,
+    "resources",
+    Lang
+  >;
+
 type SeoDocumentDataSlicesSlice =
   | MenuNavigationSlice
   | HeroBannerSlice
@@ -535,69 +750,6 @@ interface WorkDocumentData {
  */
 export type WorkDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<WorkDocumentData>, "work", Lang>;
-
-/**
- * Content for Article documents
- */
-interface ArticleDocumentData {
-  title: prismic.TitleField;
-  date: prismic.DateField;
-  author: prismic.KeyTextField;
-  featured_image: prismic.ImageField<never>;
-  excerpt: prismic.KeyTextField;
-  body: prismic.RichTextField;
-  meta_title: prismic.KeyTextField;
-  meta_description: prismic.KeyTextField;
-  meta_image: prismic.ImageField<never>;
-}
-
-/**
- * Article document from Prismic
- *
- * - **API ID**: `article`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/content-modeling
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type ArticleDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<ArticleDocumentData>,
-    "article",
-    Lang
-  >;
-
-type ResourcesDocumentDataSlicesSlice =
-  | HeroBannerSlice
-  | AboutSectionSlice
-  | MenuNavigationSlice
-  | FooterNavigationAndServicesRegionsSlice;
-
-/**
- * Content for Resources documents
- */
-interface ResourcesDocumentData {
-  slices: prismic.SliceZone<ResourcesDocumentDataSlicesSlice>;
-  meta_title: prismic.KeyTextField;
-  meta_description: prismic.KeyTextField;
-  meta_image: prismic.ImageField<never>;
-}
-
-/**
- * Resources document from Prismic
- *
- * - **API ID**: `resources`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/content-modeling
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type ResourcesDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<ResourcesDocumentData>,
-    "resources",
-    Lang
-  >;
 
 export type AllDocumentTypes =
   | AboutDocument
@@ -1732,6 +1884,32 @@ export interface ProductComparisonSliceDefaultPrimaryProductItem {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   product_details: prismic.RichTextField;
+
+  /**
+   * CTA Text field in *ProductComparison → Default → Primary → Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_comparison.default.primary.product[].cta_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *ProductComparison → Default → Primary → Product*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_comparison.default.primary.product[].cta_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
@@ -1818,6 +1996,7 @@ declare module "@prismicio/client" {
       PageDocumentDataSlicesSlice,
       ResourcesDocument,
       ResourcesDocumentData,
+      ResourcesDocumentDataSlicesSlice,
       SeoDocument,
       SeoDocumentData,
       SeoDocumentDataSlicesSlice,

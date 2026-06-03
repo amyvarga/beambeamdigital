@@ -60,6 +60,26 @@
 										}
 									]
 								}
+							],
+							[
+								"cta_text",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "water",
+									"type": "Text"
+								}
+							],
+							[
+								"cta_link",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "695dcc5c-4bdd-4f9b-a5a8-93e84e945744",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://twitter.com",
+										"text": "improve"
+									}
+								}
 							]
 						]
 					}

@@ -55,7 +55,27 @@
         "type": "StructuredText",
         "config": {
           "label": "Body",
-          "multi": "paragraph,strong,em,hyperlink,image,embed,preformatted,list-item,o-list-item,heading2,heading3,heading4"
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading2,heading3,heading4,strong,em,hyperlink,embed,list-item,o-list-item,image"
+        }
+      },
+      "cta_text": {
+        "type": "Text",
+        "config": {
+          "label": "CTA Text",
+          "placeholder": ""
+        }
+      },
+      "cta_link": {
+        "type": "Link",
+        "config": {
+          "label": "CTA Link",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
         }
       }
     },

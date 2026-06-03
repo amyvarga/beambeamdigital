@@ -116,7 +116,7 @@ a {
     outline: 0;
 }
 a:hover {
-    color: var(--color-5);
+    color: var(--color-2);
     outline: 0;
 }
 
@@ -156,18 +156,19 @@ a:focus-visible {
     transition: all var(--transition);
     min-height: var(--mobile-icon-size);
     min-width: var(--mobile-icon-size);
-    color: var(--color-5);
+    color: var(--color-2);
     border: 0.5px solid;
     padding: calc(var(--gap) / 5);
     border-radius: var(--btn-radius);
+    width: 80%;
 }
 
-.btn-primary:hover,
-.btn-primary:focus {
+a.btn:hover,
+a.btn:focus {
     background-color: rgba(148, 149, 152, 0.18);
 }
 
-.btn-primary:focus {
+.btn:focus {
     outline: none;
 }
 
@@ -265,8 +266,15 @@ li {
     max-height: 0;
     overflow: hidden;
     transition: max-height var(--transition);
+   
     > li {
         margin-top: calc(var(--gap) / 2);
+        a {
+             white-space: nowrap;
+             &:hover {
+                color: var(--color-5);
+             }
+        }
     }
 }
 
@@ -557,11 +565,13 @@ a.nav-link:hover:not(.active) {
 }
 
 
-p:has(+ .callToAction) {
+p:has(+ .callToAction), 
+div:has(+ .callToAction) {
     margin-bottom: 0;
 }
 
-p.callToAction {
+p.callToAction,
+div.callToAction {
     margin: calc(var(--gap) / 2) auto 0 auto; 
     text-align: center;
     > a.btn {
@@ -570,7 +580,8 @@ p.callToAction {
     }
 }
  p.callToActionLink,
- span.callToActionLink {
+ span.callToActionLink,
+ div.callToActionLink {
     margin: calc(var(--gap) /2) 0; 
     text-align: right;
     float:right;
@@ -621,6 +632,10 @@ p.callToAction {
             &a:hover span {
             transform: translate3d(-200%, 0, 0);
             }
+    }
+    p.callToActionLink,
+    div.callToActionLink {
+         width: 100%;
     }
 
  }
@@ -1188,8 +1203,13 @@ ul.seo-links li:last-child::after {
 }
 
 .article-excerpt {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-top: calc(var(--gap) / 4);
+}
+
+.article-excerpt::after {
+    content: " ... Read More →";
+    border-bottom: 0.5px solid currentColor;
 }
 
 .article-content {

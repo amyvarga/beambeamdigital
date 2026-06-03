@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { createClient } from "@/prismicio";
-import { asText } from "@prismicio/client";
+import { asText, asLink } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { notFound } from "next/navigation";
@@ -99,15 +99,19 @@ export default async function ArticlePage({ params }: Props) {
               {article.data.author && <span> · {article.data.author}</span>}
             </p>
           </header>
-          <p className="callToActionLink">
+          <div className="callToActionLink">
             <a href="/resources">← Back to Resources</a>
-          </p>
+          </div>
           <div className="article-body">
             <PrismicRichText field={article.data.body} />
           </div>
-          <p className="callToActionLink">
-            <a href="/resources">← Back to Resources</a>
-          </p>
+          {article.data.cta_text && article.data.cta_link && (
+            <div className="flex justify-center mt-[calc(var(--gap)*2)]">
+              <a className="btn" href={asLink(article.data.cta_link) ?? "#"}>
+                {article.data.cta_text}
+              </a>
+            </div>
+          )}
         </div>
       </article>
     </>
