@@ -553,6 +553,7 @@ export type ResourcesDocument<Lang extends string = string> =
   >;
 
 type SeoDocumentDataSlicesSlice =
+  | AboutSectionSlice
   | MenuNavigationSlice
   | HeroBannerSlice
   | ProductComparisonSlice
@@ -618,6 +619,7 @@ export type SeoDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<SeoDocumentData>, "seo", Lang>;
 
 type WebsitesDocumentDataSlicesSlice =
+  | AboutSectionSlice
   | MenuNavigationSlice
   | HeroBannerSlice
   | ProductComparisonSlice

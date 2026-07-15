@@ -11,4 +11,5 @@ export const components = {
   hero_banner: dynamic(() => import("./HeroBanner")),
   menu_navigation: dynamic(() => import("./MenuNavigation")),
   product_comparison: dynamic(() => import("./ProductComparison")),
+  aboutSection: dynamic(() => import("./PageSection"))
 };

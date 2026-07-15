@@ -2,10 +2,10 @@
 
 import { FC } from "react";
 import type * as prismic from "@prismicio/client";
-import { asText } from "@prismicio/client";
+import { asText, isFilled} from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 
-type ProductSectionSlice = prismic.SharedSlice<
+type PageSectionSlice = prismic.SharedSlice<
   "aboutSection",
   prismic.SharedSliceVariation<"default", {
     heading: prismic.KeyTextField;
@@ -16,9 +16,9 @@ type ProductSectionSlice = prismic.SharedSlice<
   }>
 >;
 
-export type ProductSectionProps = SliceComponentProps<ProductSectionSlice>;
+export type PageSectionProps = SliceComponentProps<PageSectionSlice>;
 
-const ProductSection: FC<ProductSectionProps> = ({ slice, context }) => {
+const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
   const ctx = context as { isPage?: boolean } | undefined;
   const Title = ctx?.isPage ? "h2" : "h3";
   const p = slice.primary as Record<string, unknown>;
@@ -36,7 +36,7 @@ const ProductSection: FC<ProductSectionProps> = ({ slice, context }) => {
   };
 
   return (
-    <section id="about" className="about section">
+    <section id="page" className="page section !pb-0">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -44,12 +44,12 @@ const ProductSection: FC<ProductSectionProps> = ({ slice, context }) => {
       <div className="page-content content">
         {slice.primary.heading && (
           <div className="page-title title">
-            <Title className="fade-in">{slice.primary.heading}</Title>
+            <Title className="fade-in text-(--color-2) text-left">{slice.primary.heading}</Title>
           </div>
         )}
         <div className="page-text fade-in">
           <PrismicRichText field={bodyParagraph} />
-          {(slice.primary.cta_text?.trim() || slice.primary.cta_button_label) && (
+          {(slice.primary.cta_text?.trim() || slice.primary.cta_button_label) && isFilled.link(slice.primary.cta_button_link) && (
             <p className="callToAction">
               {slice.primary.cta_text?.trim() && slice.primary.cta_text}
               {slice.primary.cta_button_label && (
@@ -65,4 +65,4 @@ const ProductSection: FC<ProductSectionProps> = ({ slice, context }) => {
   );
 };
 
-export default ProductSection;
+export default PageSection;

@@ -54,11 +54,11 @@ const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
   return (
     <section
       id="product"
-      className="product-section section"
+      className="product-section section !flex-col"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <script
+       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />

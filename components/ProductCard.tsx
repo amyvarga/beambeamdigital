@@ -49,7 +49,7 @@ export default function ProductCard({ title, briefDescription, ctaText, details,
 
   return (
     <div className="product-item" ref={cardRef}>
-      {title && <div className="product-item-title"><HeadingTag>{title}</HeadingTag></div>}
+      {title && <div className="product-item-title bg-(--color-2) p-(--gap)"><HeadingTag className="text-(--color-5) !mb-0">{title}</HeadingTag></div>}
       <div ref={pane0WrapperRef} className={`product-item-pane-wrapper${pane !== 0 ? ' product-item-pane-wrapper--collapsed' : ''}`}>
         <div className="product-item-pane">
           <div className="product-item-pane-inner pricing">
@@ -77,8 +77,8 @@ export default function ProductCard({ title, briefDescription, ctaText, details,
         </div>
       </div>
       {cta_text && cta_link && (
-        <div className="flex justify-center mt-[calc(var(--gap)*2)] mb-[calc(var(--gap)*2)]">
-          <PrismicNextLink field={cta_link} className="btn">
+        <div className="flex justify-center mb-[calc(var(--gap)/2)] min-[1135px]:mb-(--gap)">
+          <PrismicNextLink field={cta_link} className="btn bg-(--color-2) !text-(--color-5)">
             {cta_text}
           </PrismicNextLink>
         </div>
