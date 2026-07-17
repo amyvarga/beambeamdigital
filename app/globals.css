@@ -4,12 +4,12 @@
    CUSTOM PROPERTIES
    ============================================ */
 :root {
-    --color-1: #284339;
+    --color-1: #080502;
     --color-2: #44270D;
     --color-3: #bf0603;
     --color-4: #7cb518;
     --color-5: #FEFAE0;
-    --color-6: #949598;
+    --color-6: #409077;
 
     --font-family: var(--font-montserrat), sans-serif;
     --font-logo: var(--font-raleway), sans-serif;
@@ -163,6 +163,7 @@ a:focus-visible {
     border: 0.5px solid;
     padding: calc(var(--gap) / 4) calc(var(--gap) / 2);
     border-radius: var(--btn-radius);
+    color: var(--color-5);
 }
 
 a.btn:hover,
@@ -241,6 +242,9 @@ li {
     grid-column: 1;
     grid-row: 1;
     color: var(--color-5);
+    &:hover {
+        color: var(--color-5);
+    }
 }
 
 .logo-beam {
@@ -301,18 +305,16 @@ a.nav-link,
 }
 
 a.nav-link {
-    width: 100%;
-    display: block;
-    padding: 0;
-    margin: 0;
-    line-height: 1.2;
-    border-bottom: 0.5px solid transparent;
+    font-size: 30px;
     color: var(--color-5);
+    &:hover {
+        color:var(--color-6);
+    }
 }
 
 a.nav-link.active,
 a.nav-link:focus {
-    border-bottom: 0.5px solid currentColor;
+   color:var(--color-6);
 }
 
 a.nav-link:hover:not(.active) {
@@ -381,45 +383,75 @@ a.nav-link:hover:not(.active) {
     top: 14px;
 }
 
-/* ============================================
-   NAV DROPDOWN
-   ============================================ */
-.nav-dropdown-toggle {
-    background: none;
-    border: none;
-    border-bottom: 0.5px solid transparent;
-    cursor: pointer;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
+/* Sticky Contact Button */
+.sticky-button {
+    animation-name: ctabttn;
+    animation-duration: 1s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    background-color: var(--color-2);
+    color: var(--color-5);
+    width: 110;
+    height: 110;
+    border-radius: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
+    opacity: 1;
+    z-index: 100;
+    border: 0.5px solid var(--color-5);
+    font-size: 16px;
+    font-style: normal;
     font-weight: 400;
-    padding: 0;
-    margin: 0;
+    line-height: 34px;
+    font-family: var(--font-cursive);
+    font-weight: 400;
+    overflow: hidden;
+    transition: transform .5s cubic-bezier(.17, .67, .3, 1.33), bottom .5s ease, opacity .2s ease;
+}
+.sticky-button a {
+    position: absolute;
     width: 100%;
-    text-align: left;
-    display: block;
-    line-height: 1.2;
-}
-
-.nav-dropdown-toggle:hover,
-.nav-dropdown-toggle[aria-expanded="true"] {
-    border-bottom: none;
-}
-
-/* Mobile: always visible inline */
-.nav-dropdown-menu {
-    list-style: none;
+    height: 100%;
+    border-radius: 100%;
+    left: 0;
+    top: 0;
     display: flex;
+    justify-content: center;
+    color: var(--color-5);
     flex-direction: column;
-    gap: calc(var(--gap) / 5);
-    padding-left: calc(var(--gap) / 2);
-    padding-top: calc(var(--gap) / 4);
+    flex-wrap: nowrap;
+    &:hover {
+        color: var(--color-5) !important;
+        border: 0.5px solid var(--color-5);
+    }
 }
+.sticky-button:hover:after {
+    transform: translateX(-50%) scale(1.75);
+}
+.sticky-button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    background: var(--color-6);
+    width: 27.25rem;
+    height: 27.25rem;
+    border-radius: 50%;
+    transform: translateX(-50%) scale(0);
+    transition: transform 1.75s cubic-bezier(.165, .84, .44, 1);
+    z-index: -1;
+}
+
+
 
 /* ============================================
    HERO
    ============================================ */
-
 
 .hero-section {
     z-index: 2;
@@ -1034,10 +1066,8 @@ form {
 }
 
 .contact-form .btn {
-    display: block;
     margin: 0 auto;
-    color: var(--color-2);
-    border-color: var(--color-2);
+    display: block;
 }
 
 input:-webkit-autofill,
@@ -1311,6 +1341,10 @@ select:focus {
         --gap: 1.25rem;
         --scroll-margin-top: 120px;
     }
+
+    html {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%23409077"/></svg>') 12 12, auto;
+    }
     
     body {
         font-size: 18px;
@@ -1343,6 +1377,18 @@ select:focus {
 
     p {
         margin-bottom: 1em;
+    }
+
+    /* Sticky Contact Button */
+    .sticky-button {
+        bottom: 70px;
+        right: 35px;
+        width: 169px;
+        height: 169px;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 34px;
     }
 
     .btn {
@@ -1407,6 +1453,39 @@ select:focus {
 
     .nav-toggle {
         display: none;
+    }
+
+    a.nav-link {
+        font-size: 18px;
+        width: 100%;
+        display: block;
+        padding: 0;
+        margin: 0;
+        line-height: 1.2;
+        color: var(--color-5)!important;
+        margin: .25rem;
+        padding: .25rem;
+        transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+        &:hover {
+            box-shadow: inset 240px 0 0 0 var(--color-6);
+            border-bottom: none!important;
+        }
+    }
+
+    a.nav-link.active,
+    a.nav-link:focus {
+        &:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 7px;
+            height: 7px;
+            background-color: var(--color-6);
+            margin-right: 0px;
+            transform: translate(-50%, 0);
+            bottom: -12px;
+            border-radius: 7px;
+        }
     }
 
     /* Dropdown — desktop */
