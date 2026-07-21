@@ -29,7 +29,7 @@ const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
   const cta_button_link = p.cta_button_link as Parameters<typeof PrismicLink>[0]["field"] | undefined;
 
   return (
-    <section id="about" className="about section">
+    <section id="about" className="about section min-[1135px]:!px-[calc(var(--gap)*20)]">
       <div className="about-content content">
         {slice.primary.heading && (
           <div className="about-title title">

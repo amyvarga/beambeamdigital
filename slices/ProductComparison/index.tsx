@@ -7,6 +7,8 @@ import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
 import ProductCard from "@/components/ProductCard";
 
 type ProductItem = {
+  heading: prismic.KeyTextField;
+  introduction: prismic.KeyTextField;
   product_title: prismic.KeyTextField;
   product_brief_description: prismic.RichTextField;
   price: prismic.KeyTextField;
@@ -89,8 +91,6 @@ const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
               key={i}
               title={item.product_title ?? null}
               briefDescription={item.product_brief_description}
-              price={item.price ?? null}
-              priceCurrency={item.price_currency ?? "GBP"}
               HeadingTag={HeadingTag}
               cta_text={item.cta_text ?? null}
               cta_link={item.cta_link ?? null}

@@ -5,23 +5,16 @@ import { PrismicNextLink } from '@prismicio/next';
 interface ProductCardProps {
   title: string | null;
   briefDescription: prismic.RichTextField;
-  price: string | null;
-  priceCurrency: string;
   HeadingTag: 'h2' | 'h3';
   cta_text: string | null;
   cta_link: prismic.LinkField | null;
 }
 
-export default function ProductCard({ title, briefDescription, HeadingTag, cta_text, cta_link, price, priceCurrency }: ProductCardProps) {
+export default function ProductCard({ title, briefDescription, HeadingTag, cta_text, cta_link }: ProductCardProps) {
   return (
     <div className="product-item">
       {title && <div className="product-item-title bg-(--color-6) p-(--gap)"><HeadingTag className="text-(--color-5) !mb-0">{title}</HeadingTag></div>}
       <div className="product-item-content pricing">
-        {price && (
-          <p className="product-price">
-            {priceCurrency} {price}
-          </p>
-        )}
         <PrismicRichText field={briefDescription} />
       </div>
       {cta_text && cta_link && (

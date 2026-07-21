@@ -727,12 +727,6 @@ div.callToAction {
     }
 }
 
-.product-price {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: calc(var(--gap) / 2);
-}
-
 .product-items {
     display: grid;
     grid-template-columns: 1fr;

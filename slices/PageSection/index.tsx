@@ -35,7 +35,7 @@ const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
   };
 
   return (
-    <section id="page" className="page section !pb-0 !px-[calc(var(--gap)*20))]">
+    <section id="page" className="page section !pb-0 min-[1135px]:!px-[calc(var(--gap)*20)]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
