@@ -6,6 +6,7 @@ const baseUrl = "https://www.beambeam.co.uk";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const client = createClient();
   const articles = await client.getAllByType("article");
+  const productDescriptions = await client.getAllByType("product_description");
   const articleEntries = articles.map((a) => ({
     url: `${baseUrl}/resources/${a.uid}`,
     lastModified: a.last_publication_date
@@ -13,6 +14,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       : new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.6,
+  }));
+  const productDescriptionEntries = productDescriptions.map((page) => ({
+    url: `${baseUrl}/${page.uid}`,
+    lastModified: page.last_publication_date
+      ? new Date(page.last_publication_date)
+      : new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
   }));
 
   return [
@@ -25,5 +34,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.5 },
     { url: `${baseUrl}/resources`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     ...articleEntries,
+    ...productDescriptionEntries,
   ];
 }

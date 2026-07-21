@@ -101,8 +101,8 @@ const ContactPanel: FC<ContactPanelProps> = ({ slice, context }) => {
     name: "Contact Beam Beam Digital",
     url: "https://www.beambeam.co.uk/contact",
     mainEntity: {
-      "@type": "LocalBusiness",
-      name: "Beam Beam Digital",
+      "@type": "Organization",
+      "@id": "https://www.beambeam.co.uk/#organization",
       ...(phone && { telephone: phone }),
       ...(email && { email }),
       ...(location && { address: location }),

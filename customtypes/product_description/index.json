@@ -1,32 +1,29 @@
 {
   "format": "page",
-  "id": "seo",
-  "label": "SEO",
-  "repeatable": false,
+  "id": "product_description",
+  "label": "Product Description",
+  "repeatable": true,
   "status": true,
   "json": {
     "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "hero_banner": {
+              "type": "SharedSlice"
+            },
             "breadcrumb": {
               "type": "SharedSlice"
             },
             "aboutSection": {
-              "type": "SharedSlice"
-            },
-            "menu_navigation": {
-              "type": "SharedSlice"
-            },
-            "hero_banner": {
-              "type": "SharedSlice"
-            },
-            "product_comparison": {
-              "type": "SharedSlice"
-            },
-            "footer_navigation_and_services_regions": {
               "type": "SharedSlice"
             }
           }

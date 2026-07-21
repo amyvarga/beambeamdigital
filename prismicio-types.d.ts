@@ -71,6 +71,7 @@ type ContentRelationshipFieldWithData<
 
 type AboutDocumentDataSlicesSlice =
   | AboutSectionSlice
+  | AboutSectionSlice
   | MenuNavigationSlice
   | HeroBannerSlice
   | FooterNavigationAndServicesRegionsSlice;
@@ -483,6 +484,74 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<PageDocumentData>, "page", Lang>;
 
+type ProductDescriptionDocumentDataSlicesSlice =
+  | HeroBannerSlice
+  | BreadcrumbSlice
+  | AboutSectionSlice;
+
+/**
+ * Content for Product Description documents
+ */
+interface ProductDescriptionDocumentData {
+  /**
+   * Slice Zone field in *Product Description*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_description.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<ProductDescriptionDocumentDataSlicesSlice>; /**
+   * Meta Title field in *Product Description*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: product_description.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Product Description*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: product_description.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Product Description*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_description.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Product Description document from Prismic
+ *
+ * - **API ID**: `product_description`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProductDescriptionDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProductDescriptionDocumentData>,
+    "product_description",
+    Lang
+  >;
+
 type ResourcesDocumentDataSlicesSlice =
   | HeroBannerSlice
   | AboutSectionSlice
@@ -553,6 +622,7 @@ export type ResourcesDocument<Lang extends string = string> =
   >;
 
 type SeoDocumentDataSlicesSlice =
+  | BreadcrumbSlice
   | AboutSectionSlice
   | MenuNavigationSlice
   | HeroBannerSlice
@@ -759,6 +829,7 @@ export type AllDocumentTypes =
   | ContactDocument
   | EcommerceDocument
   | PageDocument
+  | ProductDescriptionDocument
   | ResourcesDocument
   | SeoDocument
   | WebsitesDocument
@@ -799,14 +870,14 @@ export interface AboutSectionSliceDefaultPrimary {
   cta_text: prismic.KeyTextField;
 
   /**
-   * CTA Button Label field in *Page Section → Default → Primary*
+   * Link field in *Page Section → Default → Primary*
    *
-   * - **Field Type**: Text
-   * - **Placeholder**: Get in touch
-   * - **API ID Path**: aboutSection.default.primary.cta_button_label
-   * - **Documentation**: https://prismic.io/docs/fields/text
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutSection.default.primary.link
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  cta_button_label: prismic.KeyTextField;
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
@@ -979,6 +1050,119 @@ type AboutSectionSliceVariation = AboutSectionSliceDefault;
 export type AboutSectionSlice = prismic.SharedSlice<
   "about_section",
   AboutSectionSliceVariation
+>;
+
+/**
+ * Primary content in *Breadcrumb → Default → Primary*
+ */
+export interface BreadcrumbSliceDefaultPrimary {
+  /**
+   * Breadcrumb Text 1 field in *Breadcrumb → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: breadcrumb.default.primary.breadcrumb_text_1
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  breadcrumb_text_1: prismic.KeyTextField;
+
+  /**
+   * Breadcrumb Link 1 field in *Breadcrumb → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: breadcrumb.default.primary.breadcrumb_1
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  breadcrumb_1: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Breadcrumb Text 2 field in *Breadcrumb → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: breadcrumb.default.primary.breadcrumb_text_2
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  breadcrumb_text_2: prismic.KeyTextField;
+
+  /**
+   * Breadcrumb Link 2 field in *Breadcrumb → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: breadcrumb.default.primary.breadcrumb_link_2
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  breadcrumb_link_2: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Breadcrumb Text 3 field in *Breadcrumb → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: breadcrumb.default.primary.breadcrumb_text_3
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  breadcrumb_text_3: prismic.KeyTextField;
+
+  /**
+   * Breadcrumb Link 3 field in *Breadcrumb → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: breadcrumb.default.primary.breadcrumb_link_3
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  breadcrumb_link_3: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Default variation for Breadcrumb Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BreadcrumbSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BreadcrumbSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Breadcrumb*
+ */
+type BreadcrumbSliceVariation = BreadcrumbSliceDefault;
+
+/**
+ * Breadcrumb Shared Slice
+ *
+ * - **API ID**: `breadcrumb`
+ * - **Description**: Breadcrumb
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BreadcrumbSlice = prismic.SharedSlice<
+  "breadcrumb",
+  BreadcrumbSliceVariation
 >;
 
 /**
@@ -1838,6 +2022,26 @@ export type MenuNavigationSlice = prismic.SharedSlice<
  */
 export interface ProductComparisonSliceDefaultPrimaryProductItem {
   /**
+   * Heading field in *ProductComparison → Default → Primary → Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_comparison.default.primary.product[].heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Introduction field in *ProductComparison → Default → Primary → Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: product_comparison.default.primary.product[].introduction
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  introduction: prismic.KeyTextField;
+
+  /**
    * Product Title field in *ProductComparison → Default → Primary → Product*
    *
    * - **Field Type**: Text
@@ -1856,6 +2060,26 @@ export interface ProductComparisonSliceDefaultPrimaryProductItem {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   product_brief_description: prismic.RichTextField;
+
+  /**
+   * Price field in *ProductComparison → Default → Primary → Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 500
+   * - **API ID Path**: product_comparison.default.primary.product[].price
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  price: prismic.KeyTextField;
+
+  /**
+   * Price Currency field in *ProductComparison → Default → Primary → Product*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: GBP
+   * - **API ID Path**: product_comparison.default.primary.product[].price_currency
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  price_currency: prismic.KeyTextField;
 
   /**
    * Product Inline Link Text field in *ProductComparison → Default → Primary → Product*
@@ -1996,6 +2220,9 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      ProductDescriptionDocument,
+      ProductDescriptionDocumentData,
+      ProductDescriptionDocumentDataSlicesSlice,
       ResourcesDocument,
       ResourcesDocumentData,
       ResourcesDocumentDataSlicesSlice,
@@ -2018,6 +2245,10 @@ declare module "@prismicio/client" {
       AboutSectionSliceDefaultPrimary,
       AboutSectionSliceVariation,
       AboutSectionSliceDefault,
+      BreadcrumbSlice,
+      BreadcrumbSliceDefaultPrimary,
+      BreadcrumbSliceVariation,
+      BreadcrumbSliceDefault,
       ContactPanelSlice,
       ContactPanelSliceDefaultPrimaryContactsItem,
       ContactPanelSliceDefaultPrimaryFormFieldsItem,

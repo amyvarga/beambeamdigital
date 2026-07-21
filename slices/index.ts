@@ -3,7 +3,9 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  aboutSection: dynamic(() => import("./PageSection")),
   about_section: dynamic(() => import("./AboutSection")),
+  breadcrumb: dynamic(() => import("./Breadcrumb")),
   contact_panel: dynamic(() => import("./ContactPanel")),
   faq: dynamic(() => import("./Faq")),
   featured_card_grid: dynamic(() => import("./RecentWork")),
@@ -11,5 +13,4 @@ export const components = {
   hero_banner: dynamic(() => import("./HeroBanner")),
   menu_navigation: dynamic(() => import("./MenuNavigation")),
   product_comparison: dynamic(() => import("./ProductComparison")),
-  aboutSection: dynamic(() => import("./PageSection"))
 };

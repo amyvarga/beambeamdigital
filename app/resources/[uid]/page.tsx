@@ -73,7 +73,10 @@ export default async function ArticlePage({ params }: Props) {
       />
       <BreadcrumbJsonLd label={title} path={`/resources/${uid}`} />
       <article className="page-section section">
-        <div className="content article-content">
+        <div className="breadcrumb">
+          <span><a href="/resources">← Resources</a></span>
+        </div>
+        <div className="content article-content !px-[calc(var(--gap)*10))]">
           {article.data.featured_image?.url && (
             <PrismicNextImage
               field={article.data.featured_image}
@@ -99,9 +102,7 @@ export default async function ArticlePage({ params }: Props) {
               {article.data.author && <span> · {article.data.author}</span>}
             </p>
           </header>
-          <div className="callToActionLink">
-            <a href="/resources">← Back to Resources</a>
-          </div>
+          
           <div className="article-body">
             <PrismicRichText field={article.data.body} />
           </div>

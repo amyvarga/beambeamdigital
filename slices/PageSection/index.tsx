@@ -11,8 +11,7 @@ type PageSectionSlice = prismic.SharedSlice<
     heading: prismic.KeyTextField;
     body_paragraph_one: prismic.RichTextField;
     cta_text: prismic.KeyTextField;
-    cta_button_label: prismic.KeyTextField;
-    cta_button_link: prismic.LinkField;
+    link: prismic.LinkField;
   }>
 >;
 
@@ -30,13 +29,13 @@ const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
     name: slice.primary.heading ?? "",
     description: asText(bodyParagraph),
     provider: {
-      "@type": "LocalBusiness",
-      name: "Beam Beam Digital",
+        "@type": "Organization",
+        "@id": "https://www.beambeam.co.uk/#organization",
     },
   };
 
   return (
-    <section id="page" className="page section !pb-0">
+    <section id="page" className="page section !pb-0 !px-[calc(var(--gap)*20))]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -49,14 +48,11 @@ const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
         )}
         <div className="page-text fade-in">
           <PrismicRichText field={bodyParagraph} />
-          {(slice.primary.cta_text?.trim() || slice.primary.cta_button_label) && isFilled.link(slice.primary.cta_button_link) && (
-            <p className="callToAction">
-              {slice.primary.cta_text?.trim() && slice.primary.cta_text}
-              {slice.primary.cta_button_label && (
-                <PrismicLink field={slice.primary.cta_button_link} className="btn btn-primary">
-                  {slice.primary.cta_button_label}
-                </PrismicLink>
-              )}
+          {slice.primary.cta_text?.trim() && isFilled.link(slice.primary.link) && (
+            <p className="callToActionLink">
+              <PrismicLink field={slice.primary.link} className="" data-replace={slice.primary.cta_text}>
+                <span>{slice.primary.cta_text}</span>
+              </PrismicLink>
             </p>
           )}
         </div>

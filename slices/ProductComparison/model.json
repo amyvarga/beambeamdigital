@@ -18,6 +18,20 @@
             "label": "Product",
             "repeat": true,
             "fields": {
+              "heading": {
+                "type": "Text",
+                "config": {
+                  "label": "Heading",
+                  "placeholder": ""
+                }
+              },
+              "introduction": {
+                "type": "Text",
+                "config": {
+                  "label": "Introduction",
+                  "placeholder": ""
+                }
+              },
               "product_title": {
                 "type": "Text",
                 "config": {
@@ -32,6 +46,20 @@
                   "placeholder": "",
                   "allowTargetBlank": true,
                   "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              },
+              "price": {
+                "type": "Text",
+                "config": {
+                  "label": "Price",
+                  "placeholder": "500"
+                }
+              },
+              "price_currency": {
+                "type": "Text",
+                "config": {
+                  "label": "Price Currency",
+                  "placeholder": "GBP"
                 }
               },
               "product_inline_link_text": {

@@ -33,11 +33,15 @@
             "placeholder": "Ready to work together?"
           }
         },
-        "cta_button_label": {
-          "type": "Text",
+        "link": {
+          "type": "Link",
           "config": {
-            "label": "CTA Button Label",
-            "placeholder": "Get in touch"
+            "label": "Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         }
       },

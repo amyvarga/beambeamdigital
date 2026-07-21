@@ -48,7 +48,8 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "Organization",
+  "@id": "https://www.beambeam.co.uk/#organization",
   name: "Beam Beam Digital",
   url: "https://www.beambeam.co.uk",
   description: "Web design, e-commerce, SEO, AI optimisation and IT services based in South Devon.",

@@ -1,0 +1,51 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"breadcrumb_1": {
+				"key": "61cf7a49-fb9e-44d3-8bc0-e2b6f9f95052",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "horn"
+				}
+			},
+			"breadcrumb_text_1": {
+				"__TYPE__": "FieldContent",
+				"value": "coat",
+				"type": "Text"
+			},
+			"breadcrumb_text_2": {
+				"__TYPE__": "FieldContent",
+				"value": "beyond",
+				"type": "Text"
+			},
+			"breadcrumb_link_2": {
+				"key": "34df02a4-38fc-4bb4-b6f3-51e6133e538d",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "cutting"
+				}
+			},
+			"breadcrumb_text_3": {
+				"__TYPE__": "FieldContent",
+				"value": "pack",
+				"type": "Text"
+			},
+			"breadcrumb_link_3": {
+				"__TYPE__": "LinkContent",
+				"key": "3ab16d82-26c2-49fb-b93d-8a586c2dd153",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "tall"
+				}
+			}
+		},
+		"items": []
+	}
+]
