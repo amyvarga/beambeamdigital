@@ -76,7 +76,7 @@ export default async function ArticlePage({ params }: Props) {
         <div className="breadcrumb">
           <span><a href="/resources">← Resources</a></span>
         </div>
-        <div className="content article-content !px-[calc(var(--gap)*10))]">
+        <div className="content article-content min-[1135px]:!px-[calc(var(--gap)*10))]">
           {article.data.featured_image?.url && (
             <PrismicNextImage
               field={article.data.featured_image}
