@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useId, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,54 +16,47 @@ interface AccordionProps {
 }
 
 export default function Accordion({ items }: AccordionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
+  const accordionId = useId();
 
   const toggle = (index: number) => {
-    const isOpening = openIndex !== index;
+    const isOpening = !openIndices.has(index);
     if (typeof window !== "undefined" && "gtag" in window) {
       (window as Window & { gtag: (...args: unknown[]) => void }).gtag("event", isOpening ? "accordion_open" : "accordion_close", {
         accordion_heading: items[index].heading,
       });
     }
 
-    const scrollToItem = (i: number) => {
-      const el = itemRefs.current[i];
-      if (!el) return;
-      const hero = document.querySelector('.hero-section') as HTMLElement;
-      const offset = hero ? hero.offsetHeight + 20 : 150;
-      const top = el.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
-    };
-
-    if (isOpening && openIndex !== null) {
-      // Close current item, wait for collapse, scroll new item into view, then open it
-      setOpenIndex(null);
-      setTimeout(() => {
-        scrollToItem(index);
-        setTimeout(() => {
-          setOpenIndex(index);
-        }, 400);
-      }, 500);
-    } else {
-      setOpenIndex(prev => (prev === index ? null : index));
-    }
+    setOpenIndices((current) => {
+      const next = new Set(current);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
   };
 
   return (
     <div className="container mx-auto">
       <div className="rounded-[var(--btn-radius)] overflow-hidden">
         {items.map((item, index) => {
-          const isOpen = openIndex === index;
+          const isOpen = openIndices.has(index);
+          const triggerId = `${accordionId}-trigger-${index}`;
+          const panelId = `${accordionId}-panel-${index}`;
           return (
             <div
               key={index}
-              ref={(el) => { itemRefs.current[index] = el; }}
               className="accordion-section not-last:border-b-[0.5px] border-[var(--color-5)] [scroll-margin-top:var(--scroll-margin-top)]"
             >
-              <div
+              <button
+                id={triggerId}
+                type="button"
                 onClick={() => toggle(index)}
-                className="bg-[var(--color-2)] flex justify-between p-[calc(var(--gap)/2)] min-[1135px]:p-[var(--gap)] items-center [transition:var(--transition)] cursor-pointer pr-10 relative"
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                className="bg-[var(--color-2)] flex w-full justify-between p-[calc(var(--gap)/2)] min-[1135px]:p-[var(--gap)] items-center [transition:var(--transition)] cursor-pointer pr-10 relative text-left"
               >
                 <div className={`text-[var(--color-5)] [transition:var(--transition)] ${isOpen ? 'font-semibold' : ''}`}>
                   <h3 className="font-[family-name:var(--font-cormorant-garamond)]!">{item.heading}</h3>
@@ -71,8 +64,14 @@ export default function Accordion({ items }: AccordionProps) {
                 <div className={`h-8 w-8 border border-[var(--color-5)] rounded-full items-center inline-flex justify-center transform [transition:var(--transition)] text-[var(--color-5)] absolute top-0 right-0 mb-auto ml-auto mt-[calc(var(--gap)/2)] min-[1135px]:mt-[var(--gap)] mr-[calc(var(--gap)/2)] min-[1135px]:mr-[var(--gap)] ${isOpen ? '-rotate-180' : ''}`}>
                   <FontAwesomeIcon icon={faChevronDown} />
                 </div>
-              </div>
-              <div className={`bg-[var(--color-5)] overflow-hidden [transition:max-height_var(--transition)] ${isOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
+              </button>
+              <div
+                id={panelId}
+                role="region"
+                aria-labelledby={triggerId}
+                aria-hidden={!isOpen}
+                className={`bg-[var(--color-5)] overflow-hidden [transition:max-height_var(--transition)] ${isOpen ? 'max-h-[1000px]' : 'max-h-0'}`}
+              >
                 <div className={`p-[calc(var(--gap)/2)] min-[1135px]:p-[var(--gap)]`}>
                   {item.body}
                   {item.ctaLabel && item.ctaLink && (
