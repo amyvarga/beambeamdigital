@@ -3,6 +3,7 @@ import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -21,6 +22,12 @@ export default async function EcommercePage() {
   const page = await client.getSingle("ecommerce");
   return (
     <>
+      <PageJsonLd
+        path="/ecommerce"
+        name={String(page.data.meta_title || "Ecommerce Services")}
+        description={page.data.meta_description}
+        serviceName="Ecommerce website design and development"
+      />
       <BreadcrumbJsonLd label="Ecommerce" path="/ecommerce" />
       <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
     </>

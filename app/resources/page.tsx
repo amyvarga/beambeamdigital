@@ -6,6 +6,7 @@ import { PrismicNextImage } from "@prismicio/next";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -30,6 +31,12 @@ export default async function ResourcesPage() {
 
   return (
     <>
+      <PageJsonLd
+        path="/resources"
+        name={String(page.data.meta_title || "Resources")}
+        description={page.data.meta_description}
+        type="CollectionPage"
+      />
       <BreadcrumbJsonLd label="Resources" path="/resources" />
       <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
       <div className="page-section section">

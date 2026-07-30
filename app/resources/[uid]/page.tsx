@@ -4,7 +4,9 @@ import { asText, asLink } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import PageJsonLd from "@/components/PageJsonLd";
 
 type Props = { params: Promise<{ uid: string }> };
 
@@ -50,23 +52,36 @@ export default async function ArticlePage({ params }: Props) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `https://www.beambeam.co.uk/resources/${uid}#article`,
     headline: title,
     description: article.data.meta_description ?? article.data.excerpt ?? undefined,
     datePublished: article.data.date ?? undefined,
+    dateModified: article.last_publication_date,
     author: article.data.author
-      ? { "@type": "Person", name: article.data.author }
+      ? {
+          "@type": "Person",
+          name: article.data.author,
+          url: "https://www.beambeam.co.uk/about",
+        }
       : undefined,
     image: article.data.featured_image?.url ?? undefined,
     url: `https://www.beambeam.co.uk/resources/${uid}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.beambeam.co.uk/resources/${uid}#webpage`,
+    },
     publisher: {
-      "@type": "Organization",
-      name: "Beam Beam Digital",
-      url: "https://www.beambeam.co.uk",
+      "@id": "https://www.beambeam.co.uk/#organization",
     },
   };
 
   return (
     <>
+      <PageJsonLd
+        path={`/resources/${uid}`}
+        name={title}
+        description={article.data.meta_description ?? article.data.excerpt}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -74,7 +89,7 @@ export default async function ArticlePage({ params }: Props) {
       <BreadcrumbJsonLd label={title} path={`/resources/${uid}`} />
       <article className="page-section section">
         <div className="breadcrumb">
-          <span><a href="/resources">← Resources</a></span>
+          <span><Link href="/resources">← Resources</Link></span>
         </div>
         <div className="content article-content min-[1135px]:!px-[calc(var(--gap)*10))]">
           {article.data.featured_image?.url && (

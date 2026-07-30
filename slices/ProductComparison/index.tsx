@@ -3,7 +3,7 @@
 import { FC } from "react";
 import type * as prismic from "@prismicio/client";
 import { asText } from "@prismicio/client";
-import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
+import { SliceComponentProps } from "@prismicio/react";
 import ProductCard from "@/components/ProductCard";
 
 type ProductItem = {
@@ -30,7 +30,9 @@ type ProductComparisonSlice = prismic.SharedSlice<
 export type ProductComparisonProps = SliceComponentProps<ProductComparisonSlice>;
 
 const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
-  const ctx = context as { isPage?: boolean } | undefined;
+  const ctx = context as
+    | { isPage?: boolean; suppressProductSchema?: boolean }
+    | undefined;
   const HeadingTag = ctx?.isPage ? "h2" : "h3";
   const p = slice.primary as Record<string, unknown>;
   const products = (p.product as ProductItem[]) ?? [];
@@ -80,10 +82,12 @@ const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-       <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {!ctx?.suppressProductSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
       <div className="product-content content fade-in">
         <div className="product-items" id="packages">
           {products.filter((item) => item.product_title || item.product_brief_description).map((item, i) => (

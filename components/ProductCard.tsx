@@ -19,7 +19,7 @@ export default function ProductCard({ title, briefDescription, HeadingTag, cta_t
       </div>
       {cta_text && cta_link && (
         <div className="flex justify-center mb-[calc(var(--gap)/2)] min-[1135px]:mb-(--gap)">
-          <PrismicNextLink field={cta_link} className="btn after:content-['→'] after:transition-transform hover:after:translate-x-4">
+          <PrismicNextLink field={cta_link} className="btn mt-auto after:content-['→'] after:transition-transform hover:after:translate-x-4">
             {cta_text}
           </PrismicNextLink>
         </div>

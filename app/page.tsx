@@ -3,6 +3,7 @@ import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import LatestArticles from "@/components/LatestArticles";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -25,6 +26,12 @@ export default async function Home() {
 
   return (
     <>
+      <PageJsonLd
+        path="/"
+        name={String(page.data.meta_title || "Beam Beam Digital")}
+        description={page.data.meta_description}
+        includeWebsite
+      />
       <SliceZone slices={contentSlices} components={components} />
       <LatestArticles />
     </>

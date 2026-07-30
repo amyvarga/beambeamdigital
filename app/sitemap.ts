@@ -5,34 +5,57 @@ const baseUrl = "https://www.beambeam.co.uk";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const client = createClient();
-  const articles = await client.getAllByType("article");
-  const productDescriptions = await client.getAllByType("product_description");
+  const [
+    home,
+    websites,
+    ecommerce,
+    seo,
+    portfolio,
+    about,
+    contact,
+    resources,
+    articles,
+    productDescriptions,
+  ] = await Promise.all([
+    client.getSingle("page"),
+    client.getSingle("websites"),
+    client.getSingle("ecommerce"),
+    client.getSingle("seo"),
+    client.getSingle("work"),
+    client.getSingle("about"),
+    client.getSingle("contact"),
+    client.getSingle("resources"),
+    client.getAllByType("article"),
+    client.getAllByType("product_description"),
+  ]);
+
+  const coreEntries: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/`, lastModified: new Date(home.last_publication_date), changeFrequency: "monthly", priority: 1 },
+    { url: `${baseUrl}/websites`, lastModified: new Date(websites.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/ecommerce`, lastModified: new Date(ecommerce.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/seo`, lastModified: new Date(seo.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/portfolio`, lastModified: new Date(portfolio.last_publication_date), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/about`, lastModified: new Date(about.last_publication_date), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/contact`, lastModified: new Date(contact.last_publication_date), changeFrequency: "yearly", priority: 0.5 },
+    { url: `${baseUrl}/resources`, lastModified: new Date(resources.last_publication_date), changeFrequency: "weekly", priority: 0.7 },
+  ];
+
   const articleEntries = articles.map((a) => ({
     url: `${baseUrl}/resources/${a.uid}`,
-    lastModified: a.last_publication_date
-      ? new Date(a.last_publication_date)
-      : new Date(),
+    lastModified: new Date(a.last_publication_date),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
+
   const productDescriptionEntries = productDescriptions.map((page) => ({
     url: `${baseUrl}/${page.uid}`,
-    lastModified: page.last_publication_date
-      ? new Date(page.last_publication_date)
-      : new Date(),
+    lastModified: new Date(page.last_publication_date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
   return [
-    { url: `${baseUrl}/`, lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
-    { url: `${baseUrl}/websites`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${baseUrl}/ecommerce`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${baseUrl}/seo`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${baseUrl}/portfolio`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
-    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.5 },
-    { url: `${baseUrl}/resources`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    ...coreEntries,
     ...articleEntries,
     ...productDescriptionEntries,
   ];

@@ -4,6 +4,7 @@ import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import PageJsonLd from "@/components/PageJsonLd";
 
 type ProductDescriptionPageProps = {
   params: Promise<{ uid: string }>;
@@ -28,6 +29,9 @@ export async function generateMetadata({
     return {
       title: page.data.meta_title,
       description: page.data.meta_description,
+      alternates: {
+        canonical: `/${uid}`,
+      },
       openGraph: {
         images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
       },
@@ -50,13 +54,19 @@ export default async function ProductDescriptionPage({
     notFound();
   }
 
-  const label = page.data.meta_title || uid;
+  const label = String(page.data.meta_title || uid);
 
   return (
     <>
+      <PageJsonLd
+        path={`/${uid}`}
+        name={label}
+        description={page.data.meta_description}
+        serviceName={label}
+      />
       <BreadcrumbJsonLd
-        label={String(label)}
-        path={`/product-descriptions/${uid}`}
+        label={label}
+        path={`/${uid}`}
       />
       <SliceZone
         slices={page.data.slices}

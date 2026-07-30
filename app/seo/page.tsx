@@ -91,7 +91,11 @@ export default async function SeoPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <BreadcrumbJsonLd label="SEO" path="/seo" />
-      <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
+      <SliceZone
+        slices={page.data.slices}
+        components={components}
+        context={{ isPage: true, suppressProductSchema: true }}
+      />
       <LatestArticles />
     </>
   );

@@ -689,6 +689,7 @@ export type SeoDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<SeoDocumentData>, "seo", Lang>;
 
 type WebsitesDocumentDataSlicesSlice =
+  | FaqSlice
   | AboutSectionSlice
   | MenuNavigationSlice
   | HeroBannerSlice

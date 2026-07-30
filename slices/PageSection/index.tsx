@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import type * as prismic from "@prismicio/client";
-import { asText, isFilled} from "@prismicio/client";
+import { isFilled } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
 
 type PageSectionSlice = prismic.SharedSlice<
@@ -23,23 +23,8 @@ const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
   const p = slice.primary as Record<string, unknown>;
   const bodyParagraph = p.body_paragraph_one as Parameters<typeof PrismicRichText>[0]["field"];
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: slice.primary.heading ?? "",
-    description: asText(bodyParagraph),
-    provider: {
-        "@type": "Organization",
-        "@id": "https://www.beambeam.co.uk/#organization",
-    },
-  };
-
   return (
     <section id="page" className="page section !pb-0 min-[1135px]:!px-[calc(var(--gap)*20)]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <div className="page-content content">
         {slice.primary.heading && (
           <div className="page-title title">
