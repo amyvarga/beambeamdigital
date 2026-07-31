@@ -17,7 +17,7 @@ export default async function LatestArticles() {
       <div className="content">
         <h2 className="fade-in inline">Latest Resources</h2>
         <span className="callToActionLink">
-          <a href="/resources" data-replace={"View all resources"}><span>View all resources</span></a>
+          <Link href="/resources" data-replace="View all resources"><span>View all resources</span></Link>
         </span>
         <div className="article-grid">
           {articles.map((article) => (

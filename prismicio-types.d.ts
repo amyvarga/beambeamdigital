@@ -1433,14 +1433,14 @@ export type FaqSlice = prismic.SharedSlice<"faq", FaqSliceVariation>;
  */
 export interface FeaturedCardGridSliceDefaultPrimaryCardsItem {
   /**
-   * Logo field in *RecentWork → Default → Primary → Cards*
+   * Image field in *RecentWork → Default → Primary → Cards*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: featured_card_grid.default.primary.cards[].logo
+   * - **API ID Path**: featured_card_grid.default.primary.cards[].image
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
-  logo: prismic.ImageField<never>;
+  image: prismic.ImageField<never>;
 
   /**
    * Title field in *RecentWork → Default → Primary → Cards*
@@ -1471,26 +1471,6 @@ export interface FeaturedCardGridSliceDefaultPrimaryCardsItem {
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-
-  /**
-   * Background color field in *RecentWork → Default → Primary → Cards*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: featured_card_grid.default.primary.cards[].background_color
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  background_color: prismic.KeyTextField;
-
-  /**
-   * Colour field in *RecentWork → Default → Primary → Cards*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: featured_card_grid.default.primary.cards[].colour
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  colour: prismic.KeyTextField;
 }
 
 /**
@@ -1517,32 +1497,6 @@ export interface FeaturedCardGridSliceDefaultPrimary {
    */
   cards: prismic.GroupField<
     Simplify<FeaturedCardGridSliceDefaultPrimaryCardsItem>
-  >;
-
-  /**
-   * CTA Button Label field in *RecentWork → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: featured_card_grid.default.primary.cta_button_label
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  cta_button_label: prismic.KeyTextField;
-
-  /**
-   * CTA Button Link field in *RecentWork → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: featured_card_grid.default.primary.cta_button_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  cta_button_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
   >;
 }
 

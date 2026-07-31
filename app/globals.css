@@ -768,7 +768,6 @@ div.callToAction {
    ICONS
    ============================================ */
 .nav-toggle svg,
-.carousel-btn svg,
 .contact-item svg,
 .work-link svg {
     width: var(--mobile-icon-size);
@@ -777,103 +776,31 @@ div.callToAction {
 }
 
 /* ============================================
-   CAROUSEL
+   RECENT WORK GRID
    ============================================ */
 .work {
     border-top: 0.5px solid var(--color-2);
     background-color: var(--color-5);
 }
 
-.carousel-wrapper {
-    position: relative;
+.work-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--gap);
     margin-top: calc(var(--gap) / 2);
 }
 
-.carousel {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 100%;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    gap: var(--gap);
-    scrollbar-width: none;
-    align-items: start;
-    overscroll-behavior-x: contain;
-}
-
-.carousel::-webkit-scrollbar {
-    display: none;
-}
-
-.carousel .carousel-item:last-child {
-    scroll-snap-align: end;
-}
-
-.carousel .carousel-item {
-    scroll-snap-align: start;
+.work-grid .work-card {
     display: flex;
     flex-direction: column;
-    padding: calc(var(--gap) / 2);
     height: 100%;
-}
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background: transparent;
-    border: none;
-    width: var(--mobile-icon-size);
-    height: var(--mobile-icon-size);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: opacity var(--transition);
-    color: var(--color-2);
-}
-
-.carousel-btn--prev { left: -28px; }
-.carousel-btn--next { right: -28px; }
-
-.carousel-btn:hover {
-    opacity: 0.7;
-}
-
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: var(--gap);
-    margin-top: calc(var(--gap) / 2);
-}
-
-.carousel-dot {
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-    background: var(--color-2);
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: background var(--transition);
-}
-
-.carousel-dot.active {
-    background: var(--color-1);
+    color: inherit;
+    text-decoration: none;
 }
 
 /* article */
 
 /* Work card */
-.work-card {
-    text-align: center;
-    background-color: var(--card-bg) !important;
-    color: var(--card-color) !important;
-}
-
 .work-card {
     transition: transform 0.2s ease;
 }
@@ -882,25 +809,39 @@ div.callToAction {
     transform: translateY(-4px);
 }
 
-.work-card img {
-    width: auto;
-    height: 150px;
-    max-width: 100%;
+.work-card-image {
+    overflow: hidden;
+}
+
+.work-card-image img {
+    width: 100%;
+    height: auto;
     display: block;
-    margin: 0 auto;
-    object-fit: contain;
+    transition: transform 0.5s ease-in-out;
+}
+
+.work-card:hover .work-card-image img {
+    transform: scale(1.05);
+}
+
+.work-card-content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap);
+    align-items: start;
+    padding: calc(var(--gap) / 2);
 }
 
 .work-card h3 {
-    margin-bottom: 12px;
+    margin: 0;
+    text-align: left;
 }
 
 .work-description {
-    margin-top: calc(var(--gap) / 2);
-    text-align: center;
+    text-align: left;
     > p,
     > ul {
-        margin-bottom: 0.5em;
+        margin: 0 0 0.5em;
         li {
             list-style-type: disc;
         }
@@ -1655,24 +1596,14 @@ select:focus {
         margin: 0;
     }
 
-    /* Carousel */
-    .carousel {
-        grid-auto-columns: calc(50% - var(--gap) / 2);
+    /* Recent work grid */
+    .work-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--gap);
     }
 
-    .carousel .carousel-item {
+    .work-card-content {
         padding: var(--gap);
-        > img {
-            max-width: 50%;
-            margin-bottom: var(--gap);
-        }
-        .work-description > p {
-            margin-bottom: var(--gap);
-        }
-    }
-
-    .carousel-dots {
-        margin-top: var(--gap);
     }
 
     /* Contact */

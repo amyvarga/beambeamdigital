@@ -23,12 +23,12 @@ export default async function WorkPage() {
   return (
     <>
       <PageJsonLd
-        path="/portfolio"
-        name={String(page.data.meta_title || "Portfolio")}
+        path="/work"
+        name={String(page.data.meta_title || "Work")}
         description={page.data.meta_description}
         type="CollectionPage"
       />
-      <BreadcrumbJsonLd label="Portfolio" path="/portfolio" />
+      <BreadcrumbJsonLd label="Work" path="/work" />
       <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
     </>
   );

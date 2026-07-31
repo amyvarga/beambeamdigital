@@ -1,9 +1,7 @@
-'use client';
-
 import { FC } from "react";
 import { Content, isFilled, asText } from "@prismicio/client";
+import { PrismicNextImage } from "@prismicio/next";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
-import Carousel from "@/components/Carousel";
 
 export type RecentWorkProps =
   SliceComponentProps<Content.FeaturedCardGridSlice>;
@@ -29,43 +27,31 @@ const RecentWork: FC<RecentWorkProps> = ({ slice, context }) => {
             />
           </div>
         )}
-        <Carousel>
+        <div className="work-grid">
           {cards.map((card, index) => {
             const cardContent = (
               <>
-                {card.logo.url && (
-                  <img
-                    src={card.logo.url}
-                    alt={card.logo.alt ?? ""}
-                    width={card.logo.dimensions?.width}
-                    height={card.logo.dimensions?.height}
-                    className="transition-transform duration-500 ease-in-out hover:scale-125"
-                  />
+                {card.image.url && (
+                  <div className="work-card-image">
+                    <PrismicNextImage field={card.image} />
+                  </div>
                 )}
-                <div className="work-description">
-                  <PrismicRichText field={card.description_list} />
+                <div className="work-card-content">
+                  <h3>{card.title}</h3>
+                  <div className="work-description">
+                    <PrismicRichText field={card.description_list} />
+                  </div>
                 </div>
               </>
             );
             const sharedProps = {
-              className: `carousel-item work-card fade-in overflow-hidden`,
-              style: {
-  ['--card-bg' as string]: card.background_color || undefined,
-  ['--card-color' as string]: card.colour || undefined,
-},
+              className: "work-card fade-in overflow-hidden",
             };
             return isFilled.link(card.link)
-              ? <PrismicLink key={index} field={card.link} target="_blank" rel="noopener noreferrer" {...sharedProps}>{cardContent}</PrismicLink>
+              ? <PrismicLink key={index} field={card.link} {...sharedProps}>{cardContent}</PrismicLink>
               : <div key={index} {...sharedProps}>{cardContent}</div>;
           })}
-        </Carousel>
-        {slice.primary.cta_button_label && (
-          <p className="callToAction">
-            <PrismicLink field={slice.primary.cta_button_link} className="btn btn-primary">
-              {slice.primary.cta_button_label}
-            </PrismicLink>
-          </p>
-        )}
+        </div>
       </div>
     </section>
   );

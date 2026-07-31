@@ -1,5 +1,6 @@
 "use client";
 import { FC, useEffect, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps, PrismicLink } from "@prismicio/react";
@@ -33,10 +34,10 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
   return (
     <nav className="nav" id="nav">
       <div className="nav-container">
-        <a href="/" className="nav-logo">
+        <Link href="/" className="nav-logo">
           <span className="logo-beam">{mainLogoText}</span>
           <span className="logo-digital">{highlightedLogoText}</span>
-        </a>
+        </Link>
         <button className="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
           <span className="hamburger"></span>
         </button>

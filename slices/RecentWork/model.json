@@ -23,10 +23,11 @@
           "config": {
             "label": "Cards",
             "fields": {
-              "logo": {
+              "image": {
                 "type": "Image",
                 "config": {
-                  "label": "Logo"
+                  "constraint": {},
+                  "label": "Image"
                 }
               },
               "title": {
@@ -50,40 +51,8 @@
                   "repeat": false,
                   "select": null
                 }
-              },
-              "background_color": {
-                "type": "Text",
-                "config": {
-                  "label": "Background color",
-                  "placeholder": ""
-                }
-              },
-              "colour": {
-                "type": "Text",
-                "config": {
-                  "label": "Colour",
-                  "placeholder": ""
-                }
               }
             }
-          }
-        },
-        "cta_button_label": {
-          "type": "Text",
-          "config": {
-            "label": "CTA Button Label",
-            "placeholder": ""
-          }
-        },
-        "cta_button_link": {
-          "type": "Link",
-          "config": {
-            "label": "CTA Button Link",
-            "placeholder": "",
-            "select": null,
-            "allowTargetBlank": true,
-            "allowText": true,
-            "repeat": false
           }
         }
       },
