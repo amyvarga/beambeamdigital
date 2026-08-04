@@ -420,6 +420,8 @@ export type EcommerceDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | AboutSectionSlice
+  | FeaturedCardGridSlice
   | FaqSlice
   | FooterNavigationAndServicesRegionsSlice
   | HeroBannerSlice
@@ -1488,6 +1490,16 @@ export interface FeaturedCardGridSliceDefaultPrimary {
   section_heading: prismic.RichTextField;
 
   /**
+   * Work Introduction field in *RecentWork → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_card_grid.default.primary.work_introduction
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  work_introduction: prismic.RichTextField;
+
+  /**
    * Cards field in *RecentWork → Default → Primary*
    *
    * - **Field Type**: Group
@@ -1497,6 +1509,32 @@ export interface FeaturedCardGridSliceDefaultPrimary {
    */
   cards: prismic.GroupField<
     Simplify<FeaturedCardGridSliceDefaultPrimaryCardsItem>
+  >;
+
+  /**
+   * CTA Text field in *RecentWork → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_card_grid.default.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *RecentWork → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_card_grid.default.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
   >;
 }
 

@@ -9,9 +9,9 @@ export default function ActiveNavObserver() {
     function highlightNavFromHash() {
       const hash = window.location.hash;
       navLinks.forEach(link => {
-        link.classList.remove('active');
+        link.classList.remove('selected');
         if (hash && link.getAttribute('href') === hash) {
-          link.classList.add('active');
+          link.classList.add('selected');
         }
       });
     }

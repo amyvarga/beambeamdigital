@@ -11,6 +11,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "aboutSection": {
+              "type": "SharedSlice"
+            },
+            "featured_card_grid": {
+              "type": "SharedSlice"
+            },
             "faq": {
               "type": "SharedSlice"
             },

@@ -16,13 +16,13 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
     document.querySelectorAll("a.nav-link").forEach((link) => {
       const href = link.getAttribute("href") ?? "";
       const linkPath = href.startsWith("http") ? new URL(href).pathname : href;
-      link.classList.toggle("active", !!linkPath && (pathname === linkPath || pathname.startsWith(linkPath + "/")));
+      link.classList.toggle("selected", !!linkPath && (pathname === linkPath || pathname.startsWith(linkPath + "/")));
     });
 
     document.querySelectorAll(".nav-dropdown-toggle").forEach((toggle) => {
       const dropdown = toggle.closest(".nav-dropdown");
-      const hasActiveChild = !!dropdown?.querySelector("a.nav-link.active");
-      toggle.classList.toggle("active", hasActiveChild);
+      const hasSelectedChild = !!dropdown?.querySelector("a.nav-link.selected");
+      toggle.classList.toggle("selected", hasSelectedChild);
     });
   }, [pathname]);
 

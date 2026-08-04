@@ -34,7 +34,12 @@ export default function Carousel({ children }: CarouselProps) {
   function handleScroll() {
     const carousel = carouselRef.current;
     if (!carousel) return;
-    const index = Math.round(carousel.scrollLeft / carousel.offsetWidth);
+    const cards = Array.from(carousel.children) as HTMLElement[];
+    const index = cards.reduce((closest, card, cardIndex) =>
+      Math.abs(card.offsetLeft - carousel.scrollLeft) <
+      Math.abs(cards[closest].offsetLeft - carousel.scrollLeft)
+        ? cardIndex
+        : closest, 0);
     if (index !== current) setCurrent(index);
     setAtStart(carousel.scrollLeft <= 0);
     setAtEnd(carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 1);
@@ -54,7 +59,7 @@ export default function Carousel({ children }: CarouselProps) {
       <button
         className="carousel-btn carousel-btn--prev"
         aria-label="Previous"
-        onClick={() => goTo(Math.max(0, current - 2), "prev")}
+        onClick={() => goTo(Math.max(0, current - 1), "prev")}
         style={{ visibility: atStart ? 'hidden' : 'visible' }}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -68,8 +73,8 @@ export default function Carousel({ children }: CarouselProps) {
         onScroll={handleScroll}
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.key === "ArrowLeft") goTo(Math.max(0, current - 2));
-          if (e.key === "ArrowRight") goTo(Math.min(count - 1, current + 2));
+          if (e.key === "ArrowLeft") goTo(Math.max(0, current - 1));
+          if (e.key === "ArrowRight") goTo(Math.min(count - 1, current + 1));
         }}
       >
         {children}
@@ -78,7 +83,7 @@ export default function Carousel({ children }: CarouselProps) {
       <button
         className="carousel-btn carousel-btn--next"
         aria-label="Next"
-        onClick={() => goTo(Math.min(count - 1, current + 2), "next")}
+        onClick={() => goTo(Math.min(count - 1, current + 1), "next")}
         style={{ visibility: atEnd ? 'hidden' : 'visible' }}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

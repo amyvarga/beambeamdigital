@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Content, isFilled, asText } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
+import Carousel from "@/components/Carousel";
 
 export type RecentWorkProps =
   SliceComponentProps<Content.FeaturedCardGridSlice>;
@@ -10,6 +11,32 @@ const RecentWork: FC<RecentWorkProps> = ({ slice, context }) => {
   const ctx = context as { isPage?: boolean } | undefined;
   const Title = ctx?.isPage ? "h1" : "h2";
   const cards = slice.primary.cards;
+  const cardElements = cards.map((card, index) => {
+    const cardContent = (
+      <>
+        {card.image.url && (
+          <div className="work-card-image">
+            <PrismicNextImage field={card.image} />
+          </div>
+        )}
+        <div className="work-card-content">
+          {card.title?.trim() && <h3>{card.title}</h3>}
+          {isFilled.richText(card.description_list) && (
+            <div className="work-description">
+              <PrismicRichText field={card.description_list} />
+            </div>
+          )}
+        </div>
+      </>
+    );
+    const sharedProps = {
+      className: "work-card fade-in overflow-hidden",
+    };
+
+    return isFilled.link(card.link)
+      ? <PrismicLink key={index} field={card.link} {...sharedProps}>{cardContent}</PrismicLink>
+      : <div key={index} {...sharedProps}>{cardContent}</div>;
+  });
 
   return (
     <section
@@ -27,31 +54,25 @@ const RecentWork: FC<RecentWorkProps> = ({ slice, context }) => {
             />
           </div>
         )}
-        <div className="work-grid">
-          {cards.map((card, index) => {
-            const cardContent = (
-              <>
-                {card.image.url && (
-                  <div className="work-card-image">
-                    <PrismicNextImage field={card.image} />
-                  </div>
-                )}
-                <div className="work-card-content">
-                  <h3>{card.title}</h3>
-                  <div className="work-description">
-                    <PrismicRichText field={card.description_list} />
-                  </div>
-                </div>
-              </>
-            );
-            const sharedProps = {
-              className: "work-card fade-in overflow-hidden",
-            };
-            return isFilled.link(card.link)
-              ? <PrismicLink key={index} field={card.link} {...sharedProps}>{cardContent}</PrismicLink>
-              : <div key={index} {...sharedProps}>{cardContent}</div>;
-          })}
-        </div>
+        {isFilled.richText(slice.primary.work_introduction) && (
+          <div className="work-introduction fade-in">
+            <PrismicRichText field={slice.primary.work_introduction} />
+          </div>
+        )}
+        {ctx?.isPage ? (
+          <div className="work-grid">{cardElements}</div>
+        ) : cardElements.length > 0 ? (
+          <div className="work-carousel">
+            <Carousel>{cardElements}</Carousel>
+          </div>
+        ) : null}
+        {slice.primary.cta_text?.trim() && isFilled.link(slice.primary.cta_link) && (
+          <div className="work-cta">
+            <PrismicLink field={slice.primary.cta_link} className="btn animate-fill">
+              {slice.primary.cta_text}
+            </PrismicLink>
+          </div>
+        )}
       </div>
     </section>
   );

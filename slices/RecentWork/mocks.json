@@ -82,6 +82,31 @@
 						]
 					}
 				]
+			},
+			"work_introduction": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Eu dolor duis ea nisi laboris culpa exercitation cillum voluptate laboris ut voluptate do elit aliqua. Nisi adipisicing aliquip enim eu labore elit tempor exercitation nulla do elit reprehenderit mollit."
+						}
+					}
+				]
+			},
+			"cta_text": {
+				"__TYPE__": "FieldContent",
+				"value": "seat",
+				"type": "Text"
+			},
+			"cta_link": {
+				"__TYPE__": "LinkContent",
+				"key": "d9303bc8-3fdb-4dda-a91b-841770926814",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "cast"
+				}
 			}
 		},
 		"items": []
