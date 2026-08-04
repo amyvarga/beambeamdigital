@@ -24,7 +24,7 @@ const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
   const bodyParagraph = p.body_paragraph_one as Parameters<typeof PrismicRichText>[0]["field"];
 
   return (
-    <section id="page" className="page section !pb-0 min-[1135px]:!px-[calc(var(--gap)*20)]">
+    <section id="page" className="page section min-[1135px]:!px-[calc(var(--gap)*20)]">
       <div className="page-content content">
         {slice.primary.heading && (
           <div className="page-title title">
@@ -34,9 +34,9 @@ const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
         <div className="page-text fade-in">
           <PrismicRichText field={bodyParagraph} />
           {slice.primary.cta_text?.trim() && isFilled.link(slice.primary.link) && (
-            <p className="callToActionLink">
-              <PrismicLink field={slice.primary.link} className="" data-replace={slice.primary.cta_text}>
-                <span>{slice.primary.cta_text}</span>
+            <p className="text-center">
+              <PrismicLink field={slice.primary.link} className="animate-fill btn" data-replace={slice.primary.cta_text}>
+                {slice.primary.cta_text}
               </PrismicLink>
             </p>
           )}

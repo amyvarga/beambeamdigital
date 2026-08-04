@@ -159,10 +159,14 @@ a:focus-visible {
     transition: all var(--transition);
     min-height: var(--mobile-icon-size);
     min-width: var(--mobile-icon-size);
-    color: var(--color-6);
+    color: var(--color-5);
+    background-color: var(--color-2);
     position: relative;
+    border: 0.5px solid var(--color-5);
+    border-radius: 2em;
     &:hover {
-        border: none;
+        color: var(--color-5);
+        text-decoration: none;
     }
     &::before {
         content: '';
@@ -185,7 +189,40 @@ a:focus-visible {
 
 .btn:focus {
     outline: none;
-    border: none;
+}
+
+/* Reusable curved colour-fill animation */
+.animate-fill {
+    --animate-fill-color: var(--color-6);
+    --animate-fill-size: 16rem;
+    --animate-fill-top: auto;
+    --animate-fill-bottom: -8rem;
+    --animate-fill-hover-scale: 1.75;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.animate-fill::before {
+    content: '';
+    position: absolute;
+    top: var(--animate-fill-top);
+    right: auto;
+    bottom: var(--animate-fill-bottom);
+    left: 50%;
+    width: var(--animate-fill-size);
+    height: var(--animate-fill-size);
+    border-radius: 50%;
+    background-color: var(--animate-fill-color);
+    transform: translateX(-50%) scale(0);
+    transform-origin: center;
+    transition: transform 1.75s cubic-bezier(.165, .84, .44, 1);
+    z-index: -1;
+}
+
+.animate-fill:hover::before {
+    transform: translateX(-50%) scale(var(--animate-fill-hover-scale));
+    transform-origin: center;
 }
 
 
@@ -321,11 +358,34 @@ a.nav-link,
     transition: all var(--transition);
 }
 
+.nav-link {
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: -4px;
+        left: 0;
+        height: 1px;
+        background-color: var(--color-6);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform .3s ease-in-out;
+    }
+
+    &:hover::before {
+        transform: scaleX(1);
+    }
+}
+
 a.nav-link {
+    display: inline-block;
+    padding: .25rem;
     font-size: 20px;
     color: var(--color-5);
     &:hover {
-        color:var(--color-6);
+        color: var(--color-5);
     }
 }
 
@@ -335,7 +395,11 @@ a.nav-link:focus {
 }
 
 a.nav-link:hover:not(.active) {
-    border-bottom: 0.5px solid currentColor;
+    border-bottom: none;
+}
+
+.nav-link.active::before {
+    display: none;
 }
 
 /* Hamburger toggle */
@@ -402,6 +466,9 @@ a.nav-link:hover:not(.active) {
 
 /* Sticky Contact Button */
 .sticky-button {
+    --animate-fill-size: 27.25rem;
+    --animate-fill-top: 0;
+    --animate-fill-bottom: auto;
     animation-duration: 1s;
     animation-delay: 1.5s;
     animation-fill-mode: forwards;
@@ -444,24 +511,8 @@ a.nav-link:hover:not(.active) {
         border: 0.5px solid var(--color-5);
     }
 }
-.sticky-button:hover:after, 
 .btn-div:hover:after {
     transform: translateX(-50%) scale(1.75);
-}
-.sticky-button:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 50%;
-    background: var(--color-6);
-    width: 27.25rem;
-    height: 27.25rem;
-    border-radius: 50%;
-    transform: translateX(-50%) scale(0);
-    transition: transform 1.75s cubic-bezier(.165, .84, .44, 1);
-    z-index: -1;
 }
 
 
@@ -1311,7 +1362,6 @@ select:focus {
 
     h2 {
         font-size: clamp(30px, 1.35vw, 28px);
-        margin-bottom: 1em;
     }
 
     h3 {
@@ -1323,10 +1373,6 @@ select:focus {
     h4 {
         font-size: clamp(18px, 1.05vw, 18px);
         line-height: 1.4em;
-        margin-bottom: 1em;
-    }
-
-    p {
         margin-bottom: 1em;
     }
 
@@ -1416,9 +1462,8 @@ select:focus {
         color: var(--color-5)!important;
         margin: .25rem;
         padding: .25rem;
-        transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+        transition: color .3s ease-in-out;
         &:hover {
-            box-shadow: inset 240px 0 0 0 var(--color-6);
             border-bottom: none!important;
         }
     }

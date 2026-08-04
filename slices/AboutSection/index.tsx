@@ -61,7 +61,7 @@ const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
               <p className="callToAction">
                 {cta_text?.trim() && cta_text}
                 {cta_button_label && (
-                  <PrismicLink field={cta_button_link} className="btn btn-primary">
+                  <PrismicLink field={cta_button_link} className="btn">
                     {cta_button_label}
                   </PrismicLink>
                 )}

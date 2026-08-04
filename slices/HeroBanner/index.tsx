@@ -41,7 +41,7 @@ const HeroBanner: FC<HeroBannerProps> = ({ slice }) => {
               <PrismicLink
                 key={index}
                 field={button.cta_link}
-                className="btn btn-primary"
+                className="btn animate-fill"
               >
                 {button.cta_label}
               </PrismicLink>

@@ -98,7 +98,7 @@ export default async function RootLayout({
         <main id="main-content">
           {children}
         </main>
-        <div className="sticky-button">
+        <div className="sticky-button animate-fill">
             <a href="contact">Get in touch</a>
           </div>
         <SliceZone slices={footerSlices} components={components} />
