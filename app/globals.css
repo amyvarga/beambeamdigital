@@ -21,7 +21,7 @@
     --btn-radius: 0.25rem;
     --transition: 0.5s ease;
     --gap: 3rem;
-    --box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.3);
+    --box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.1);
 
     --scroll-margin-top: 130px;
     --nav-height: 90px;
@@ -477,7 +477,7 @@ a.nav-link.selected::after {
     animation-delay: 1.5s;
     animation-fill-mode: forwards;
     position: fixed;
-    bottom: 0px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
     right: 0px;
     background-color: var(--color-2);
     color: var(--color-5);
@@ -868,6 +868,7 @@ div.callToAction {
     grid-auto-flow: column;
     grid-auto-columns: 100%;
     gap: var(--gap);
+    padding-bottom: 2px;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-snap-type: inline mandatory;
