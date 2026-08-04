@@ -955,8 +955,8 @@ div.callToAction {
 
 .work-card-content {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--gap);
+    grid-template-columns: minmax(0, 1fr);
+    gap: calc(var(--gap)/2);
     align-items: start;
     padding: calc(var(--gap) / 2);
 }
@@ -1725,6 +1725,7 @@ select:focus {
     }
 
     .work-card-content {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         padding: var(--gap);
     }
 
