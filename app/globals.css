@@ -860,7 +860,7 @@ div.callToAction {
 
 .carousel-wrapper {
     position: relative;
-    padding: 0 calc(var(--mobile-icon-size) + .5rem);
+    padding: calc(var(--mobile-icon-size) + .5rem);
 }
 
 .carousel {
@@ -870,6 +870,7 @@ div.callToAction {
     gap: var(--gap);
     padding-bottom: 2px;
     overflow-x: auto;
+    overflow-y: hidden;
     overscroll-behavior-inline: contain;
     scroll-snap-type: inline mandatory;
     scrollbar-width: none;

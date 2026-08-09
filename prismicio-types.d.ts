@@ -486,6 +486,75 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<PageDocumentData>, "page", Lang>;
 
+type PortfolioCaseStudyDocumentDataSlicesSlice =
+  | AboutSectionSlice
+  | BreadcrumbSlice
+  | FeaturedCardGridSlice
+  | HeroBannerSlice;
+
+/**
+ * Content for Portfolio Case Study documents
+ */
+interface PortfolioCaseStudyDocumentData {
+  /**
+   * Slice Zone field in *Portfolio Case Study*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_case_study.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<PortfolioCaseStudyDocumentDataSlicesSlice>; /**
+   * Meta Title field in *Portfolio Case Study*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: portfolio_case_study.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Portfolio Case Study*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: portfolio_case_study.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Portfolio Case Study*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: portfolio_case_study.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Portfolio Case Study document from Prismic
+ *
+ * - **API ID**: `portfolio_case_study`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PortfolioCaseStudyDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<PortfolioCaseStudyDocumentData>,
+    "portfolio_case_study",
+    Lang
+  >;
+
 type ProductDescriptionDocumentDataSlicesSlice =
   | HeroBannerSlice
   | BreadcrumbSlice
@@ -832,6 +901,7 @@ export type AllDocumentTypes =
   | ContactDocument
   | EcommerceDocument
   | PageDocument
+  | PortfolioCaseStudyDocument
   | ProductDescriptionDocument
   | ResourcesDocument
   | SeoDocument
@@ -2213,6 +2283,9 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      PortfolioCaseStudyDocument,
+      PortfolioCaseStudyDocumentData,
+      PortfolioCaseStudyDocumentDataSlicesSlice,
       ProductDescriptionDocument,
       ProductDescriptionDocumentData,
       ProductDescriptionDocumentDataSlicesSlice,

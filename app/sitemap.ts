@@ -16,6 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     resources,
     articles,
     productDescriptions,
+    portfolioCaseStudies,
   ] = await Promise.all([
     client.getSingle("page"),
     client.getSingle("websites"),
@@ -27,6 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     client.getSingle("resources"),
     client.getAllByType("article"),
     client.getAllByType("product_description"),
+    client.getAllByType("portfolio_case_study"),
   ]);
 
   const coreEntries: MetadataRoute.Sitemap = [
@@ -54,9 +56,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
+  const portfolioCaseStudyEntries = portfolioCaseStudies.map((caseStudy) => ({
+    url: `${baseUrl}/work/${caseStudy.uid}`,
+    lastModified: new Date(caseStudy.last_publication_date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     ...coreEntries,
     ...articleEntries,
     ...productDescriptionEntries,
+    ...portfolioCaseStudyEntries,
   ];
 }
