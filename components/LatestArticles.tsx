@@ -1,7 +1,6 @@
 import { createClient } from "@/prismicio";
-import { asText } from "@prismicio/client";
 import Link from "next/link";
-import { PrismicNextImage } from "@prismicio/next";
+import ArticleCard from "@/components/ArticleCard";
 
 export default async function LatestArticles() {
   const client = createClient();
@@ -21,34 +20,11 @@ export default async function LatestArticles() {
         </span>
         <div className="article-grid">
           {articles.map((article) => (
-            <Link
+            <ArticleCard
               key={article.uid}
-              href={`/resources/${article.uid}`}
-              className="article-card fade-in"
-            >
-              {article.data.featured_image?.url && (
-                <PrismicNextImage
-                  field={article.data.featured_image}
-                  className="article-card-image"
-                  alt=""
-                />
-              )}
-              <div className="article-card-body">
-                <h3>{asText(article.data.title)}</h3>
-                {article.data.date && (
-                  <time className="article-meta" dateTime={article.data.date}>
-                    {new Date(article.data.date).toLocaleDateString("en-GB", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </time>
-                )}
-                {article.data.excerpt && (
-                  <p className="article-excerpt">{article.data.excerpt}</p>
-                )}
-              </div>
-            </Link>
+              article={article}
+              className="fade-in"
+            />
           ))}
         </div>
       </div>

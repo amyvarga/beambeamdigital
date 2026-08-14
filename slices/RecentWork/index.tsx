@@ -30,7 +30,7 @@ const RecentWork: FC<RecentWorkProps> = ({ slice, context }) => {
       </>
     );
     const sharedProps = {
-      className: "work-card fade-in overflow-hidden",
+      className: "work-card cursor-view fade-in overflow-hidden",
     };
 
     return isFilled.link(card.link)
