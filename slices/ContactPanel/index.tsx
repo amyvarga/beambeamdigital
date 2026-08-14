@@ -139,7 +139,7 @@ const ContactPanel: FC<ContactPanelProps> = ({ slice }) => {
                     </div>
                   );
                 })}
-                <button type="submit" className="btn">
+                <button type="submit" className="btn animate-fill">
                   {slice.primary.button_text ?? "Send Message"}
                 </button>
               </form>

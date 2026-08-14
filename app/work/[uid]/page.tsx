@@ -3,8 +3,7 @@ import { notFound } from "next/navigation";
 import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
-import PageJsonLd from "@/components/PageJsonLd";
+import PortfolioCaseStudyJsonLd from "@/components/PortfolioCaseStudyJsonLd";
 
 type PortfolioCaseStudyPageProps = {
   params: Promise<{ uid: string }>;
@@ -61,17 +60,9 @@ export default async function PortfolioCaseStudyPage({
     notFound();
   }
 
-  const path = `/work/${uid}`;
-  const title = String(caseStudy.data.meta_title || uid);
-
   return (
     <>
-      <PageJsonLd
-        path={path}
-        name={title}
-        description={caseStudy.data.meta_description}
-      />
-      <BreadcrumbJsonLd label={title} path={path} />
+      <PortfolioCaseStudyJsonLd caseStudy={caseStudy} />
       <SliceZone
         slices={caseStudy.data.slices}
         components={components}
