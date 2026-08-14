@@ -954,13 +954,15 @@ div.callToAction {
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .work-grid .work-card {
+    .work-grid .work-card,
+    .carousel .work-card {
         cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='74' height='74' viewBox='0 0 74 74'%3E%3Ccircle cx='37' cy='37' r='35' fill='%23409077' stroke='%23FEFAE0' stroke-width='.5'/%3E%3Ctext x='37' y='43' text-anchor='middle' font-family='Bodoni Moda,serif' font-size='16' font-weight='400' letter-spacing='1' fill='%23FEFAE0'%3EView%3C/text%3E%3C/svg%3E") 37 37, default;
     }
 }
 
 @media (min-width: 1135px) and (hover: hover) and (pointer: fine) {
-    .work-grid .work-card {
+    .work-grid .work-card,
+    .carousel .work-card {
         cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Ccircle cx='48' cy='48' r='46' fill='%23409077' stroke='%23FEFAE0' stroke-width='.5'/%3E%3Ctext x='48' y='55' text-anchor='middle' font-family='Bodoni Moda,serif' font-size='20' font-weight='400' letter-spacing='1' fill='%23FEFAE0'%3EView%3C/text%3E%3C/svg%3E") 48 48, default;
     }
 }
