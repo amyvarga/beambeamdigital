@@ -39,7 +39,19 @@ export default function PortfolioCaseStudyJsonLd({
     (hero?.slice_type === "hero_banner" && asText(hero.primary.headline)) ||
     caseStudy.data.meta_title ||
     caseStudy.uid;
+  const pageTitle = caseStudy.data.meta_title || `${projectName} case study`;
   const description = caseStudy.data.meta_description || undefined;
+  const primaryImage = caseStudy.data.meta_image.url
+    ? {
+        "@type": "ImageObject",
+        "@id": `${url}#primaryimage`,
+        url: caseStudy.data.meta_image.url,
+        contentUrl: caseStudy.data.meta_image.url,
+        width: caseStudy.data.meta_image.dimensions?.width,
+        height: caseStudy.data.meta_image.dimensions?.height,
+        caption: caseStudy.data.meta_image.alt || undefined,
+      }
+    : undefined;
   const images = [
     ...(caseStudy.data.meta_image.url ? [caseStudy.data.meta_image.url] : []),
     ...collectImageUrls(caseStudy.data.slices),
@@ -52,26 +64,41 @@ export default function PortfolioCaseStudyJsonLd({
         "@type": "WebPage",
         "@id": `${url}#webpage`,
         url,
-        name: caseStudy.data.meta_title || projectName,
+        name: pageTitle,
         description,
+        datePublished: caseStudy.first_publication_date,
+        dateModified: caseStudy.last_publication_date,
+        inLanguage: caseStudy.lang,
         isPartOf: { "@id": `${SITE_URL}/#website` },
         breadcrumb: { "@id": `${url}#breadcrumb` },
-        mainEntity: { "@id": `${url}#project` },
+        primaryImageOfPage: primaryImage
+          ? { "@id": primaryImage["@id"] }
+          : undefined,
+        mainEntity: { "@id": `${url}#case-study` },
       },
       {
-        "@type": "CreativeWork",
-        "@id": `${url}#project`,
-        name: `${projectName} website and SEO case study`,
+        "@type": "Article",
+        "@id": `${url}#case-study`,
+        url,
+        name: pageTitle,
+        headline: projectName,
         description,
         genre: "Portfolio case study",
+        articleSection: "Work",
+        datePublished: caseStudy.first_publication_date,
+        dateModified: caseStudy.last_publication_date,
+        inLanguage: caseStudy.lang,
+        keywords: caseStudy.tags.length > 0 ? caseStudy.tags : undefined,
         image: images.length > 0 ? images : undefined,
-        creator: { "@id": `${SITE_URL}/#organization` },
+        author: { "@id": `${SITE_URL}/#organization` },
+        publisher: { "@id": `${SITE_URL}/#organization` },
         about: {
           "@type": "Organization",
           name: projectName,
         },
         mainEntityOfPage: { "@id": `${url}#webpage` },
       },
+      ...(primaryImage ? [primaryImage] : []),
       {
         "@type": "BreadcrumbList",
         "@id": `${url}#breadcrumb`,
@@ -102,7 +129,9 @@ export default function PortfolioCaseStudyJsonLd({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+      }}
     />
   );
 }
