@@ -119,6 +119,7 @@ a {
     text-decoration: none;
     transition: opacity var(--transition);
     outline: 0;
+    border-bottom: 0.5px solid var(--color-2);
 }
 a:hover {
     color: var(--color-2);
@@ -160,13 +161,12 @@ a:focus-visible {
     transition: all var(--transition);
     min-height: var(--mobile-icon-size);
     min-width: var(--mobile-icon-size);
-    color: var(--color-5);
-    background-color: var(--color-6);
+    color: var(--color-2);
     position: relative;
-    border: 0.5px solid var(--color-5);
+    border: 0.5px solid var(--color-2);
     border-radius: 2em;
     padding: 0.9em;
-    box-shadow: 3px 1px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
     &:hover {
         color: var(--color-5);
         text-decoration: none;
@@ -324,9 +324,6 @@ li {
         width: 100%;
         a {
              white-space: nowrap;
-             &:hover {
-                color: var(--color-5);
-             }
         }
     }
 }
@@ -349,45 +346,15 @@ a.nav-link,
     transition: all var(--transition);
 }
 
-.nav-link {
-    position: relative;
-
-    &::before {
-        content: '';
-        position: absolute;
-        right: 0;
-        bottom: -4px;
-        left: 0;
-        height: 1px;
-        background-color: var(--color-6);
-        transform: scaleX(0);
-        transform-origin: center;
-        transition: transform .3s ease-in-out;
-    }
-
-    &:hover::before {
-        transform: scaleX(1);
-    }
-}
-
 a.nav-link {
     display: block;
     width: 100%;
     padding: .25rem;
     font-size: 20px;
     color: var(--color-5);
-    &:hover {
-        color: var(--color-5);
+    &.selected {
+        color: var(--color-6);
     }
-}
-
-a.nav-link.selected,
-a.nav-link:focus {
-   color: var(--color-5);
-}
-
-a.nav-link:hover:not(.selected) {
-    border-bottom: none;
 }
 
 .nav-link.selected::before {
@@ -976,10 +943,6 @@ div.callToAction {
 }
 
 .work-card-content {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: calc(var(--gap)/2);
-    align-items: start;
     padding: calc(var(--gap) / 2);
 }
 
@@ -989,16 +952,8 @@ div.callToAction {
 }
 
 .work-description {
-    text-align: left;
-    > p,
-    > ul {
-        margin: 0 0 0.5em;
-        li {
-            list-style-type: disc;
-        }
-    }
+    padding-top: calc(var(--gap) / 2);
 }
-
 
 /* ============================================
    CONTACT
@@ -1560,16 +1515,17 @@ select:focus {
         padding: 0;
         margin: 0;
         line-height: 1.2;
-        color: var(--color-5)!important;
+        color: var(--color-5);
         margin: .25rem;
         padding: .25rem;
         transition: color .3s ease-in-out;
         &:hover {
-            border-bottom: none!important;
+            color: var(--color-5);
         }
     }
 
     a.nav-link.selected {
+        color: var(--color-5);
         &:after {
             top: auto;
             right: auto;
@@ -1747,7 +1703,6 @@ select:focus {
     }
 
     .work-card-content {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
         padding: var(--gap);
     }
 
