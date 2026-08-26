@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
         destination: "/about-me",
         permanent: true,
       },
+      {
+        source: "/services",
+        destination: "/web-developer-south-devon",
+        permanent: true,
+      },
     ];
   },
 };

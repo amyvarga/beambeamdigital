@@ -7,6 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const client = createClient();
   const [
     home,
+    services,
     websites,
     ecommerce,
     seo,
@@ -19,6 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     portfolioCaseStudies,
   ] = await Promise.all([
     client.getSingle("page"),
+    client.getSingle("services"),
     client.getSingle("websites"),
     client.getSingle("ecommerce"),
     client.getSingle("seo"),
@@ -33,6 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const coreEntries: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/`, lastModified: new Date(home.last_publication_date), changeFrequency: "monthly", priority: 1 },
+    { url: `${baseUrl}/web-developer-south-devon`, lastModified: new Date(services.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/website-design-development`, lastModified: new Date(websites.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/ecommerce`, lastModified: new Date(ecommerce.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/search-conversion-optimisation`, lastModified: new Date(seo.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
