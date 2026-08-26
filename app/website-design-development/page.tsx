@@ -11,7 +11,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: page.data.meta_title,
     description: page.data.meta_description,
+    alternates: {
+      canonical: "/website-design-development",
+    },
     openGraph: {
+      url: "/website-design-development",
       images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
     },
   };
@@ -23,12 +27,12 @@ export default async function WebsitesPage() {
   return (
     <>
       <PageJsonLd
-        path="/websites"
+        path="/website-design-development"
         name={String(page.data.meta_title || "Website Services")}
         description={page.data.meta_description}
         serviceName="Website design and development"
       />
-      <BreadcrumbJsonLd label="Websites" path="/websites" />
+      <BreadcrumbJsonLd label="Websites" path="/website-design-development" />
       <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
     </>
   );

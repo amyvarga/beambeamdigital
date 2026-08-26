@@ -59,13 +59,9 @@ const RecentWork: FC<RecentWorkProps> = ({ slice, context }) => {
             <PrismicRichText field={slice.primary.work_introduction} />
           </div>
         )}
-        {ctx?.isPage ? (
+        {cardElements.length > 0 && (
           <div className="work-grid">{cardElements}</div>
-        ) : cardElements.length > 0 ? (
-          <div className="work-carousel">
-            <Carousel>{cardElements}</Carousel>
-          </div>
-        ) : null}
+        )}
         {slice.primary.cta_text?.trim() && isFilled.link(slice.primary.cta_link) && (
           <div className="work-cta">
             <PrismicLink field={slice.primary.cta_link} className="btn animate-fill">

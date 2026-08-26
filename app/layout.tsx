@@ -52,10 +52,10 @@ const jsonLd = {
   "@id": "https://www.beambeam.co.uk/#organization",
   name: "Beam Beam Digital",
   url: "https://www.beambeam.co.uk",
-  description: "Web design, e-commerce, SEO, AI optimisation and IT services based in South Devon.",
+  description: "Website design, website build, search engine & conversion optimisation and automation based in South Devon.",
   address: {
     "@type": "PostalAddress",
-    addressRegion: "Devon",
+    addressRegion: "South Devon",
     addressCountry: "GB",
   },
   areaServed: [
@@ -64,10 +64,14 @@ const jsonLd = {
   ],
   knowsAbout: [
     "Website Design",
-    "E-commerce",
+    "Website Build",
     "Search Engine Optimisation",
-    "AI Optimisation",
-    "Digital Marketing",
+    "Conversion Optimisation",
+    "Website Related Automation",
+    "WordPress",
+    "Squarespace",
+    "Wix",
+    "Shopify"
   ],
 };
 

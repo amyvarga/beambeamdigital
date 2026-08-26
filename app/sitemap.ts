@@ -33,11 +33,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const coreEntries: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/`, lastModified: new Date(home.last_publication_date), changeFrequency: "monthly", priority: 1 },
-    { url: `${baseUrl}/websites`, lastModified: new Date(websites.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/website-design-development`, lastModified: new Date(websites.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/ecommerce`, lastModified: new Date(ecommerce.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${baseUrl}/seo`, lastModified: new Date(seo.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${baseUrl}/work`, lastModified: new Date(work.last_publication_date), changeFrequency: "weekly", priority: 0.7 },
-    { url: `${baseUrl}/about`, lastModified: new Date(about.last_publication_date), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/search-conversion-optimisation`, lastModified: new Date(seo.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/portfolio`, lastModified: new Date(work.last_publication_date), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/about-me`, lastModified: new Date(about.last_publication_date), changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/contact`, lastModified: new Date(contact.last_publication_date), changeFrequency: "yearly", priority: 0.5 },
     { url: `${baseUrl}/resources`, lastModified: new Date(resources.last_publication_date), changeFrequency: "weekly", priority: 0.7 },
   ];
@@ -57,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const portfolioCaseStudyEntries = portfolioCaseStudies.map((caseStudy) => ({
-    url: `${baseUrl}/work/${caseStudy.uid}`,
+    url: `${baseUrl}/portfolio/${caseStudy.uid}`,
     lastModified: new Date(caseStudy.last_publication_date),
     changeFrequency: "monthly" as const,
     priority: 0.7,

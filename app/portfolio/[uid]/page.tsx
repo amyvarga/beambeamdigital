@@ -26,7 +26,7 @@ export async function generateMetadata({
     const caseStudy = await client.getByUID("portfolio_case_study", uid);
     const title = caseStudy.data.meta_title || uid;
     const description = caseStudy.data.meta_description || undefined;
-    const path = `/work/${uid}`;
+    const path = `/portfolio/${uid}`;
 
     return {
       title,

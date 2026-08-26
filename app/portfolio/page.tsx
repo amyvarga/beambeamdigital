@@ -19,18 +19,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: "/work" },
+    alternates: { canonical: "/portfolio" },
     openGraph: {
       title,
       description,
-      url: "/work",
+      url: "/portfolio",
       type: "website",
       images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
     },
   };
 }
 
-export default async function WorkPage() {
+export default async function PortfolioPage() {
   const client = createClient();
   const page = await client.getSingle("work");
   const title = page.data.meta_title || META_TITLE;
@@ -54,8 +54,8 @@ export default async function WorkPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": `${SITE_URL}/work#webpage`,
-    url: `${SITE_URL}/work`,
+    "@id": `${SITE_URL}/portfolio#webpage`,
+    url: `${SITE_URL}/portfolio`,
     name: title,
     description,
     isPartOf: { "@id": `${SITE_URL}/#website` },
@@ -63,7 +63,7 @@ export default async function WorkPage() {
     ...(projects.length > 0 && {
       mainEntity: {
         "@type": "ItemList",
-        name: "Beam Beam Digital work",
+        name: "Beam Beam Digital portfolio",
         numberOfItems: projects.length,
         itemListElement: projects,
       },
@@ -76,7 +76,7 @@ export default async function WorkPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <BreadcrumbJsonLd label="Work" path="/work" />
+      <BreadcrumbJsonLd label="Portfolio" path="/portfolio" />
       <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
     </>
   );

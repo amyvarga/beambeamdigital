@@ -11,24 +11,28 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: page.data.meta_title,
     description: page.data.meta_description,
+    alternates: {
+      canonical: "/about-me",
+    },
     openGraph: {
+      url: "/about-me",
       images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
     },
   };
 }
 
-export default async function AboutPage() {
+export default async function AboutMePage() {
   const client = createClient();
   const page = await client.getSingle("about");
   return (
     <>
       <PageJsonLd
-        path="/about"
+        path="/about-me"
         name={String(page.data.meta_title || "About Beam Beam Digital")}
         description={page.data.meta_description}
         type="AboutPage"
       />
-      <BreadcrumbJsonLd label="About" path="/about" />
+      <BreadcrumbJsonLd label="About" path="/about-me" />
       <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
     </>
   );

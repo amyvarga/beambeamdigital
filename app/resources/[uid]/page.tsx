@@ -61,7 +61,7 @@ export default async function ArticlePage({ params }: Props) {
       ? {
           "@type": "Person",
           name: article.data.author,
-          url: "https://www.beambeam.co.uk/about",
+          url: "https://www.beambeam.co.uk/about-me",
         }
       : undefined,
     image: article.data.featured_image?.url ?? undefined,

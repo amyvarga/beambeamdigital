@@ -30,7 +30,7 @@ function collectImageUrls(value: unknown, urls = new Set<string>()): Set<string>
 export default function PortfolioCaseStudyJsonLd({
   caseStudy,
 }: PortfolioCaseStudyJsonLdProps) {
-  const path = `/work/${caseStudy.uid}`;
+  const path = `/portfolio/${caseStudy.uid}`;
   const url = `${SITE_URL}${path}`;
   const hero = caseStudy.data.slices.find(
     (slice) => slice.slice_type === "hero_banner",
@@ -84,7 +84,7 @@ export default function PortfolioCaseStudyJsonLd({
         headline: projectName,
         description,
         genre: "Portfolio case study",
-        articleSection: "Work",
+        articleSection: "Portfolio",
         datePublished: caseStudy.first_publication_date,
         dateModified: caseStudy.last_publication_date,
         inLanguage: caseStudy.lang,
@@ -112,8 +112,8 @@ export default function PortfolioCaseStudyJsonLd({
           {
             "@type": "ListItem",
             position: 2,
-            name: "Work",
-            item: `${SITE_URL}/work`,
+            name: "Portfolio",
+            item: `${SITE_URL}/portfolio`,
           },
           {
             "@type": "ListItem",

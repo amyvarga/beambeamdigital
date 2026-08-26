@@ -14,7 +14,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: page.data.meta_title,
     description: page.data.meta_description,
+    alternates: {
+      canonical: "/search-conversion-optimisation",
+    },
     openGraph: {
+      url: "/search-conversion-optimisation",
       images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
     },
   };
@@ -57,8 +61,8 @@ export default async function SeoPage() {
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "@id": `${SITE_URL}/seo#webpage`,
-      url: `${SITE_URL}/seo`,
+      "@id": `${SITE_URL}/search-conversion-optimisation#webpage`,
+      url: `${SITE_URL}/search-conversion-optimisation`,
       name: page.data.meta_title ?? "SEO Services",
       description: page.data.meta_description ?? undefined,
       isPartOf: {
@@ -67,22 +71,22 @@ export default async function SeoPage() {
         name: "Beam Beam Digital",
         url: SITE_URL,
       },
-      about: { "@id": `${SITE_URL}/seo#service` },
+      about: { "@id": `${SITE_URL}/search-conversion-optimisation#service` },
     },
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      "@id": `${SITE_URL}/seo#service`,
+      "@id": `${SITE_URL}/search-conversion-optimisation#service`,
       name: "SEO Services",
       serviceType: "Search engine optimisation",
       provider: { "@id": `${SITE_URL}/#organization` },
       areaServed: { "@type": "Place", name: "South Devon" },
-      hasOfferCatalog: { "@id": `${SITE_URL}/seo#offers` },
+      hasOfferCatalog: { "@id": `${SITE_URL}/search-conversion-optimisation#offers` },
     },
     {
       "@context": "https://schema.org",
       "@type": "OfferCatalog",
-      "@id": `${SITE_URL}/seo#offers`,
+      "@id": `${SITE_URL}/search-conversion-optimisation#offers`,
       name: "SEO Packages",
       itemListElement: offers,
     },
@@ -90,7 +94,7 @@ export default async function SeoPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <BreadcrumbJsonLd label="SEO" path="/seo" />
+      <BreadcrumbJsonLd label="SEO" path="/search-conversion-optimisation" />
       <SliceZone
         slices={page.data.slices}
         components={components}
