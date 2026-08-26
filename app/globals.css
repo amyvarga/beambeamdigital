@@ -87,13 +87,15 @@ h1 {
     font-weight: 500;
 }
 
-#home.hero-strapline {
-    p {
-        font-family: var(--font-cormorant-garamond);
-        font-size:clamp(42px, 1.5vw, 40px);
-    }
-    h1 {
-        font-size: 18px;
+#home {
+    .hero-strapline {
+        p {
+            font-family: var(--font-cormorant-garamond);
+            font-size:clamp(42px, 1.5vw, 40px);
+        }
+        h1 {
+            font-size: 18px;
+        }
     }
 } 
 

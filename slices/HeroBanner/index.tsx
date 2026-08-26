@@ -11,12 +11,7 @@ export type HeroBannerProps = SliceComponentProps<Content.HeroBannerSlice>;
  * Component for "Hero Banner" Slices.
  */
 const HeroBanner: FC<HeroBannerProps> = ({ slice }) => {
-  // Extract data with fallbacks
-  const headlineText = slice.primary.headline
-    ? asText(slice.primary.headline)
-    : "BEAM BEAM Digital";
-
-
+  const headlineText = asText(slice.primary.headline).trim();
   const ctaButtons = slice.primary.cta || [];
   const bgColor = slice.primary.background_color || undefined;
 
@@ -31,7 +26,9 @@ const HeroBanner: FC<HeroBannerProps> = ({ slice }) => {
       <div className="hero-background"></div>
       <div className="hero-overlay"></div>
       <div className="hero-content content">
-        <h1 className="hero-title title">{headlineText}</h1>
+        {headlineText && (
+          <h1 className="hero-title title">{headlineText}</h1>
+        )}
         <div className="hero-strapline">
           <PrismicRichText field={slice.primary.subheadline} />
         </div>
