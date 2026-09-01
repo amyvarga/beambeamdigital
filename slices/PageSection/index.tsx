@@ -19,12 +19,13 @@ export type PageSectionProps = SliceComponentProps<PageSectionSlice>;
 
 const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
   const ctx = context as { isPage?: boolean } | undefined;
-  const Title = ctx?.isPage ? "h2" : "h3";
+  /*const Title = ctx?.isPage ? "h2" : "h3";*/
+  const Title = "h2";
   const p = slice.primary as Record<string, unknown>;
   const bodyParagraph = p.body_paragraph_one as Parameters<typeof PrismicRichText>[0]["field"];
 
   return (
-    <section id="page" className="page section min-[1135px]:!px-[calc(var(--gap)*20)]">
+    <section id="page" className="page section">
       <div className="page-content content">
         {slice.primary.heading && (
           <div className="page-title title">

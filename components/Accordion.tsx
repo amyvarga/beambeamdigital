@@ -56,12 +56,32 @@ export default function Accordion({ items }: AccordionProps) {
                 onClick={() => toggle(index)}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                className="bg-[var(--color-2)] flex w-full justify-between p-[calc(var(--gap)/2)] min-[1135px]:p-[var(--gap)] items-center [transition:var(--transition)] cursor-pointer pr-10 relative text-left"
+                className="
+                grid w-full
+                grid-cols-[minmax(0,1fr)_2rem]
+                items-center
+                gap-[var(--gap)]
+                bg-[var(--color-2)]
+                px-[calc(var(--gap)/2)]
+                min-1500px:p[var(--gap)]
+                text-left
+                cursor-pointer
+                [transition:var(--transition)]
+                "
               >
-                <div className={`text-[var(--color-5)] [transition:var(--transition)] ${isOpen ? 'font-semibold' : ''}`}>
-                  <h3 className="font-[family-name:var(--font-cormorant-garamond)]!">{item.heading}</h3>
+                <div className={`min-w-0 text-[var(--color-5)] [transition:var(--transition)] ${isOpen ? 'font-semibold' : ''}`}>
+                  <h3 className="m-0 font-[family-name:var(--font-cormorant-garamond)]!">{item.heading}</h3>
                 </div>
-                <div className={`h-8 w-8 border border-[var(--color-5)] rounded-full items-center inline-flex justify-center transform [transition:var(--transition)] text-[var(--color-5)] absolute top-0 right-0 mb-auto ml-auto mt-[calc(var(--gap)/2)] min-[1135px]:mt-[var(--gap)] mr-[calc(var(--gap)/2)] min-[1135px]:mr-[var(--gap)] ${isOpen ? '-rotate-180' : ''}`}>
+                <div className={`
+                  flex h-8 w-8 
+                  items-center justify-center
+                  justify-self-end
+                  rounded-full
+                  border border border-[var(--color-5)] 
+                  text-[var(--color-5)]
+                  transform 
+                  [transition:var(--transition)] 
+                  ${isOpen ? '-rotate-180' : ''}`}>
                   <FontAwesomeIcon icon={faChevronDown} />
                 </div>
               </button>

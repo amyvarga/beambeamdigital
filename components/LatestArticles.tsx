@@ -14,10 +14,14 @@ export default async function LatestArticles() {
   return (
     <div className="page-section section">
       <div className="content">
-        <h2 className="fade-in inline">Latest Resources</h2>
-        <span className="callToActionLink">
-          <Link href="/resources" data-replace="View all resources"><span>View all resources</span></Link>
-        </span>
+        <div className="header">
+          <div className="page-title"><h2 className="fade-in inline">Latest Resources</h2></div>
+          <div className="callToAction">
+            <span className="callToActionLink">
+              <Link href="/resources" data-replace="View all resources"><span>View all resources</span></Link>
+            </span>
+          </div>
+        </div>
         <div className="article-grid">
           {articles.map((article) => (
             <ArticleCard

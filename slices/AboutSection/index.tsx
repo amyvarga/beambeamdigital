@@ -29,7 +29,7 @@ const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
   const cta_button_link = p.cta_button_link as Parameters<typeof PrismicLink>[0]["field"] | undefined;
 
   return (
-    <section id="about" className="about section min-[1135px]:!px-[calc(var(--gap)*20)]">
+    <section id="about" className="about section ">
       <div className="about-content content">
         {slice.primary.heading && (
           <div className="about-title title">
@@ -51,10 +51,7 @@ const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
             )}
           </div>
           <div className="about-text fade-in">
-            <PrismicRichText field={slice.primary.body_paragraph_one} />
-          </div>
-          <MasonryGallery images={masonryImages} title={slice.primary.masonry_title ?? undefined} />
-          <div className="about-text fade-in">
+             <PrismicRichText field={slice.primary.body_paragraph_one} />
             <PrismicRichText field={slice.primary.body_paragraph_two} />
             <PrismicRichText field={slice.primary.body_paragraph_three} />
             {(cta_text?.trim() || cta_button_label) && (
@@ -68,6 +65,7 @@ const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
               </p>
             )}
           </div>
+          <MasonryGallery images={masonryImages} title={slice.primary.masonry_title ?? undefined} />
         </div>
       </div>
     </section>
