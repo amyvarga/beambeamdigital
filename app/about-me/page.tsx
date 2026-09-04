@@ -16,6 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       url: "/about-me",
+      type: "website",
       images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
     },
   };

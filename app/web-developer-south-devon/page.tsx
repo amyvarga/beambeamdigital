@@ -19,6 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       url: path,
+      type: "website",
       images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
     },
   };

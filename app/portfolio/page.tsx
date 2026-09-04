@@ -4,6 +4,7 @@ import { asLink, asText, Content } from "@prismicio/client";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
+import { serializeJsonLd } from "@/lib/jsonLd";
 
 const SITE_URL = "https://www.beambeam.co.uk";
 const META_TITLE = "Our Work | Web Design Portfolio | Beam Beam Digital";
@@ -40,17 +41,23 @@ export default async function PortfolioPage() {
   ) as Content.FeaturedCardGridSlice | undefined;
   const projects = (workSlice?.primary.cards ?? [])
     .filter((card) => card.title)
-    .map((card, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "CreativeWork",
-        name: card.title,
-        description: asText(card.description_list) || undefined,
-        url: asLink(card.link) || undefined,
-        image: card.image.url || undefined,
-      },
-    }));
+    .map((card, index) => {
+      const href = asLink(card.link);
+      const url = href ? new URL(href, SITE_URL).toString() : undefined;
+
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "CreativeWork",
+          "@id": url ? `${url}#case-study` : undefined,
+          name: card.title,
+          description: asText(card.description_list) || undefined,
+          url,
+          image: card.image.url || undefined,
+        },
+      };
+    });
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -58,11 +65,14 @@ export default async function PortfolioPage() {
     url: `${SITE_URL}/portfolio`,
     name: title,
     description,
+    inLanguage: "en-GB",
     isPartOf: { "@id": `${SITE_URL}/#website` },
+    breadcrumb: { "@id": `${SITE_URL}/portfolio#breadcrumb` },
     about: { "@id": `${SITE_URL}/#organization` },
     ...(projects.length > 0 && {
       mainEntity: {
         "@type": "ItemList",
+        "@id": `${SITE_URL}/portfolio#itemlist`,
         name: "Beam Beam Digital portfolio",
         numberOfItems: projects.length,
         itemListElement: projects,
@@ -74,7 +84,7 @@ export default async function PortfolioPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <BreadcrumbJsonLd label="Portfolio" path="/portfolio" />
       <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />

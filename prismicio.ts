@@ -25,6 +25,16 @@ const routes: Route[] = [
   { type: "services", path: "/web-developer-south-devon" },
   { type: "article", path: "/resources/:uid" },
   { type: "portfolio_case_study", path: "/portfolio/:uid" },
+  {
+    type: "product_description",
+    uid: "simple-website",
+    path: "/business-starter-website",
+  },
+  {
+    type: "product_description",
+    uid: "simple-websites",
+    path: "/business-starter-website",
+  },
   { type: "product_description", path: "/:uid" },
 ];
 

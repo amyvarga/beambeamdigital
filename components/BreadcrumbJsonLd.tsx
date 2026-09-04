@@ -1,9 +1,12 @@
+import { serializeJsonLd } from "@/lib/jsonLd";
+
 const SITE_URL = "https://www.beambeam.co.uk";
 
 export default function BreadcrumbJsonLd({ label, path }: { label: string; path: string }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${SITE_URL}${path}#breadcrumb`,
     itemListElement: [
       {
         "@type": "ListItem",
@@ -23,7 +26,7 @@ export default function BreadcrumbJsonLd({ label, path }: { label: string; path:
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
     />
   );
 }

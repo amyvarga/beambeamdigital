@@ -7,6 +7,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
+import { serializeJsonLd } from "@/lib/jsonLd";
+
+const SITE_URL = "https://www.beambeam.co.uk";
 
 type Props = { params: Promise<{ uid: string }> };
 
@@ -21,15 +24,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const client = createClient();
   try {
     const article = await client.getByUID("article", uid);
+    const title = article.data.meta_title ?? asText(article.data.title);
+    const description = article.data.meta_description ?? article.data.excerpt;
+    const path = `/resources/${uid}`;
+    const image = article.data.meta_image?.url ?? article.data.featured_image?.url;
     return {
-      title: article.data.meta_title ?? asText(article.data.title),
-      description: article.data.meta_description ?? article.data.excerpt,
+      title,
+      description,
+      alternates: {
+        canonical: path,
+      },
       openGraph: {
-        images: article.data.meta_image?.url
-          ? [article.data.meta_image.url]
-          : article.data.featured_image?.url
-          ? [article.data.featured_image.url]
-          : [],
+        title,
+        description: description ?? undefined,
+        url: path,
+        type: "article",
+        images: image ? [image] : [],
       },
     };
   } catch {
@@ -48,45 +58,53 @@ export default async function ArticlePage({ params }: Props) {
   }
 
   const title = asText(article.data.title);
+  const path = `/resources/${uid}`;
+  const url = `${SITE_URL}${path}`;
+  const publishedDate = article.data.date ?? article.first_publication_date;
+  const image = article.data.featured_image?.url ?? article.data.meta_image?.url;
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "@id": `https://www.beambeam.co.uk/resources/${uid}#article`,
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
     headline: title,
     description: article.data.meta_description ?? article.data.excerpt ?? undefined,
-    datePublished: article.data.date ?? undefined,
+    datePublished: publishedDate,
     dateModified: article.last_publication_date,
+    inLanguage: article.lang,
+    isAccessibleForFree: true,
+    articleSection: "Resources",
+    keywords: article.tags.length > 0 ? article.tags : undefined,
     author: article.data.author
       ? {
           "@type": "Person",
           name: article.data.author,
-          url: "https://www.beambeam.co.uk/about-me",
+          url: `${SITE_URL}/about-me`,
         }
       : undefined,
-    image: article.data.featured_image?.url ?? undefined,
-    url: `https://www.beambeam.co.uk/resources/${uid}`,
+    image: image ?? undefined,
+    url,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://www.beambeam.co.uk/resources/${uid}#webpage`,
+      "@id": `${url}#webpage`,
     },
     publisher: {
-      "@id": "https://www.beambeam.co.uk/#organization",
+      "@id": `${SITE_URL}/#organization`,
     },
   };
 
   return (
     <>
       <PageJsonLd
-        path={`/resources/${uid}`}
+        path={path}
         name={title}
         description={article.data.meta_description ?? article.data.excerpt}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
-      <BreadcrumbJsonLd label={title} path={`/resources/${uid}`} />
+      <BreadcrumbJsonLd label={title} path={path} />
       <article className="page-section section">
         <div className="breadcrumb">
           <span><Link href="/resources">← Resources</Link></span>
@@ -105,15 +123,13 @@ export default async function ArticlePage({ params }: Props) {
           <header className="article-header">
             <h1 className="fade-in">{title}</h1>
             <p className="article-meta fade-in">
-              {article.data.date && (
-                <time dateTime={article.data.date}>
-                  {new Date(article.data.date).toLocaleDateString("en-GB", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </time>
-              )}
+              <time dateTime={publishedDate}>
+                {new Date(publishedDate).toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </time>
               {article.data.author && <span> · {article.data.author}</span>}
             </p>
           </header>

@@ -25,14 +25,20 @@ export async function generateMetadata({
 
   try {
     const page = await client.getByUID("product_description", uid);
+    const title = page.data.meta_title ?? uid;
+    const description = page.data.meta_description ?? undefined;
 
     return {
-      title: page.data.meta_title,
-      description: page.data.meta_description,
+      title,
+      description,
       alternates: {
         canonical: `/${uid}`,
       },
       openGraph: {
+        title,
+        description,
+        url: `/${uid}`,
+        type: "website",
         images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
       },
     };

@@ -1,4 +1,5 @@
 import { asText, type Content } from "@prismicio/client";
+import { serializeJsonLd } from "@/lib/jsonLd";
 
 const SITE_URL = "https://www.beambeam.co.uk";
 
@@ -130,7 +131,7 @@ export default function PortfolioCaseStudyJsonLd({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        __html: serializeJsonLd(jsonLd),
       }}
     />
   );

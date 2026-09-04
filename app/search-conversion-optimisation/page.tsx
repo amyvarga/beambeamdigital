@@ -5,8 +5,11 @@ import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import LatestArticles from "@/components/LatestArticles";
 import { asText, Content } from "@prismicio/client";
+import { serializeJsonLd } from "@/lib/jsonLd";
 
 const SITE_URL = "https://www.beambeam.co.uk";
+const PAGE_PATH = "/search-conversion-optimisation";
+const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -15,10 +18,11 @@ export async function generateMetadata(): Promise<Metadata> {
     title: page.data.meta_title,
     description: page.data.meta_description,
     alternates: {
-      canonical: "/search-conversion-optimisation",
+      canonical: PAGE_PATH,
     },
     openGraph: {
-      url: "/search-conversion-optimisation",
+      url: PAGE_PATH,
+      type: "website",
       images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
     },
   };
@@ -48,53 +52,65 @@ export default async function SeoPage() {
             priceCurrency: product.price_currency ?? "GBP",
           };
       return {
-        ...offer,
+        "@type": "ListItem",
         position: index + 1,
-        itemOffered: {
-          "@type": "Service",
-          name: product.product_title,
-          description: asText(product.product_brief_description),
+        item: {
+          ...offer,
+          "@id": `${PAGE_URL}#offer-${index + 1}`,
+          url: `${PAGE_URL}#packages`,
+          itemOffered: {
+            "@type": "Service",
+            "@id": `${PAGE_URL}#package-${index + 1}`,
+            name: product.product_title,
+            description: asText(product.product_brief_description),
+            provider: { "@id": `${SITE_URL}/#organization` },
+          },
         },
       };
     });
-  const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "@id": `${SITE_URL}/search-conversion-optimisation#webpage`,
-      url: `${SITE_URL}/search-conversion-optimisation`,
-      name: page.data.meta_title ?? "SEO Services",
-      description: page.data.meta_description ?? undefined,
-      isPartOf: {
-        "@type": "WebSite",
-        "@id": `${SITE_URL}/#website`,
-        name: "Beam Beam Digital",
-        url: SITE_URL,
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${PAGE_URL}#webpage`,
+        url: PAGE_URL,
+        name: page.data.meta_title ?? "SEO Services",
+        description: page.data.meta_description ?? undefined,
+        inLanguage: "en-GB",
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        breadcrumb: { "@id": `${PAGE_URL}#breadcrumb` },
+        about: { "@id": `${PAGE_URL}#service` },
+        mainEntity: { "@id": `${PAGE_URL}#service` },
       },
-      about: { "@id": `${SITE_URL}/search-conversion-optimisation#service` },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "@id": `${SITE_URL}/search-conversion-optimisation#service`,
-      name: "SEO Services",
-      serviceType: "Search engine optimisation",
-      provider: { "@id": `${SITE_URL}/#organization` },
-      areaServed: { "@type": "Place", name: "South Devon" },
-      hasOfferCatalog: { "@id": `${SITE_URL}/search-conversion-optimisation#offers` },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "OfferCatalog",
-      "@id": `${SITE_URL}/search-conversion-optimisation#offers`,
-      name: "SEO Packages",
-      itemListElement: offers,
-    },
-  ];
+      {
+        "@type": "Service",
+        "@id": `${PAGE_URL}#service`,
+        name: "SEO Services",
+        serviceType: "Search engine optimisation",
+        description: page.data.meta_description ?? undefined,
+        url: PAGE_URL,
+        inLanguage: "en-GB",
+        provider: { "@id": `${SITE_URL}/#organization` },
+        areaServed: [
+          { "@type": "Place", name: "South Devon" },
+          { "@type": "Country", name: "United Kingdom" },
+        ],
+        hasOfferCatalog: { "@id": `${PAGE_URL}#offers` },
+      },
+      {
+        "@type": "OfferCatalog",
+        "@id": `${PAGE_URL}#offers`,
+        name: "SEO Packages",
+        numberOfItems: offers.length,
+        itemListElement: offers,
+      },
+    ],
+  };
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <BreadcrumbJsonLd label="SEO" path="/search-conversion-optimisation" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
+      <BreadcrumbJsonLd label="SEO" path={PAGE_PATH} />
       <SliceZone
         slices={page.data.slices}
         components={components}

@@ -33,6 +33,36 @@ const nextConfig: NextConfig = {
         destination: "/web-developer-south-devon",
         permanent: true,
       },
+      {
+        source: "/simple-website",
+        destination: "/business-starter-website",
+        permanent: true,
+      },
+      {
+        source: "/simple-websites",
+        destination: "/business-starter-website",
+        permanent: true,
+      },
+      {
+        source: "/product-descriptions/simple-website",
+        destination: "/business-starter-website",
+        permanent: true,
+      },
+      {
+        source: "/product-descriptions/simple-websites",
+        destination: "/business-starter-website",
+        permanent: true,
+      },
+      {
+        source: "/product-descriptions/business-starter-website",
+        destination: "/business-starter-website",
+        permanent: true,
+      },
+      {
+        source: "/product-descriptions/:uid",
+        destination: "/:uid",
+        permanent: true,
+      },
     ];
   },
 };

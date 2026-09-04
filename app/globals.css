@@ -112,7 +112,7 @@ h3 {
     font-size: clamp(25px, 4vw, 23px);
     font-weight: 400;
     font-family: var(--font-montserrat);
-    margin: 1rem 0;
+    margin: 2rem 0;
 }
 h4 {
     font-size: clamp(16px, 3vw, 17px);
@@ -268,11 +268,6 @@ li {
 
 .content {
     width: 100%;
-}
-
-.title,
-.title span.logo-beam {
-    color: var(--color-5);
 }
 
 /* ============================================
@@ -524,7 +519,6 @@ a.nav-link.selected::after {
     clip-path: inset(-40px 0 0 0);
 }*/
 
-
 .hero-background,
 .hero-overlay {
     position: absolute;
@@ -550,6 +544,7 @@ a.nav-link.selected::after {
 .hero-title,
 .hero-strapline {
     margin-bottom: calc(var(--gap) / 2);
+    color: var(--color-5);
 }
 
 .hero-strapline {
@@ -741,7 +736,6 @@ div.callToAction {
    ============================================ */
 .product-section {
     color: var(--color-2);
-    background-color: var(--color-5);
     border-top: none;
     .product-title > h2 {
         color: var(--color-2);
@@ -753,24 +747,94 @@ div.callToAction {
 }
 
 .product-items {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: calc(var(--gap) / 2) 0;
+    overflow: hidden;
     text-align: left;
-    h3 {
-        color: var(--color-2);
-    }
 }
 
 .product-item {
-    border: 0.5px solid var(--color-6);
-    border-radius: var(--btn-radius);
+    border-bottom: 0.5px solid var(--color-2);
     scroll-margin-top: calc(var(--scroll-margin-top) + 20px);
-    overflow: hidden;
 }
 
-.product-item-content {
+.product-item:first-child {
+    border-top: 0.5px solid var(--color-2);
+}
+
+.product-item:last-child {
+    border-bottom: 0;
+}
+
+.product-accordion-trigger {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 2rem;
+    align-items: center;
+    gap: var(--gap);
+    width: 100%;
     padding: calc(var(--gap) / 2);
+    padding-left: 0;
+    color: var(--color-2);
+    text-align: left;
+    cursor: pointer;
+    transition: color var(--transition), background-color var(--transition);
+    list-style: none;
+}
+
+.product-accordion-trigger::-webkit-details-marker {
+    display: none;
+}
+
+.product-accordion-trigger:focus-visible {
+    outline: 2px solid var(--color-2);
+    outline-offset: -4px;
+}
+
+.product-accordion-title {
+    color: inherit;
+    margin: 0;
+}
+
+.product-item[open] .product-accordion-trigger {
+    color: var(--color-6);
+    font-weight: 600;
+}
+
+.product-accordion-trigger::after {
+    content: "+";
+    justify-self: end;
+    font-size: 2.25rem;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.product-item[open] .product-accordion-trigger::after {
+    content: "−";
+}
+
+.product-accordion-panel {
+    margin-bottom: var(--gap);
+}
+
+.product-item-content > :last-child {
+    margin-bottom: 0;
+}
+
+.product-accordion-cta {
+    display: flex;
+    justify-content: right;
+    margin-top: calc(var(--gap) / 2);
+    > a {
+        border: none!important;
+        &:after {
+            content: " →";
+            font-weight: 400;
+
+        }
+        &:hover {
+            &:after {
+                color: var(--color-6);
+            }
+         }
+    }
 }
 
 .product-title > h2 {
@@ -1412,7 +1476,7 @@ select:focus {
 
     h3 {
         font-size: clamp(25px, 1.2vw, 24px);
-        font-weight: 500;
+        font-weight: 400;
         margin: 1em 0;
     }
 
@@ -1520,15 +1584,6 @@ select:focus {
     .product-section .product-title > h2 {
         margin-bottom: var(--gap);
     }
-    .product-section {
-        .product-items {
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--gap);
-        }
-        .product-item-content {
-            padding: var(--gap);
-        }
-    }
 
     p.callToAction {
         margin: calc(var(--gap) * 2) auto 0 auto;
@@ -1624,10 +1679,11 @@ select:focus {
     }
   
     .page-content:has(> .page-title),
+    .product-content:has(> .product-title),
     .content .header {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-      gap: 3rem;
+      gap: 1rem;
       align-items: baseline;
       > div.callToAction {
         text-align:right;
@@ -1636,6 +1692,14 @@ select:focus {
 
     .content .header {
         grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    }
+
+    .product-content > .product-title {
+        grid-column: 1 / -1;
+    }
+
+    .product-content > .product-items {
+        grid-column: 2;
     }
 
     .page-title h2,
@@ -1765,6 +1829,12 @@ select:focus {
     .nav-dropdown-toggle:hover,
     .nav-dropdown-toggle.selected {
         border-bottom: 0.5px solid currentColor;
+    }
+
+    .sticky-button {
+        height: 169px;
+        width: 169px;
+        font-size: 24px;
     }
 }
 /* ============================================

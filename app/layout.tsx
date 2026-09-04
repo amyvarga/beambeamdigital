@@ -10,6 +10,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
+import { serializeJsonLd } from "@/lib/jsonLd";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -90,7 +91,7 @@ export default async function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
       </head>
       <body>

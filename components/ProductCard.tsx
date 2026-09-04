@@ -3,27 +3,35 @@ import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
 
 interface ProductCardProps {
-  title: string | null;
+  title: string;
   briefDescription: prismic.RichTextField;
-  HeadingTag: 'h2' | 'h3';
   cta_text: string | null;
   cta_link: prismic.LinkField | null;
 }
 
-export default function ProductCard({ title, briefDescription, HeadingTag, cta_text, cta_link }: ProductCardProps) {
+export default function ProductCard({
+  title,
+  briefDescription,
+  cta_text,
+  cta_link,
+}: ProductCardProps) {
   return (
-    <div className="product-item">
-      {title && <div className="product-item-title bg-(--color-6) p-(--gap)"><HeadingTag className="text-(--color-5) !mb-0">{title}</HeadingTag></div>}
-      <div className="product-item-content pricing">
-        <PrismicRichText field={briefDescription} />
-      </div>
-      {cta_text && cta_link && (
-        <div className="flex justify-center mb-[calc(var(--gap)/2)] min-[1135px]:mb-(--gap)">
-          <PrismicNextLink field={cta_link} className="btn animate-fill">
-            {cta_text}
-          </PrismicNextLink>
+    <details className="product-item">
+      <summary className="product-accordion-trigger">
+        <h3 className="product-accordion-title">{title}</h3>
+      </summary>
+      <div className="product-accordion-panel">
+        <div className="product-item-content pricing">
+          <PrismicRichText field={briefDescription} />
+          {cta_text && cta_link && (
+            <div className="product-accordion-cta">
+              <PrismicNextLink field={cta_link} className="">
+                {cta_text}
+              </PrismicNextLink>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </details>
   );
 }

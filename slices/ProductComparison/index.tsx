@@ -1,10 +1,9 @@
-"use client";
-
 import { FC } from "react";
 import type * as prismic from "@prismicio/client";
 import { asText } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import ProductCard from "@/components/ProductCard";
+import { serializeJsonLd } from "@/lib/jsonLd";
 
 type ProductItem = {
   heading: prismic.KeyTextField;
@@ -33,9 +32,12 @@ const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
   const ctx = context as
     | { isPage?: boolean; suppressProductSchema?: boolean }
     | undefined;
-  const HeadingTag = ctx?.isPage ? "h2" : "h3";
   const p = slice.primary as Record<string, unknown>;
   const products = (p.product as ProductItem[]) ?? [];
+  const sectionHeading = products.find((item) => item.heading?.trim())?.heading;
+  const visibleProducts = products.filter(
+    (item) => item.product_title || item.product_brief_description,
+  );
   const offerFor = (item: ProductItem) => {
     if (!item.price) return undefined;
     const range = item.price.match(/^\s*([\d,.]+)\s*[-–—]\s*([\d,.]+)\s*$/);
@@ -57,22 +59,22 @@ const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    itemListElement: products
-      .filter((item) => item.product_title || item.product_brief_description)
-      .map((item, i) => ({
-        "@type": "ListItem",
-        position: i + 1,
-        item: {
-          "@type": "Service",
-          name: item.product_title ?? "",
-          description: asText(item.product_brief_description),
-          offers: offerFor(item),
-          provider: {
-            "@type": "Organization",
-            "@id": "https://www.beambeam.co.uk/#organization",
-          },
+    name: sectionHeading ?? "Service packages",
+    numberOfItems: visibleProducts.length,
+    itemListElement: visibleProducts.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Service",
+        name: item.product_title ?? "",
+        description: asText(item.product_brief_description),
+        offers: offerFor(item),
+        provider: {
+          "@type": "Organization",
+          "@id": "https://www.beambeam.co.uk/#organization",
         },
-      })),
+      },
+    })),
   };
 
   return (
@@ -85,17 +87,21 @@ const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
       {!ctx?.suppressProductSchema && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
       )}
       <div className="product-content content fade-in">
+        {sectionHeading && (
+          <div className="product-title title">
+            <h2>{sectionHeading}</h2>
+          </div>
+        )}
         <div className="product-items" id="packages">
-          {products.filter((item) => item.product_title || item.product_brief_description).map((item, i) => (
+          {visibleProducts.map((item, i) => (
             <ProductCard
               key={i}
-              title={item.product_title ?? null}
+              title={item.product_title ?? `Package ${i + 1}`}
               briefDescription={item.product_brief_description}
-              HeadingTag={HeadingTag}
               cta_text={item.cta_text ?? null}
               cta_link={item.cta_link ?? null}
             />

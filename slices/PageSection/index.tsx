@@ -28,15 +28,15 @@ const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
     <section id="page" className="page section">
       <div className="page-content content">
         {slice.primary.heading && (
-          <div className="page-title title">
-            <Title className="fade-in text-(--color-2) text-left">{slice.primary.heading}</Title>
+          <div className="page-title title col-span-full">
+            <Title className="fade-in w-full text-left text-(--color-2)">{slice.primary.heading}</Title>
           </div>
         )}
-        <div className="page-text fade-in">
+        <div className="page-text fade-in lg:col-start-2">
           <PrismicRichText field={bodyParagraph} />
           {slice.primary.cta_text?.trim() && isFilled.link(slice.primary.link) && (
-            <p className="text-center">
-              <PrismicLink field={slice.primary.link} className="animate-fill btn" data-replace={slice.primary.cta_text}>
+            <p className="text-right">
+              <PrismicLink field={slice.primary.link} className="" data-replace={slice.primary.cta_text}>
                 {slice.primary.cta_text}
               </PrismicLink>
             </p>

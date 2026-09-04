@@ -1,3 +1,5 @@
+import { serializeJsonLd } from "@/lib/jsonLd";
+
 const SITE_URL = "https://www.beambeam.co.uk";
 
 type PageJsonLdProps = {
@@ -19,7 +21,8 @@ export default function PageJsonLd({
   serviceType,
   includeWebsite = false,
 }: PageJsonLdProps) {
-  const url = `${SITE_URL}${path}`;
+  const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`;
+  const pageId = path === "/" ? `${SITE_URL}/#webpage` : `${url}#webpage`;
   const serviceId = serviceName ? `${url}#service` : undefined;
   const graph = [
     ...(includeWebsite
@@ -29,20 +32,25 @@ export default function PageJsonLd({
             "@id": `${SITE_URL}/#website`,
             url: SITE_URL,
             name: "Beam Beam Digital",
+            inLanguage: "en-GB",
             publisher: { "@id": `${SITE_URL}/#organization` },
           },
         ]
       : []),
     {
       "@type": type,
-      "@id": `${url}#webpage`,
+      "@id": pageId,
       url,
       name,
       description: description || undefined,
+      inLanguage: "en-GB",
       isPartOf: { "@id": `${SITE_URL}/#website` },
+      breadcrumb:
+        path === "/" ? undefined : { "@id": `${url}#breadcrumb` },
       about: serviceId ? { "@id": serviceId } : undefined,
-      mainEntity:
-        type === "ContactPage"
+      mainEntity: serviceId
+        ? { "@id": serviceId }
+        : type === "ContactPage"
           ? { "@id": `${SITE_URL}/#organization` }
           : undefined,
     },
@@ -55,6 +63,7 @@ export default function PageJsonLd({
             serviceType: serviceType || serviceName,
             description: description || undefined,
             url,
+            inLanguage: "en-GB",
             provider: { "@id": `${SITE_URL}/#organization` },
             areaServed: [
               { "@type": "Place", name: "South Devon" },
@@ -69,7 +78,7 @@ export default function PageJsonLd({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
+        __html: serializeJsonLd({
           "@context": "https://schema.org",
           "@graph": graph,
         }),

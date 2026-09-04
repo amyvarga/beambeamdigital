@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { createClient } from "@/prismicio";
+import { getPublicProductDescriptionSlug } from "@/lib/productDescriptionSlugs";
 
 const baseUrl = "https://www.beambeam.co.uk";
 
@@ -34,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]);
 
   const coreEntries: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/`, lastModified: new Date(home.last_publication_date), changeFrequency: "monthly", priority: 1 },
+    { url: baseUrl, lastModified: new Date(home.last_publication_date), changeFrequency: "monthly", priority: 1 },
     { url: `${baseUrl}/web-developer-south-devon`, lastModified: new Date(services.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/website-design-development`, lastModified: new Date(websites.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/ecommerce`, lastModified: new Date(ecommerce.last_publication_date), changeFrequency: "monthly", priority: 0.9 },
@@ -53,7 +54,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const productDescriptionEntries = productDescriptions.map((page) => ({
-    url: `${baseUrl}/${page.uid}`,
+    url: `${baseUrl}/${getPublicProductDescriptionSlug(page.uid)}`,
     lastModified: new Date(page.last_publication_date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -66,10 +67,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [
+  const entries: MetadataRoute.Sitemap = [
     ...coreEntries,
     ...articleEntries,
     ...productDescriptionEntries,
     ...portfolioCaseStudyEntries,
   ];
+
+  return Array.from(new Map(entries.map((entry) => [entry.url, entry])).values());
 }

@@ -4,11 +4,15 @@ import { FC } from "react";
 import { Content, asLink, asText } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
 import Accordion from "@/components/Accordion";
+import { serializeJsonLd } from "@/lib/jsonLd";
 
 export type FaqProps = SliceComponentProps<Content.FaqSlice>;
 
 const Faq: FC<FaqProps> = ({ slice }) => {
-  const items = (slice.primary.faq ?? []).map((item) => ({
+  const faqItems = (slice.primary.faq ?? []).filter(
+    (item) => item.faq_title?.trim() && asText(item.faq_description).trim(),
+  );
+  const items = faqItems.map((item) => ({
     heading: item.faq_title ?? "",
     body: <PrismicRichText field={item.faq_description} />,
     ctaLabel: item.cta_label ?? undefined,
@@ -18,7 +22,7 @@ const Faq: FC<FaqProps> = ({ slice }) => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: (slice.primary.faq ?? []).map((item) => ({
+    mainEntity: faqItems.map((item) => ({
       "@type": "Question",
       name: item.faq_title ?? "",
       acceptedAnswer: {
@@ -36,7 +40,7 @@ const Faq: FC<FaqProps> = ({ slice }) => {
     >
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <div className="content">
         {slice.primary.faq_heading && (
