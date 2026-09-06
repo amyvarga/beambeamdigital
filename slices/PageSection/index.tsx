@@ -21,6 +21,9 @@ const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
   const ctx = context as { isPage?: boolean } | undefined;
   /*const Title = ctx?.isPage ? "h2" : "h3";*/
   const Title = "h2";
+  const pageTextLayout = ctx?.isPage
+    ? "lg:col-start-2 lg:col-span-2 lg:columns-2"
+    : "lg:col-start-2 lg:col-span-2";
   const p = slice.primary as Record<string, unknown>;
   const bodyParagraph = p.body_paragraph_one as Parameters<typeof PrismicRichText>[0]["field"];
 
@@ -32,7 +35,7 @@ const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
             <Title className="fade-in w-full text-left text-(--color-2)">{slice.primary.heading}</Title>
           </div>
         )}
-        <div className="page-text fade-in lg:col-start-2">
+        <div className={`page-text ${pageTextLayout}`}>
           <PrismicRichText field={bodyParagraph} />
           {slice.primary.cta_text?.trim() && isFilled.link(slice.primary.link) && (
             <p className="text-right">

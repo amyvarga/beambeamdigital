@@ -553,6 +553,12 @@ a.nav-link.selected::after {
     color: var(--color-5);
 }
 
+.hero-introduction {
+    width: 100%;
+    grid-column: 1 / -1;
+    color: var(--color-5);
+}
+
 .hero-cta {
     display: flex;
     gap: var(--gap);
@@ -777,6 +783,9 @@ div.callToAction {
     cursor: pointer;
     transition: color var(--transition), background-color var(--transition);
     list-style: none;
+    &:hover {
+        color: var(--color-6);
+    }
 }
 
 .product-accordion-trigger::-webkit-details-marker {
@@ -1682,12 +1691,21 @@ select:focus {
     .product-content:has(> .product-title),
     .content .header {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
       gap: 1rem;
       align-items: baseline;
       > div.callToAction {
         text-align:right;
       }
+    }
+
+    .page-text h3 {
+        break-inside: avoid-column;
+        break-after: avoid-column;
+    }
+
+    .page-text h3 + * {
+        break-after: avoid-column;
     }
 
     .content .header {
@@ -1699,7 +1717,7 @@ select:focus {
     }
 
     .product-content > .product-items {
-        grid-column: 2;
+        grid-column: 2 / -1;
     }
 
     .page-title h2,

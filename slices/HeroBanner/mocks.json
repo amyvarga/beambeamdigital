@@ -3,11 +3,6 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"background_color": {
-				"__TYPE__": "FieldContent",
-				"value": "driven",
-				"type": "Text"
-			},
 			"headline": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
@@ -30,34 +25,10 @@
 					}
 				]
 			},
-			"cta": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"cta_label",
-								{
-									"__TYPE__": "FieldContent",
-									"value": "chain",
-									"type": "Text"
-								}
-							],
-							[
-								"cta_link",
-								{
-									"key": "83d50311-58de-4576-8fba-26474234540f",
-									"__TYPE__": "LinkContent",
-									"value": {
-										"__TYPE__": "ExternalLink",
-										"url": "http://google.com"
-									}
-								}
-							]
-						]
-					}
-				]
+			"introduction": {
+				"__TYPE__": "FieldContent",
+				"value": "do",
+				"type": "Text"
 			}
 		},
 		"items": []

@@ -18,7 +18,7 @@ const MasonryGallery = ({ images, title }: MasonryGalleryProps) => (
     {images.map((img) => (
       <div key={img.src} className="masonry-item" style={img.columns && img.columns > 1 ? { gridColumn: `span ${img.columns}` } : undefined}>
         {img.href ? (
-          <a href={img.href} title={img.title ?? img.alt} target="_blank" rel="noopener noreferrer">
+          <a href={img.href} title={img.title ?? img.alt} target="_blank" rel="noopener noreferrer" className="cursor-view">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={img.src} alt={img.alt}  className="transition-all duration-300 hover:sepia"/>
           </a>

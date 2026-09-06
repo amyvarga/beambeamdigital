@@ -11,12 +11,6 @@
       "imageUrl": "",
       "docURL": "...",
       "primary": {
-        "background_color": {
-          "type": "Text",
-          "config": {
-            "label": "Background Color (hex or CSS variable)"
-          }
-        },
         "headline": {
           "type": "StructuredText",
           "config": {
@@ -33,27 +27,11 @@
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         },
-        "cta": {
-          "type": "Group",
+        "introduction": {
+          "type": "Text",
           "config": {
-            "label": "Call To Action",
-            "fields": {
-              "cta_label": {
-                "type": "Text",
-                "config": {
-                  "label": "Button Label"
-                }
-              },
-              "cta_link": {
-                "type": "Link",
-                "config": {
-                  "label": "Button Link",
-                  "allowText": false,
-                  "repeat": false,
-                  "select": null
-                }
-              }
-            }
+            "label": "Introduction",
+            "placeholder": ""
           }
         }
       },

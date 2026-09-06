@@ -1836,50 +1836,9 @@ export type FooterNavigationAndServicesRegionsSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *Hero Banner → Default → Primary → Call To Action*
- */
-export interface HeroBannerSliceDefaultPrimaryCtaItem {
-  /**
-   * Button Label field in *Hero Banner → Default → Primary → Call To Action*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_banner.default.primary.cta[].cta_label
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  cta_label: prismic.KeyTextField;
-
-  /**
-   * Button Link field in *Hero Banner → Default → Primary → Call To Action*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_banner.default.primary.cta[].cta_link
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  cta_link: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-}
-
-/**
  * Primary content in *Hero Banner → Default → Primary*
  */
 export interface HeroBannerSliceDefaultPrimary {
-  /**
-   * Background Color (hex or CSS variable) field in *Hero Banner → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero_banner.default.primary.background_color
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  background_color: prismic.KeyTextField;
-
   /**
    * Headline field in *Hero Banner → Default → Primary*
    *
@@ -1901,14 +1860,14 @@ export interface HeroBannerSliceDefaultPrimary {
   subheadline: prismic.RichTextField;
 
   /**
-   * Call To Action field in *Hero Banner → Default → Primary*
+   * Introduction field in *Hero Banner → Default → Primary*
    *
-   * - **Field Type**: Group
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero_banner.default.primary.cta[]
-   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   * - **API ID Path**: hero_banner.default.primary.introduction
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  cta: prismic.GroupField<Simplify<HeroBannerSliceDefaultPrimaryCtaItem>>;
+  introduction: prismic.KeyTextField;
 }
 
 /**
@@ -2409,7 +2368,6 @@ declare module "@prismicio/client" {
       FooterNavigationAndServicesRegionsSliceVariation,
       FooterNavigationAndServicesRegionsSliceDefault,
       HeroBannerSlice,
-      HeroBannerSliceDefaultPrimaryCtaItem,
       HeroBannerSliceDefaultPrimary,
       HeroBannerSliceVariation,
       HeroBannerSliceDefault,
