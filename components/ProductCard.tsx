@@ -1,6 +1,10 @@
+"use client";
+
+import type { SyntheticEvent } from 'react';
 import type * as prismic from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
+import { scrollElementToTop } from '@/lib/scrollToElement';
 
 interface ProductCardProps {
   title: string;
@@ -15,8 +19,23 @@ export default function ProductCard({
   cta_text,
   cta_link,
 }: ProductCardProps) {
+  const handleToggle = (event: SyntheticEvent<HTMLDetailsElement>) => {
+    const product = event.currentTarget;
+    if (!product.open) return;
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        scrollElementToTop(product);
+      });
+    });
+  };
+
   return (
-    <details className="product-item">
+    <details
+      className="product-item"
+      name="product-comparison"
+      onToggle={handleToggle}
+    >
       <summary className="product-accordion-trigger">
         <h3 className="product-accordion-title">{title}</h3>
       </summary>

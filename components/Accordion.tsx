@@ -1,8 +1,9 @@
 'use client';
 
-import { ReactNode, useId, useState } from "react";
+import { ReactNode, useEffect, useId, useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { cancelElementScroll, scrollElementToTop } from '@/lib/scrollToElement';
 
 interface AccordionItem {
   heading: string;
@@ -16,39 +17,100 @@ interface AccordionProps {
 }
 
 export default function Accordion({ items }: AccordionProps) {
-  const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const positionLockFrame = useRef<number | null>(null);
   const accordionId = useId();
 
+  const stopPositionLock = () => {
+    if (positionLockFrame.current !== null) {
+      cancelAnimationFrame(positionLockFrame.current);
+      positionLockFrame.current = null;
+    }
+  };
+
+  const holdItemInPlace = (index: number) => {
+    stopPositionLock();
+
+    const item = itemRefs.current[index];
+    if (!item) return;
+
+    const scrollMarginTop = Number.parseFloat(
+      window.getComputedStyle(item).scrollMarginTop,
+    ) || 0;
+    const lockedTop = item.getBoundingClientRect().top;
+
+    if (lockedTop < scrollMarginTop) return;
+
+    let startedAt: number | null = null;
+    const maintainPosition = (time: number) => {
+      startedAt ??= time;
+      const currentItem = itemRefs.current[index];
+      if (!currentItem) {
+        positionLockFrame.current = null;
+        return;
+      }
+
+      const movement = currentItem.getBoundingClientRect().top - lockedTop;
+      if (Math.abs(movement) > 0.5) {
+        window.scrollBy(0, movement);
+      }
+
+      if (time - startedAt < 600) {
+        positionLockFrame.current = requestAnimationFrame(maintainPosition);
+      } else {
+        positionLockFrame.current = null;
+      }
+    };
+
+    positionLockFrame.current = requestAnimationFrame(maintainPosition);
+  };
+
+  useEffect(() => () => {
+    stopPositionLock();
+    cancelElementScroll();
+  }, []);
+
   const toggle = (index: number) => {
-    const isOpening = !openIndices.has(index);
+    const isOpening = openIndex !== index;
+    cancelElementScroll();
+
+    if (isOpening && openIndex !== null) {
+      holdItemInPlace(index);
+    } else {
+      stopPositionLock();
+    }
+
     if (typeof window !== "undefined" && "gtag" in window) {
       (window as Window & { gtag: (...args: unknown[]) => void }).gtag("event", isOpening ? "accordion_open" : "accordion_close", {
         accordion_heading: items[index].heading,
       });
     }
 
-    setOpenIndices((current) => {
-      const next = new Set(current);
-      if (next.has(index)) {
-        next.delete(index);
-      } else {
-        next.add(index);
-      }
-      return next;
-    });
+    setOpenIndex(isOpening ? index : null);
+  };
+
+  const scrollOpenedItemIntoView = (index: number) => {
+    const item = itemRefs.current[index];
+    if (!item) return;
+
+    scrollElementToTop(item);
   };
 
   return (
     <div className="container mx-auto">
-      <div className="rounded-[var(--btn-radius)] overflow-hidden">
+      <div className="overflow-hidden">
         {items.map((item, index) => {
-          const isOpen = openIndices.has(index);
+          const isOpen = openIndex === index;
           const triggerId = `${accordionId}-trigger-${index}`;
           const panelId = `${accordionId}-panel-${index}`;
           return (
             <div
               key={index}
-              className="accordion-section not-last:border-b-[0.5px] border-[var(--color-5)] [scroll-margin-top:var(--scroll-margin-top)]"
+              ref={(element) => {
+                itemRefs.current[index] = element;
+              }}
+              className="accordion-section not-last:border-b-[0.5px] border-[var(--color-2)] [scroll-margin-top:var(--scroll-margin-top)]"
             >
               <button
                 id={triggerId}
@@ -61,24 +123,21 @@ export default function Accordion({ items }: AccordionProps) {
                 grid-cols-[minmax(0,1fr)_2rem]
                 items-center
                 gap-[var(--gap)]
-                bg-[var(--color-2)]
-                px-[calc(var(--gap)/2)]
                 min-1500px:p[var(--gap)]
                 text-left
                 cursor-pointer
                 [transition:var(--transition)]
                 "
               >
-                <div className={`min-w-0 text-[var(--color-5)] [transition:var(--transition)] ${isOpen ? 'font-semibold' : ''}`}>
-                  <h3 className="m-0 font-[family-name:var(--font-cormorant-garamond)]!">{item.heading}</h3>
+                <div className={`min-w-0 [transition:var(--transition)] ${isOpen ? 'font-semibold' : ''}`}>
+                  <h3 className="m-0">{item.heading}</h3>
                 </div>
                 <div className={`
                   flex h-8 w-8 
                   items-center justify-center
                   justify-self-end
                   rounded-full
-                  border border border-[var(--color-5)] 
-                  text-[var(--color-5)]
+                  border border border-[var(--color-5)]
                   transform 
                   [transition:var(--transition)] 
                   ${isOpen ? '-rotate-180' : ''}`}>
@@ -90,12 +149,22 @@ export default function Accordion({ items }: AccordionProps) {
                 role="region"
                 aria-labelledby={triggerId}
                 aria-hidden={!isOpen}
-                className={`bg-[var(--color-5)] overflow-hidden [transition:max-height_var(--transition)] ${isOpen ? 'max-h-[1000px]' : 'max-h-0'}`}
+                onTransitionEnd={(event) => {
+                  if (
+                    isOpen &&
+                    event.target === event.currentTarget &&
+                    event.propertyName === 'grid-template-rows'
+                  ) {
+                    stopPositionLock();
+                    scrollOpenedItemIntoView(index);
+                  }
+                }}
+                className={`grid overflow-hidden transition-[grid-template-rows] duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
               >
-                <div className={`p-[calc(var(--gap)/2)] min-[1135px]:p-[var(--gap)]`}>
+                <div className="min-h-0 overflow-hidden min-[1135px]:p-[var(--gap)]">
                   {item.body}
                   {item.ctaLabel && item.ctaLink && (
-                    <p className="callToActionLink text-right mr-[1em]">
+                    <p className="callToActionLink mr-[1em]">
                       <a href={item.ctaLink} data-replace={item.ctaLabel}><span>{item.ctaLabel}</span></a>
                     </p>
                   )}
