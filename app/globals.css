@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: clamp(40px, 5vw, 28px);
+    font-size: clamp(42px, 5vw, 40px);
     font-weight: 500;
 }
 
@@ -529,8 +529,9 @@ a.nav-link.selected::after {
 
 .services-content,
 .section:not(.hero-section),
-.page-section {
-    margin-top: calc(100vw * 0.05);
+.page-section, 
+.breadcrumb-section  {
+    margin-top: calc(100vw * 0.2);
     text-align: left;
 }
 
@@ -708,6 +709,7 @@ div.callToAction {
  /*** BREADCRUMB **/
 .breadcrumb-section {
     padding: 0 35px;
+    font-size: 14px;
 }
  .breadcrumb-wrapper {
     > span {
@@ -815,7 +817,7 @@ div.callToAction {
 }
 /*p.callToActionLink,
  span.callToActionLink,
- div.callToActionLink,
+ div.callToActionLink,*/
 .product-accordion-cta {
     display: flex;
     justify-content: left;
@@ -836,7 +838,7 @@ div.callToAction {
             }
          }
     }
-}*/
+}
 
 .product-title > h2 {
     color: var(--color-2);
@@ -1456,36 +1458,9 @@ select:focus {
 }
 
 /* ============================================
-   RESPONSIVE — min-width: 1024px (ipad)
+   RESPONSIVE — min-width: 666 landscape iPhone
    ============================================ */
-@media (min-width: 768px) {
-    body {
-        font-size: 18px;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-        line-height: 1.2em;
-    }
-
-    h1 {
-        font-size: clamp(42px, 1.5vw, 40px);
-    }
-
-    h2 {
-        font-size: clamp(38px, 1.35vw, 36px);
-    }
-
-    h3 {
-        font-size: clamp(32px, 1.2vw, 30px);
-        font-weight: 400;
-        margin: 1em 0;
-    }
-
-    h4 {
-        font-size: clamp(24px, 1.05vw, 22px);
-        line-height: 1.4em;
-        margin-bottom: 1em;
-    }
+@media (min-width: 666px) {
 
  /* About */
     .about-grid {
@@ -1529,13 +1504,21 @@ select:focus {
             }
          }
     }
-}
+    
+    .services-content,
+    .section:not(.hero-section),
+    .page-section,
+    .breadcrumb-section  {
+        margin-top: calc(100vw * 0.05);
+        text-align: left;
+    }
+/*}
 
 /* ============================================
    RESPONSIVE — min-width: 1024px (ipad)
    ============================================ */
 
-@media (min-width: 1024px) {
+/*@media (min-width: 1024px) { */
     :root {
         --gap: 1.25rem;
         --scroll-margin-top: 120px;
@@ -1547,7 +1530,6 @@ select:focus {
 
     /* hero */
     .hero-section {
-        height: 460px;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
         align-items: center;
         justify-content: center;
@@ -1760,6 +1742,34 @@ select:focus {
             scroll-margin-top: 0;
     }*/
 
+    body {
+        font-size: 18px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.2em;
+    }
+
+    h1 {
+        font-size: clamp(42px, 1.5vw, 40px);
+    }
+
+    h2 {
+        font-size: clamp(38px, 1.35vw, 36px);
+    }
+
+    h3 {
+        font-size: clamp(32px, 1.2vw, 30px);
+        font-weight: 400;
+        margin: 1em 0;
+    }
+
+    h4 {
+        font-size: clamp(24px, 1.05vw, 22px);
+        line-height: 1.4em;
+        margin-bottom: 1em;
+    }
+
      /* Nav — full width stacked */
     .nav {
         position: sticky;
@@ -1877,6 +1887,10 @@ select:focus {
         width: 169px;
         font-size: 24px;
     }
+
+     .hero-section {
+        height: 460px;
+     }
 }
 /* ============================================
    RESPONSIVE — min-width: 1500px (desktop)
