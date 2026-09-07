@@ -20,13 +20,17 @@
 				]
 			},
 			"link": {
-				"__TYPE__": "LinkContent",
 				"key": "4d578097-99d9-41c8-a973-6e78534054d2",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "ExternalLink",
 					"url": "https://prismic.io",
 					"text": "beside"
 				}
+			},
+			"two_columns": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []

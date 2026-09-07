@@ -12,16 +12,15 @@ type PageSectionSlice = prismic.SharedSlice<
     body_paragraph_one: prismic.RichTextField;
     cta_text: prismic.KeyTextField;
     link: prismic.LinkField;
+    two_columns: prismic.BooleanField;
   }>
 >;
 
 export type PageSectionProps = SliceComponentProps<PageSectionSlice>;
 
-const PageSection: FC<PageSectionProps> = ({ slice, context }) => {
-  const ctx = context as { isPage?: boolean } | undefined;
-  /*const Title = ctx?.isPage ? "h2" : "h3";*/
+const PageSection: FC<PageSectionProps> = ({ slice }) => {
   const Title = "h2";
-  const pageTextLayout = ctx?.isPage
+  const pageTextLayout = slice.primary.two_columns
     ? "lg:col-start-2 lg:col-span-2 lg:columns-2"
     : "lg:col-start-2 lg:col-span-2";
   const p = slice.primary as Record<string, unknown>;

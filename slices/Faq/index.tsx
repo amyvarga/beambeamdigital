@@ -42,9 +42,11 @@ const Faq: FC<FaqProps> = ({ slice }) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
-      <div className="content">
+      <div className="faq-content">
         {slice.primary.faq_heading && (
-          <h2 className="fade-in">{slice.primary.faq_heading}</h2>
+          <div className="faq-title">
+            <h2 className="fade-in">{slice.primary.faq_heading}</h2>
+          </div>
         )}
         <Accordion items={items} />
       </div>

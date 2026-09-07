@@ -43,6 +43,15 @@
             "allowText": true,
             "repeat": false
           }
+        },
+        "two_columns": {
+          "type": "Boolean",
+          "config": {
+            "label": "Two columns",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}

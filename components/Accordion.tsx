@@ -130,7 +130,7 @@ export default function Accordion({ items }: AccordionProps) {
                 "
               >
                 <div className={`min-w-0 [transition:var(--transition)] ${isOpen ? 'font-semibold' : ''}`}>
-                  <h3 className="m-0">{item.heading}</h3>
+                  <h3 className="w-full m-0">{item.heading}</h3>
                 </div>
                 <div className={`
                   flex h-8 w-8 
@@ -161,7 +161,7 @@ export default function Accordion({ items }: AccordionProps) {
                 }}
                 className={`grid overflow-hidden transition-[grid-template-rows] duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
               >
-                <div className="min-h-0 overflow-hidden min-[1135px]:p-[var(--gap)]">
+                <div className="min-h-0 overflow-hidden">
                   {item.body}
                   {item.ctaLabel && item.ctaLink && (
                     <p className="callToActionLink mr-[1em]">

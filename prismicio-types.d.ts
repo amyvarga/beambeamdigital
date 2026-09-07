@@ -828,6 +828,7 @@ export type ServicesDocument<Lang extends string = string> =
   >;
 
 type WebsitesDocumentDataSlicesSlice =
+  | BreadcrumbSlice
   | FaqSlice
   | AboutSectionSlice
   | MenuNavigationSlice
@@ -1020,6 +1021,17 @@ export interface AboutSectionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
   link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Two columns field in *Page Section → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: aboutSection.default.primary.two_columns
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  two_columns: prismic.BooleanField;
 }
 
 /**
