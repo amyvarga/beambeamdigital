@@ -1,10 +1,11 @@
 import { Metadata } from "next";
 import { createClient } from "@/prismicio";
 import { asText, asLink } from "@prismicio/client";
-import { PrismicRichText } from "@prismicio/react";
+import { PrismicRichText, SliceZone } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
 import { serializeJsonLd } from "@/lib/jsonLd";
@@ -146,6 +147,11 @@ export default async function ArticlePage({ params }: Props) {
           )}
         </div>
       </article>
+      <SliceZone
+        slices={article.data.slices}
+        components={components}
+        context={{ isPage: false }}
+      />
     </>
   );
 }

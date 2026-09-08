@@ -365,9 +365,12 @@ a.nav-link {
     width: 100%;
     padding: .25rem;
     font-size: 20px;
-    color: var(--color-2);
+    color: var(--color-5);
+    &:hover {
+        color: var(--color-2);
+    }
     &.selected {
-        color: var(--color-5);
+        color: var(--color-2);
     }
 }
 
@@ -400,7 +403,7 @@ a.nav-link.selected::after {
     border: none;
     cursor: pointer;
     min-width: var(--mobile-icon-size);
-    color: var(--color-2);
+    color: var(--color-5);
     padding-top: 5px;
 }
 
@@ -413,7 +416,7 @@ a.nav-link.selected::after {
     display: block;
     width: var(--mobile-icon-size);
     height: 2px;
-    background-color: var(--color-2);
+    background-color: var(--color-5);
     position: relative;
     transition: all var(--transition);
     box-sizing: border-box;
@@ -425,7 +428,7 @@ a.nav-link.selected::after {
     position: absolute;
     width: var(--mobile-icon-size);
     height: 2px;
-    background-color: var(--color-2);
+    background-color: var(--color-5);
     transition: all var(--transition);
     right: 0;
     left: auto;
@@ -468,7 +471,6 @@ a.nav-link.selected::after {
     transition: all 0.3s ease;
     opacity: 1;
     z-index: 100;
-    border: 0.5px solid var(--color-5);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -1273,7 +1275,7 @@ input:-webkit-autofill:active {
 }
 
 .footer-bottom p {
-        color: var(--color-2);
+        color: var(--color-5);
         font-size: 0.75rem;
         margin-bottom: 0;
         font-weight: 500;
@@ -1379,7 +1381,7 @@ ul.seo-links li:last-child::after {
     width: 100%;
 }
 
-.article-hero-image {
+/*.article-hero-image {
     width: 100%;
     max-height: 400px;
     object-fit: cover;
@@ -1393,7 +1395,7 @@ ul.seo-links li:last-child::after {
 
 .article-body {
     color: var(--color-2);
-}
+}*/
 
 .article-body h2,
 .article-body h3,
@@ -1402,13 +1404,13 @@ ul.seo-links li:last-child::after {
 }
 
 .article-body a {
-    color: var(--color-2);
+    /*color: var(--color-2);*/
     border-bottom: 0.5px solid var(--color-2);
 }
-
+/*
 .article-body a:hover {
     opacity: 0.7;
-}
+}*/
 
 /* ============================================
    ANIMATIONS
@@ -1691,7 +1693,7 @@ select:focus {
 
     /* article */
     .article-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         grid-column: 2 / -1;
     }
   
@@ -1700,7 +1702,8 @@ select:focus {
     .product-content:has(> .product-title),
     .content .header,
     .faq-content,
-    .page-section > .content {
+    .page-section > .content, 
+    .article-content {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
       gap: 1rem;
@@ -1725,12 +1728,15 @@ select:focus {
 
     .product-content > .product-title,
     .faq-content > .faq-title, 
-    .page-section > .content > .header {
+    .page-section > .content > .header, 
+    .article-content > .article-header {
         grid-column: 1 / -1;
     }
 
     .product-content > .product-items,
-    .faq-content > .container {
+    .faq-content > .container, 
+    .article-body, 
+    .page-content > .page-text {
         grid-column: 2 / -1;
     }
 
@@ -1835,13 +1841,9 @@ select:focus {
         padding: 0;
         margin: 0;
         line-height: 1.2;
-        color: var(--color-5);
         margin: .25rem;
         padding: .25rem;
         transition: color .3s ease-in-out;
-        &:hover {
-            color: var(--color-5);
-        }
     }
 
     a.nav-link.selected {
@@ -1899,6 +1901,12 @@ select:focus {
      .hero-section {
         height: 460px;
      }
+
+     /* article */
+    .article-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column: 2 / -1;
+    }
 }
 /* ============================================
    RESPONSIVE — min-width: 1500px (desktop)

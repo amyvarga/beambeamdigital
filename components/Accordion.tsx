@@ -130,7 +130,7 @@ export default function Accordion({ items }: AccordionProps) {
                 "
               >
                 <div className={`min-w-0 [transition:var(--transition)] ${isOpen ? 'font-semibold' : ''}`}>
-                  <h3 className="w-full m-0">{item.heading}</h3>
+                  <h3 className="m-0">{item.heading}</h3>
                 </div>
                 <div className={`
                   flex h-8 w-8 

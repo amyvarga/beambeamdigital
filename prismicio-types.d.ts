@@ -135,6 +135,8 @@ interface AboutDocumentData {
 export type AboutDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
 
+type ArticleDocumentDataSlicesSlice = never;
+
 /**
  * Content for Article documents
  */
@@ -231,7 +233,18 @@ interface ArticleDocumentData {
     unknown,
     prismic.FieldState,
     never
-  >; /**
+  >;
+
+  /**
+   * Slice Zone field in *Article*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<ArticleDocumentDataSlicesSlice>; /**
    * Meta Title field in *Article*
    *
    * - **Field Type**: Text
@@ -624,6 +637,7 @@ export type ProductDescriptionDocument<Lang extends string = string> =
   >;
 
 type ResourcesDocumentDataSlicesSlice =
+  | BreadcrumbSlice
   | HeroBannerSlice
   | AboutSectionSlice
   | MenuNavigationSlice
@@ -2314,6 +2328,7 @@ declare module "@prismicio/client" {
       AboutDocumentDataSlicesSlice,
       ArticleDocument,
       ArticleDocumentData,
+      ArticleDocumentDataSlicesSlice,
       ContactDocument,
       ContactDocumentData,
       ContactDocumentDataSlicesSlice,

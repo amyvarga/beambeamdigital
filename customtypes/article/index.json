@@ -77,6 +77,13 @@
           "allowText": true,
           "repeat": false
         }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
       }
     },
     "SEO & Metadata": {
