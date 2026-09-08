@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Raleway, Bodoni_Moda, Cormorant_Garamond } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import FadeInObserver from "@/components/FadeInObserver";
 import MobileNavObserver from "@/components/MobileNavObserver";
@@ -12,28 +12,32 @@ import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import { serializeJsonLd } from "@/lib/jsonLd";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
+const montserrat = localFont({
+  src: "./fonts/montserrat-latin-variable.woff2",
   variable: "--font-montserrat",
   display: "swap",
+  weight: "100 900",
 });
 
-const raleway = Raleway({
-  subsets: ["latin"],
+const raleway = localFont({
+  src: "./fonts/raleway-latin-variable.woff2",
   variable: "--font-raleway",
   display: "swap",
+  weight: "100 900",
 });
 
-const bodoniModa = Bodoni_Moda({
-  subsets: ["latin"],
+const bodoniModa = localFont({
+  src: "./fonts/bodoni-moda-latin-variable.woff2",
   variable: "--font-bodoni-moda",
   display: "swap",
+  weight: "400 900",
 });
 
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ["latin"],
+const cormorantGaramond = localFont({
+  src: "./fonts/cormorant-garamond-latin-variable.woff2",
   variable: "--font-cormorant-garamond",
   display: "swap",
+  weight: "300 700",
 });
 
 export const viewport: Viewport = {
