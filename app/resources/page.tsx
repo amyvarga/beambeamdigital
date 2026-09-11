@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { createClient } from "@/prismicio";
-import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
 import ArticleCard from "@/components/ArticleCard";
+import PageSliceZone from "@/components/PageSliceZone";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -41,7 +41,7 @@ export default async function ResourcesPage() {
         type="CollectionPage"
       />
       <BreadcrumbJsonLd label="Resources" path="/resources" />
-      <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
+      <PageSliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
       <div className="page-section section">
         <div className="content">
           <div className="article-grid">

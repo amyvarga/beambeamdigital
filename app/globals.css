@@ -543,12 +543,18 @@ a.nav-link.selected::after {
 }
 
 .hero-title,
-.hero-strapline {
+.hero-strapline,
+.hero-meta {
     margin-bottom: calc(var(--gap) / 2);
 }
 
 .hero-strapline {
     font-family: var(--font-family);
+}
+
+.hero-meta {
+    font-family: var(--font-family);
+    font-size: 1rem;
 }
 
 /*.hero-introduction {
@@ -718,6 +724,11 @@ div.callToAction {
     padding: 0 35px;
     font-size: 14px;
 }
+
+.breadcrumb-section--after-hero {
+    margin-top: 0;
+}
+
  .breadcrumb-wrapper {
     > span {
         a {
@@ -1752,6 +1763,10 @@ select:focus {
    ============================================ */
 
 @media (min-width: 1135px) {
+    :root {
+        --hero-height: 460px;
+    }
+
     /*.section {
             padding: calc(var(--gap) * 2) calc(var(--gap) * 5);
             scroll-margin-top: 0;
@@ -1898,9 +1913,27 @@ select:focus {
         font-size: 24px;
     }
 
-     .hero-section {
-        height: 460px;
-     }
+    .hero-section {
+        height: var(--hero-height);
+    }
+
+    .hero-section--with-breadcrumb {
+        height: auto;
+    }
+
+    .hero-breadcrumb-group {
+       height: var(--hero-height);
+       display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .breadcrumb-section--after-hero {
+        min-height: 0;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+    }
 
      /* article */
     .article-grid {

@@ -48,7 +48,7 @@
               "description_list": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph,list-item,strong,em,hyperlink",
+                  "multi": "paragraph,list-item,strong,em",
                   "label": "Description List"
                 }
               },

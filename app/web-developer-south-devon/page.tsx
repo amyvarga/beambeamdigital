@@ -1,9 +1,9 @@
 import { Metadata } from "next";
-import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
+import PageSliceZone from "@/components/PageSliceZone";
 
 const path = "/web-developer-south-devon";
 
@@ -38,7 +38,7 @@ export default async function ServicesPage() {
         serviceName="Web development services"
       />
       <BreadcrumbJsonLd label="Services" path={path} />
-      <SliceZone
+      <PageSliceZone
         slices={page.data.slices}
         components={components}
         context={{ isPage: true }}

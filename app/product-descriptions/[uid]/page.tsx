@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
+import PageSliceZone from "@/components/PageSliceZone";
 
 type ProductDescriptionPageProps = {
   params: Promise<{ uid: string }>;
@@ -74,7 +74,7 @@ export default async function ProductDescriptionPage({
         label={label}
         path={`/${uid}`}
       />
-      <SliceZone
+      <PageSliceZone
         slices={page.data.slices}
         components={components}
         context={{ isPage: true }}

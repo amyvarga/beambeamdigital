@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import { createClient } from "@/prismicio";
 import { asLink, asText, Content } from "@prismicio/client";
-import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
+import PageSliceZone from "@/components/PageSliceZone";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { serializeJsonLd } from "@/lib/jsonLd";
 
@@ -87,7 +87,7 @@ export default async function PortfolioPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <BreadcrumbJsonLd label="Portfolio" path="/portfolio" />
-      <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
+      <PageSliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
     </>
   );
 }

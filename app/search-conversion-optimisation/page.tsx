@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import { createClient } from "@/prismicio";
-import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import LatestArticles from "@/components/LatestArticles";
+import PageSliceZone from "@/components/PageSliceZone";
 import { asText, Content } from "@prismicio/client";
 import { serializeJsonLd } from "@/lib/jsonLd";
 
@@ -111,7 +111,7 @@ export default async function SeoPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
       <BreadcrumbJsonLd label="SEO" path={PAGE_PATH} />
-      <SliceZone
+      <PageSliceZone
         slices={page.data.slices}
         components={components}
         context={{ isPage: true, suppressProductSchema: true }}

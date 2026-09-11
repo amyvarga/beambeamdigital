@@ -135,7 +135,7 @@ interface AboutDocumentData {
 export type AboutDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<AboutDocumentData>, "about", Lang>;
 
-type ArticleDocumentDataSlicesSlice = never;
+type ArticleDocumentDataSlicesSlice = HeroBannerSlice | BreadcrumbSlice;
 
 /**
  * Content for Article documents
@@ -1894,6 +1894,26 @@ export interface HeroBannerSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   introduction: prismic.KeyTextField;
+
+  /**
+   * Author field in *Hero Banner → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_banner.default.primary.author
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author: prismic.KeyTextField;
+
+  /**
+   * Date written field in *Hero Banner → Default → Primary*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_banner.default.primary.date_written
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  date_written: prismic.DateField;
 }
 
 /**

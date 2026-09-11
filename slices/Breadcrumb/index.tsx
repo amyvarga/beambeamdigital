@@ -10,11 +10,16 @@ export type BreadcrumbProps = SliceComponentProps<Content.BreadcrumbSlice>;
 /**
  * Component for "Breadcrumb" Slices.
  */
-const Breadcrumb: FC<BreadcrumbProps> = ({ slice }) => {
+const Breadcrumb: FC<BreadcrumbProps> = ({ slice, index, slices }) => {
   const { primary } = slice;
+  const followsHero = index > 0 && slices[index - 1]?.slice_type === "hero_banner";
 
   return (
-    <div className="breadcrumb-section">
+    <div
+      className={`breadcrumb-section${
+        followsHero ? " breadcrumb-section--after-hero" : ""
+      }`}
+    >
     <div className="breadcrumb-wrapper" data-slice-type={slice.slice_type}>
       {primary.breadcrumb_text_1?.trim() && (
         <span>

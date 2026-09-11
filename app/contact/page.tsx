@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { createClient } from "@/prismicio";
-import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
+import PageSliceZone from "@/components/PageSliceZone";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
 
@@ -34,7 +34,7 @@ export default async function ContactPage() {
         type="ContactPage"
       />
       <BreadcrumbJsonLd label="Contact" path="/contact" />
-      <SliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
+      <PageSliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
     </>
   );
 }

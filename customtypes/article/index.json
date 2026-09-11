@@ -82,7 +82,14 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "hero_banner": {
+              "type": "SharedSlice"
+            },
+            "breadcrumb": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

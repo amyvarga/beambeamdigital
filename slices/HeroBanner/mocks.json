@@ -29,6 +29,16 @@
 				"__TYPE__": "FieldContent",
 				"value": "do",
 				"type": "Text"
+			},
+			"author": {
+				"__TYPE__": "FieldContent",
+				"value": "due",
+				"type": "Text"
+			},
+			"date_written": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2026-07-11"
 			}
 		},
 		"items": []

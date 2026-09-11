@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import PortfolioCaseStudyJsonLd from "@/components/PortfolioCaseStudyJsonLd";
+import PageSliceZone from "@/components/PageSliceZone";
 
 type PortfolioCaseStudyPageProps = {
   params: Promise<{ uid: string }>;
@@ -63,7 +63,7 @@ export default async function PortfolioCaseStudyPage({
   return (
     <>
       <PortfolioCaseStudyJsonLd caseStudy={caseStudy} />
-      <SliceZone
+      <PageSliceZone
         slices={caseStudy.data.slices}
         components={components}
         context={{ isPage: true }}

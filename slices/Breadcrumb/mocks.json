@@ -37,8 +37,8 @@
 				"type": "Text"
 			},
 			"breadcrumb_link_3": {
-				"__TYPE__": "LinkContent",
 				"key": "3ab16d82-26c2-49fb-b93d-8a586c2dd153",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "ExternalLink",
 					"url": "https://prismic.io",

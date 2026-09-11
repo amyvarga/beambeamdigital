@@ -2,7 +2,6 @@ import { FC } from "react";
 import { Content, isFilled, asText } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { SliceComponentProps, PrismicRichText, PrismicLink } from "@prismicio/react";
-import Carousel from "@/components/Carousel";
 
 export type RecentWorkProps =
   SliceComponentProps<Content.FeaturedCardGridSlice>;
@@ -23,7 +22,12 @@ const RecentWork: FC<RecentWorkProps> = ({ slice, context }) => {
           {card.title?.trim() && <h3>{card.title}</h3>}
           {isFilled.richText(card.description_list) && (
             <div className="work-description">
-              <PrismicRichText field={card.description_list} />
+              <PrismicRichText
+                field={card.description_list}
+                components={{
+                  hyperlink: ({ children }) => <span>{children}</span>,
+                }}
+              />
             </div>
           )}
         </div>

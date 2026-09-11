@@ -10,12 +10,17 @@ export type HeroBannerProps = SliceComponentProps<Content.HeroBannerSlice>;
 /**
  * Component for "Hero Banner" Slices.
  */
-const HeroBanner: FC<HeroBannerProps> = ({ slice }) => {
+const HeroBanner: FC<HeroBannerProps> = ({ slice, index, slices }) => {
   const headlineText = asText(slice.primary.headline).trim();
+  const author = slice.primary.author?.trim();
+  const hasMetadata = Boolean(slice.primary.date_written || author);
+  const hasFollowingBreadcrumb = slices[index + 1]?.slice_type === "breadcrumb";
 
   return (
     <section
-      className="section hero-section"
+      className={`section hero-section${
+        hasFollowingBreadcrumb ? " hero-section--with-breadcrumb" : ""
+      }`}
       id="home"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
@@ -32,6 +37,24 @@ const HeroBanner: FC<HeroBannerProps> = ({ slice }) => {
         {slice.primary.introduction?.trim() && (
           <p className="hero-introduction">{slice.primary.introduction}</p>
         )}
+        {hasMetadata && (
+          <p className="hero-meta">
+            {slice.primary.date_written && (
+              <time dateTime={slice.primary.date_written}>
+                {new Date(slice.primary.date_written).toLocaleDateString("en-GB", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </time>
+            )}
+            {slice.primary.date_written && author && (
+              <span aria-hidden="true"> · </span>
+            )}
+            {author && <span>{author}</span>}
+          </p>
+        )}
+
       </div>
     </section>
   );

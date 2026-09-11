@@ -1,13 +1,13 @@
 import { Metadata } from "next";
 import { createClient } from "@/prismicio";
 import { asText, asLink } from "@prismicio/client";
-import { PrismicRichText, SliceZone } from "@prismicio/react";
+import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
+import PageSliceZone from "@/components/PageSliceZone";
 import { serializeJsonLd } from "@/lib/jsonLd";
 
 const SITE_URL = "https://www.beambeam.co.uk";
@@ -106,10 +106,12 @@ export default async function ArticlePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <BreadcrumbJsonLd label={title} path={path} />
+      <PageSliceZone
+        slices={article.data.slices}
+        components={components}
+        context={{ isPage: false }}
+      />
       <article className="page-section section">
-        <div className="breadcrumb">
-          <span><Link href="/resources">← Resources</Link></span>
-        </div>
         <div className="content article-content min-[1135px]:!px-[calc(var(--gap)*10))]">
           {article.data.featured_image?.url && (
             <PrismicNextImage
@@ -121,20 +123,6 @@ export default async function ArticlePage({ params }: Props) {
               alt=""
             />
           )}
-          <header className="article-header">
-            <h1 className="fade-in">{title}</h1>
-            <p className="article-meta fade-in">
-              <time dateTime={publishedDate}>
-                {new Date(publishedDate).toLocaleDateString("en-GB", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
-              </time>
-              {article.data.author && <span> · {article.data.author}</span>}
-            </p>
-          </header>
-          
           <div className="article-body">
             <PrismicRichText field={article.data.body} />
           </div>
@@ -147,11 +135,6 @@ export default async function ArticlePage({ params }: Props) {
           )}
         </div>
       </article>
-      <SliceZone
-        slices={article.data.slices}
-        components={components}
-        context={{ isPage: false }}
-      />
     </>
   );
 }

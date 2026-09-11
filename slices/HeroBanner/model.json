@@ -33,6 +33,20 @@
             "label": "Introduction",
             "placeholder": ""
           }
+        },
+        "author": {
+          "type": "Text",
+          "config": {
+            "label": "Author",
+            "placeholder": ""
+          }
+        },
+        "date_written": {
+          "type": "Date",
+          "config": {
+            "label": "Date written",
+            "placeholder": ""
+          }
         }
       },
       "items": {}
