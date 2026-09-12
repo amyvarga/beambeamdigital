@@ -1711,6 +1711,7 @@ select:focus {
     /* page section */
     .page-content:has(> .page-title),
     .product-content:has(> .product-title),
+    .page-content:has(> .page-text),
     .content .header,
     .faq-content,
     .page-section > .content, 
@@ -1756,6 +1757,14 @@ select:focus {
         margin-top: 0;
     }
 
+}
+
+@media (min-width: 1024px) {
+    .page-text h3:has(.column-break) {
+        -webkit-column-break-before: always;
+        break-before: column;
+        margin-top: 0;
+    }
 }
 
 /* ============================================
