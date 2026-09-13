@@ -1536,8 +1536,8 @@ select:focus {
         gap: calc(var(--gap) / 2);
     }
     .nav-logo-image {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
     }
 
  /* About */
