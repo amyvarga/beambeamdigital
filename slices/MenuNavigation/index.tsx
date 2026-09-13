@@ -1,5 +1,6 @@
 "use client";
 import { FC, useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Content } from "@prismicio/client";
@@ -8,21 +9,53 @@ import { SliceComponentProps, PrismicLink } from "@prismicio/react";
 export type MenuNavigationProps =
   SliceComponentProps<Content.MenuNavigationSlice>;
 
+const NAV_ROUTE_GROUPS: Record<string, readonly string[]> = {
+  services: [
+    "/web-developer-south-devon",
+    "/website-design-development",
+    "/search-conversion-optimisation",
+    "/business-starter-website",
+    "/bespoke-website",
+    "/website-support",
+    "/seo-audit",
+    "/seo-reviews",
+  ],
+};
+
+function isMatchingPath(pathname: string, path: string) {
+  return pathname === path || pathname.startsWith(`${path}/`);
+}
+
+function isNavGroupActive(group: string | undefined, pathname: string) {
+  return group
+    ? NAV_ROUTE_GROUPS[group]?.some((path) => isMatchingPath(pathname, path)) ?? false
+    : false;
+}
+
 const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    document.querySelectorAll("a.nav-link").forEach((link) => {
+    document.querySelectorAll<HTMLAnchorElement>("a.nav-link").forEach((link) => {
       const href = link.getAttribute("href") ?? "";
       const linkPath = href.startsWith("http") ? new URL(href).pathname : href;
-      link.classList.toggle("selected", !!linkPath && (pathname === linkPath || pathname.startsWith(linkPath + "/")));
+      const matchesLinkedPage = !!linkPath && isMatchingPath(pathname, linkPath);
+      const matchesRouteGroup = isNavGroupActive(
+        link.dataset.navGroup,
+        pathname,
+      );
+      link.classList.toggle("selected", matchesLinkedPage || matchesRouteGroup);
     });
 
-    document.querySelectorAll(".nav-dropdown-toggle").forEach((toggle) => {
+    document.querySelectorAll<HTMLElement>(".nav-dropdown-toggle").forEach((toggle) => {
       const dropdown = toggle.closest(".nav-dropdown");
       const hasSelectedChild = !!dropdown?.querySelector("a.nav-link.selected");
-      toggle.classList.toggle("selected", hasSelectedChild);
+      const matchesRouteGroup = isNavGroupActive(
+        toggle.dataset.navGroup,
+        pathname,
+      );
+      toggle.classList.toggle("selected", hasSelectedChild || matchesRouteGroup);
     });
   }, [pathname]);
 
@@ -35,14 +68,26 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
     <nav className="nav" id="nav">
       <div className="nav-container">
         <Link href="/" className="nav-logo">
-          <span className="logo-beam">{mainLogoText}</span>
-          <span className="logo-digital">{highlightedLogoText}</span>
+          <Image
+            src="/images/logo.png"
+            alt=""
+            width={60}
+            height={60}
+            className="nav-logo-image"
+            priority
+          />
+          <span className="nav-logo-text">
+            <span className="logo-beam">{mainLogoText}</span>
+            <span className="logo-digital">{highlightedLogoText}</span>
+          </span>
         </Link>
         <button className="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
           <span className="hamburger"></span>
         </button>
         <ul className="nav-menu" aria-hidden="true">
           {menuItems.map((item, index) => {
+            const navGroup = item.label?.trim().toLowerCase() || undefined;
+
             if (item.dropdown) {
               const subLinks = [
                 { title: item.dropdown_title, link: item.dropdown_link },
@@ -53,7 +98,11 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
               if (subLinks.length === 0) {
                 return (
                   <li key={index}>
-                    <PrismicLink field={item.link} className="nav-link">
+                    <PrismicLink
+                      field={item.link}
+                      className="nav-link"
+                      data-nav-group={navGroup}
+                    >
                       {item.label || "Link"}
                     </PrismicLink>
                   </li>
@@ -66,6 +115,7 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
                 <li key={index} className="nav-item nav-dropdown">
                   <button
                     className="nav-link nav-dropdown-toggle"
+                    data-nav-group={navGroup}
                     aria-haspopup="true"
                     aria-expanded={isOpen}
                     onClick={() => setOpenDropdown(isOpen ? null : index)}
@@ -90,7 +140,11 @@ const MenuNavigation: FC<MenuNavigationProps> = ({ slice }) => {
 
             return (
               <li key={index}>
-                <PrismicLink field={item.link} className="nav-link col">
+                <PrismicLink
+                  field={item.link}
+                  className="nav-link col"
+                  data-nav-group={navGroup}
+                >
                   {item.label || "Link"}
                 </PrismicLink>
               </li>

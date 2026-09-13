@@ -110,7 +110,7 @@ export default function Accordion({ items }: AccordionProps) {
               ref={(element) => {
                 itemRefs.current[index] = element;
               }}
-              className="accordion-section not-last:border-b-[0.5px] border-[var(--color-2)] [scroll-margin-top:var(--scroll-margin-top)]"
+              className="accordion-section first:border-t-[0.5px] border-[var(--color-2)] [scroll-margin-top:var(--scroll-margin-top)]"
             >
               <button
                 id={triggerId}
@@ -124,6 +124,7 @@ export default function Accordion({ items }: AccordionProps) {
                 items-center
                 gap-[var(--gap)]
                 min-1500px:p[var(--gap)]
+                border-b-[0.5px] border-[var(--color-2)]
                 text-left
                 cursor-pointer
                 [transition:var(--transition)]

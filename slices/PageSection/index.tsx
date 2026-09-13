@@ -21,8 +21,8 @@ export type PageSectionProps = SliceComponentProps<PageSectionSlice>;
 const PageSection: FC<PageSectionProps> = ({ slice }) => {
   const Title = "h2";
   const pageTextLayout = slice.primary.two_columns
-    ? "lg:col-start-2 lg:col-span-2 lg:columns-2"
-    : "lg:col-start-2 lg:col-span-2";
+    ? "page-text--two-columns"
+    : "";
   const p = slice.primary as Record<string, unknown>;
   const bodyParagraph = p.body_paragraph_one as Parameters<typeof PrismicRichText>[0]["field"];
 
