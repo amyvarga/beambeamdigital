@@ -239,6 +239,15 @@ li {
     margin-bottom: 2px;
 }
 
+span.review {
+    font-family: var(--font-cursive);
+    font-size: 18px;
+    &:before, 
+    &:after {
+            content: "\"";
+        }
+}
+
 /* ============================================
    LAYOUT
    ============================================ */
@@ -1310,7 +1319,7 @@ input:-webkit-autofill:active {
    FOOTER
    ============================================ */
 .footer {
-    background-color: var(--color-6);
+    background-color: var(--color-2);
     display: flex;
     flex-direction: column;
     
@@ -1518,6 +1527,10 @@ select:focus {
    RESPONSIVE — min-width: 666 landscape iPhone
    ============================================ */
 @media (min-width: 666px) {
+
+    span.review {
+        font-size: 25px;
+    }
 
     .nav-logo {
         gap: calc(var(--gap) / 2);
@@ -1835,7 +1848,7 @@ select:focus {
 
 @media (min-width: 1135px) {
     :root {
-        --hero-height: 460px;
+        --hero-height: 400px;
     }
 
     /*.section {
