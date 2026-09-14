@@ -65,6 +65,24 @@
             "allowText": true,
             "repeat": false
           }
+        },
+        "breadcrumb_text_4": {
+          "type": "Text",
+          "config": {
+            "label": "Breadcrumb Text 4",
+            "placeholder": ""
+          }
+        },
+        "breadcrumb_link_4": {
+          "type": "Link",
+          "config": {
+            "label": "Breadcrumb Link 4",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
         }
       },
       "items": {}

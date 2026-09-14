@@ -1301,6 +1301,32 @@ export interface BreadcrumbSliceDefaultPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Breadcrumb Text 4 field in *Breadcrumb → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: breadcrumb.default.primary.breadcrumb_text_4
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  breadcrumb_text_4: prismic.KeyTextField;
+
+  /**
+   * Breadcrumb Link 4 field in *Breadcrumb → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: breadcrumb.default.primary.breadcrumb_link_4
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  breadcrumb_link_4: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**

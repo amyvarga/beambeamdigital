@@ -20,29 +20,52 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ slice, index, slices }) => {
         followsHero ? " breadcrumb-section--after-hero" : ""
       }`}
     >
-    <div className="breadcrumb-wrapper" data-slice-type={slice.slice_type}>
-      {primary.breadcrumb_text_1?.trim() && (
-        <span>
-          {isFilled.link(primary.breadcrumb_1) ? (
-            <PrismicLink field={primary.breadcrumb_1}>{primary.breadcrumb_text_1}</PrismicLink>
-          ) : primary.breadcrumb_text_1}
-        </span>
-      )}
-      {primary.breadcrumb_text_2?.trim() && (
-        <span>
-          {isFilled.link(primary.breadcrumb_link_2) ? (
-            <PrismicLink field={primary.breadcrumb_link_2}>{primary.breadcrumb_text_2}</PrismicLink>
-          ) : primary.breadcrumb_text_2}
-        </span>
-      )}
-      {primary.breadcrumb_text_3?.trim() && (
-        <span>
-          {isFilled.link(primary.breadcrumb_link_3) ? (
-            <PrismicLink field={primary.breadcrumb_link_3}>{primary.breadcrumb_text_3}</PrismicLink>
-          ) : primary.breadcrumb_text_3}
-        </span>
-      )}
-    </div>
+      <div className="breadcrumb-wrapper" data-slice-type={slice.slice_type}>
+        {primary.breadcrumb_text_1?.trim() && (
+          <span>
+            {isFilled.link(primary.breadcrumb_1) ? (
+              <PrismicLink field={primary.breadcrumb_1}>
+                {primary.breadcrumb_text_1}
+              </PrismicLink>
+            ) : (
+              primary.breadcrumb_text_1
+            )}
+          </span>
+        )}
+        {primary.breadcrumb_text_2?.trim() && (
+          <span>
+            {isFilled.link(primary.breadcrumb_link_2) ? (
+              <PrismicLink field={primary.breadcrumb_link_2}>
+                {primary.breadcrumb_text_2}
+              </PrismicLink>
+            ) : (
+              primary.breadcrumb_text_2
+            )}
+          </span>
+        )}
+        {primary.breadcrumb_text_3?.trim() && (
+          <span>
+            {isFilled.link(primary.breadcrumb_link_3) ? (
+              <PrismicLink field={primary.breadcrumb_link_3}>
+                {primary.breadcrumb_text_3}
+              </PrismicLink>
+            ) : (
+              primary.breadcrumb_text_3
+            )}
+          </span>
+        )}
+        {primary.breadcrumb_text_4?.trim() && (
+          <span>
+            {isFilled.link(primary.breadcrumb_link_4) ? (
+              <PrismicLink field={primary.breadcrumb_link_4}>
+                {primary.breadcrumb_text_4}
+              </PrismicLink>
+            ) : (
+              primary.breadcrumb_text_4
+            )}
+          </span>
+        )}
+      </div>
     </div>
   );
 };
