@@ -1,8 +1,6 @@
 'use client';
 
 import { ReactNode, useEffect, useId, useRef, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { cancelElementScroll, scrollElementToTop } from '@/lib/scrollToElement';
 
 interface AccordionItem {
@@ -99,7 +97,7 @@ export default function Accordion({ items }: AccordionProps) {
 
   return (
     <div className="container mx-auto">
-      <div className="overflow-hidden">
+      <div className="product-items">
         {items.map((item, index) => {
           const isOpen = openIndex === index;
           const triggerId = `${accordionId}-trigger-${index}`;
@@ -110,7 +108,7 @@ export default function Accordion({ items }: AccordionProps) {
               ref={(element) => {
                 itemRefs.current[index] = element;
               }}
-              className="accordion-section first:border-t-[0.5px] border-[var(--color-2)] [scroll-margin-top:var(--scroll-margin-top)]"
+              className={`product-item${isOpen ? " is-open" : ""}`}
             >
               <button
                 id={triggerId}
@@ -118,32 +116,9 @@ export default function Accordion({ items }: AccordionProps) {
                 onClick={() => toggle(index)}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                className="
-                grid w-full
-                grid-cols-[minmax(0,1fr)_2rem]
-                items-center
-                gap-[var(--gap)]
-                min-1500px:p[var(--gap)]
-                border-b-[0.5px] border-[var(--color-2)]
-                text-left
-                cursor-pointer
-                [transition:var(--transition)]
-                "
+                className="product-accordion-trigger"
               >
-                <div className={`min-w-0 [transition:var(--transition)] ${isOpen ? 'font-semibold' : ''}`}>
-                  <h3 className="m-0">{item.heading}</h3>
-                </div>
-                <div className={`
-                  flex h-8 w-8 
-                  items-center justify-center
-                  justify-self-end
-                  rounded-full
-                  border border border-[var(--color-5)]
-                  transform 
-                  [transition:var(--transition)] 
-                  ${isOpen ? '-rotate-180' : ''}`}>
-                  <FontAwesomeIcon icon={faChevronDown} />
-                </div>
+                <h3 className="product-accordion-title">{item.heading}</h3>
               </button>
               <div
                 id={panelId}
@@ -160,14 +135,14 @@ export default function Accordion({ items }: AccordionProps) {
                     scrollOpenedItemIntoView(index);
                   }
                 }}
-                className={`grid overflow-hidden transition-[grid-template-rows] duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
+                className={`product-accordion-panel grid overflow-hidden transition-[grid-template-rows] duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
               >
-                <div className="min-h-0 overflow-hidden">
+                <div className="product-item-content min-h-0 overflow-hidden">
                   {item.body}
                   {item.ctaLabel && item.ctaLink && (
-                    <p className="callToActionLink mr-[1em]">
+                    <div className="product-accordion-cta">
                       <a href={item.ctaLink} data-replace={item.ctaLabel}><span>{item.ctaLabel}</span></a>
-                    </p>
+                    </div>
                   )}
                 </div>
               </div>

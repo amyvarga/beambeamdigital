@@ -6,9 +6,15 @@ import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
 import PageSliceZone from "@/components/PageSliceZone";
 import {
+  getProductDescriptionBreadcrumbParents,
   getProductDescriptionUidCandidates,
   getPublicProductDescriptionSlug,
+  getProductDescriptionServiceType,
 } from "@/lib/productDescriptionSlugs";
+import {
+  getHeroHeading,
+  getPrimarySchemaImage,
+} from "@/lib/jsonLd";
 
 type ProductDescriptionPageProps = {
   params: Promise<{ uid: string }>;
@@ -82,21 +88,35 @@ export default async function ProductDescriptionPage({
     notFound();
   }
 
-  const serviceName = String(page.data.meta_title || uid);
+  const path = `/${uid}`;
+  const serviceName = getHeroHeading(page.data.slices, uid);
+  const primaryImage = getPrimarySchemaImage(
+    page.data.meta_image,
+    page.data.slices,
+  );
 
   return (
     <>
       <PageJsonLd
-        path={`/${uid}`}
-        name={serviceName}
+        path={path}
+        name={String(page.data.meta_title || serviceName)}
         description={page.data.meta_description}
         serviceName={serviceName}
+        serviceType={getProductDescriptionServiceType(uid)}
+        image={primaryImage}
+        datePublished={page.first_publication_date}
+        dateModified={page.last_publication_date}
+        inLanguage={page.lang}
       />
-      <BreadcrumbJsonLd label={serviceName} path={`/${uid}`} />
+      <BreadcrumbJsonLd
+        label={serviceName}
+        path={path}
+        parents={getProductDescriptionBreadcrumbParents(uid)}
+      />
       <PageSliceZone
         slices={page.data.slices}
         components={components}
-        context={{ isPage: true }}
+        context={{ isPage: true, schemaPath: path }}
       />
     </>
   );

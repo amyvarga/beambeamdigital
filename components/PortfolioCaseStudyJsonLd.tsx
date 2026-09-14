@@ -1,32 +1,19 @@
 import { asText, type Content } from "@prismicio/client";
-import { serializeJsonLd } from "@/lib/jsonLd";
-
-const SITE_URL = "https://www.beambeam.co.uk";
+import {
+  ORGANIZATION_ID,
+  SITE_URL,
+  WEBSITE_ID,
+  collectSchemaImages,
+  getPrimarySchemaImage,
+  schemaDate,
+  schemaImageObject,
+  schemaLanguage,
+  serializeJsonLd,
+} from "@/lib/jsonLd";
 
 type PortfolioCaseStudyJsonLdProps = {
   caseStudy: Content.PortfolioCaseStudyDocument;
 };
-
-function collectImageUrls(value: unknown, urls = new Set<string>()): Set<string> {
-  if (!value || typeof value !== "object") return urls;
-
-  if (Array.isArray(value)) {
-    value.forEach((item) => collectImageUrls(item, urls));
-    return urls;
-  }
-
-  const item = value as Record<string, unknown>;
-  if (
-    typeof item.url === "string" &&
-    item.dimensions &&
-    typeof item.dimensions === "object"
-  ) {
-    urls.add(item.url);
-  }
-
-  Object.values(item).forEach((child) => collectImageUrls(child, urls));
-  return urls;
-}
 
 export default function PortfolioCaseStudyJsonLd({
   caseStudy,
@@ -42,21 +29,29 @@ export default function PortfolioCaseStudyJsonLd({
     caseStudy.uid;
   const pageTitle = caseStudy.data.meta_title || `${projectName} case study`;
   const description = caseStudy.data.meta_description || undefined;
-  const primaryImage = caseStudy.data.meta_image.url
-    ? {
-        "@type": "ImageObject",
-        "@id": `${url}#primaryimage`,
-        url: caseStudy.data.meta_image.url,
-        contentUrl: caseStudy.data.meta_image.url,
-        width: caseStudy.data.meta_image.dimensions?.width,
-        height: caseStudy.data.meta_image.dimensions?.height,
-        caption: caseStudy.data.meta_image.alt || undefined,
-      }
+  const primaryImageField = getPrimarySchemaImage(
+    caseStudy.data.meta_image,
+    caseStudy.data.slices,
+  );
+  const primaryImage = primaryImageField?.url
+    ? schemaImageObject(primaryImageField, `${url}#primaryimage`)
     : undefined;
-  const images = [
-    ...(caseStudy.data.meta_image.url ? [caseStudy.data.meta_image.url] : []),
-    ...collectImageUrls(caseStudy.data.slices),
-  ].filter((image, index, all) => all.indexOf(image) === index);
+  const allImageFields = [
+    ...(primaryImageField?.url ? [primaryImageField] : []),
+    ...collectSchemaImages(caseStudy.data.slices),
+  ].filter(
+    (image, index, all) =>
+      all.findIndex((candidate) => candidate.url === image.url) === index,
+  );
+  const images = allImageFields
+    .map((image) => {
+      if (image.url === primaryImageField?.url && primaryImage) {
+        return { "@id": primaryImage["@id"] };
+      }
+      return schemaImageObject(image);
+    })
+    .filter(Boolean);
+  const language = schemaLanguage(caseStudy.lang);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -67,10 +62,11 @@ export default function PortfolioCaseStudyJsonLd({
         url,
         name: pageTitle,
         description,
-        datePublished: caseStudy.first_publication_date,
-        dateModified: caseStudy.last_publication_date,
-        inLanguage: caseStudy.lang,
-        isPartOf: { "@id": `${SITE_URL}/#website` },
+        datePublished: schemaDate(caseStudy.first_publication_date),
+        dateModified: schemaDate(caseStudy.last_publication_date),
+        inLanguage: language,
+        isPartOf: { "@id": WEBSITE_ID },
+        publisher: { "@id": ORGANIZATION_ID },
         breadcrumb: { "@id": `${url}#breadcrumb` },
         primaryImageOfPage: primaryImage
           ? { "@id": primaryImage["@id"] }
@@ -86,15 +82,15 @@ export default function PortfolioCaseStudyJsonLd({
         description,
         genre: "Portfolio case study",
         articleSection: "Portfolio",
-        datePublished: caseStudy.first_publication_date,
-        dateModified: caseStudy.last_publication_date,
-        inLanguage: caseStudy.lang,
+        datePublished: schemaDate(caseStudy.first_publication_date),
+        dateModified: schemaDate(caseStudy.last_publication_date),
+        inLanguage: language,
         keywords: caseStudy.tags.length > 0 ? caseStudy.tags : undefined,
         image: images.length > 0 ? images : undefined,
-        author: { "@id": `${SITE_URL}/#organization` },
-        publisher: { "@id": `${SITE_URL}/#organization` },
+        author: { "@id": ORGANIZATION_ID },
+        publisher: { "@id": ORGANIZATION_ID },
         about: {
-          "@type": "Organization",
+          "@type": "Thing",
           name: projectName,
         },
         mainEntityOfPage: { "@id": `${url}#webpage` },

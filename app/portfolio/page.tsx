@@ -4,9 +4,15 @@ import { asLink, asText, Content } from "@prismicio/client";
 import { components } from "@/slices";
 import PageSliceZone from "@/components/PageSliceZone";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
-import { serializeJsonLd } from "@/lib/jsonLd";
+import PageJsonLd from "@/components/PageJsonLd";
+import {
+  ORGANIZATION_ID,
+  SITE_URL,
+  getPrimarySchemaImage,
+  schemaImageObject,
+} from "@/lib/jsonLd";
 
-const SITE_URL = "https://www.beambeam.co.uk";
+const path = "/portfolio";
 const META_TITLE = "Our Work | Web Design Portfolio | Beam Beam Digital";
 const META_DESCRIPTION =
   "Explore websites, e-commerce and digital projects created by Beam Beam Digital for businesses in Devon and beyond.";
@@ -20,11 +26,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: "/portfolio" },
+    alternates: { canonical: path },
     openGraph: {
       title,
       description,
-      url: "/portfolio",
+      url: path,
       type: "website",
       images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
     },
@@ -39,6 +45,10 @@ export default async function PortfolioPage() {
   const workSlice = page.data.slices.find(
     (slice) => slice.slice_type === "featured_card_grid",
   ) as Content.FeaturedCardGridSlice | undefined;
+  const primaryImage = getPrimarySchemaImage(
+    page.data.meta_image,
+    page.data.slices,
+  );
   const projects = (workSlice?.primary.cards ?? [])
     .filter((card) => card.title)
     .map((card, index) => {
@@ -54,40 +64,41 @@ export default async function PortfolioPage() {
           name: card.title,
           description: asText(card.description_list) || undefined,
           url,
-          image: card.image.url || undefined,
+          image: card.image.url ? schemaImageObject(card.image) : undefined,
+          creator: { "@id": ORGANIZATION_ID },
         },
       };
     });
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "@id": `${SITE_URL}/portfolio#webpage`,
-    url: `${SITE_URL}/portfolio`,
-    name: title,
-    description,
-    inLanguage: "en-GB",
-    isPartOf: { "@id": `${SITE_URL}/#website` },
-    breadcrumb: { "@id": `${SITE_URL}/portfolio#breadcrumb` },
-    about: { "@id": `${SITE_URL}/#organization` },
-    ...(projects.length > 0 && {
-      mainEntity: {
-        "@type": "ItemList",
-        "@id": `${SITE_URL}/portfolio#itemlist`,
-        name: "Beam Beam Digital portfolio",
-        numberOfItems: projects.length,
-        itemListElement: projects,
-      },
-    }),
+  const itemListId = `${SITE_URL}${path}#itemlist`;
+  const itemList = {
+    "@type": "ItemList",
+    "@id": itemListId,
+    name: "Beam Beam Digital portfolio",
+    numberOfItems: projects.length,
+    itemListElement: projects,
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      <PageJsonLd
+        path={path}
+        name={String(title)}
+        description={description}
+        type="CollectionPage"
+        image={primaryImage}
+        datePublished={page.first_publication_date}
+        dateModified={page.last_publication_date}
+        inLanguage={page.lang}
+        aboutId={ORGANIZATION_ID}
+        mainEntityId={projects.length > 0 ? itemListId : undefined}
+        additionalGraph={projects.length > 0 ? [itemList] : []}
       />
-      <BreadcrumbJsonLd label="Portfolio" path="/portfolio" />
-      <PageSliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
+      <BreadcrumbJsonLd label="Portfolio" path={path} />
+      <PageSliceZone
+        slices={page.data.slices}
+        components={components}
+        context={{ isPage: true, schemaPath: path }}
+      />
     </>
   );
 }

@@ -4,6 +4,12 @@ import { components } from "@/slices";
 import PageSliceZone from "@/components/PageSliceZone";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
+import {
+  getHeroHeading,
+  getPrimarySchemaImage,
+} from "@/lib/jsonLd";
+
+const path = "/ecommerce";
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -12,10 +18,10 @@ export async function generateMetadata(): Promise<Metadata> {
     title: page.data.meta_title,
     description: page.data.meta_description,
     alternates: {
-      canonical: "/ecommerce",
+      canonical: path,
     },
     openGraph: {
-      url: "/ecommerce",
+      url: path,
       type: "website",
       images: page.data.meta_image?.url ? [page.data.meta_image.url] : [],
     },
@@ -25,16 +31,39 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function EcommercePage() {
   const client = createClient();
   const page = await client.getSingle("ecommerce");
+  const serviceName = getHeroHeading(
+    page.data.slices,
+    "E-commerce optimisation",
+  );
+  const primaryImage = getPrimarySchemaImage(
+    page.data.meta_image,
+    page.data.slices,
+  );
   return (
     <>
       <PageJsonLd
-        path="/ecommerce"
+        path={path}
         name={String(page.data.meta_title || "Ecommerce Services")}
         description={page.data.meta_description}
-        serviceName="Ecommerce website design and development"
+        serviceName={serviceName}
+        serviceType="E-commerce search engine and performance optimisation"
+        image={primaryImage}
+        datePublished={page.first_publication_date}
+        dateModified={page.last_publication_date}
+        inLanguage={page.lang}
       />
-      <BreadcrumbJsonLd label="Ecommerce" path="/ecommerce" />
-      <PageSliceZone slices={page.data.slices} components={components} context={{ isPage: true }} />
+      <BreadcrumbJsonLd
+        label="E-commerce"
+        path={path}
+        parents={[
+          { name: "Services", path: "/web-developer-south-devon" },
+        ]}
+      />
+      <PageSliceZone
+        slices={page.data.slices}
+        components={components}
+        context={{ isPage: true, schemaPath: path }}
+      />
     </>
   );
 }

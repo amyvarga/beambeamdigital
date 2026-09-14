@@ -13,7 +13,9 @@ type MasonryGalleryProps ={
 
 const MasonryGallery = ({ images, title }: MasonryGalleryProps) => (
   <div className="masonry">
-    {title && <h2 className="masonry-title">{title}</h2>}
+    <div className="masonry-title">
+      {title && <h2 className="masonry-title">{title}</h2>}
+    </div>
     <div className="masonry-gallery">
     {images.map((img) => (
       <div key={img.src} className="masonry-item" style={img.columns && img.columns > 1 ? { gridColumn: `span ${img.columns}` } : undefined}>

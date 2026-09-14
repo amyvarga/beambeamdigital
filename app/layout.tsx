@@ -10,7 +10,12 @@ import { Analytics } from "@vercel/analytics/next"
 import { createClient } from "@/prismicio";
 import { SliceZone } from "@prismicio/react";
 import { components } from "@/slices";
-import { serializeJsonLd } from "@/lib/jsonLd";
+import {
+  ORGANIZATION_ID,
+  PERSON_ID,
+  SITE_URL,
+  serializeJsonLd,
+} from "@/lib/jsonLd";
 
 const montserrat = localFont({
   src: "./fonts/montserrat-latin-variable.woff2",
@@ -51,32 +56,72 @@ export const metadata: Metadata = {
   description: "Beam Beam Digital is located in South Devon. Its services include website design and build, e-commerce, search engine and AI optimisation, and information technology.",
 };
 
+const logoId = `${SITE_URL}/#logo`;
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://www.beambeam.co.uk/#organization",
-  name: "Beam Beam Digital",
-  url: "https://www.beambeam.co.uk",
-  description: "Website design, website build, search engine & conversion optimisation and automation based in South Devon.",
-  address: {
-    "@type": "PostalAddress",
-    addressRegion: "South Devon",
-    addressCountry: "GB",
-  },
-  areaServed: [
-    { "@type": "Place", name: "South Devon" },
-    { "@type": "Place", name: "South West England" },
-  ],
-  knowsAbout: [
-    "Website Design",
-    "Website Build",
-    "Search Engine Optimisation",
-    "Conversion Optimisation",
-    "Website Related Automation",
-    "WordPress",
-    "Squarespace",
-    "Wix",
-    "Shopify"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": ORGANIZATION_ID,
+      name: "Beam Beam Digital",
+      url: SITE_URL,
+      description:
+        "Website design and build, e-commerce, search engine and AI optimisation, conversion optimisation, automation and information technology services based in South Devon.",
+      logo: { "@id": logoId },
+      image: { "@id": logoId },
+      founder: { "@id": PERSON_ID },
+      email: "amymvarga@yahoo.co.uk",
+      telephone: "+44 7532 275361",
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer enquiries",
+        email: "amymvarga@yahoo.co.uk",
+        telephone: "+44 7532 275361",
+        availableLanguage: "English",
+        areaServed: "GB",
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: "South Devon",
+        addressCountry: "GB",
+      },
+      areaServed: [
+        { "@type": "Place", name: "South Devon" },
+        { "@type": "Place", name: "South West England" },
+        { "@type": "Country", name: "United Kingdom" },
+      ],
+      knowsAbout: [
+        "Website design and development",
+        "E-commerce",
+        "Search engine optimisation",
+        "AI search optimisation",
+        "Conversion optimisation",
+        "Workflow automation",
+        "Information technology",
+        "WordPress",
+        "Squarespace",
+        "Wix",
+        "GoDaddy",
+        "Shopify",
+      ],
+    },
+    {
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: "Amy Varga",
+      url: `${SITE_URL}/about-me`,
+      jobTitle: "Freelance web developer",
+      worksFor: { "@id": ORGANIZATION_ID },
+    },
+    {
+      "@type": "ImageObject",
+      "@id": logoId,
+      url: `${SITE_URL}/images/logo.png`,
+      contentUrl: `${SITE_URL}/images/logo.png`,
+      width: 200,
+      height: 200,
+      caption: "Beam Beam Digital logo",
+    },
   ],
 };
 

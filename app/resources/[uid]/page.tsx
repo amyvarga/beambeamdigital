@@ -8,7 +8,15 @@ import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
 import PageSliceZone from "@/components/PageSliceZone";
-import { serializeJsonLd } from "@/lib/jsonLd";
+import {
+  ORGANIZATION_ID,
+  PERSON_ID,
+  collectSchemaImages,
+  getHeroHeading,
+  getPrimarySchemaImage,
+  schemaDate,
+  schemaLanguage,
+} from "@/lib/jsonLd";
 
 const SITE_URL = "https://www.beambeam.co.uk";
 
@@ -59,57 +67,71 @@ export default async function ArticlePage({ params }: Props) {
   }
 
   const title = asText(article.data.title);
+  const headline = getHeroHeading(article.data.slices, title);
   const path = `/resources/${uid}`;
   const url = `${SITE_URL}${path}`;
   const publishedDate = article.data.date ?? article.first_publication_date;
-  const image = article.data.featured_image?.url ?? article.data.meta_image?.url;
+  const preferredImage = article.data.featured_image?.url
+    ? article.data.featured_image
+    : article.data.meta_image;
+  const primaryImage = getPrimarySchemaImage(preferredImage, [article.data.body]);
+  const primaryImageId = primaryImage?.url ? `${url}#primaryimage` : undefined;
+  const bodyImageUrls = collectSchemaImages(article.data.body)
+    .map((image) => image.url)
+    .filter((image): image is string => Boolean(image));
+  const images = [
+    ...(primaryImageId ? [{ "@id": primaryImageId }] : []),
+    ...bodyImageUrls.filter((image) => image !== primaryImage?.url),
+  ];
+  const bodyText = asText(article.data.body).trim();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
+  const articleJsonLd = {
     "@type": "BlogPosting",
     "@id": `${url}#article`,
-    headline: title,
+    name: title,
+    headline,
+    alternativeHeadline: headline !== title ? title : undefined,
     description: article.data.meta_description ?? article.data.excerpt ?? undefined,
-    datePublished: publishedDate,
-    dateModified: article.last_publication_date,
-    inLanguage: article.lang,
+    datePublished: schemaDate(publishedDate),
+    dateModified: schemaDate(article.last_publication_date),
+    inLanguage: schemaLanguage(article.lang),
     isAccessibleForFree: true,
     articleSection: "Resources",
     keywords: article.tags.length > 0 ? article.tags : undefined,
     author: article.data.author
-      ? {
-          "@type": "Person",
-          name: article.data.author,
-          url: `${SITE_URL}/about-me`,
-        }
+      ? article.data.author.trim().toLowerCase() === "amy varga"
+        ? { "@id": PERSON_ID }
+        : { "@type": "Person", name: article.data.author }
       : undefined,
-    image: image ?? undefined,
+    image: images.length > 0 ? images : undefined,
+    wordCount: bodyText ? bodyText.split(/\s+/).length : undefined,
     url,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `${url}#webpage`,
-    },
-    publisher: {
-      "@id": `${SITE_URL}/#organization`,
-    },
+    mainEntityOfPage: { "@id": `${url}#webpage` },
+    publisher: { "@id": ORGANIZATION_ID },
   };
 
   return (
     <>
       <PageJsonLd
         path={path}
-        name={title}
+        name={String(article.data.meta_title || title)}
         description={article.data.meta_description ?? article.data.excerpt}
+        image={primaryImage}
+        datePublished={publishedDate}
+        dateModified={article.last_publication_date}
+        inLanguage={article.lang}
+        mainEntityId={`${url}#article`}
+        additionalGraph={[articleJsonLd]}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      <BreadcrumbJsonLd
+        label={title}
+        path={path}
+        parents={[{ name: "Resources", path: "/resources" }]}
       />
-      <BreadcrumbJsonLd label={title} path={path} />
       <PageSliceZone
         slices={article.data.slices}
         components={components}
-        context={{ isPage: false }}
+        context={{ isPage: false, schemaPath: path }}
       />
       <article className="page-section section">
         <div className="content article-content min-[1135px]:!px-[calc(var(--gap)*10))]">

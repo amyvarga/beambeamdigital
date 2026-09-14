@@ -44,6 +44,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/automation",
+        destination: "/small-business-automation",
+        permanent: true,
+      },
+      {
         source: "/product-descriptions/simple-website",
         destination: "/business-starter-website",
         permanent: true,
@@ -56,6 +61,11 @@ const nextConfig: NextConfig = {
       {
         source: "/product-descriptions/business-starter-website",
         destination: "/business-starter-website",
+        permanent: true,
+      },
+      {
+        source: "/product-descriptions/automation",
+        destination: "/small-business-automation",
         permanent: true,
       },
       {

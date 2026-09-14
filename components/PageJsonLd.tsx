@@ -1,6 +1,13 @@
-import { serializeJsonLd } from "@/lib/jsonLd";
-
-const SITE_URL = "https://www.beambeam.co.uk";
+import {
+  ORGANIZATION_ID,
+  SITE_URL,
+  WEBSITE_ID,
+  schemaDate,
+  schemaImageObject,
+  schemaLanguage,
+  serializeJsonLd,
+  type SchemaImageInput,
+} from "@/lib/jsonLd";
 
 type PageJsonLdProps = {
   path: string;
@@ -10,6 +17,14 @@ type PageJsonLdProps = {
   serviceName?: string;
   serviceType?: string;
   includeWebsite?: boolean;
+  image?: SchemaImageInput | null;
+  datePublished?: string | null;
+  dateModified?: string | null;
+  inLanguage?: string | null;
+  aboutId?: string;
+  mainEntityId?: string;
+  serviceOfferCatalogId?: string;
+  additionalGraph?: Record<string, unknown>[];
 };
 
 export default function PageJsonLd({
@@ -20,10 +35,26 @@ export default function PageJsonLd({
   serviceName,
   serviceType,
   includeWebsite = false,
+  image,
+  datePublished,
+  dateModified,
+  inLanguage = "en-GB",
+  aboutId,
+  mainEntityId,
+  serviceOfferCatalogId,
+  additionalGraph = [],
 }: PageJsonLdProps) {
   const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`;
   const pageId = path === "/" ? `${SITE_URL}/#webpage` : `${url}#webpage`;
   const serviceId = serviceName ? `${url}#service` : undefined;
+  const imageId = image?.url ? `${url}${path === "/" ? "/" : ""}#primaryimage` : undefined;
+  const primaryImage = imageId && image ? schemaImageObject(image, imageId) : undefined;
+  const language = schemaLanguage(inLanguage);
+  const resolvedAboutId = aboutId ?? serviceId;
+  const resolvedMainEntityId =
+    mainEntityId ??
+    serviceId ??
+    (type === "ContactPage" ? ORGANIZATION_ID : undefined);
   const graph = [
     ...(includeWebsite
       ? [
@@ -32,8 +63,8 @@ export default function PageJsonLd({
             "@id": `${SITE_URL}/#website`,
             url: SITE_URL,
             name: "Beam Beam Digital",
-            inLanguage: "en-GB",
-            publisher: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: language,
+            publisher: { "@id": ORGANIZATION_ID },
           },
         ]
       : []),
@@ -43,16 +74,18 @@ export default function PageJsonLd({
       url,
       name,
       description: description || undefined,
-      inLanguage: "en-GB",
-      isPartOf: { "@id": `${SITE_URL}/#website` },
+      datePublished: schemaDate(datePublished),
+      dateModified: schemaDate(dateModified),
+      inLanguage: language,
+      isPartOf: { "@id": WEBSITE_ID },
+      publisher: { "@id": ORGANIZATION_ID },
       breadcrumb:
         path === "/" ? undefined : { "@id": `${url}#breadcrumb` },
-      about: serviceId ? { "@id": serviceId } : undefined,
-      mainEntity: serviceId
-        ? { "@id": serviceId }
-        : type === "ContactPage"
-          ? { "@id": `${SITE_URL}/#organization` }
-          : undefined,
+      primaryImageOfPage: imageId ? { "@id": imageId } : undefined,
+      about: resolvedAboutId ? { "@id": resolvedAboutId } : undefined,
+      mainEntity: resolvedMainEntityId
+        ? { "@id": resolvedMainEntityId }
+        : undefined,
     },
     ...(serviceId
       ? [
@@ -63,8 +96,12 @@ export default function PageJsonLd({
             serviceType: serviceType || serviceName,
             description: description || undefined,
             url,
-            inLanguage: "en-GB",
-            provider: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: language,
+            provider: { "@id": ORGANIZATION_ID },
+            image: imageId ? { "@id": imageId } : undefined,
+            hasOfferCatalog: serviceOfferCatalogId
+              ? { "@id": serviceOfferCatalogId }
+              : undefined,
             areaServed: [
               { "@type": "Place", name: "South Devon" },
               { "@type": "Country", name: "United Kingdom" },
@@ -72,6 +109,8 @@ export default function PageJsonLd({
           },
         ]
       : []),
+    ...(primaryImage ? [primaryImage] : []),
+    ...additionalGraph,
   ];
 
   return (

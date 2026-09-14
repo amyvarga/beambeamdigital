@@ -3,9 +3,14 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import LatestArticles from "@/components/LatestArticles";
+import PageJsonLd from "@/components/PageJsonLd";
 import PageSliceZone from "@/components/PageSliceZone";
 import { asText, Content } from "@prismicio/client";
-import { serializeJsonLd } from "@/lib/jsonLd";
+import {
+  ORGANIZATION_ID,
+  getHeroHeading,
+  getPrimarySchemaImage,
+} from "@/lib/jsonLd";
 
 const SITE_URL = "https://www.beambeam.co.uk";
 const PAGE_PATH = "/search-conversion-optimisation";
@@ -35,8 +40,19 @@ export default async function SeoPage() {
     (slice) => slice.slice_type === "product_comparison",
   ) as Content.ProductComparisonSlice | undefined;
   const products = productSlice?.primary.product ?? [];
+  const serviceName = getHeroHeading(
+    page.data.slices,
+    "Search engine and conversion optimisation",
+  );
+  const primaryImage = getPrimarySchemaImage(
+    page.data.meta_image,
+    page.data.slices,
+  );
+  const catalogName =
+    products.find((product) => product.heading?.trim())?.heading ||
+    "SEO support options";
   const offers = products
-    .filter((product) => product.product_title)
+    .filter((product) => product.product_title?.trim())
     .map((product, index) => {
       const range = product.price?.match(/^\s*([\d,.]+)\s*[-–—]\s*([\d,.]+)\s*$/);
       const offer = range
@@ -63,58 +79,54 @@ export default async function SeoPage() {
             "@id": `${PAGE_URL}#package-${index + 1}`,
             name: product.product_title,
             description: asText(product.product_brief_description),
-            provider: { "@id": `${SITE_URL}/#organization` },
+            provider: { "@id": ORGANIZATION_ID },
           },
         },
       };
     });
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": `${PAGE_URL}#webpage`,
-        url: PAGE_URL,
-        name: page.data.meta_title ?? "SEO Services",
-        description: page.data.meta_description ?? undefined,
-        inLanguage: "en-GB",
-        isPartOf: { "@id": `${SITE_URL}/#website` },
-        breadcrumb: { "@id": `${PAGE_URL}#breadcrumb` },
-        about: { "@id": `${PAGE_URL}#service` },
-        mainEntity: { "@id": `${PAGE_URL}#service` },
-      },
-      {
-        "@type": "Service",
-        "@id": `${PAGE_URL}#service`,
-        name: "SEO Services",
-        serviceType: "Search engine optimisation",
-        description: page.data.meta_description ?? undefined,
-        url: PAGE_URL,
-        inLanguage: "en-GB",
-        provider: { "@id": `${SITE_URL}/#organization` },
-        areaServed: [
-          { "@type": "Place", name: "South Devon" },
-          { "@type": "Country", name: "United Kingdom" },
-        ],
-        hasOfferCatalog: { "@id": `${PAGE_URL}#offers` },
-      },
-      {
-        "@type": "OfferCatalog",
-        "@id": `${PAGE_URL}#offers`,
-        name: "SEO Packages",
-        numberOfItems: offers.length,
-        itemListElement: offers,
-      },
-    ],
-  };
+  const offerCatalogId = offers.length > 0 ? `${PAGE_URL}#packages` : undefined;
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }} />
-      <BreadcrumbJsonLd label="SEO" path={PAGE_PATH} />
+      <PageJsonLd
+        path={PAGE_PATH}
+        name={String(page.data.meta_title || serviceName)}
+        description={page.data.meta_description}
+        serviceName={serviceName}
+        serviceType="Search engine and conversion optimisation"
+        image={primaryImage}
+        datePublished={page.first_publication_date}
+        dateModified={page.last_publication_date}
+        inLanguage={page.lang}
+        serviceOfferCatalogId={offerCatalogId}
+        additionalGraph={
+          offerCatalogId
+            ? [
+                {
+                  "@type": "OfferCatalog",
+                  "@id": offerCatalogId,
+                  name: catalogName,
+                  numberOfItems: offers.length,
+                  itemListElement: offers,
+                },
+              ]
+            : []
+        }
+      />
+      <BreadcrumbJsonLd
+        label="Search engine and conversion optimisation"
+        path={PAGE_PATH}
+        parents={[
+          { name: "Services", path: "/web-developer-south-devon" },
+        ]}
+      />
       <PageSliceZone
         slices={page.data.slices}
         components={components}
-        context={{ isPage: true, suppressProductSchema: true }}
+        context={{
+          isPage: true,
+          schemaPath: PAGE_PATH,
+          suppressProductSchema: true,
+        }}
       />
       <LatestArticles />
     </>

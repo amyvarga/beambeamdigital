@@ -1,26 +1,36 @@
-import { serializeJsonLd } from "@/lib/jsonLd";
+import { absoluteUrl, SITE_URL, serializeJsonLd } from "@/lib/jsonLd";
 
-const SITE_URL = "https://www.beambeam.co.uk";
+type BreadcrumbItem = {
+  name: string;
+  path: string;
+};
 
-export default function BreadcrumbJsonLd({ label, path }: { label: string; path: string }) {
+type BreadcrumbJsonLdProps = {
+  label: string;
+  path: string;
+  parents?: BreadcrumbItem[];
+};
+
+export default function BreadcrumbJsonLd({
+  label,
+  path,
+  parents = [],
+}: BreadcrumbJsonLdProps) {
+  const breadcrumbs = [
+    { name: "Home", path: "/" },
+    ...parents,
+    { name: label, path },
+  ];
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "@id": `${SITE_URL}${path}#breadcrumb`,
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: SITE_URL,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: label,
-        item: `${SITE_URL}${path}`,
-      },
-    ],
+    itemListElement: breadcrumbs.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
+    })),
   };
 
   return (

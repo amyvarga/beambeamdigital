@@ -628,6 +628,7 @@ a.nav-link.selected::after {
    ============================================ */
 .about {
     background-color: var(--color-5);
+    flex-direction: column;
 }
 
 .faq-title > h2,
@@ -658,19 +659,21 @@ a.nav-link.selected::after {
 }
 
 .about-image {
-    border-radius: var(--btn-radius);
-    position: relative;
-    margin: 0 auto;
+    width: 200px;
+    margin: 0 auto var(--gap) auto;
+    > img {
+        border-radius: 50%;
+    }
 }
 
-.about-image > img {
+/*.about-image > img {
     border: 1px solid var(--color-2);
     width: 100%;
     border-radius: var(--btn-radius);
     object-fit: cover;
-}
+}*/
 
-.about-text {
+/*.about-text {
     > ol {
         margin-bottom: calc(var(--gap) / 2);
         text-align: center;
@@ -680,7 +683,7 @@ a.nav-link.selected::after {
         list-style: decimal;
         list-style-position: inside;
     }
-}
+}*/
 
 .placeholder-text {
     position: absolute;
@@ -853,7 +856,8 @@ div.callToAction {
     margin: 0;
 }
 
-.product-item[open] .product-accordion-trigger {
+.product-item[open] .product-accordion-trigger,
+.product-item.is-open .product-accordion-trigger {
     color: var(--color-6);
     font-weight: 600;
 }
@@ -866,12 +870,17 @@ div.callToAction {
     line-height: 1;
 }
 
-.product-item[open] .product-accordion-trigger::after {
+.product-item[open] .product-accordion-trigger::after,
+.product-item.is-open .product-accordion-trigger::after {
     content: "−";
 }
 
 .product-accordion-panel {
     margin-bottom: var(--gap);
+}
+
+.product-item:not([open]):not(.is-open) .product-accordion-panel {
+    margin-bottom: 0;
 }
 
 .product-item-content > :last-child {
@@ -1541,8 +1550,20 @@ select:focus {
     }
 
  /* About */
-    .about-grid {
+    /*.about-grid {
         display: grid;
+    }*/
+
+    .about-text {
+        display: flow-root;
+    }
+
+    .about-text > .image-block {
+        float: left;
+        margin: 0 var(--gap) calc(var(--gap) / 2) 0;
+    }
+
+    /*
         grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
         column-gap: var(--gap);
         row-gap: 0;
@@ -1555,11 +1576,24 @@ select:focus {
     }
     .about-text {
       grid-area: intro;
+    }*/
+
+    .about-image {
+        width: 200px;
+        margin: 0 var(--gap) var(--gap) var(--gap);
     }
     .masonry {
-        grid-area: masonry;
+        /*grid-area: masonry;*/
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+        gap: 1rem;
+        > .masonry-title {
+            grid-column: 1 / -1;
+        }
     }
     .masonry-gallery {
+       grid-column: 2 / -1;
        grid-template-columns: repeat(6, 1fr);
     }
 
@@ -1638,34 +1672,6 @@ select:focus {
         margin-left: 0;
     }*/
 
-    .accordion {
-        margin-top: var(--gap);
-    }
-
-    .accordion-item {
-        scroll-margin-top: var(--scroll-margin-top);
-    }
-
-    .accordion-heading {
-        padding-bottom: var(--gap);
-    }
-
-    .accordion-item.accordion--visible .accordion-body {
-        margin: var(--gap) 0;
-    }
-
-    .accordion-body {
-        margin-top: var(--gap);
-    }
-
-    .accordion-body:last-of-type {
-        margin-bottom: 0;
-    }
-
-    .accordion-heading:after {
-        font-size: 50px;
-    }
-
     /* Product */
     .product-section .product-title > h2 {
         margin-bottom: var(--gap);
@@ -1675,11 +1681,11 @@ select:focus {
         margin: calc(var(--gap) * 2) auto 0 auto;
     }*/
 
-    .about-grid {
+   /* .about-grid {
         grid-template-areas:
           "image intro"
           "image masonry"
-    }
+    }*/
 
 
     /* Recent work grid */
@@ -1771,14 +1777,15 @@ select:focus {
     .content .header,
     .faq-content,
     .page-section > .content, 
-    .article-content {
+    .article-content, 
+    .about {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
       gap: 1rem;
       align-items: baseline;
-      > div.callToAction {
+      /*> div.callToAction {
         text-align:right;
-      }
+      }*/
     }
 
     /*.page-text h3 {
@@ -1804,7 +1811,8 @@ select:focus {
     .product-content > .product-items,
     .faq-content > .container, 
     .article-body, 
-    .page-content > .page-text {
+    .page-content > .page-text,
+    .about-content {
         grid-column: 2 / -1;
     }
 
@@ -1984,6 +1992,12 @@ select:focus {
         height: 169px;
         width: 169px;
         font-size: 24px;
+    }
+
+     .masonry-gallery {
+
+       width: 75%;
+       margin: 0 auto;
     }
 }
 /* ============================================

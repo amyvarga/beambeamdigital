@@ -37,21 +37,21 @@ const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
           </div>
         )}
         <div className="about-grid">
-          <div className="about-image">
-            {slice.primary.about_image?.url ? (
-              <PrismicNextImage
-                field={slice.primary.about_image}
-                className="fade-in"
-                alt=""
-              />
-            ) : (
-              <div className="placeholder-image fade-in">
-                <span className="placeholder-text">Profile Image</span>
-              </div>
-            )}
-          </div>
           <div className="about-text fade-in">
-             <PrismicRichText field={slice.primary.body_paragraph_one} />
+            <div className="about-image image-block">
+              {slice.primary.about_image?.url ? (
+                <PrismicNextImage
+                  field={slice.primary.about_image}
+                  className="fade-in"
+                  alt=""
+                />
+              ) : (
+                <div className="placeholder-image fade-in">
+                  <span className="placeholder-text">Profile Image</span>
+                </div>
+              )}
+            </div>
+            <PrismicRichText field={slice.primary.body_paragraph_one} />
             <PrismicRichText field={slice.primary.body_paragraph_two} />
             <PrismicRichText field={slice.primary.body_paragraph_three} />
             {(cta_text?.trim() || cta_button_label) && (
@@ -65,9 +65,9 @@ const AboutSection: FC<AboutSectionProps> = ({ slice, context }) => {
               </p>
             )}
           </div>
-          <MasonryGallery images={masonryImages} title={slice.primary.masonry_title ?? undefined} />
         </div>
       </div>
+      <MasonryGallery images={masonryImages} title={slice.primary.masonry_title ?? undefined} />
     </section>
   );
 };

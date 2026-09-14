@@ -4,6 +4,10 @@ import { components } from "@/slices";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
 import PageSliceZone from "@/components/PageSliceZone";
+import {
+  getHeroHeading,
+  getPrimarySchemaImage,
+} from "@/lib/jsonLd";
 
 const path = "/web-developer-south-devon";
 
@@ -28,6 +32,14 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ServicesPage() {
   const client = createClient();
   const page = await client.getSingle("services");
+  const serviceName = getHeroHeading(
+    page.data.slices,
+    "Web development services",
+  );
+  const primaryImage = getPrimarySchemaImage(
+    page.data.meta_image,
+    page.data.slices,
+  );
 
   return (
     <>
@@ -35,13 +47,18 @@ export default async function ServicesPage() {
         path={path}
         name={String(page.data.meta_title || "Web Developer in South Devon")}
         description={page.data.meta_description}
-        serviceName="Web development services"
+        serviceName={serviceName}
+        serviceType="Web development"
+        image={primaryImage}
+        datePublished={page.first_publication_date}
+        dateModified={page.last_publication_date}
+        inLanguage={page.lang}
       />
       <BreadcrumbJsonLd label="Services" path={path} />
       <PageSliceZone
         slices={page.data.slices}
         components={components}
-        context={{ isPage: true }}
+        context={{ isPage: true, schemaPath: path }}
       />
     </>
   );

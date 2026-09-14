@@ -4,11 +4,13 @@ import { FC } from "react";
 import { Content, asLink, asText } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
 import Accordion from "@/components/Accordion";
-import { serializeJsonLd } from "@/lib/jsonLd";
+import { absoluteUrl, serializeJsonLd } from "@/lib/jsonLd";
 
 export type FaqProps = SliceComponentProps<Content.FaqSlice>;
 
-const Faq: FC<FaqProps> = ({ slice }) => {
+const Faq: FC<FaqProps> = ({ slice, context }) => {
+  const ctx = context as { schemaPath?: string } | undefined;
+  const pageUrl = ctx?.schemaPath ? absoluteUrl(ctx.schemaPath) : undefined;
   const faqItems = (slice.primary.faq ?? []).filter(
     (item) => item.faq_title?.trim() && asText(item.faq_description).trim(),
   );
@@ -22,6 +24,9 @@ const Faq: FC<FaqProps> = ({ slice }) => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": pageUrl ? `${pageUrl}#faq` : undefined,
+    url: pageUrl,
+    isPartOf: pageUrl ? { "@id": `${pageUrl}#webpage` } : undefined,
     mainEntity: faqItems.map((item) => ({
       "@type": "Question",
       name: item.faq_title ?? "",
@@ -38,10 +43,12 @@ const Faq: FC<FaqProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
       className="faq section"
     >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
-      />
+      {faqItems.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+        />
+      )}
       <div className="faq-content">
         {slice.primary.faq_heading && (
           <div className="faq-title">
