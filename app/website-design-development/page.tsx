@@ -5,7 +5,6 @@ import PageSliceZone from "@/components/PageSliceZone";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import PageJsonLd from "@/components/PageJsonLd";
 import {
-  SITE_URL,
   getHeroHeading,
   getPrimarySchemaImage,
 } from "@/lib/jsonLd";
@@ -40,16 +39,6 @@ export default async function WebsitesPage() {
     page.data.meta_image,
     page.data.slices,
   );
-  const productSlice = page.data.slices.find(
-    (slice) => slice.slice_type === "product_comparison",
-  );
-  const hasPackages =
-    productSlice?.slice_type === "product_comparison" &&
-    productSlice.primary.product.some(
-      (product) =>
-        Boolean(product.product_title) ||
-        product.product_brief_description.length > 0,
-    );
   return (
     <>
       <PageJsonLd
@@ -62,9 +51,6 @@ export default async function WebsitesPage() {
         datePublished={page.first_publication_date}
         dateModified={page.last_publication_date}
         inLanguage={page.lang}
-        serviceOfferCatalogId={
-          hasPackages ? `${SITE_URL}${path}#packages` : undefined
-        }
       />
       <BreadcrumbJsonLd
         label="Website design and development"

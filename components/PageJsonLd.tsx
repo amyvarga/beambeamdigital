@@ -23,7 +23,6 @@ type PageJsonLdProps = {
   inLanguage?: string | null;
   aboutId?: string;
   mainEntityId?: string;
-  serviceOfferCatalogId?: string;
   additionalGraph?: Record<string, unknown>[];
 };
 
@@ -41,7 +40,6 @@ export default function PageJsonLd({
   inLanguage = "en-GB",
   aboutId,
   mainEntityId,
-  serviceOfferCatalogId,
   additionalGraph = [],
 }: PageJsonLdProps) {
   const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`;
@@ -99,9 +97,6 @@ export default function PageJsonLd({
             inLanguage: language,
             provider: { "@id": ORGANIZATION_ID },
             image: imageId ? { "@id": imageId } : undefined,
-            hasOfferCatalog: serviceOfferCatalogId
-              ? { "@id": serviceOfferCatalogId }
-              : undefined,
             areaServed: [
               { "@type": "Place", name: "South Devon" },
               { "@type": "Country", name: "United Kingdom" },

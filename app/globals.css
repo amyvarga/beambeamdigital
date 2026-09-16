@@ -114,6 +114,16 @@ h3 {
     font-size: clamp(25px, 4vw, 23px);
     font-weight: 400;
     margin: 2rem 0;
+    a {
+        color: var(--color-6);
+        border-bottom: none;
+        &:after{
+            content: ' →';
+        } 
+        &:hover {
+            color: var(--color-2);
+        }
+    }
 }
 h4 {
     font-size: clamp(16px, 3vw, 17px);
@@ -887,11 +897,11 @@ div.callToAction {
     margin-bottom: 0;
 }
 /*p.callToActionLink,
- span.callToActionLink,
- div.callToActionLink,*/
+ span.callToActionLink,*/
+ .callToAction > .callToActionLink,
 .product-accordion-cta {
     display: flex;
-    justify-content: left;
+    justify-content: right;
     margin-top: calc(var(--gap) / 2);
     > a {
         border: none!important;

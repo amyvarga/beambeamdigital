@@ -14,8 +14,6 @@ type ProductItem = {
   introduction: prismic.KeyTextField;
   product_title: prismic.KeyTextField;
   product_brief_description: prismic.RichTextField;
-  price: prismic.KeyTextField;
-  price_currency: prismic.KeyTextField;
   product_inline_link: prismic.KeyTextField;
   product_inline_link_text: prismic.KeyTextField;
   product_details: prismic.RichTextField;
@@ -33,13 +31,7 @@ type ProductComparisonSlice = prismic.SharedSlice<
 export type ProductComparisonProps = SliceComponentProps<ProductComparisonSlice>;
 
 const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
-  const ctx = context as
-    | {
-        isPage?: boolean;
-        schemaPath?: string;
-        suppressProductSchema?: boolean;
-      }
-    | undefined;
+  const ctx = context as { schemaPath?: string } | undefined;
   const p = slice.primary as Record<string, unknown>;
   const products = (p.product as ProductItem[]) ?? [];
   const sectionHeading = products.find((item) => item.heading?.trim())?.heading;
@@ -49,49 +41,28 @@ const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
       Boolean(asText(item.product_brief_description).trim()),
   );
   const pageUrl = ctx?.schemaPath ? absoluteUrl(ctx.schemaPath) : undefined;
-  const catalogId = pageUrl ? `${pageUrl}#packages` : undefined;
-  const offerFor = (item: ProductItem) => {
-    if (!item.price) return undefined;
-    const range = item.price.match(/^\s*([\d,.]+)\s*[-–—]\s*([\d,.]+)\s*$/);
-    if (range) {
-      return {
-        "@type": "AggregateOffer",
-        lowPrice: range[1].replace(/,/g, ""),
-        highPrice: range[2].replace(/,/g, ""),
-        priceCurrency: item.price_currency ?? "GBP",
-      };
-    }
-    return {
-      "@type": "Offer",
-      price: item.price,
-      priceCurrency: item.price_currency ?? "GBP",
-    };
-  };
+  const listId = pageUrl ? `${pageUrl}#packages` : undefined;
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "OfferCatalog",
-    "@id": catalogId,
+    "@type": "ItemList",
+    "@id": listId,
     name: sectionHeading ?? "Service packages",
     numberOfItems: visibleProducts.length,
     itemListElement: visibleProducts.map((item, i) => ({
       "@type": "ListItem",
       position: i + 1,
       item: {
-        ...(offerFor(item) ?? { "@type": "Offer" }),
-        "@id": pageUrl ? `${pageUrl}#offer-${i + 1}` : undefined,
+        "@type": "Service",
+        "@id": pageUrl ? `${pageUrl}#package-${i + 1}` : undefined,
         url: asLink(item.cta_link)
           ? absoluteUrl(asLink(item.cta_link) as string)
           : pageUrl
             ? `${pageUrl}#packages`
             : undefined,
-        itemOffered: {
-          "@type": "Service",
-          "@id": pageUrl ? `${pageUrl}#package-${i + 1}` : undefined,
-          name: item.product_title ?? "",
-          description: asText(item.product_brief_description),
-          provider: { "@id": ORGANIZATION_ID },
-        },
+        name: item.product_title ?? "",
+        description: asText(item.product_brief_description),
+        provider: { "@id": ORGANIZATION_ID },
       },
     })),
   };
@@ -103,7 +74,7 @@ const ProductComparison: FC<ProductComparisonProps> = ({ slice, context }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      {!ctx?.suppressProductSchema && visibleProducts.length > 0 && (
+      {visibleProducts.length > 0 && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
