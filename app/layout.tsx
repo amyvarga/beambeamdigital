@@ -52,8 +52,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.beambeam.co.uk"),
-  title: "Beam Beam Digital, Devon | Websites, e-commerce, SEO, AI optimisation",
-  description: "Beam Beam Digital is located in South Devon. Its services include website design and build, e-commerce, search engine and AI optimisation, and information technology.",
+  title: "Beam Beam Digital, South Devon | Websites, SEO, conversion optimisation & IT",
+  description: "Beam Beam Digital is located in South Devon. Its services include website design and build, e-commerce, search engine & conversion optimisation, & information technology.",
 };
 
 const logoId = `${SITE_URL}/#logo`;
@@ -66,7 +66,7 @@ const jsonLd = {
       name: "Beam Beam Digital",
       url: SITE_URL,
       description:
-        "Website design and build, e-commerce, search engine and AI optimisation, conversion optimisation, automation and information technology services based in South Devon.",
+        "Website design and build, e-commerce, search engine & conversion optimisation, automation & synchronisation | based in South Devon",
       logo: { "@id": logoId },
       image: { "@id": logoId },
       founder: { "@id": PERSON_ID },
@@ -94,10 +94,9 @@ const jsonLd = {
         "Website design and development",
         "E-commerce",
         "Search engine optimisation",
-        "AI search optimisation",
         "Conversion optimisation",
-        "Workflow automation",
-        "Information technology",
+        "Website automation",
+        "Website synchronisation",
         "WordPress",
         "Squarespace",
         "Wix",

@@ -1106,6 +1106,18 @@ div.callToAction {
     padding-top: calc(var(--gap) / 2);
 }
 
+.page-text .quote {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 1.75em;
+    line-height: 1.25em;
+}
+
+.page-text .block-img {
+    margin: 2em 0;
+}
+
 /* ============================================
    CONTACT
    ============================================ */
