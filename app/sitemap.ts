@@ -16,6 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     about,
     contact,
     resources,
+    cookiePolicy,
     articles,
     productDescriptions,
     portfolioCaseStudies,
@@ -29,6 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     client.getSingle("about"),
     client.getSingle("contact"),
     client.getSingle("resources"),
+    client.getSingle("cookie_policy"),
     client.getAllByType("article"),
     client.getAllByType("product_description"),
     client.getAllByType("portfolio_case_study"),
@@ -44,6 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/about-me`, lastModified: new Date(about.last_publication_date), changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/contact`, lastModified: new Date(contact.last_publication_date), changeFrequency: "yearly", priority: 0.5 },
     { url: `${baseUrl}/resources`, lastModified: new Date(resources.last_publication_date), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/cookie-policy`, lastModified: new Date(cookiePolicy.last_publication_date), changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const articleEntries = articles.map((a) => ({

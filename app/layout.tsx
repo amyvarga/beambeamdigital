@@ -4,7 +4,7 @@ import "./globals.css";
 import FadeInObserver from "@/components/FadeInObserver";
 import MobileNavObserver from "@/components/MobileNavObserver";
 import ActiveNavObserver from "@/components/ActiveNavObserver";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import CookieConsent from "@/components/CookieConsent";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
 import { createClient } from "@/prismicio";
@@ -155,7 +155,7 @@ export default async function RootLayout({
             <a href="contact">Get in touch</a>
           </div>
         <SliceZone slices={footerSlices} components={components} />
-        <GoogleAnalytics />
+        <CookieConsent />
         <SpeedInsights />
         <Analytics />
       </body>

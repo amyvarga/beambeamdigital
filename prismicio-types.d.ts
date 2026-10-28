@@ -363,6 +363,74 @@ export type ContactDocument<Lang extends string = string> =
     Lang
   >;
 
+type CookiePolicyDocumentDataSlicesSlice =
+  | AboutSectionSlice
+  | BreadcrumbSlice
+  | HeroBannerSlice;
+
+/**
+ * Content for Cookie Policy documents
+ */
+interface CookiePolicyDocumentData {
+  /**
+   * Slice Zone field in *Cookie Policy*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cookie_policy.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<CookiePolicyDocumentDataSlicesSlice>; /**
+   * Meta Title field in *Cookie Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: cookie_policy.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Cookie Policy*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: cookie_policy.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Cookie Policy*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cookie_policy.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Cookie Policy document from Prismic
+ *
+ * - **API ID**: `cookie_policy`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CookiePolicyDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<CookiePolicyDocumentData>,
+    "cookie_policy",
+    Lang
+  >;
+
 type EcommerceDocumentDataSlicesSlice =
   | MenuNavigationSlice
   | HeroBannerSlice
@@ -982,6 +1050,7 @@ export type AllDocumentTypes =
   | AboutDocument
   | ArticleDocument
   | ContactDocument
+  | CookiePolicyDocument
   | EcommerceDocument
   | PageDocument
   | PortfolioCaseStudyDocument
@@ -2378,6 +2447,9 @@ declare module "@prismicio/client" {
       ContactDocument,
       ContactDocumentData,
       ContactDocumentDataSlicesSlice,
+      CookiePolicyDocument,
+      CookiePolicyDocumentData,
+      CookiePolicyDocumentDataSlicesSlice,
       EcommerceDocument,
       EcommerceDocumentData,
       EcommerceDocumentDataSlicesSlice,
