@@ -489,8 +489,8 @@ a.nav-link.selected::after {
     animation-delay: 1.5s;
     animation-fill-mode: forwards;
     position: fixed;
-    top: 300px;
-    right: 0px;
+    bottom: 8em;
+    right: 1em;
     background-color: var(--color-6);
     width: 130px;
     height: 130px;
@@ -2120,10 +2120,11 @@ select:focus {
         height: 169px;
         width: 169px;
         font-size: 24px;
+        bottom: 2em;
+        right: 2em;
     }
 
      .masonry-gallery {
-
        width: 75%;
        margin: 0 auto;
     }
